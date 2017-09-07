@@ -1,0 +1,43 @@
+0:root:x::root:x:0:root:/root:/bin/bash
+1:daemon:x::daemon:x:1:daemon:/usr/sbin:/usr/sbin/nologin
+10:uucp:x::uucp:x:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+1000:bert:x::bert:x:1000:Bert,,,:/home/bert:/bin/bash
+102:systemd-timesync:x::systemd-timesync:x:100:systemd Time Synchronization,,,:/run/systemd:/bin/false
+103:systemd-network:x::systemd-network:x:101:systemd Network Management,,,:/run/systemd/netif:/bin/false
+104:systemd-resolve:x::systemd-resolve:x:102:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+105:systemd-bus-proxy:x::systemd-bus-proxy:x:103:systemd Bus Proxy,,,:/run/systemd:/bin/false
+108:syslog:x::syslog:x:104::/home/syslog:/bin/false
+110:messagebus:x::messagebus:x:106::/var/run/dbus:/bin/false
+111:uuidd:x::uuidd:x:107::/run/uuidd:/bin/false
+114:lightdm:x::lightdm:x:108:Light Display Manager:/var/lib/lightdm:/bin/false
+116:whoopsie:x::whoopsie:x:109::/nonexistent:/bin/false
+119:avahi-autoipd:x::avahi-autoipd:x:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+12:man:x::man:x:6:man:/var/cache/man:/usr/sbin/nologin
+120:avahi:x::avahi:x:111:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+123:colord:x::colord:x:113:colord colour management daemon,,,:/var/lib/colord:/bin/false
+124:pulse:x::pulse:x:117:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+126:rtkit:x::rtkit:x:118:RealtimeKit,,,:/proc:/bin/false
+127:saned:x::saned:x:119::/var/lib/saned:/bin/false
+129:clickpkg:x::clickpkg:x:121::/nonexistent:/bin/false
+13:proxy:x::proxy:x:13:proxy:/bin:/usr/sbin/nologin
+2:bin:x::bin:x:2:bin:/bin:/usr/sbin/nologin
+29:audio:x:pulse:speech-dispatcher:x:114:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+3:sys:x::sys:x:3:sys:/dev:/usr/sbin/nologin
+33:www-data:x::www-data:x:33:www-data:/var/www:/usr/sbin/nologin
+34:backup:x::backup:x:34:backup:/var/backups:/usr/sbin/nologin
+38:list:x::list:x:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+39:irc:x::irc:x:39:ircd:/var/run/ircd:/usr/sbin/nologin
+41:gnats:x::gnats:x:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+46:plugdev:x:bert:usbmux:x:120:usbmux daemon,,,:/var/lib/usbmux:/bin/false
+60:games:x::games:x:5:games:/usr/games:/usr/sbin/nologin
+65534:nogroup:x::_apt:x:105::/nonexistent:/bin/false
+65534:nogroup:x::dnsmasq:x:112:dnsmasq,,,:/var/lib/misc:/bin/false
+65534:nogroup:x::kernoops:x:116:Kernel Oops Tracking Daemon,,,:/:/bin/false
+65534:nogroup:x::nobody:x:65534:nobody:/nonexistent:/usr/sbin/nologin
+65534:nogroup:x::sync:x:4:sync:/bin:/bin/sync
+7:lp:x::hplip:x:115:HPLIP system user,,,:/var/run/hplip:/bin/false
+7:lp:x::lp:x:7:lp:/var/spool/lpd:/usr/sbin/nologin
+8:mail:x::mail:x:8:mail:/var/mail:/usr/sbin/nologin
+9:news:x::news:x:9:news:/var/spool/news:/usr/sbin/nologin
+997:guest-8pdkzw:x::guest-8pdkzw:x:997:Guest:/tmp/guest-8pdkzw:/bin/bash
+999:guest-agu0xt:x::guest-agu0xt:x:999:Guest:/tmp/guest-agu0xt:/bin/bash

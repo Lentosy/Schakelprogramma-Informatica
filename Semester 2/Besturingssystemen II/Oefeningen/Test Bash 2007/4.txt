@@ -1,0 +1,148 @@
+KV Mechelen           Anderlecht            0-1
+Dender                Germinal Beerschot    1-2
+Lokeren               Sint-Truiden          2-1
+Club Brugge           Bergen                2-1
+Charleroi             Roeselare             1-1
+Racing Genk           Cercle Brugge         3-1
+FC Brussels           Westerlo              0-1
+Moeskroen             AA Gent               1-4
+Zulte Waregem         Standard              1-4
+
+Westerlo              Charleroi             1-0
+AA Gent               Racing Genk           5-0
+Bergen                KV Mechelen           1-1
+Cercle Brugge         Zulte Waregem         2-0
+Roeselare             Dender                3-1
+Sint-Truiden          Moeskroen             0-2
+Standard              FC Brussels           4-1
+Anderlecht            Lokeren               1-0
+Germinal Beerschot    Club Brugge           0-1
+
+Club Brugge           Sint-Truiden          3-2
+Dender                Anderlecht            2-2
+Moeskroen             Bergen                3-1
+Racing Genk           Roeselare             0-0
+Charleroi             KV Mechelen           1-0
+FC Brussels           AA Gent               0-2
+Zulte Waregem         Westerlo              1-0
+Lokeren               Germinal Beerschot    0-0
+Standard              Cercle Brugge         4-1
+
+Germinal Beerschot    Racing Genk           1-2
+Bergen                Lokeren               0-1
+AA Gent               Zulte Waregem         1-1
+Anderlecht            FC Brussels           3-0
+Roeselare             Standard              0-4
+Cercle Brugge         Dender                3-0
+Westerlo              Moeskroen             0-2
+Sint-Truiden          Charleroi             1-3
+KV Mechelen           Club Brugge           1-1
+
+Charleroi             Bergen                3-1
+Lokeren               KV Mechelen           3-1
+FC Brussels           Roeselare             0-0
+Cercle Brugge         AA Gent               4-1
+Dender                Sint-Truiden          1-0
+Racing Genk           Westerlo              1-0
+Zulte Waregem         Germinal Beerschot    2-1
+Moeskroen             Anderlecht            1-2
+Standard              Club Brugge           2-1
+
+KV Mechelen           Moeskroen             2-2
+Westerlo              Dender                0-0
+Anderlecht            Zulte Waregem         2-2
+Club Brugge           Lokeren               1-1
+Bergen                FC Brussels           2-1
+Germinal Beerschot    Charleroi             1-0
+Roeselare             Cercle Brugge         0-2
+AA Gent               Standard              1-1
+Sint-Truiden          Racing Genk           1-2
+
+Cercle Brugge         Germinal Beerschot    1-1
+AA Gent               Roeselare             1-1
+FC Brussels           Sint-Truiden          2-0
+Moeskroen             Lokeren               2-0
+Dender                Bergen                0-3
+Zulte Waregem         KV Mechelen           2-0
+Charleroi             Club Brugge           1-1
+Racing Genk           Anderlecht            1-1
+Standard              Westerlo              2-1
+
+Bergen                Racing Genk           1-1
+Lokeren               FC Brussels           0-1
+Roeselare             Zulte Waregem         3-2
+Sint-Truiden          Standard              0-0
+Club Brugge           Moeskroen             1-0
+Westerlo              Cercle Brugge         1-1
+Anderlecht            Charleroi             0-1
+KV Mechelen           Dender                2-2
+Germinal Beerschot    AA Gent               2-2
+
+Charleroi             Moeskroen             1-3
+Cercle Brugge         Sint-Truiden          5-1
+Racing Genk           KV Mechelen           2-1
+Zulte Waregem         Bergen                2-1
+AA Gent               Westerlo              1-1
+Dender                Lokeren               0-1
+Standard              Germinal Beerschot    3-1
+Roeselare             Anderlecht            2-2
+FC Brussels           Club Brugge           1-3
+
+Moeskroen             Racing Genk           1-1
+Lokeren               Charleroi             1-0
+Club Brugge           Dender                2-0
+Westerlo              Roeselare             6-0
+Germinal Beerschot    FC Brussels           3-0
+KV Mechelen           Cercle Brugge         0-4
+Sint-Truiden          Zulte Waregem         2-1
+Bergen                Standard              1-1
+Anderlecht            AA Gent               2-1
+
+AA Gent               Bergen                2-0
+Dender                Moeskroen             0-3
+Westerlo              Germinal Beerschot    1-2
+FC Brussels           Charleroi             1-2
+Standard              KV Mechelen           2-2
+Zulte Waregem         Lokeren               1-1
+Roeselare             Sint-Truiden          2-0
+Cercle Brugge         Anderlecht            0-0
+Racing Genk           Club Brugge           1-2
+
+Moeskroen             Standard              0-0
+Club Brugge           Zulte Waregem         1-0
+Anderlecht            Westerlo              3-1
+Bergen                Cercle Brugge         0-2
+Charleroi             Dender                1-0
+Sint-Truiden          AA Gent               2-1
+Germinal Beerschot    Roeselare             2-0
+KV Mechelen           FC Brussels           4-0
+Lokeren               Racing Genk           1-1
+
+Cercle Brugge         Club Brugge           1-2
+Standard              Lokeren               1-0
+Racing Genk           Charleroi             1-0
+Zulte Waregem         Moeskroen             2-1
+Westerlo              Sint-Truiden          2-0
+FC Brussels           Dender                4-1
+AA Gent               KV Mechelen           4-1
+Germinal Beerschot    Anderlecht            2-0
+Roeselare             Bergen                4-3
+
+Anderlecht            Standard              0-0
+KV Mechelen           Roeselare             4-3
+Bergen                Westerlo              1-3
+Moeskroen             FC Brussels           1-1
+Sint-Truiden          Germinal Beerschot    0-3
+Charleroi             Zulte Waregem         2-3
+Lokeren               Cercle Brugge         1-1
+Dender                Racing Genk           2-0
+Club Brugge           AA Gent               0-0
+
+Standard              Charleroi             5-1
+Westerlo              KV Mechelen           1-1
+Zulte Waregem         Dender                1-2
+Germinal Beerschot    Bergen                2-0
+Cercle Brugge         Moeskroen             3-0
+AA Gent               Lokeren               4-2
+Roeselare             Club Brugge           1-2
+Sint-Truiden          Anderlecht            4-3

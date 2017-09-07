@@ -1,0 +1,210 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+\usepackage{listings}
+\usepackage{tabularx}
+
+
+\setlength{\parindent}{0pt}
+
+\title{Besturingssystemen 2}
+\author{Bert De Saffel}
+
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{Datasheet}
+\chapter{Belangrijke registers}
+Dit hoofdstuk bevat de belangrijkste registers met hun pagina in de datasheet. Als ze bitadresseerbaar zijn bevat het ook nog eens de relevante bits tussen haakjes.
+\section{Timers}
+Volgende registers bevinden zich in SFR pagina 0.
+\begin{itemize}
+\item \textbf{TMOD}: 290
+\item \textbf{CKCON}: 291
+\end{itemize}
+
+\section{ADC}
+Volgende registers bevinden zich in SFR pagina 0.
+\begin{itemize}
+\item \textbf{ADC0CN}: 57    (AD0EN, AD0BUSY, AD0INT)
+\item \textbf{AMX0CF}: 72  
+\item \textbf{AMX0SL}: 73
+\item \textbf{REF0CN}: 108
+\end{itemize}
+
+\section{Seriële communicatie}
+Volgende registers bevinden zich in SFR pagina 0.
+\begin{itemize}
+\item \textbf{SCON0}: 271    (TI0, RI0)
+\item \textbf{SSTA0}: 272    (SMOD0)
+\end{itemize}
+
+\part{Configuratie}
+\chapter{Gebruik van de 7-segment display}
+\section{Initialisatie}
+De 7-segment display kan tot maximum 4 poorten ingesteld worden waarbij elke poort een 7-segment display voorstelt.
+\begin{lstlisting}
+mov P0MDOUT, #0FFh
+mov P1MDOUT, #0FFh
+mov P2MDOUT, #0FFh
+mov P3MDOUT, #0FFh
+\end{lstlisting}
+Uiteraard is het mogelijk dat andere poorten gebruikt worden.
+\newline
+De 7-segment display bevat, zoals de naam het doet vermoeden, 7 segmenten die elk onafhankelijk aan of uit kunnen staan. De getallen 0 tot en met 9 zijn dus een bepaald bitpatroon. In het volgende voorbeeld schrijven we deze bitpatronen weg van 20h tot en met 29h. De underscores zijn enkel bedoeld voor de leesbaarheid en dienen niet in het codesegment te komen.
+
+\begin{lstlisting}
+mov 20h, #0011_1111b //0 
+mov 21h, #0000_0110b //1
+mov 22h, #0101_0011b //2
+mov 23h, #0100_1011b //3
+mov 24h, #0110_0110b //4
+mov 25h, #0110_1101b //5
+mov 26h, #0111_1101b //6
+mov 27h, #0000_0111b //7
+mov 28h, #0111_1111b //8
+mov 29h, #0110_1111b //9
+\end{lstlisting}
+
+Merk op dat het 8ste bit nooit gebruikt wordt. Logisch aangezien het een 7-segment display is.
+
+\section{Afbeelden}
+Om een getal af te beelden wordt het volgende gedaan. In R2 moet een waarde van 0 tot en met 9 zitten.
+\begin{lstlisting}
+	mov A, #20h
+	add A, R2
+	mov R0, R2
+	mov P0, @R0
+\end{lstlisting}
+
+Als in R2 het getal 4 zit, zal in de accumulator \#24h zitten. Wat overeenkomt met het bitpatroon om een 4 af te beelden. Deze wordt in R0 gestopt aangezien je naar een uitvoerpin een pointer moet wegschrijven, A heeft die functionaliteit niet. Deze code zal de segmenten in een vorm van een vier doen laten branden.
+
+\chapter{Timers}
+\section{Timer 0 en Timer 1}
+Volgende instructies zijn van toepassing voor zowel timer 0 als timer 1.
+\begin{enumerate}
+	\item \textbf{setb ET0 / setb ET1 (p. 147, p. 149)}
+	\newline
+	Laat interrupts voor timer 0 / 1 toe. Zit in alle SFR pagina's.
+	\item \textbf{mov TMOD (p. 290)}
+	\newline
+	Configureert zowel timer 0 als timer 1. De meest beduidende nibble configureert timer 1 en de minst beduidende nibble configureert timer 0. Bij elke nibble zijn de minst beduidende 2 bits het meest belangrijk. Als je maar één timer gebruikt laat je vanzelfsprekend de andere nibble op nul. Voor het instellen van een nibble kies je ofwel voor 1 (mode 1), wat de timer in 16-bit mode zet, of 2 (mode 2), wat de auto-reload functionaliteit geeft aan de timer, ten kosten van 8 bits. Een voorbeeld: \textit{mov TMOD, \#21h} zal timer 1 op mode 2 zetten en timer 0 op mode 1.
+	\item \textbf{mov CKCON (p. 291)}
+	\newline
+	Bij deze configuratie moet er alleen gekeken worden naar de minst beduidende 2 bits, aangezien bit 4 en bit 3 altijd nul zullen zijn, aangezien die afhankelijk zijn van een instelling die we in TMOD niet gebruiken. Deze minst 2 beduidende bits zullen bepalen door hoeveel de systeemklok gedeeld moet worden. Er bestaan dus vier mogelijkheden: 
+	\begin{itemize}
+		\item mov CKCON, \#00h $\rightarrow$ Systeemklok delen door 12
+		\item mov CKCON, \#01h $\rightarrow$ Systeemklok delen door 4
+		\item mov CKCON, \#02h $\rightarrow$ Systeemklok delen door 48
+		\item mov CKCON, \#03h $\rightarrow$ Externe klok delen door 8
+	\end{itemize}
+	In principe zal \textit{\#03h} nooit gebruikt worden, dus blijven er drie mogelijkheden over.
+	\item \textbf{mov TH0 / mov TH1 \& mov TL0 / TH1}
+	\newline
+	Een timer heeft een bepaalde startwaarde nodig. Dit is een 16-bit getal waarvan de 8 meest beduidende bits in TH0 of TH1 komen en de 8 minst beduidende bits in TL0 of TH1. Om te weten wat er in deze registers moeten komen zijn er eerst een aantal gegevens nodig.
+	\begin{enumerate}
+		\item De duur in seconden (t)
+		\item De klokfrequentie (klokfreq) $\rightarrow$ Bij de c8051f120 controller is dit altijd gelijk aan $ \frac{(24,5 * 10^6)}{8} = 3062500$
+	\end{enumerate}
+	Eens we deze gegevens hebben kunnen we het aantal klokpulsen achterhalen via de volgende formule: $ klokfreq * t$. Stel dat we om de seconde het lampje op P1.6 willen laten pinken. Initieël wordt de formule als volgt ingevuld: $3062500 * 1 = 3062500$. 3062500 is uiteraard te groot voor een 16 bit getal, daarom gaan we de systeemklok delen zoals aangegeven in CKCON. Als we delen door 4 of 12 is het getal nog altijd grooter dan $2^{16}$, daarom delen we door 48 wat uitkomt op ongeveer 63802. Aangezien een 16-bit timer overflowt op 65535 moeten we hiervaan 63802 aftrekken. Je komt uit op 1733 wat in hexadecimale notatie overeenkomt met F93A. Deze hexadecimale notatie hebben we zo meteen nodig. Aangezien een timer overloopt van FFFFh naar 0000h moet er van FFFFh de waarde F93Ah afgetrokken worden. $FFFFh - F93Ah = 06C5h$. De twee meest beduidende bits komen in TH0 of TH1 terecht en de twee minst beduidende bits komen in TL0 of TH1 terecht. In het geval dat timer 1 gebruikt wordt krijgen we:
+	\begin{lstlisting}
+		mov TH1, #06h
+		mov TL1, #0C5h
+	\end{lstlisting}
+	In het geval dat je de timer met auto-reload ingesteld hebt, is de waarde in TH1 kleiner dan 256 en zit deze waarde ook in TL0. 
+	\item \textbf{setb TR0 / setb TR1}
+	\newline
+	Tot slot moet de timer nog gestart worden. Deze instructie zorgt daarvoor.
+	\item \textbf{clr TF0 / clr TF1}
+	\newline
+	In het geval dat de timer geen auto-reload gebruikt moet de timer, wanneer hij overloopt, gecleard worden en moeten de startwaarden opnieuw ingesteld worden met THx en TLx. Deze bevatten dezelfde waarden als  bij het initieël instellen van de timer. Bij auto-reload moet je THx en TLx dus niet opnieuw invullen
+\end{enumerate}
+
+\section{Timer 2}
+Timer 2 heeft nog veel gelijkenissen met timer 0 of timer 1. We overlopen ze.
+\begin{enumerate}
+	\item \textbf{setb ET2}
+	\newline
+	Zoals timer 0 en timer 1 laat dit interrupts toe voor timer 2. Deze zitten trouwens allemaal in het register IE (pagina 149).
+	\item \textbf{mov TMR2CF}
+	\newline
+	Bij dit controle register zijn we enkel geïnteresserd in het instellen van bit 4 en bit 3. Deze bepalen  de deling van de systeemklok. Merk op dat deze timer niet kan delen door 48, het maximum is 12. Hier zijn er ook weer vier mogelijkheden:
+	\begin{itemize}
+		\item mov TMR2CF, \#00h $\rightarrow$ Systeemklok delen door 12
+		\item mov TMR2CF, \#08h $\rightarrow$ De systeemklok als bron gebruiken
+		\item mov TMR2CF, \#10h $\rightarrow$ Externe klok delen door 8
+		\item mov TMR2CF, \#18h $\rightarrow$ Systeemklok delen door 2
+	\end{itemize}
+	Ook zal hier \textit{\#10h} nooit gebruikt worden. Deze controleregister kan je terugvinden op pagina 298.
+	\item \textbf{mov TMR2H / mov TMR2L}
+	\newline
+	Dit gebruikt hetzelfde principe als TH0 en TL0. Deze twee registers ondersteunen echter geen auto-reload, dus moet je deze waarden opnieuw instellen bij elke overflow.
+	\item \textbf{mov RCAP2H / mov RCAP2L}
+	\newline
+	Dit wordt gebruikt in plaats van TMR2H en TMR2L wanneer auto-reload wel gewenst is. De auto-reload van timer 2 kan wel 16-bit waarden aan dus gaat de voorkeur naar RCAP en niet naar TMR.
+	\item \textbf{setb TR2}
+	Timer 2 starten.
+	
+\end{enumerate}
+
+\section{Timer 3}
+
+
+\chapter{Analoog naar digitaal converter}
+\section{Meten van de chiptemperatuur}
+Om de chiptemperatuur te meten worden volgende commando's gebruikt.
+\begin{enumerate}
+	\item \textbf{mov REF0CN}
+	\newline
+	Dit register selecteer de referentie generator
+	\item \textbf{mov AMX0SL (p. 55)}
+	\newline
+	Altijd op \#0Fh zetten als je de chiptemperatuur wil meten.
+	\item \textbf{clr AD0INT}
+	\newline
+	Dit voer je best vooraleer je een conversie start aangezien dit bit aantoont dat een data conversie voltooid is.
+	\item \textbf{setb AD0EN}
+	\newline
+	De analoog naar digitale converter actief zetten en staat klaar om te converteren.
+	\item \textbf{setb AD0BUSY}
+	\newline
+	De conversie starten.
+	\item \textbf{jnb AD0INT, \$}
+	\newline
+	Hier wachten we tot dat AD0INT op 1 staat, wat betekent dat de conversie klaar is.
+	\item \textbf{clr AD0INT}
+	\newline
+	Deze bit terug op 0 zetten in het geval je nog een conversie wil doen. Bijvoorbeeld bij loops.
+\end{enumerate}
+Een voorbeeldprogramma ziet er zo uit:
+\begin{lstlisting}
+$include (c8051f120.inc)
+cseg at 0000h
+	jmp main
+cseg at 0080h
+
+main:
+	clr EA
+	mov WDTCN, #0DEh
+	mov WDTCN, #0ADh
+	setb EA
+	mov REF0CN, #07h
+	mov AMX0SL, #0Fh
+	clr AD0INT	
+	setb AD0EN
+	setb AD0BUSY
+	jnb AD0INT, $	
+	clr AD0INT	
+	jmp $
+\end{lstlisting}
+
+Om deze temperatuur nu op een 7-segment display te tonen moet de digitale waarde berekent worden. Nadat een conversie wordt uitgevoerd zal het resultaat verschijnen in \textit{ADC0H} en \textit{ADC0L}. Aangezien het een 12-bit converter is zullen de 8 minst beduidende bits in ADC0L zitten en de 8 meest beduidende, waarvan 4 ongebruikt, in ADC0H.
+
+
+\chapter{Seriële communicatie}
+In de oefeningen verloopt de communicatie tussen de microcontroller en een computer. De toestellen zijn verbonden met een RS-232 connector. De c8051f120 implementeerd de RS-232 standaard en voorziet 9 aansluitingen. De receive(RX) en transmit(TX) lijn zijn de twee belangrijkste hiervan terwijl de andere 7 handshakelijnen zijn die gebruikt worden om ontvanger en afzender te synchroniseren. Vooraleer communicatie mogelijk is moet je UART0 naar buiten brengen via \texttt{mov XBR0, \#04h} (zie pagina 217).
+\end{document}

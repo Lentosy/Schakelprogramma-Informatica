@@ -1,0 +1,890 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[dutch]{babel}
+\usepackage{listings}
+
+\title{Computernetwerken 2: Netwerkbeheer}
+\author{Bert De Saffel}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\part{Theorie}
+\chapter{Beheer van TCP/IP-internetwerken}
+\section{Configuratie van DNS}
+
+\section{Multicasting}
+Multicasting is een manier om informatie te verzenden naar specifieke toestellen die geïnteresseerd zijn in deze informatie. Multicast adressen lopen vanaf 224.x.y.z tot 239.x.y.z. Dus een bron die informatie wil versturen zal één van deze adressen moeten innemen.
+
+\subsection{IGMP}
+Wanneer een toestel een multicast receiver wil worden, zal hij dit moeten melden aan de routers op zijn subnetwerk. Hiervoor wordt het \textbf{Internet Group Management Protocol} gebruikt. Dit protocol zal aan de multicast bron zeggen of er iemand aan het luisteren is of niet. 
+
+\subsection{Optionele optimalisaties}
+
+\subsection{Verkiezingsprocessen}
+
+\chapter{??}
+\section{SNMP}
+
+
+\subsection{Abstract Notation Syntax}
+\textbf{GLOBAAL}
+\begin{lstlisting}
+naam ::=BEGIN
+	IMPORTS ... ...
+	x y 	FROM SNMPV2-CONF
+	mib2	FROM RFC1213-MIBS
+
+END
+\end{lstlisting}
+\textbf{MODULE ENTITIY}
+\begin{lstlisting}
+naam MODULE-ENTITY
+	LAST_UPDATED      	- VERPLICHT
+	ORGANISATION		- VERPLICHT
+	CONTACT_INFO		- VERPLICHT
+	DESCRIPTION			- VERPLICHT
+	
+	REVISION			- NIET VERPLICHT 
+	DESCRIPTION			- NIET VERPLICHT
+::=([naam ouderknooppunt] [knooppunt nummer])
+\end{lstlisting}
+\textbf{OBJECT-IDENTITY}
+\begin{lstlisting}
+naam OBJECT-IDENTITY
+	STATUS current | mandatory | obsolete | deprecated
+	DESCRIPTION
+::=([naam ouderknooppunt] [knooppunt nummer])
+\end{lstlisting}
+\textbf{OBJECT IDENTIFIER}
+\begin{lstlisting}
+naam OBJECT IDENTIFIER
+::=([naam ouderknooppunt] [knooppunt nummer1] ... [knooppunt nummern])
+\end{lstlisting}
+\textbf{OBJECT-TYPE}
+\begin{lstlisting}
+naam OBJECT-TYPE
+	SYNTAX counter | octetstring | object-identifier
+	MAX-ACCESS read-only | read-write | not-accesible
+	STATUS
+	DESCRIPTION
+\end{lstlisting}
+\textbf{OBJECT-TYPE met TABELLEN}
+\begin{lstlisting}
+naam OBJECT-TYPE
+	SYNTAX SEQUENCE OF X
+	INDEX??
+
+\end{lstlisting}
+\part{Labo's}
+
+\chapter{20/02/2017 - DNS Deel 1}
+
+\chapter{22/02/2017 - DNS Deel 2}
+
+\chapter{01/03/2017 - Statische Routing}
+
+\chapter{13/03/2017 - RIP en OSPF}
+\section{Inleiding}
+In dit labo werden het RIP en OSPF protocol toegepast. De volgende problematieken werden aangepakt:
+\begin{enumerate}
+	\item Is er een verschil tussen RIP op windows en RIP op Unix. Is het mogelijk dat een windows en een Unix toestel, geconfigureerd met RIP, kunnen communiceren met elkaar?
+	\item Kan een RIP router met een OSPF router communiceren?
+	\item Wat is het effect als er een connectie uitvalt, zowel bij RIP als bij OSPF?
+\end{enumerate}
+
+\section{RIP configuratie op Windows}
+Op windows kan RIP voornamelijk geconfigureerd worden met de grafische interface. De stappen om RIP te configureren gaan als volgt:
+
+\begin{enumerate}
+	\item Voor elke interface moeten de metrieken op nul staan met het volgende commando: \textit{netsh int ipv4 set int ethx met=0}.
+	\item Open \textit{rrasmgmt.msc}.
+	\item Rechtermuisklik op de naam van de huidige computer.
+	\item Klik op \textit{Configure and Enable Routing and Remoute Access}.
+	\item Kies voor een \textit{Custom Configuration} en selecteer alleen LAN route.
+	\item IPV4 -> General -> New Routing Protocol -> RIP.
+	\item Interfaces ethx toevoegen.
+\end{enumerate}
+
+\section{RIP configuratie op Unix}
+De RIP configuratie op Unix gebeurt via de CLI.
+\begin{enumerate}
+	\item Het toestel moet als router ingesteld worden: \textit{sysctl -w net.ipv4.ip\_forward=1}
+	\item Interfaces instellen: \textit{ifconfig ethx 192.168.x.y/24 up} waarbij x het getal is van de interface en y het getal van het toestel zelf. Voorbeeld voor het toestel Bach:
+	\begin{lstlisting}
+	ifconfig eth1 192.168.17.125/24 up
+	ifconfig eth2 192.168.4.125/24 up
+	ifconfig eth3 192.168.2.125/24 up
+	\end{lstlisting}
+	\item In de folder \textit{/etc/quagga} moeten er drie bestanden aangepast worden: \textit{zebra.conf}, \textit{ripd.conf} en \textit{ospfd.conf}. In elk van deze bestanden komt hetzelfde stukje tekst
+	\begin{lstlisting}
+	hostname pcnaam
+	password user		//normal password
+	enable password root	//root password
+	\end{lstlisting}
+	\item Herstarten van de daemons:
+	\begin{lstlisting}
+	/etc/rc.d/init.d/zebra restart
+	/etc/rc.d/init.d/ripd restart
+	/etc/rc.d/init.d/ospfd restart
+	\end{lstlisting}
+	
+	\item Het commando \textit{telnet localhost ripd} op de volgende manier overlopen
+	\begin{lstlisting}
+	enable
+	user
+	|configure terminal
+	|root
+	||router rip
+	|||network ethx
+	|||redistribute connected
+ 	|||redistribute kernel
+ 	|||redistribute static
+	|||write
+	|||q
+	||q
+	|show ip rip
+	|show ip rip status
+	\end{lstlisting}
+\end{enumerate}
+
+\section{OSPF configuratie op Unix}
+De OSPF configuratie voor een Unix toestel verloopt analoog als de RIP configuratie. Het enige verschil is de laatste stap. Hier wordt het commando \textit{telnet localhost ospfd} overlopen op de volgende manier.
+\begin{lstlisting}
+enable
+ user
+ |configure terminal
+ |root
+ ||router ospf
+ |||redistribute connected
+ |||redistribute kernel
+ |||redistribute static
+ |||net 192.168.168.x.0/24 area x
+ |||write
+ |||q
+ ||q
+ |show ip ospf interface
+ |show ip ospf route
+\end{lstlisting}
+
+\section{Scenario's}
+In het begin van het labo draaide iedereen onder RIP Unix. Nadat alles werkende was moest de ene helft overschakelen naar RIP onder Windows. Er kon vastgesteld worden dat communicatie tussen een Windows en Unix toestellen zonder problemen kan verlopen.
+
+Hierna werden de toestellen aan de rand van de tafels ingesteld als een OSPF router die in area 1 zitten. Op dit moment zal geen enkele RIP router met een OSPF router kunnen communiceren. Om dit op te lossen moet er een border router aangemaakt worden die zowel RIP als OSPF draait. Deze ene router moet dan een extra commando ingeven in het \textit{telnet localhost ospfd} of \textit{telnet localhost ripd} programma. Deze lijn komt na het ingeven van \textit{router rip} of \textit{router ospf}. De extra lijn die ingegeven moet worden is: \textit{redistribute ip}. Op dit moment kunnen RIP routers met OSPF routers communiceren via deze border router.
+
+De volgende stap is om alle overige RIP routers in te stellen als OSPF routers. Deze routers zullen in area 2 komen. Nadat dit gebeurd is kan er vastgesteld worden dat communicatie tussen area 1 and area 2 routers niet meer mogelijk is. Dit komt omdat er nog geen area 0 is die deze verbindt. Deze area kan perfect functioneren met slechts één router, maar dit mogen er ook meer zijn.
+
+In het geval dat er een connectie uitvalt bij RIP zal het $\pm$ 2 minuten duren vooraleer er opnieuw een stabiel netwerk is. De maximum metriek bij RIP bedraagt ook maar 15. In het geval dat een bepaalde metriek hoger is dan 15 zal de routetabel dus niet correct ingevuld worden.
+
+
+\chapter{15/03/2017 - Switches}
+\section{Inleiding}
+In dit labo werden er verschillende toestellen ingesteld als een switch. Het begint met kleine eilandjes met één switch en wordt uitgebreid totdat elk eiland aan elkaar verbonden is.
+\section{Unix toestel instellen als switch}
+\label{sec:Unix toestel instellen als switch}
+Om een Unix toestel in te stellen als een switch wordt er gebruik gemaakt van het \textit{brctl} programma. De volgende commandosequentie wordt gebruikt om een toestel in te stellen als switch.
+\begin{enumerate}
+	\item ifconfig ethx 0.0.0.0 up
+	\item /usr/sbin/brctl addbr bridgenaam
+	\item /usr/sbin/brctl stp bridgenaam on
+	\item /usr/sbin/brctl addif bridgenaam ethx
+	\item ifconfig bridgenaam 0.0.0.0 up
+\end{enumerate}
+
+\section{Spanning Tree Protocol}
+Het SPT is een algoritme dat gebruikt wordt om lussen in een topologie te vermijden. Dit algoritme gaat als volgt in zijn werk:
+\begin{enumerate}
+	\item Een root bridge wordt geselecteerd aan de hand van het kleinste MAC adres
+	\item Hierna wordt er voor elke poort een metriek berekent. De poort met de kleinste metriek wordt de designated poort genoemd. Deze poort zal nooit geblokkeerd worden.
+	\item Alle andere poorten zullen geblokkeerd worden
+\end{enumerate}
+Om de uitvoer van dit protocol te gebruiken wordt het commando \textit{/usr/sbin/brctl showstp bridgenaam} gebruikt. Dit geeft een overzicht per interface al dan niet hij geblokkeerd wordt of niet.
+\chapter{22/03/2017 - Multicast routing}
+\section{Inleiding}
+In dit labo werd er gedemonstreerd hoe multicasting in elkaar zit. De opstelling zit als volgt in elkaar: Elke tafel bestaat uit 3 toestellen, waarvan 1 hiervan een normaal windows toestel is, een ander een Unix switch is en tot slot een Unix router. Het windows toestel is verbonden aan de switch via eth2. De Unix router is verbonden aan de switch via eth3. Elke tafel heeft een nummer dat van 224 tot 239 loopt.
+\section{Verspreiden van video's}
+Om multicasting mogelijk te maken moeten er voor de drie toestellen configuratie gebeuren.
+\begin{enumerate}
+	\item De router moet het volgende commando ingeven: \textit{ifconfig eth3 192.168.x.x}. x is in dit geval het tafelnummer waartoe de router behoort.
+	\item De switch moet zichzelf nog eerst configureren als switch. Zie \ref{sec:Unix toestel instellen als switch}. Het enige verschil is het laatste ifcommando. In dit geval wordt het \textit{ifconfig bridgenaam 192.168.x.1 up}. Het volgende commando moet ook ingegeven worden: \textit{ip r r 0.0.0.0/0 via 192.168.x.x}.
+	\item Tot slot moet het windows toestel ook nog geconfigureerd worden.
+\end{enumerate} 
+
+In dit labo willen we video's verspreiden. De switch moet hiervoor vier instanties van vlc media player openen. Dit kan met het volgende commando \textit{vlc \&}. Voor elke instantie met het volgende gebeuren:
+\begin{enumerate}
+	\item Klik op \textit{Media}, dan op \textit{Streaming}.
+	\item In het tabblad \textit{Bestand} moet er slechts één .mov bestand toegevoegd worden.
+	\item Klik op het pijltje dat rechts van \textit{Stream} staat, in de dropdown klik je op Stream.
+	\item De bron is al ingesteld, dus klik op volgende.
+	\item In de dropdown van File selecteer je UDP (legacy) en klik je daarna op toevoegen.
+	\item In het adres schrijf je x.0.0.y, waarbij x de tafelnummer is en het laatste getal 1, 2, 3 of 4 is afhankelijk van de instantie van vlc. De poort blijft ongewijzigd.
+	\item In dit geval mag de transcodering ook uitegschakeld worden, aangezien dit al in het video bestand zit.
+	\item Tot slot moet de TTL verandert worden in 20.
+\end{enumerate}
+
+Op dit ogenblik kan het windows toestel op dezelfde tafel video's ontvangen die de switch aan het streamen is. Het Windows toestel opent vier instanties van vlc media player en klikt ook op \textit{Media} en daarna op \textit{Streaming}. Daarna klik je op het tabblad netwerk en in het veld typ je: \textit{udp://@:x.0.0.y}. x is de tafelnummer waarop het Windows toestel zich bevindt, terwijl y 1, 2, 3 of 4 is. Op dit moment zal het Windows toestel de filmpjes afspelen die de switch aan het streamen is.
+
+Om nu video's van andere tafels te bekijken moet de router die zich op elke tafel bevindt, een kabel leggen naar zijn buur. Dan maakt hij een statische routetabel op. Op dit moment kan elk Windows toestel video's bekijken van andere tafels. 
+
+De reden waarom we statische routing toegepast hebben is omdat we gebruik willen maken van de daemon \textit{pimd}. Deze implementeerd een sparse protocol. Om deze daemon uit te voeren wordt het volgende commando gebruikt: \textit{/usr/local/sbin/pimd -d}. Om de uitvoer van deze daemon te bekijken gebruik je het commando \textit{cat /proc/net/ip\_mr\_vif} en \textit{cat /proc/net/ip\_mr\_cache}. Op dit moment zijn er verschillende Windows toestellen video's aan het bekijken van andere tafels. Dit kan worden afgeleid aan de output van deze twee bestanden. 
+
+Nu wordt de \textit{pimd} daemon gestopt terwijl de Windows toestellen nog bezig zijn aan het kijken. Het spreekt vanzelf dat de video's zullen stoppen met spelen.
+Om een andere daemon te demonstreren moet eerst de statische routetabel vernietigd worden. De tweede daemon is \textit{/usr/local/xorp/sbin/xorp\_rtmgr}. Deze daemon zal automatisch een routetabel maken. Na verloop van tijd zullen de video's die op de Windows toestellen aan het afspelen waren, terug afspelen.
+
+
+\chapter{29/03/2017 - WLAN's}
+\section{Inleiding}
+In dit labo hebben we verschillende routingprotocollen losgelaten op een WLAN. 
+
+
+\section{Opvragen informatie WLAN op Windows}
+Vooraleer er informatie kan opgevraagt worden moet de wireless receiver aanstaan en een IP-adres hebben.
+\begin{enumerate}
+	\item Open Network Connections $\rightarrow$ Rechtermuisklik op de wireless interface $\rightarrow$ Properties $\rightarrow$ Klik op Internet Protocol Version 4 $\rightarrow$ Properties $\rightarrow$ Use the following IP address
+	\item Open Network Connections $\rightarrow$ Rechtermuisklik op de wireless interface $\rightarrow$ Connect
+\end{enumerate}
+
+Er zijn twee manieren om informatie op te vragen. De ene is oppervlakkig terwijl de tweede gedetailleerder is.
+
+\begin{enumerate}
+	\item \textit{netsh wlan show networks mode=bssid}. Dit toont de netwerken met hun accespoints warvoor een signaal kan ontvangen worden.
+	\item \textit{netsh wlan show interface}. Dit toont de accespoint waarmee het toestel verbonden is
+\end{enumerate}
+
+\section{Opvragen informatie WLAN op Unix}
+Vooraleer de wireless interface kan opgestart worden moet er eerst een configuratiebestand bekeken worden, namelijk \textit{/etc/sysconfig/network-scripts/ifcfg-wlan0}. Dit bestand heeft standaard de volgende inhoud:
+\begin{lstlisting}
+	DEVICE=wlan0
+	BOOTPROTO=static
+	MODE=Managed
+	ESSID=tiwi
+\end{lstlisting}
+Als het commando \textit{ifup wlan0} wordt ingegeven zal dit bestand uitgevoerd worden. Om nu te kijken ofdat het werkt kan eerst het commando \textit{ifconfig wlan0} uitgevoerd worden. Om nu meer informatie te bekijken kan het commando \textit{iwconfig wlan0} uitgevoerd worden. Hier staat er geen kanaal, maar wel de frequentie waarop hij luisterd. Hier kan het kanaal van afgeleid worden via volgende formule: $ kanaalnummer = (freqentie - 2407) / 5 $. In het geval dat de frequentie 2422 is zal het kanaal nummer $ (2422 - 2407) / 5 = 15 / 5 = 3 $ zijn. 2407 is het begin van de frequentieband en 5 is de stapnummer om naar de volgende afgebakende frequentiezone te gaan zodat er geen overlappingen zijn.
+
+\section{Ad Hoc modus}
+Tot nu toe werdt er automatisch een kanaal toegekend. Ad Hoc is een gedecentraliseerd systeem, dus wordt er geen gebruik gemaakt van routers. Elk toestel wordt gezien als een node in het netwerk, en zal data doorsturen en ontvangen van andere nodes. Om Ad Hoc modus aan te zetten moet het bestand \textit{ifcfg-wlan0} aangepast worden met de volgende inhoud. In deze instantie stellen we ook zelf ons ESSID en CHANNEL in om te demonstreren wat er gebeurt als er overlappingen zijn op de frequentieband.
+\begin{lstlisting}
+	DEVICE=wlan0
+	BOOTPROTO=static
+	MODE=Ad-Hoc
+	CHANNEL=9 	//Andere computers lopen van 1 tot 13
+	ESSID=negen
+\end{lstlisting}
+Als je naar toestellen met een CHANNEL die 5 stappen van uw eigen channel is, zal je merken dat het niet vlot verloopt en dat er zelfs berichten niet toekomen.
+
+\section{Netwerkanalyse met jperf}
+Er bestaat een grafische tool om het netwerk te bestuderen. Om deze tool te gebruiken moet er minstens één cliënt toestel en één server toestel de configuratie hebben uitgevoerd. Dit programma kan geopent wordt door eerst naar de folder \textit{/usr/local/jperf-2.0.2} te navigeren en daarna het commando \textit{bash jperf.sh} uit te voeren.
+
+In de grafische interface moet de \textbf{cliënt} de volgende zaken instellen:
+\begin{itemize}
+	\item Het server adres invullen, dit is het adres van de toestel die de stappen voor de server zal uitvoeren.
+	\item Transmit hoog genoeg zetten (10000+)
+	\item Report interval op 3 zetten zodat er geen onnodige pieken tevoorschijn komen
+	\item Run JPERF klikken
+\end{itemize}
+De \textbf{server} moet enkel het bolletje aanklikken bij server en daarna Run klikken. De cliënt zal op dit moment pakketten versturen en die worden visueel weergegeven voor zowel de cliënt als de server. Het is natuurlijk mogelijk om meerdere cliënts naar één server te laten communiceren.
+
+\subsection{memo}
+for x in {123.155}; do ping -c 1 -w 1 192.168.123.\$x | grep '0 received' > /dev/null || echo \$x; done
+Alle Ip adressen pingen;
+
+
+
+vi mesh
+	sysctl -< net.ipv4.conf.wlan0.send\_redirects=0
+	redirects uitschakelen
+	
+flushen: iptables -t mangle -F
+
+ip r r 192.168.123.x/32 via 192.168.123.buur
+
+\section{Routingprotocollen voor Ad Hoc netwerken}
+Aangezien WLAN's meer dynamisch zijn dan normale netwerken zijn klassieke routingprotocollen zoals RIP en OSPF niet aan te raden. Voor WLAN's bestaan er twee soorten protocollen, \textbf{proactief} en \textbf{reactief}. Proactieve protocollen zullen de routetabel van alle routers op voorhand invullen. Reactieve protocollen zullen pas een route in de routetabel aanmaken op het moment dat deze nodig is. Na een tijd wordt die route terug verwijdert.
+\subsection{Proactieve aanpak}
+In principe hanteert OPSF een proactieve aanpak, maar deze is niet geoptimaliseerd voor WLAN's. Daarom werd er een alternatief ontwikkelt. Dit heet het \textbf{O}ptimized \textbf{L}ink \textbf{S}tate \textbf{R}outing Protocol. Elke router zal een aantal van zijn buren instellen als Multipoint Relay. Deze MR's zijn verantwoordelijk voor het forwarden van berichten. ORSL maakt ook gebruik van een multi-hop. Dit is om direct een buur over te slaan en naar één van zijn buren te gaan.
+
+In Unix bestaat de \textit{olsrd} daemon. Deze kan uitgevoerd worden met het commando \textit{/usr/sbin/olsrd}. Na verloop van tijd zal de routetabel aangevuld zijn en is netwerkverkeer mogelijk. Om de route te bekijken naar een bepaalde router kan het commando \textit{ping -R x} gebruikt worden. De optie -R toont een lijst van alle routers dat het pakket voorbijgaat.
+\subsection{Reactieve aanpak}
+Een voorbeeld van een reactieve protocol is \textbf{O}n \textbf{D}emand \textbf{D}istance. De werking van dit protocol verloopt in twee stappen. In dit voorbeeld wil de router S data versturen naar de router D.
+\begin{enumerate}
+	\item \textbf{Route Request bericht}
+	\newline
+	Dit bericht bevat het adres van de router en een volgnummer. Dit volgnummer wordt met één verhoogd elke keer dit bericht bij een tussenligende router ontvangen wordt. Wanneer S laat weten dat hij naar D wil gaan, zal hij dit aan al zijn buren melden. De eerste keer dat de buren zo een request ontvangen zal deze buur dit bericht ook naar zijn buren doorsturen. Op dit moment weten de 2de niveau buren hoe ze naar S moeten gaan. Dit heet Reverse Pathing. Elke buur zal naar zijn buren dit bericht flooden. De nieuwe buren zullen dus ook weten langs welke router ze moeten gaan om tot S te komen. Op het moment dat de router D bereikt is, zullen eventueel andere routers nog verder flooden omdat zij niet weten dat D bereikt is. 
+	\item \textbf{Route Reply bericht}
+	\newline
+	Als D bereikt is, zal hij op zich een Route Reply bericht sturen naar S. Er is geen flooding meer nodig dankzij de Reverse Pathing techniek die een routetabel heeft gemaakt om naar S te gaan. Op dit moment wordt er weer aan Reverse Pathing gedaan om naar D te gaan zodat de volgende keer ook geen flooding meer nodig is. Pas nadat S het Route Reply bericht ontvangt kan er data verzonden worden naar D.
+\end{enumerate}
+
+In Unix bestaat de daemon \textit{/usr/sbin/aodvd} die dit protocol implementeert. Als je dit protocol uitvoert, zal je routetabel leeg blijven totdat je data verstuurt naar een andere router. Echter als je de daemon terug sluit, kan je zien dat hij de routetabel niet volledig opkuist en is dus negatief. Ook bij het afsluiten van het Unix toestel slaagt het tilt.
+
+\part{Modelvragen}
+\chapter{Reeks A}
+
+\section{A1 - Configuratie van de netwerkinterface \& multicasting op subnetwerkniveau}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Bespreek alle (ook meer recente) opdrachten, inclusief hun opties en output, die onder \textit{Linux} voor de configuratie van de netwerkinterface kunnen gebruikt worden, zowel op de subnetwerklaag als op de internetlaag. Behandel eveneens eventuele configuratiebestanden (inclusief locatie en inhoud). Vergeet in het bijzonder de \textit{opstartbestanden} niet.
+	\item Bespreek het equivalent onder Windows Server, zowel via de \textit{Command Prompt}, als via de grafische interface.
+	\item Wat is de bedoeling van \textit{multicasting op subnetwerkniveau}? Hoe wordt dit doel gerealiseerd?
+	\item Hoe weet een multicast bron of router dat hij verantwoordlijk is om multicast berichten af te leveren aan cliënts (\textit{niet-routers}) op de diverse subnetwerken waarop hijzelf is aangesloten. Bespreek het protocol dat hierbij gehanteerd wordt, inclusief de bijkomende faciliteiten van meer recente versies ervan.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+	\item %vraag A
+	\begin{itemize}
+		\item Commando \textbf{dmesg}. 
+		\newline
+		Dit commando wordt gebruikt om logberichten te raadplegen van de boot procedure. Hierin staan ook de netwerkinterfaces die geïnstalleerd zijn. Door \textit{dmesg | grep eth} uit te voeren krijg je alles met betrekking tot de netwerkinterfaces. Deze informatie bevat het type, het hardwareadres (MAC), interrupt- en I/O poort bronnen.
+		\item Commando \textbf{insmod} of \textbf{modprobe} 
+		\newline 
+		Deze commando zal een driver eenmalig laden. Voorbeelden zijn: \textit{insmod 3c90x.o} en \textit{modprobe 3c90x.o}.
+		\item Commando \textbf{install}
+		\newline
+		Dit commando zal een driver permanent laden. Hierbij zijn er echter meer parameters vereist. Het totale commando kan er zo uitzien: \textit{install -m 644 3c90x.o /lib/modules/'uname -r'/kernel/drivers/net} De optie -m is gelijkaardig aan chmod. 644 staat dus voor lezen en schrijven voor de eigenaar, en lezen voor de groep en anderen. Daarna volgt de naam van de driver \textit{(3c90x.o)} en uiteindelijk de locatie waar de driver moet komen. Het uname commando zal met de optie -r het releasenummer van de kernel teruggeven zodat je die folder niet vanbuiten moet kennen.
+		\item Commando \textbf{lsmod}
+		\newline
+		Geeft een lijst van alle geïnstalleerde drivers. Dient als controle van de vorige 3 commando's.
+		\item Commando \textbf{ifconfig}
+		\newline
+		Staat voor \textbf{i}nter\textbf{f}ace \textbf{config}ure. Hiermee woren IP-addressen geconfigureerd alsook om de status van de netwerkinterfaces te bekijken. Om een enkele interface te bekijken gebruik je bv. het commando \textit{ifconfig eth0}. Dit geeft informatie zoals het IP-adres, het broadcast adres voor het subnet waarop de interface zich bevindt, en het subnetmasker voor dat subnet. Verder toont het ook nog het hardwareadres van de interface. Dit commando kan ook gebruikt worden om na te gaan of een bepaalde interface wordt herkend door de kernel. In plaats van informatie zal er dan een foutboodschap gegeven worden dat de interface niet herkent wordt. \textit{ifconfig} uitvoeren zonder parameters zal een lijst geven van alle interfaces die beschikbaar zijn, elk met hun eigen informatie. De \textit{-a} parameter zal deze lijst uitbreiden met interfaces die niet actief zijn.	
+		
+		Alhoewel \textit{ifconfig} kan gebruikt worden om informatie van interfaces op te halen, is dit niet de primaire bedoeling. \textit{ifconfig} wordt in de eerste plaats gebruikt om IP configuratie van netwerkkaarten in te stellen. Het \textit{ifconfig}-commando wordt steeds vervolgd door de naam van de interface en daarna door vele opties, die bijna allemaal door een sleutelwoord beginnen, de gebruikelijke UNIX-conventie voor opties wordt hier dus niet gebruikt. Een lijst van de belangrijkste opties zijn:
+		\begin{enumerate}
+			\item het IP-adres in dotted-decimal notatie.
+			\item \textbf{up} of \textbf{down}. Zet een interface respectievelijk aan of uit. Bij \textit{down} moet je nooit het IP-adres meegeven, bij \textit{up} moet je dit wel doen als het de eerste keer is als je deze interface instelt.
+			\item \textit{\textbf{netmask} aaa.bbb.ccc.ddd} stelt het subnetmasker in. Als deze optie niet wordt meegegeven zal Linux automatisch een subnetmasker kiezen dat past bij het IP-adres. Voor een klasse C adres zal hij 255.255.255.0 kiezen, voor een klasse B adres zal hij 255.240.0.0 kiezen, en voor een klasse A adres zal hij 255.0.0.0 kiezen.
+			\item \textit{\textbf{broadcast} aaa.bbb.ccc.ddd} stelt het broadcastadres in. Ook als deze optie niet wordt meegegeven zal het besturingsyssteem zelf een adres kiezen afgeleid uit het IP-adres en de subnetmasker.
+			\item \textbf{multicast} en \textbf{-multicast} zetten respectievelijk het ontvangen en versturen van multicast berichten aan of uit.
+			\item \textbf{promise} en \textbf{-promise} zetten respectievelijk de promiscuous mode aan of uit.
+			\item Voor point-to-point verbindingen gebruik je \textbf{pointtopoint} gevolgd door het ip-adres van de andere kant van de verbinding.
+		\end{enumerate}
+		\item Commando \textbf{netstat}
+		\newline
+		\textit{netstat} kan dienen als alternatief voor ifconfig als de optie -i meegegeven worden. \textit{netstat -i} zal een lijst geven van alle interfaces. Om ook een lijst van niet actieve interfaces te tonen gebruik je ook de -a parameter. Op het einde van elke interface staan er een aantal vlaggen. Deze vlaggen, B, L, R en U stellen respectievelijk het broadcast-adres, loopback interface, running en up voor. 
+		\item Commando \textbf{ip addr}
+		Nog een alternatief van \textit{ifconfig} en \textit{netstat}. Deze opdracht zal een lijst geven van alle interfaces, met hun MAC en IP adressen.
+		\item Commando \textbf{ifrename}
+		Dit command wordt gevolgd met de huidige naam van een interface en een nieuwe naam voor deze interface.
+		\item Commando \textbf{ifdown}
+		\newline
+		Dit commando wordt gevolgd door de naam van een interface en zal deze uitschakelen.
+		\item Commando \textbf{ifup}
+		\newline
+		Dit commando wordt gevolgd door de naam van een interface en zal deze opstarten.
+		\item Folder \textbf{/proc/modules}
+		\newline
+		Bevat alle geladen drivers
+		\item Folder \textbf{/etc/sysconfig/network-scripts}
+		\newline
+		Dit bevat configuratiebestanden die vooral gebruikt worden tijdens het opstarten van het toestel.
+		\item Bestand \textbf{/etc/modprobe.d}
+		\newline
+		Bestand met configuratieopties om te zeggen wat voor drivers dat elke interface moet laden.
+	\end{itemize}
+	\item %vraag B
+	\begin{itemize}
+		\item Grafisch
+			\begin{itemize}
+				\item Naam wijzigen van een interface
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface en vervolgens \textit{rename}.
+				\item Controloren en wijzigen van hardware en software van een interface
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Properties $\rightarrow$ Configure $\rightarrow$ Kies één van de tabbladen \textit{General}, \textit{Advanced}, \textit{Driver} of \textit{Resources}.
+				\item Monitoren van het netwerkverkeer van de huidige sessie van een interface
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Status. Hier kan je statistieken zien zoals de duur van de sessie, het aantal pakketten dat verzonden en ontvangen zijn. Als het geen LAN is zie je ook compressie en gegevens met betrekking tot fouten.
+				\item Statuscontrole automatiseren
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Properties $\rightarrow$ Configure $\rightarrow$ Kruis het vakje \textit{Show icon in taskbar when connected} aan. Hierdoor verschijnen er pictogrammen op de taakbalk.
+				\item Interface uitschakelen
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Disable 
+				\newline
+				\textbf{OF}
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Status $\rightarrow$ Disable
+				\item Instellen IP-adres en subnetmasker
+				\newline
+				Open de map \textit{Network Connections} $\rightarrow$ Rechtermuisklik op de interface $\rightarrow$ Properties $\rightarrow$ Dubbelklik op Internet protocol version 4 (TCP/IP) $\rightarrow$ Klik op \textit{Use t he following IP address} $\rightarrow$ Vul het IP-adres en het subnetmasker in
+				
+			\end{itemize}
+		\item Command prompt
+		\begin{itemize}
+			\item Monitoren van het netwerkverkeer van de huidige sessie van een interface
+			\newline
+			Gebruik het \textbf{netstat} commando om informatie te verkrijgen gelijkaardig aan het grafische \textit{Status}. Als je de optie \textit{-e} meegeeft krijg je informatie met betrekking tot de ethernet. De optie \textit{-s} geeft ook de statistieken voor elk van de TCP, UDP, ICMP en IP protocollen. Als je in plaats van \textit{-s} een \textit{-p} als optie geeft, dan kan je kiezen door een protocolnaam erachter te zetten zoals: \textit{netstat -ep UDP}.
+			\item Opvragen van de TCP/IP-netwerkconfiguratie
+			\newline
+			Het commando \textbf{ipconfig /all} wordt gebruikt om allerlei gegevens te tonen gerelateerd met het TCP/IP netwerk.
+			\item Instellen IP-adres en subnetmasker
+			Het \textbf{netsh} commando kan voor vele zaken gebruikt worden. Om een IP-adres en subnetmasker van een interface te wijzigen: \textit{netsh interface ip set address "Local Area Connection" static 193.190.170.3 255.255.255.192}
+		\end{itemize}
+	\end{itemize}
+	\item ?
+	\item Het protocol dat gebruikt wordt om communicatie tussen bronnen en ontvangers te realiseren is het Internet Group Management Protocol. Dit protocol wordt gebruikt om individuele hosts aan een multicast groep toe te voegen. Hosts identificeren computers die interesse hebben, door deze IGMP berichten naar hun lokale multicast router te laten sturen. Routers luisteren dus naar IGMP berichten en zenden periodiek berichten uit om te ontdekken welke groepen er actief of inactief zijn op een specifiek subnetwerk. Dit protocol kent drie versies:
+	\begin{enumerate}
+		\item IGMPv1
+		\newline
+		Stuurt report berichten naar het groepadres dat bereikt moet worden. Als een host de groep wil verlaten kan hij dit op elk moment doen. Als een router na een tijd geen report berichten meer ontvangt, zal hij stoppen met te forwarden naar dit groepadres.
+		\item IGMPv2
+		\newline
+		Stuurt ook report berichten naar het groepadres dat bereikt moet worden, maar als een host niet meer geïnteresseerd is in een groep moet hij een Leave-Group bericht sturen. De router gaat na of er nog hosts in die groep geïnteresseerd zijn. Zoniet dan stopt de router met forwarden naar dit groepadres. Dit reduceert het netwerkverkeer aangezien er sneller gestopt zal worden met forwarding.
+		\item IGMPv3
+		Hier kan er ook nog aangegeven worden of men pakketten wil ontvangen of filteren van specifieke adressen.
+	\end{enumerate}
+	Om nu te weten of dat een router verantwoordelijk is om multicast berichten af te leveren worden er Query berichten verstuurd naar het multicast adres 244.0.0.1 met een time to live waarde van 1. Als er meerdere routers op een subnetwerk zijn wordt de router met het kleinste IP-adres geselecteerd.
+\end{enumerate}
+
+
+
+\newpage
+
+
+
+
+\newpage
+\section{A2 - Routing}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Bespreek het \textit{doel} van routing, de \textit{werking}, en de belangrijkste \textit{componenten} ervan. Behandel de \textit{terminologie} en \textit{problematiek} die het routing proces kenmerkt.
+	\item Geef de diverse (inclusief de meest eenvoudige) alternatieven om de \textit{routingtabel van niet-routers} (o.a. toestellen die slechts op één subnetwerk zijn aangesloten) te configureren. Indien er hiertoe op Linux of Windows bijzondere componenten moeten geïnstalleerd of geconfigureerd worden, bespreek hoe dit moet gebeuren.
+	\item Vergelijk de \textit{voor- en nadelen} van \textit{statische} en \textit{dynamische} routing, zonder in detail in te gaan op specifieke routingprotocollen.
+	\item Maak een \textit{classificatie} van \textit{routingprotocollen}, volgens twee criteria. Omschrijf de terminologie die je hierbij invoert. Geef ondermeer aan op welk niveau hetzelfde routingprotocol actief kan zijn, en hoe aan schaalbeperking kan worden gedaan. Geef van elke klasse de meest courante \textit{vertegenwoordigers}. Het is niet de bedoeling in te gaan op een gedetailleerde vergelijking tussen de verschillende klassen en hun specifieke vertegenwoordigers.
+\end{enumerate}
+
+\subsection{Antwoorden}
+\begin{enumerate}
+	\item Het doel van routing is om verschillende subnetwerken aan elkaar te hangen, zodat het lijkt dat ze op één en hetzelfde internetwerk zitten, ook al zijn ze fysiek aangesloten op subnetwerken die van verscheidene technologieën gebruik maken. Het is de taak van een router om ervoor te zorgen dat een bericht naar het juiste subnetwerk verzonden wordt. Voor berichten te versturen in hetzelfde subnetwerk is er geen router nodig. Als een router een bericht krijgt heeft hij twee mogelijkheden. De eerste mogelijkheid komt voor in het geval dat de ontvanger in hetzelfde subnetwerk zit. De router zal dan onmiddelijk dit bericht afleveren aan de ontvanger. De tweede mogelijkheid komt voor wanneer de ontvanger niet in het subnetwerk van de router zit. Dan zal de router dit bericht doorsturen naar een andere router. Het proces van berichten door te sturen naar andere routers heet routing.
+	
+	
+	Vooraleer een router naar een andere router kan doorsturen moet de router een routetabel hebben. Dit is een lijst die voor elk netwerk in het internetwerk waarvan de router zelf geen deel uitmaakt, aangeeft naar welke volgende router hij het bericht moet versturen. Per regel in de routingtabel staat er het netwerkadres, forwarding adres, de interface, metriek en de lifetime. Het netwerkadres moet uniek zijn voor elk toestel op het internetwerk en duidt een specifiek toestel aan. Het forwarding adres is het adres van de router. De interface bepaalt welke interface de router moet gebruiken. De metriek is een getal dat de kost aanduidt om tot het netwerkadres te komen. Voor de metriek wordt vaak de hop afstand gebruikt. Dit is een getal dat aanduidt hoeveel routers er overbrugt moeten worden om tot een eindbestemming te komen. Het lifetime veld houdt de tijd bij hoelang de route als geldig beschouwd kan worden.
+	
+	Om nu te weten naar welke route en via welke interface berichten moeten doorgestuurd worden, wordt er een mechanisme gebruikt.
+	\begin{itemize}
+		\item De router moet op zoek gaan naar alle regels in de routingtabel waar het IP-adres van de bestemming deel uitmaakt van het netwerkadres. Dit gebeurt door bits van het IP-adres en het netwerkadres te vergelijken over de prefixlengte. 
+		\item De meest specifieke van het bovenstaande resultaat wordt gekozen.
+		\item In het geval er meerdere gekozen zijn, wordt de regel met de kleinste metriek genomen.
+		\item Als er geen regel gekozen werd, zal een ICMP-Destination Unreachable bericht verstuurd worden naar de afzender.
+	\end{itemize}
+	
+	Het routingproces kent twee problematieken:
+	\begin{enumerate}
+		\item Routing loops komt voor wanneer een routingtabel voor een bepaalde eindbestemming een pad construuert dat terugverwijst naar één van de intermediaire routers. De berichten zullen dus in een lus blijven circuleren totdat de levensduur verstreken is. Het bericht zal nooit aangekomen zijn.
+		\item Black holes komen voor wanneer een router niet meer functioneert. De aanpassingen in de routetabel gebeuren niet onmiddelijk waardoor het versturen van het bericht kan vastlopen.
+	\end{enumerate}
+	
+	\item De simpelste manier is om een default gateway in te stellen. Alle berichten zullen aan deze router worden overgedragen en de router zal dan in zijn routetabel kijken en verder versturen. Dit vereenvoudigt de configuratie van niet-routers aanzienlijk. Dit is niet optimaal in het geval er subnetwerken bestaan die meerdere routers hebben, want dan wordt niet altijd het optimale pad gekozen. Om dit op te lossen wordt er aan host routing gedaan. Dit geeft de mogelijkheid om een intermediaire router in te stellen afhankelijk ofdat het sneller zou zijn of niet. Je kan ook statisch de juiste default gateway instellen.
+	
+	Er bestaan ook een aantal technieken die deze routetabellen dynamisch kunnen invullen. Het eerste mechanisme is route discovery met ICMP. Er wordt gebruik gemaakt van twee ICMP-berichten: ICMP-Router Sollicitation en ICMP-Router Advertisement. Sollicitation berichten worden naar het multicastadres 244.0.0.2 verzonden om de routers in het internetwerk te ontdekken. Routers die hiervoor geconfigureerd waren sturen een Advertisement bericht als reactie. Dit gebeurt periodiek om te laten weten dat de router nog steeds beschikbaar is. Route discovery met ICMP is standaard ingeschakeld op Windows toestellen. Als Routing and Remote Access Service ingeschakeld is zal het echter geen Advertisement berichten versturen.
+	
+	De tweede techniek maakt gebruik van ICMP-redirect berichten. Als een router merkt dat het verkeer afkomstig is van een computer die de volgende hop rechtstreeks kon bereiken zal de router een ICMP-redirect bericht terugsturen naar de afzender. De afzender kan dan zijn routetabel aapassen. Deze techniek wordt afgeraden om te gebruiken aangezien het onmogelijk is om de authenticiteit van deze berichten te verifiëren. De informatie in een IP-datagram kunnen zeer eenvoudig vervalst worden. Windows en Linux houden rekening met een ICMP-redirect bericht, maar voegen enkele routes naar individuele toestellen toe. De lifetime van zo een route is ook beperkt tot enkele minuten.
+	
+	De derde techniek is door berichten tussen routers op een subnetwerk te broadcasten. Hierdoor kunnen andere toestellen passief luisteren naar deze berichten. Niet-routers kunnen over dezelfde informatie beschikken als de routers. Dit proces heet eavesdropping. Als RIP wordt gebruikt wordt dit Silent RIP genoemd en wordt enkel toegepast op niet-routers. Op Linux kan Silent RIP geactiveerd worden met routed -q. Op windows toestellen moet de service RIP Listener geïnstalleerd worden. Om dit de installeren moet je volgende stappen ondernemen:
+	\begin{enumerate}
+		\item Add/Remove Programs
+		\item Networking Services
+		\item Rip Listener aanzetten
+	\end{enumerate}
+	Zowel Linux als Windows luisteren alleen naar RIPv1 berichten.
+	\item 
+	\begin{itemize}
+			\item Statische routing betekent dat de netwerkbeheerder zelf alle routingtabellen voor elke router zal invullen. Hier zijn heel wat nadelen aan verbonden. Het neemt veel tijd in beslag om voor elke router een routetabel op te stellen en is het bovendien zeer foutgevoelig. In het geval dat er een topologiewijziging plaatsvindt moeten alle routetabellen opnieuw ingesteld worden. Als dit nit gebeurt kunnen routing loops en black holes voorkomen. Het voordeel is dat het sneller is als het internetwerk een zeer beperkt aantal routers en subnetwerken heeft, en ook wanneer de topologie nauwelijks verandert.
+			\item Dynamische routing betekent dat routers met elkaar zullen communiceren door middel van routingprotocollen. Alle routers melden aan andere routers met welke netwerken zij verbonden zijn en welke zij onrechtstreeks kunnen bereiken. Elke router zal zijn routingtabel dus zelf aanmaken. Het voordeel is dat de routetabel aangepast wordt, ook in geval van topologiewijzigingen. Als een router uitvalt zullen andere routers berichten naar elkaar versturen om een nieuwe routingtabel op te stellen. Als de router terug aanstaat, kan er terug naar de oorspronkelijke situatie gegaan worden, eveneens door het uitwisselen van berichten. Dit heet route flapping. Het nadeel van dynamische routing is het extra netwerkverkeer door het constant uitwisselen van berichten.
+		\end{itemize}
+		\item Routingprotocollen kunnen geclassificeerd worden op basis van methode en de technologie.
+			\begin{itemize}
+				\item Methode
+				\newline
+				Er wordt een onderscheid gemaakt tussen interior en exterior gateway protocollen. Interior gateway protocollen worden ingezet om de routingtabellen binnen een autonoom systeem in te vullen. Een IGP heeft als doel de beste route te berekenen naar om het even welke eindbestemming en het verspreiden van deze informatie naar elke router op het autonoom systeem. Vertegenwoordigers van deze methode zijn RIP, EIGRP, OSPF en IS-IS. EGPs dienen dan om routing informatie uit te wisselen tussen autonome systemen, meer bepaald enkel de border router van het autonoom systeem. Een EGP moet met meer factoren rekening houden zoals overeenkomsten tussen verschillende internet service providers. Vertegenwoordigers van deze methode zijn EGP, GGP en BGPv4. 
+				\item Technologie
+				\newline
+				Er wordt een onderscheid gemaakt tussen twee klassen. De eerste is distance vector. Deze techniek zorgt ervoor dat een router enkel zijn buren zal informeren over topologische veranderingen. Vertegenwoordigers van deze technologie zijn RIP en EIGRP. De tweede klasse is link state. Hier zal elke router een lijst hebben van elle connecties in het netwerk en berekent de beste naar elke mogelijke bestemming. De verzameling van de beste paden worden dan opgesteld in de routetabel. Vertegenwoordigers van deze technologie zijn OSPF en IS-IS.
+			\end{itemize}
+	
+	
+\end{enumerate}
+
+
+
+\newpage
+\section{A3 - RIP}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Geef een gedetailleerde beschrijving van de \textit{werking} van RIP. Bespreek de \textit{mogelijkheden}, \textit{beperkingen} en \textit{problemen}. Bespreek in het bijzonder de gehanteerde metriek, en hoe RIP berichten verpakt worden (cfr. het OSI 7-lagen model).
+	\item Wat wordt er bedoeld met \textit{reductie van de convergentieperiode} (inclusief oorzaken) ? Bespreek de verschillende technieken om dit te verwezenlijken.
+	\item Bespreek de verschillende verbeteringen van RIPv2 ten opzichte van RIPV1.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+	\item Een RIP router zal periodiek alle route vectoren van zijn routingtabel naar alle routers die hij op subnetwerk-niveau rechtstreeks kan bereiken. Dit wordt een advertisement genoemd en elke router zal zijn routetabel aanvullen met de informatie die in deze advertisement staat. Uiteindelijk heeft elke routers informatie over het hele internetwerk. Het verzenden van zo een advertisement is niet gesynchroniseerd met andere routers. Elke router zal op zijn eigen tijdstip een advertisement verzenden. Een router zal nooit bevestigen of hij zo een advertisement heeft ontvangen of juist niet. Deze berichten zijn dan ook slechts ingekapseld in UDP segmenten met poortnummers 520, zowel voor het zender als voor het ontvanger veld.
+	
+Voor de metriek wordt er standaard de hop afstand gebruikt. Dit wil zeggen dat als een router een advertisement ontvangt, dat hij de metriek van de ontvangen routers verhoogt met 1 en pas daarna zal hij deze informatie opnemen in zijn routingtabel, met de aangepaste metriek. Als de metriek groter dan 16 bedraagt zal RIP dit aanschouwen als onbereikbaar. Het is daarom ook niet interessant om iets anders te nemen als metriek. De maximum diameter van een internetwerk bedraagt dan ook 15 op voorwaarde dat de hop afstand als metriek gebruikt wordt. In het geval dat een eindbestemming langs meerdere paden kan bereikt worden, zou via de RIP standaarden elk pad moeten opgenomen worden in de routetabel, maar dit zou veel te grote routetabellen opleveren en daarom houden de meeste implementaties alleen de kleinste metriek over. Grote routetabellen hebben immers impact op het RIP verkeer aangezien elk RIP bericht ten hoogste 25 routes kan adverteren.
+
+RIP berichten worden niet gericht naar specifieke buren, maar gebroadcast. Deze broadcast wordt elke 30 seconden uitgevoerd ook al is internetwerk in een stabiele configuratie. Dit zort voor een trage convergentieperiode. Aan de basis van dit probleem liggen drie principes. Zoals vermeld houden de meeste RIP implementaties de kleinste metriek bij in het geval er meerdere paden naar een eindbestemming zijn. Advertisements waarin een pad een hogere metriek heeft zal worden genegeerd, maar de metriek van de beste route wordt wel verhoogd. Het tweede probleem is de lifetime parameter. Dit is een parameter die bepaalt hoelang de levensduur is van RIP aangeleerde routes. Standaard bedraagt deze drie minuten. Tot slot is het uitwisselingsproces niet synchroon tussen de verschillende routers. Hierdoor wordt het eindresultaat beïnvloed van de volgorde van verzending.
+
+Aangezien er een trage convergentieperiode is door deze drie principes ontstaan er twee problemen. Het eerste probleem is het count-to-infinity probleem. Dit komt voor als een router, die merkt dat een verbinding onbeschikbaar TODOTODO
+
+	\item De reductie van de convergentieperiode betekent het verkleinen van de tijd om bij wijzigingen in het internetwerk, opnieuw tot een stabiele toestan te komen. Oorzaken zie vorige vraag.
+	
+Om dit op te lossen bestaan er vier technieken. Bij het kiezen van een techniek wordt die best toegepast op alle routers van het internetwerk voor de beste kans op slagen.
+	\begin{enumerate}
+		\item \textbf{split horizon}
+		\newline
+		Routers zullen niet meer routes adverteren op het subnetwerk waarlangs ze deze routers vernomen hebben. Dit vermijdt het count-to-infinity en het routing-loop probleem. Beschermt niet tegen alle vormen van lussen, maar reduceerd wel de kans en bovendien wordt de belasting van het RIP protocol op het netwerk beperkt.
+		\item \textbf{poison reverse}
+		\newline
+		Dit is een variant van de split horizon techniek. Deze blijft wel adverteren naar alle subnetwerken, maar vermeldt de routers op het subnetwerk langs waar ze de routes vernomen hebben met een metriek van 16. Hierdoor is poison reverse beter dan split horizon om count-to-infinity te voorkomen, maar heeft niet hetzelfde gunstig effect op de netwerkbelasting.
+		\item \textbf{triggered updates}
+		\newline
+		Routers die deze techniek ondersteunen zullen ook adverteren wanneer er een metriek van een route wijzigt. De router zal alleen de wijziging adverteren en niet de volledige routetabel. Als de lifetime parameter 0 is, wordt deze route bijna onmiddelijk met een metriek van 16 gebroadcast. Dit verkleint ook weer de kans op het count-to-infinity probleem. Deze techniek zorgt voor een aanzienlijke vermindering in de convergentieperiode, maar er wordt aanzienlijk meer broadcast-berichten verstuurd, wat in sommige netwerken niet aanvaardbaar is.
+		\item \textbf{general RIP request}
+		\newline
+		Bij het opstarten van een router kan hij een general RIP request broadcasten. Andere routers die dit ondersteunen kunnen hierop antwoorden met hun volledige routetabel. Dit vermijdt dat een router 30 seconden moet wachten vooraleer hij een advertisement ontvangt.
+	\end{enumerate}
+	\item RIPv2 kent vier verbeteringen ten opzichte van RIPv1.
+	\begin{enumerate}
+		\item RIPv1 berichten worden gebroadcast. Elk toestel op een internetwerk zal deze RIP berichten dus ontvangen, ook de niet-routers. Dit zorgt dus voor veel onnodige broadcastverkeer. RIPv2 biedt de mogelijkheid om de advertisements te richten naar het multicast adres 244.0.0.9 
+		\item RIPv1 houdt geen rekening met subnetmaskers aangezien in die tijd gebruikt werd gemaakt van zelfidentificerende adressen van klasse A, B en C. Tegenwoordig zorgt dit voor problemen om routers naar subnetten op te nemen. RIPv2 neemt expliciet het subnetmasker op.
+		\item RIPv2 maakt gebruikt van het \textit{next hop} veld om het adres van de eerstevolgende hop aan te duiden. Op deze manier kunnen routers bij ontvangst van een route-vector eerst kijken of de hop niet rechtstreeks te bereiken is en worden dubbele hops vermeden. Verder laat het ook toe om routers die op een andere routing domein zit te refereren.
+		\item RIPv1 heeft geen beveiliging om de correctheid van een bericht te controleren. Alle UDP berichten die verzonden worden via poort 520, worden als geldig aanschouwd. Dit laat toe om berichten te versturen via poort 520 die foutieve informatie bevatten. RIPv2 ondersteunt eenvoudige authentificatie met wachtwoorden alsook MD5. 
+	\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+
+
+
+\newpage
+
+
+
+\newpage
+\section{A4 - OSPF}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Geef een gedetailleerde beschrijving van de \textit{werking van OSPF}, inclusief de diverse mechanismen van berichtenuitwisseling en de OSPF routers met een bijzondere functie, maar zonder in te gaan op de uitwerking van het \textit{algoritme van Dijkstra} en het concept van \textit{OSPF} area's.
+	\item Beschrijf, o.a. aan de hand van een figuur, wat er precies gebeurt indien er een nieuwe router in een door OSPF gestuurd internetwerk wordt opgenomen.
+	\item Hoe worden OSPF berichten verpakt (cfr. het OSI 7-lagen model)?
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+	\item Alle routers verzamelen Link State Advertisements en compileren die in een Link State Database. Doordat elke LSA een timestamp (lolly nummer) heeft kan een router weten ofdat het om nieuwe of oude informatie gaat. Elke LSA referereert naar één router met info van de subnetwerken waarop hij aangesloten is, en een metriek die de kost weergeeft. Een LSDB bevat en volledige inventaris van alle routers en van alle subnetwerken waarop deze een aansluiting hebben. Vooraleer er netwerkverkeer mogelijk is moeten deze LSDB gesynchroniseerd zijn met alle routers en vooraleer dat er gesynchroniseerd kan worden moeten een router alle LSAs ontvangen hebben van alle andere routers op het internetwerk.
+	
+De synchronisatie verloopt efficiënt en vraagt weinig tijd. Het is niet de bedoeling dat een router met alle andere routers op het internetwerk moet controleren ofdat hun LSDB gesynchroniseerd is. Er worden groepen van naburige routers samengesteld, zo een eenheid noemt een adjacancy. Een adjacancy wordt gevormd wanneer een een groep routers dezelfde LSDB hebben. Initieël moet een router dus vergelijken met zijn buren die hij rechtstreeks op zijn interface kan bereiken. Adjacencies worden dus dynamisch gevormd. Tijdens de initialisatie van een OSPF Router stuurt hij een hello bericht om andere routers op de hoogte te brengen van zijn bestaan. Een hello bericht bevat de router ID van de verzender, alsook de router IDs van de naburige routers waarvan hij zelf reeds een hello bericht heeft ontvangen. Initieël bevat zo een hello bericht alleen het ID van de router. Tijdens het verzenden van hello berichten zal dit bericht aangevuld worden met router IDs van nabije buren. Een OSPF router beschouwt de router IDs als rechtstreekse buren, ook al zijn ze dit niet. 
+
+De volgende fase is het database exchange proces. Dit proces zal voor elk koppel routers van een te construeren adjacency een master/slave verhouding aannemen en wisselt hierna database description pakketten uit. In dit bericht staan de LSAs van een LSBD van een bepaalde router. Elke router van het koppel vergelijkt aan de hand van deze pakketten de inhoud van zijn LSBD en van zijn partner. Als er blijkt dat er informatie veroudert is, moet de router een Link State Request aanvragen aan zijn partner. Zijn partner zal dan reageren met een Link State Update pakkeet. Wanneer alle koppels bevestigd hebben wordt uiteindelijk de adjacancy gevormd. Na dit proces blijven leden van een adjacancy hello pakketten versturen naar leden van deze adjacancy. Default is dit om de 10 seconden. Als er na 40 seconden geen hello pakket ontvangt, beschouwen de leden van de adjacency de router als uitgevallen.
+
+Eens de synchronisatie verlopen is, kan de LSDB voor elke router gecompileerd worden en bekomt elke router een routingtabel. Deze routingtabel wordt opgesteld aan de hand van vier componenten
+\begin{enumerate}
+	\item Het kortste pad naar een eindbestemming wordt berekent via het algoritme van dijkstra
+	\item Elke router kent het pad naar de eindbestemming aangezien ze de hele LSBD hebben
+	\item Elke router berekent een Shortest Path Tree met zichzelf als root
+	\item Hieruit berekent elke router zijn routingtabel.
+\end{enumerate}
+
+Om het aantal adjacencies te beperken wordt er een Designated Router verkozen voor elk subnetwerk. Er worden dan enkel adjacencies gevormd tussen DRs. Alle routers die niet DR zijn hoeven geen adjacent te zijn, bij een wijzigiging moeten zij dit vermelden aan de DR via het multicast adres 224.0.0.6, die er dan voor zorgt dat de wijziging naar de andere routers moet doorsturen via het multicast adres 244.0.0.5. Het gebruik van dit mechanisme zorgt ervoor dat de netwerkbelasting linear toe en niet kwadratisch. Een DR is een eigenschap van de interface van de router en dus niet de router zelf. Het is mogelijk dat een router voor een aantal subnetwerken DR is en voor andere subnetwerken juist niet. Er is ook een Backup Designated Router voorzien, die gebruikt zal worden indien een DR uitvalt of verbinding verliest. Op die manier moeten er geen nieuwe adjacenies gemaakt worden. Een DR en een BDR worden verkozen tijdens de uitwisseling van hello pakketten. De keuze wordt uiteindelijk gemaakt op de router met de hoogste prioriteit. Als er routers zijn met dezelfde prioriteit wordt de router met de hoogste router ID verkozen als DR. Dit geldt hetzelfde voor een BDR maar met tweede hoogste prioriteit en router ID. Als een router prioriteit 0 heeft zal deze nooit verkozen worden tot DR. 
+
+\item Router 1 komt op het netwerk en wisselt hello-pakketen uit aan Router 2. Nadat ze op de hoogte zijn van elkaars bestaan vormen Rotuer 1 en Router 2 een adjacancy en wisselen ze Database Description pakketten uit. De DD pakketten van Router 1 bevat alleen de LSA van zichzelf en de pakketten van Router 2 bevat alle LSAs behalve van Router 1. Hierna vraagt Router 1 een Link State Request aan Router 2 om alle LSAs van de routers in het internetwerk. Router 2 stuurt Link State Update pakketten naar Router 1 met deze informatie. Router 2 vraagt analoog aan Router 1 om zijn LSA. Op dit moment bevatten Router 1 en Router 2 een gesynchroniseerde LSDB. Op basis hiervan wordt er voor Router 1 en Router 2 een nieuwe routingtabel en een SPF tree berekent. Router 2 stuurt Link State Update pakketten naar alle routers waarmee hij een adjacancy vormt. Dit pakket bevat enkel de LSA van Router 1. Router 3 en 4 bevestigen na onvangst en kunnen ook een nieuwe routingtabel berekenen. Router 3 en 4 sturen op hun beurt ook een LSU pakkeet met de LSA van Router 1 naar Router 5 en 6. Router 5 en 6 berekenen dan ook een nieuwe routingtabel.
+
+\item OSPF pakketten worden rechtstreeks verpakt in IP-datagrammen. Er wordt gewacht op een ontvangsbevestiging. Bij het tekortkomen van een antwoord zal dit geïnterpreteerd worden als het falen van een verbinding.
+
+\end{enumerate}
+
+
+\newpage
+\section{A5 - Multicastrouting}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Geef de basisprincipes van \textit{multicastrouting}.
+	\item Omschrijf de twee fundamenteel verschillende manieren om deze basisprincipes te realiseren, inclusief hun relatieve voor- en nadelen.
+	\item Bespreek in detail de diverse facetten van het momenteel meest gebruikte \textit{multicastroutingprotocol}.
+	\item Omschrijf de optionele technieken om de werking van dit protocol nog meer te optimaliseren.
+	\item Hoe kan men een \textit{Linux} toestel als multicastrouter laten werken? Geef twee concrete voorbeelden. Geef aan hoe men de diverse \textit{multicastverkeerstromen} kan opvolgen.
+	\item Sommige routers verzorgen in het multicastproces \textit{bijzondere} rollen, die ze pas na specifieke \textit{verkiezingsprocessen} toebedeeld krijgen. Geef een overzicht van deze bijzondere functies, en de overeenkomstige verkiezingsprocessen.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+	\item Een multicast adres gebruikt gebruikt een klasse D IP-adres. Deze klasse heeft een bereik van 224.0.0.0 tot 239.255.255.255. Deze adressen hebben geen prefixlengte, deze is echter altijd /32. Een multicast bron is een toestel dat pakketten zal versturen naar een bepaald multicast adres. Toestellen die geïnteresseerd zijn zullen naar ditzelfde adres luisteren. Alle toestellen die naar hetzelfde adres luisteren worden ook een multicast groep genoemd. 
+	
+Aangezien er verschillende receivers zijn, kunnen de pakketten via meerdere wegen hun doel bereiken.  De verzameling van al deze wegen wordt een distributieboom genoemd. Deze boom kan zowel opwaards als neerwaarts genavigeerd worden. Opwaards of 'upstream' navigatie gebeurt via een incoming interface, neerwaarts of 'downstream' navigatie gebeurt via een outgoing interface
+
+Routers houden een lijst bij van alle incoming en outgoing interfaces. Dit wordt het multicast forwarding state genoemd. Het aantal outgoing interfaces kan maximum gelijk zijn aan het aantal interfaces op de router. Zo een forward state van een router wordt bijgehouden in de koppels (S, G) en (*, G). S staat voor het IP-adres van de bron en G staat voor een specifiek multicast groep adres. Wanneer een een * staat in plaats van S, staat dit voor eender welke bron dat verzend naar G.
+
+In multicast routing zal de router het pakket verzenden doorheen de distributieboom en weg van de bron om routing loops te vermijden en de afstand tussen de bron en de ontvanger zo klein mogelijk te houden. Dit mechanisme kan op twee manieren gebeuren.
+
+De eerste mogelijkheid is door gebruik te maken van het Shortest Path Tree.  Elke bron van een multicast groep is de root van hun eigen boom. Als een router ontdekt dat er een receiver, die rechtstreeks op zijn interface zit, geïnteresseerd is in een bepaalde groep, zullen deze twee bomen aan elkaar gekoppeld worden. Er wordt hier aan RPF gedaan om te achterhalen hoe er naar de bron moet gegaan worden. De router verstuurd een Join bericht via de RPF interface om de volgende router te laten weten dat hij pakketten wil ontvangen van een bepaalde groep met een bepaalde bron. Dit blijft gebeuren totdat de router bereikt wordt die direct aan de bron is verbonden, of een router bereikt werd die al aan het forwarden is voor deze bron en groep. De boom van de bron is nu uitgebreid en de geïnteresseerde receiver hoort hier nu bij. Het versturen van pakketten is nu mogelijk.
+
+De twede mogelijkheid is het Rendezvouz Point Tree. Deze boomstructuur stelt één router aan als Rendevouz Point. Deze router kent alle adressen van elke multicastgroep. Al het verkeer zal door deze Rendevouz Point moeten doorstromen. Hier wordt er ook aan RPF gedaan.
+
+	\item 
+		\begin{itemize}
+			\item Dense protocols
+			\newline
+			Een dense protocol gaat er van uit dat er veel receivers zijn op het domain en dat elk subnet minsten één receiver heeft voor elke multicast groep. Dit type van protocollen gebruiken het flood-and-prune model. Dit zal initieël het verkeer van multicast bronnen broadcasten naar routers. Als een router verkeer ontvangt van een groep op zijn interface die het dichtst bij zijn bron ligt zal hij dit doorsturen naar al zijn interfaces behalve de interface waarop hij het verkeer gekregen heeft. Bij het ontvangen van verkeer op een niet RPF interface, zal hij dit bericht discarden en een prune bericht sturen naar de upstream.
+			
+			Het beste voordeel van Dense protocollen is simpliciteit. Het laat toe om makkelijk een distributieboom te maken dat als top de multicast bron heeft. Een boom die op deze manier gegenereerd wordt garandeerd het kortste en efficiëntste pad van bron naar ontvanger.
+			
+			Een negatief punt is schaalbaarheid. Aangezien dat dense protocollen flooden over het hele network, is het niet toepasselijk om te gebruiken op aanzienlijk grote netwerken.
+			\item Sparse protocols
+			\newline
+			Een sparse protocol gaat er van uit dat er maar een kleine hoeveelheid receivers, maar minstens één, aanwezig zijn voor elke multicast groep. Sparse protocols gaan een kernrouter aanduiden die alle actieve sources in een domein gaat tracken en zal daarom niet het hele netwerk flooden zoals bij een dense protocol. Sparse protocollen volgen het explicit join model. Bij dit model zal multicast data maar geforward worden naar routers die dit opvragen. De distributieboom heeft als top de aangeduide kernrouter. Als een host een groep wilt joinen, dan gaan de rechtstreekse verbonden routers de distributieboom joinen richting de kernrouter. Verkeer wordt ontvangen door deze kernrouter over de Shortest Path Tree en geforwaard naar geïnteresseerde ontvangers via de kernrouter.
+			
+			Voordelen van dit soort protocollen is dat er geen flooding noodzakelijk is en dat er geen forwarding states moeten bijgehouden worden in routers die niet de kernrouter zijn. De kernrouter is de enige router die op de hoogte moet zijn van alle actieve bronnen.
+			
+			Het nadeel is dat het niet altijd het kortste pad zal nemen. Multicast data moet eerst door de kernrouter gaan, ook al is de ontvanger dichter bij de bron dan de kernrouter. 
+		\end{itemize}
+	\item Het meest gebruikte multicastroutingprotocol is Protocol Independent Multicast-Sparse Mode. Dit protocol verloopt in drie stappen.
+	\begin{enumerate}
+		\item De eerste stap is het opbouwen van de Rendevouz Point Tree. 
+	\end{enumerate}
+	\item Optimalisatie enz
+	\item Er bestaan twee verschillende daemons op Linux. De eerste is pimd. Deze daemon kan uitgevoerd worden met het commando /usr/local/sbin/pimd -d. pimd vereist echter wel dat er al een routetabel aanwezig is. De tweede variant is xorp\_rtmgr en kan uitgevoerd worden met /usr/local/xorp/sbin/xorp\_rtmgr. In tegenstelling tot pimd zal xorp\_rtmgr zelf een routetabel aanmaken. Om het multicast verkeer te bekijken gebruiken we iperf. Om dit programma te kunnen gebruiken zijn er twee toestellen nodig. Een server toestel en een cliënt toestel. De server moet alleen aanduiden dat hij als server zal draaien. De cliënt moet het IP-adres van de server ingeven en de TTL waarde verhogen. Als beide toestellen op Run klikken zal er verkeer gegenereerd worden en kan deze bekeken worden op
+	\item Er bestaan drie verkiezingsprocessen. 
+	\begin{enumerate}
+		\item Het eerste verkiezingsproces is gelijkaardig aan OSPF. Er wordt een Designated Router bron verkozen per subnetwerk en gebeurt via hello berichten. Hello berichten worden verstuurt naar het multicastadres 224.0.0.13. De router met de hoogste DR priority wordt geselecteerd als DR. Als alle routers geen DR priority functionaliteit hebben wordt de router met het hoogste IP adres gekozen. Elke router zal dus zelf de Designated Router selecteren aan de hand van deze informatie. Dit vormt geen probleem als alle routers hetzelfde algoritme gebruiken om de DR te selecteren. De taak van de DR is om het PIM-join bericht door te sturen van de receiver naar het Rendevouz Point en om data te forwarden naar de receivers.
+		\item Het tweede verkiezingsproces is het selecteren van de active querier. De router wordt geselecteerd aan de hand van het kleinste ip adres. De active querier is verantwoordelijk voor het verzenden van IGMP-group berichten en om de status bij te houden van elke actieve multicast groep.
+		\item Het derde verkiezingsproces is een Rendevouz Point verkiezen in functie van een multicastgroep. 
+	\end{enumerate}
+\end{enumerate}
+\chapter{Reeks B}
+\section{B1 - Draadloze netwerken}
+\subsection{Vragen}
+\begin{enumerate}
+	\item Met welke opdrachten kan men op \textit{Windows} toestellen nagaan welke de karakteristieken zijn van de eigen \textit{Wifi} interface en van de \textit{Wifi} zenders in de buurt. Geef aan welke karakteristieken vermeld worden.
+	\item In welk opzicht zijn \textit{Ad Hoc routingprotocollen} (in \textit{wireless meshes}) anders dan de meer traditionele routingprotocollen (bedoeld voor internetwerken die uit bekabelde subnetwerken bestaan)?
+	\item Geef de twee fundamenteel verschillende manieren om \textit{Ad Hoc routingprotocollen} te realiseren, inclusief hun relatieve voor- en nadelen en hun optimaal toepassingsgebied.
+	\item Bespreek een concreet voorbeeld van een implementatie die tot één van deze categorieën behoort, met vooral aandacht voor de verschillen met het traditionele routingprotocol (voor bekabelde internetwerken), waarvan het is afgeleid.
+	\item Bespreek een concreet voorbeeld van een implementatie die tot de andere categorie behoort, nu met een gedetailleerde beschrijving van hoe de routingtabellen door specifieke berichtuitwisselingen ingevuld worden.
+\end{enumerate}
+
+\subsection{Antwoorden}
+
+\begin{enumerate}
+	\item Om alle netwerken met hun accespoints te tonen wordt het commando \textbf{netsh wlan show networks mode=bssid} gebruikt. Met dit commando wordt een lijst verkregen van alle netwerken met hun accespoints. Per accespoints kan ook de signaalsterkte en het kanaal gevonden worden. Om de accespoint te bekijken waarmee een toestel verbonden is gebruik je \textbf{netsh wlan show interface}. Ook hier wordt de signaalsterkte en het kanaal getoond. Bijkomende informatie zoals upload- en downloadrate zijn ook aanwezig.
+	\item Ad Hoc modus is een gedecentraliseerd systeem waarbij er geen routers aanwezig zijn. Elk toestel wordt gezien als een node in het netwerk, en zal data doorsturen en ontvangen van andere nodes. WLANS zijn te variabel aangezien toestellen op elk moment verbonden kunnen zijn met het internetwerk. Traditionele routingprotocollen zijn hier niet op voorbereid en hebben daarom geen nut in een WLAN.
+	\item Er bestaan twee soorten Ad Hoc routing protocollen: proactief en reactief.
+	\begin{itemize}
+		\item Proactief
+		\newline
+		Een proactief protocol zal voor elke potentiële router een route maken in de routetabel. Deze routetabel wordt dan verdeeld over het hele netwerk. Het nadeel hiervan is dat het een nieuwe routetabel moet opstellen als er een topologische wijziging plaatsvindt. Het voordeel is dat er snel een connectie kan vastgelegd worden.
+		\item Reactief
+		\newline
+		Een reactief protocol daarentegen zal pas een route aanmaken op het moment dat dit nodig is. Na een tijd zal deze route terug verwijdert worden. Als een toestel een pakket wil versturen naar ander toestel dat zich niet op hetzelfde subnetwerk bevindt, moet hij dit via zijn gateway versturen. Deze router zal dit dan doorspelen naar alle directe buren. Die buren zullen op hun beurt dit ook melden aan hun directe buren. Dit wordt gedaan totdat het doeladres bereikt is. Let wel op dat andere routers niet weten wanneer het doeladres bereikt is, en zullen verder flooden tot het niet meer mogelijk is. Het nadeel is hier dus dat het soms lang kan duren eens een pakket verstuurd kan worden. 
+	\end{itemize} 
+	\item Het protocol dat hier zal besproken worden heet het Optimized Link State Routing Protocol. Dit is een proactief protocol en werd geïnspireerd door OSPF. In princiepe is OSPF ook een proactief protocol, maar is niet geschikt voor WLANs aangezien OSPF werkt met adjacencies. In WLANs treden overlapping vaak voor. OLSR zorgt ervoor dat elke router een aantal van zijn buren instelt als Multipoint Relay. Deze MR's zijn verantwoordelijk voor het forwarden van berichten zoals designated routers verantwoordelijk zijn in OSPF. Dit zorgt voor selectieve flooding
+	\item Het protocol dat hier zal besproken worden heet het On Demand Distance Protocol en is een voorbeeld van een reactief protocol. Dit protocol werkt in twee fasen. Fase 1 is het versturen van een Route Request bericht. Dit bericht bevat het adres van het toestel dat je wil bereiken en een volgnummer. Dit volgnummer wordt met 1 verhoogd per request aan een router. De bron stuurt naar de router waarmee hij verbonden is dat hij een bericht wil versturen naar een bepaald doeladres. De router zal dit melden aan alle directe buren. Als het de eerste keer is dat deze request verstuurd wordt zal elke buur deze request doorsturen naar hun directe buren. Op dit moment weten deze buren hoe zij naar S moeten gaan, namelijk via de router waarvan ze de request ontvangen hebben. Dit proces heet reverse pathing en wordt zolang toegepast totdat het doeladres bereikt is. Alleen het doeladres zal weten dat hij bereikt is. De andere routers zullen blijven flooden. De tweede fase is het Route Reply bericht van het doeladres terugsturen naar de bron. Er is geen flooding meer mogelijk aangezien er aan reverse pathing gedaan werd. Het doeladres weet perfect hoe hij naar het bronadres moet navigeren. Terwijl het doeladres naar het bronadres gaat, wordt er terug aan reverse pathing gedaan. Als het Route Reply bericht toekomt op het bronadres, zal elke router weten hoe hij van het bronadres naar het doeladres moet navigeren. Pas hierna kan er data uitgewisseld worden tussen het bron- en doeladres.
+	
+\end{enumerate}
+
+\newpage
+\section{B2 - Configuratie van DNS servers onder Linux}
+\subsection{Vragen}
+De figuur in bijlage stelt een intranet bestaand uit een aantal Linux computers voor, met corresponderend IP-adres, van de vorm 192.168.16.z . Het getal z lees je af links van de naam van de computer. De getallen rechts van de naam van de computer moet je negeren. De computers staan gegroepeerd in een tabel met als header de naam van het domein waarin ze zich bevinden. De rechthoeken die domeinen groeperen stellen dan weer een zone voor. Stippellijnen duiden op een domein/sub­domein relatie. De pijlen laten toe om de primaire name­server van elke zone te achterhalen. Je hoeft geen reverse DNS te configureren.
+\begin{enumerate}
+\item Stel het \textit{configuratiebestand} en alle \textit{zonebestanden} op van volgende DNS servers, waarbij je er rekening moet mee houden dat elk van deze servers ook secundaire nameserver is voor alle zones van de andere server. Gebruik \textbf{relatieve DNS namen} waar mogelijk. Gebruik noch \textit{forwaders}, noch de \$ORIGIN opdracht!
+\item Bespreek in detail het begrip \textit{secundaire nameserver}, inclusief voordelen, beperkingen en problemen.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+\item { \textbf{Configuratiebestand: /etc/named.conf}
+\begin{lstlisting}
+options {
+	directory "/var/named";
+	allow-transfer { 192.168.1.126; };
+};
+
+zone "XX.us.zone" IN {
+	type slave;
+	file "XX.us.zone";
+	masters { 192.168.1.126 }
+}
+
+zone "." {
+	type hint;
+	file "named.ca";
+}
+\end{lstlisting}
+
+\textbf{Zonebestand: /var/named/XX.us.zone}
+\begin{lstlisting}
+$TTL 60
+@       IN 	SOA	corelli.sonatas.XVII.it. email.provider.be. (
+					1    ; serial
+					1    ; refresh
+					1    ; retry
+					1    ; expire
+					1 )  ; minimum
+		IN 	NS  	corelli.sonatas.XVII.it.
+vocal		IN 	NS		gershwin.vocal
+barber		IN 	A 		192.168.1.4
+bernstein	IN 	A		192.168.1.17
+cage		IN	A		192.168.1.58
+copland		IN	A		192.168.1.73
+glass		IN	A		192.168.1.99
+
+
+\end{lstlisting}
+}
+
+\item { Secundaire DNS servers houden dezelfde informatie bij als primaire DNS servers maar hebben het voordeel dat ze de taak van de primaire servers verlichten. Ook in het geval dat een primaire DNS server uitvalt kan de secundaire DNS server nog steeds informatie uitwisselen. Een nadeel is dat wijzigingen enkel doorgevoerd worden op de primaire nameserver. De secundaire nameserver moet dus controleren of dat de primaire nameserver gewijzigd is.
+
+}
+\end{enumerate}
+
+\section{B3 - Configuratie van DNS servers onder Linux}
+\subsection{Vragen}
+De figuur in bijlage stelt een intranet bestaand uit een aantal \textit{Linux} ...(crf.vraag B2) ... achterhalen. Geen enkele zone heeft een secundaire nameserver. Je hoeft geen reverse DNS te configureren.
+\begin{enumerate}
+\item Stel het \textit{configuratiebestand} en alle \textit{zonebestanden} op van volgende DNS servers. Gebruik \textbf{relatieve DNS namen} waar mogelijk. Gebruik noch \textit{forwaders}, noch de \$ORIGIN opdracht!
+\item Bespreek in detail het formaat van een \textit{zonebestand} en zijn \textit{records}. Je mag dit doen op basis van één van de oplossingen in a), doch je moet ook alternatieve records en formaten beschrijven, die je niet noodzakelijk hebt gebruikt.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+\item {
+	\textbf{Configuratiebestand : /etc/named.conf}
+	\begin{lstlisting}
+	options {
+		directory "/var/named";
+	};
+	
+	zone "x" IN {
+		type master;
+		file "x";
+	}
+	
+	...
+	\end{lstlisting}
+	\textbf{Zonebestand} cfr vraag B2
+}
+
+\item {
+	Het eerste record van een zonebestand is altijd een Start Of Authority record en wordt altijd voorafgegaan door een @. Dit is een speciale naam dat staat voor de huidige oorsprong. Een SOA record bevat de primaire nameserver, een e-mailadres van de verantwoordelijke en een aantal getallen. Het eerste getal is een serial nummer. Dit moet verhoogd worden wanneer er iets aan het configuratiebestand gewijzigd wordt. De vier andere getallen zijn tijdsduren in seconden. Het refresh interval zegt aan de secundaire nameserver wanneer hij zijn database moet vernieuwen met de data van de primaire server. Het retry interval zegt aan de secundaire server hoelang hij moet wachten om opnieuw de primaire nameserver te contacteren in het geval dat een refresh mislukt is. Het expire interval zegt hoelang de gegevens bewaard blijven en het laatste getal is de default TTL waarde. Na de SOA records komen er één of meerdere NS records. Deze records bevatten de namen van alle primaire en secundaire DNS servers van dit domei en al zijn gedelegeerde domeinen. Een MX record bevat een nummertje dat de prioriteit aangeeft en de naam van de nameserver. Indien er meerdere MX records bestaan zullen deze afgelopen worden volgens prioriteit. Een CNAME record laat toe om aliases te gebruiken. Zo kan je een naam naar een andere naam mappen. Tot slot is er nog de A record. Dit zal een naam naar een IP-adres mappen.
+}
+\end{enumerate}
+
+\section{B4 - Configuratie van DNS servers onder Linux}
+De figuur in bijlage stelt een intranet bestaand uit een aantal \textit{Linux} ...(crf.vraag B2) ... achterhalen. Geen enkele zone heeft een secundaire nameserver. Je hoeft geen reverse DNS te configureren.
+\subsection{Vragen}
+\begin{enumerate}
+\item Stel het \textit{configuratiebestand} en alle \textit{zonebestanden} op van volgende DNS servers. Gebruik \textbf{relatieve DNS namen} waar mogelijk. Gebruik noch \textit{forwaders}, noch de \$ORIGIN opdracht!
+\item Bespreek in detail het formaat van een \textit{configuratiebestand}. Je mag dit doen op basis van één van de oplossingen in a), doch je moet ook alternatieve records en formaten beschrijven, die je niet noodzakelijk hebt gebruikt.
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+\item {
+	\textbf{Configuratiebestand : /etc/named.conf}
+	\begin{lstlisting}
+	options {
+		directory "/var/named";
+	};
+	
+	zone "x" IN {
+		type master;
+		file "x";
+	}
+	
+	...
+	\end{lstlisting}
+	\textbf{Zonebestand} cfr vraag B2
+}
+\item {
+	Het configuratiebestand bevat de instellingen voor de serverdaemon en vermeldt de namen van de zonebestanden. Dit bestand is onderverdeeld in een aantal opdrachten. De structuur van een opdracht hangt af van het sleutelwoord waarmee ze beginnen. De twee belangrijkste sleutelwoorden zijn \textbf{options} en \textbf{zone}.
+	
+	Het options sleutelwoord bevat een aantal opties voor de serverdaemon. De eerste optie is is directory. Dit wordt direct gevolgd door de naam van de directory waarin de zonebestanden zich vinden. De tweede optie is forwarders. Dit wordt gevolgd door een lijst van IP-adressen in accolades. Als er bepaalde DNS-info niet bereikbaar is zal hij deze lijst van IP-adressen bevragen voor deze informatie. Als deze IP-adressen ook geen antwoord bieden zullen de DNS-aanvragen naar de rootservers gestuurd worden. De derde en laatste optie is allow-transfer. Dit wordt zoals forwards ook gevolgd door een lijst van IP-adressen omringd in accolades. De IP-adressen zijn van toestellen die een zone transfer kunnen uitvoeren en is een verplichte optie als er secundaire nameservers gebruikt worden. 
+	
+	Het zone sleutelwoord geeft informatie voor een bepaalde zone. Dit sleutelwoord wordt gevolgd door de naam van de zone tussen aanhalingstekens, vervolgens eventueel het sleutelwoord IN, en tenslotte tussen accolades de configuratie-informatie voor deze specifieke zone. Het eerste sleutelwoord is type en bepaalt onmiddelijk één van de 5 functies. De eerste functie is master. Dit wil zeggen dat deze zone een primaire nameserver is voor de zone. 
+}
+\end{enumerate}
+
+\section{B5 - Configuratie van reverse DNS onder Linux}
+\subsection{Vragen}
+\begin{enumerate}
+\item 
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+\item
+\end{enumerate}
+
+\chapter{Reeks C}
+
+\section{C1 - DHCP leaseprocessen en relay-agents}
+\subsection{Vragen}
+\begin{enumerate}
+\item {Geef een overzicht van de verschillende \textit{types} DHCP berichten. Hoe wordt in het bericht het type aangeduid?}
+\item {Bespreek in detail de opeenvolgende \textit{stappen} van beide DHCP \textit{leaseprocessen}.}
+\item {Bespreek het doel en (in detail) de werking van DHCP relay-agents. Welke velden in DHCP berichten helpen deze functie realiseren.}
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+\item {Er bestaan 8 berichttypen
+\begin{itemize}
+\item DHCP-Discovery bericht
+\item DHCP-Offer bericht
+\item DHCP-Request bericht
+\item DHCP-Decline bericht
+\item Positief DHCP-Acknowledgment bericht
+\item Negatief DHCP-Acknowledgment bericht
+\item DHCP-Release bericht
+\item DHCP-Inform bericht
+\end{itemize}
+Het type van het bericht wordt wordt door een waarde van 1 tot en met 8 meegegeven aan de optie 53 of 'dhcp-message type' van het bericht}
+\item {Het initialisatieproces komt voor wanneer een DHCP-cliënt zich meldt aan een network waar hij nog geen deel van uitmaakte.
+	
+	\begin{enumerate}
+		\item De DHCP-cliënt broadcast een DHCP-Discovery bericht naar het lokale subnet. In dit bericht wordt de leasetijden en een aantal opties vastgelegd. Voor de leasetijden wordt optie 51 gebruikt en voor de lijst van opties wordt optie 55 gebruikt. Het IP-adres van de DHCP-cliënt wordt in een DHCP-Discovery bericht ingevuld met 0.0.0.0
+		\item Alle DHCP-servers kunnen hierop reageren met een DHCP-offer bericht. In dit bericht zal een IP-adreslease aangeboden worden en ook de aangevraagde opties van de cliënt. Elke server zal dit IP-adres reserveren voor de cliënt. Door middel van optie 54 kan een cliënt onderscheid maken tussen verschillende servers aangezien hier het IP-adres van de server bewaard wordt. In het geval dat er geen server gevonden is zal de cliënt een nieuw DHCP-discovery bericht versturen. De wachtperiode vergroot altijd van 2, 4, 8, tot 16 seconden. na deze 4 pogingen wordt de wachttijd ingezet op 5 minuten totdat een DHCP-offer bericht ontvangen wordt van een server.
+		\item Als er één of meerdere DHCP-offers zijn selecteert de cliënt de eerste offer die aan alle verlangens voldoet. Naar deze server stuurt de cliënt dan een DHCP-Request bericht. In dit request bericht wordt de server ook geïdentificeerd met een IP-adres met optie 54
+		\item De geselecteerde server stuurt doorgaans een positief DHCP-Acknowledgment bericht naar de cliënt om de lease te bevestigen. De aangevraagde opties door de cliënt worden hier ook mee verzonden. De DHCP-Servers die niet geselecteerd werden zullen stoppen met het IP-adres voor deze cliënt te reserveren. In het geval dat de cliënt een ongeldig of reeds een toegekend IP-adres heeft zal elke DHCP-server een negatief DHCP-Acknowledgment bericht naar de cliënt sturen. Hierdoor mislukt het hele initialisatieproces en moet er terug vanaf stap 1 begonnen worden.
+		\item Uiteindelijk worden de TCP/IP eigenschappen geconfigureerd aan de hand van de gegevens die de cliënt van de server ontvangen heeft. Als de cliënt merkt dat er één van de parameters ongelgid zijn stuurt hij een DHCP-Decline bericht naar de geselecteerde server en moet het initialisatieproces opnieuw gestart worden. Als de cliënt meer informatie wil kan hij een DHCP-Inform bericht sturen naar de server. Als de cliënt de lease niet meer nodig heeft kan hij een DHCP-Release bericht sturen.
+		
+	\end{enumerate}
+	
+	Het vernieuwingsproces vindt plaats wanneer een cliënt al over een lease beschikt, maar deze lease langer wil laten gelden.
+	\begin{enumerate}
+	\item De cliënt stuurt een DHCP-Request bericht naar de server met als melding om de adreslease te vernieuwen en verlengen.
+	\item Als de server beschikbaar is stuurt deze een positief DHCP-Acknowledgment bericht naar de cliënt. Op deze manier wordt de lease van elke DHCP-cliënt telkens opnieuw verlengd. Hierbij worden er ook DHCP-opties meegestuurd. Als er opties zijn die gewijzigd zijn, zal de DHCP-cliënt dit automatisch bijwerken. Indien de cliënt geen DHCP-Acknowledgment bericht ontvangt zal hij een periodiek een DHCP-Request bericht versturen naar de server.
+	\item In het geval dat de oorspronkelijke DHCP-Server niet beschikbaar is zal de cliënt wachten totdat de tijd voor rebinding van de lease is verstreken. Wanneer dit gebeurd zal de cliënt een willekeurige DHCP-Server aanspreken om zijn adreslease te vernieuwen.
+	\item Als deze server reageert met een positief DHCP-Acknowledgment bericht, kan de cliënt zijn adreslease bij deze server vernieuwen. Indien dit niet is zal de cliënt terug periodiek DHCP-Request berichten versturen.
+	\item Als de lease verloopt en de cliënt kan geen server bereiken, of als een server heeft geantwoord met een negatief DHCP-Acknowledgment bericht, moet de cliënt zijn adreslease onmiddelijk stoppen met als gevolg dat de TCP/IP configuratie ongedaan wordt. De cliënt moet nu het initialisatieproces overlopen.
+	\end{enumerate}
+}
+
+\item {
+Aangezien dat een DHCP-Server zijn berichten broadcast, en dat een router geen broadcastberichten doorlaat, kan een DHCP-Server enkel werken op subnetniveau. Een relay agent maakt het mogelijk om DHCP broadcastberichten door te sturen naar andere subnetten. Een relay agent is een programma dat DHCP berichten doorgeeft tussen cliënts en servers in verschillende subnetten. Sommige hardware routers ondersteunen de functionaliteit van een BOOTP relay-agent.  Deze routers kunnen dan BOOTP berichten herkennen, en aangezien dat DHCP berichten via dezelfde UDP poorten verzonden worden als BOOTP berichten en bovendien dezelfde structuur hebben, kan een BOOTP relay-agent perfect DHCP pakketten door het internetwerk verzenden. Indien er zo geen router beschikbaar is moet ofwel de DHCP-Server, ofwel een andere computer in het subnet als relay-agent fungeren. Dit toestel zal DCHP-berichten ontvangen die als broadcast op één van zijn interfaces, en geeft deze berichten door aan gekende DHCP servers of als broadcast naar alle externe subnetten waarmee hij via zijn fysieke interfaces verbonden is. Het aantal broadcasts wordt doorgaans beperkt. Bij een Windows relay-agent is dit maximumaal vier. Hierom wordt er een \textit{hop} veld bijgehouden dat met één verhoogd wordt telkens het bericht opnieuw gebroadcast wordt. Door een relag-agent verloopt het leaseproces anders:
+\begin{enumerate}
+\item Een cliënt stuurt een DHCP-Discovery bericht in zijn subnet.
+\item De relay-agent ontvangt dit bericht en controleert het veld met het gateway IP-adres in de header van het DHCP-bericht. Als dit veld de waarde 0.0.0.0 bevat, zal de relay-agent dit vervangen door zijn eigen IP-adres en doorsturen naar ofwel een specifiek DHCP-Server ofwel broadcasten naar subnetten waarop de relay-agent fysiek is aangesloten. 
+\item De DHCP-Server die dit bericht ontvangt zal nagaan uit welke scope een adreslease moet verleend worden, afhankelijk van het gateway veld dat ingevuld werd met het IP-adres van de relay-agent. De server kiest uit deze scope een IP-adres en stuurt dit via een DHCP-Offer bericht naar de relay-agent.
+\item De relay-agent geeft de adreslease aan de cliënt. Aangezien het client IP-adres onbekend is moet deze nog gebroadcast worden in het lokale subnet.
+\end{enumerate}
+}
+\end{enumerate}
+
+\section{C2 - IPv6 Adressering}
+\subsection{Vragen}
+\begin{enumerate}
+\item {Bespreek de \textit{structuur} en \textit{numerieke voorstelling} van IPv6 adressen.}
+\item {Geef en bespreek de verschillende \textit{types} IPv6 adressen. Geef onder andere van elk van deze types de structuur, hun interpretatie, relevante voorbeelden en eventuele subtypes.}
+\end{enumerate}
+\subsection{Antwoorden}
+\begin{enumerate}
+
+
+\item {IPv6 adressen zijn samengesteld uit 128 bits. De basisstructuur van een IPv6 structuur heeft de vorm \texttt{P:Q:R:S:T:U:V:W} waarbij elke letter een hexadecimaal getal van vier cijfers voorstelt. Een IPv6 kan meerdere notaties hebben:
+\begin{itemize}
+\item 2001:410:1:: = 2001:410:0001:0000:0000:0000:0000:0000
+\item :: = 0:0:0:0:0:0:0:0
+\item ::1 = equivalent 127.0.0.1 IPv4
+\item FE80::5EFE:192.168.41.30 = FE80:0:0:0:0:5EFE:C0A8:291E
+\item 2001:410:1::/48
+\end{itemize}
+}
+\item {}
+\end{enumerate}
+\end{document}
