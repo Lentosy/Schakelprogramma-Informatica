@@ -1,0 +1,26 @@
+# Schakelprogramma tot Master of Science in de industriële wetenschappen: informatica, academiejaar 2017 - 2018
+
+## Semester I
+
+[Wiskunde A](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Wiskunde%20A)
+
+[Fysica: Mechanica, optica en moderne fysica](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Mechanica%2C%20optica%20en%20moderne%20fysica)
+
+[Ontwerp en ontwikkeling van mobiele toepassingen](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Ontwerp%20en%20ontwikkeling%20van%20mobiele%20toepassingen)
+
+[Programmeren in C en C++](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Programmeren%20in%20C%20en%20C%2B%2B)
+
+[Relationele gegevensbanken](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Relationele%20gegevensbanken)
+
+[Discrete wiskunde](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Discrete%20Wiskunde)
+## Semester II
+
+[Besturingssystemen I (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Besturingssystemen%20I)
+
+[Besturingssystemen II (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Besturingssystemen%20II)
+
+[Computerhardware (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Computerhardware)
+
+[Computernetwerken II: Netwerkbeheer (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Computernetwerken%20II%20Netwerkbeheer)
+
+
