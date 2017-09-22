@@ -1,0 +1,29 @@
+\beginoef
+%
+Wat doet deze code? Verklaar. Na theorieles 3 kan je de code zo omvormen, dat ze ook doet wat ze belooft.
+\begin{footnotesize}
+\begin{verbatim}
+void wissel(int a, int b){
+     int hulp;
+     printf("  Bij start van de wisselprocedure hebben we a=%d en b=%d.\n",a,b);   
+     hulp = a;
+     a = b;
+     b = hulp;  
+     printf("  Op het einde van de wisselprocedure hebben we a=%d en b=%d.\n",a,b);   
+}
+
+int main(){
+    int x, y;
+    x = 5;
+    y = 10;
+    
+    printf("Eerst hebben we x=%d en y=%d.\n",x,y);  
+    wissel(x,y);    
+    printf("Na de wissel hebben we x=%d en y=%d.\n",x,y);    
+        
+    return 0;  
+}
+\end{verbatim}
+\end{footnotesize}
+Deze vraag beantwoord je eerst ZONDER de code uit te proberen. Daarna kan je jouw antwoord controleren, door de code te copi\"eren, compileren en uit te voeren. Omdat het copi\"eren vanuit een .pdf-bestand de kantlijnen niet behoudt, kan je copi\"eren vanuit een andere bron. (Zeker nuttig als we je later langere code geven!) Op Minerva vind je een map met .tex-bestanden. Daar haal je het juiste bestand op (\verb}opg_18_11_wissel.tex}, waarbij \verb}18} staat voor jaargang 2017-2018 en \verb}11} het nummer van de oefening is), en kopieer je het programma (te vinden tussen \verb@\begin{verbatim}@ en \verb@\end{verbatim}@) in een .c-bestand.
+\endoef
