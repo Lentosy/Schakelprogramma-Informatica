@@ -24,17 +24,146 @@
 % CUSTOM COMMANDS
 \newcommand{\todo}[1] {
 \color{red}\textunderscore{\textit{TODO: #1}}
+\color{black}
 }
 
+\newcommand{\important}[1] {\textbf{\color{red}#1}}
 % DOCUMENT
 \begin{document}
 \maketitle
 \tableofcontents
 
+\begin{abstract}
+ Deze tekst vat de theorie van Discrete Wiskunde samen zoals die gegeven werd in het academiejaar 2017-2018. 
+ 
+\end{abstract}
+
+
 \part{Discrete Wiskunde}
 \chapter{Eindige Velden}
-\section{Congruentierekening}
-\lipsum
 
+\section{Proloog}
+\todo{veel korter schrijven}
+Vooraleer velden kunnen uitgelegd worden moet er eerst een klein stukje van hoofdstuk \ref{ch:groepen} (Groepen). 
+Een groep (symbool = {\color{red} G}) is een verzameling elementen waarvan elk element onderling met elkaar kan werken. Een groepstabel specificeert hoe een bepaalde 
+interactie gebeurd. Een voorbeeld hiervan is het optellen van getallen.
+
+
+Ter opmerking, het symbool $\oplus$ stelt het additieve voor en $\otimes$ stelt het multiplicatieve voor. Dit is een hulpmiddel
+voor ons zodat we kunnen vergelijken met de + en . operator uit de wiskunde.
+Er zijn 4 eigenschappen nodig om een geldige groepstabel te hebben.
+\begin{itemize}
+ \item {\textbf{Inwendigheid}: x $\oplus$ y = element van G}
+ \item {\textbf{Associativiteit}: (a $\oplus$ b) $\oplus$ c = a $\oplus$ (b $\oplus$ c)}
+ \item {\textbf{Neutraal Element ({\color{red} n})}: x $\oplus$ n = x}
+ \item {\textbf{Invers element}: x $\oplus$ $\overline{x}$ = {\color{red} n}}
+\end{itemize}
+Een extra, maar niet verplichte eigenschap is \textbf{Commutativiteit}. x $\oplus$ y = y $\oplus$ x.
+Een groepentabel is een matrix dat interacties visueel voorstelt. In tabel \ref{table:groepstabel} zie je dat 2 en 1, 3 oplevert. 
+De 2 wordt afgelezen op de bovenste rij, en de 1 wordt afgelezen op de linkse kolom. 
+
+Enkele begrippen met betrekking tot groepstabel.
+\begin{itemize}
+ \item {\textbf{Latijns Vierkant}: Een groepstabel waarvan elk element exact één keer voorkomt in elke rij en kolom (denk aan Sudoku).}
+ \item {\textbf{Isomorfe groepen}: Verschillende groepen die niets met elkaar te maken hebben kunnen isomorf zijn. Dit betekent dat ze identiek zijn na eventuele herlabeling
+of permutaties van kolommen of rijen.}
+ \item {\textbf{Discrete groepen}: Dit zijn groepen met een eindig aantal elementen. Modulo 12 heeft zo 12 elementen.}
+ \item {\textbf{De orde}: Enerzijds is dit getal het aantal elementen van een groep. Anderzijds is dit het 
+ aantal keer dat je een element met zichzelf moet laten interageren om het neutraal element te bekomen. De orde is dus voor
+ elk element verschillend.}
+\end{itemize}
+
+
+Als je de verzameling 'Modulo 12' bekijkt heb je 12 elementen. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 en 11.
+\begin{table}[]
+\centering
+\caption{Een groepstabel voor de interactie `optellen' in modulo 12}
+\begin{tabular}{|l|llllllllllll}
+\hline
++ & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{8} & \multicolumn{1}{l|}{9} & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{11} \\ \hline
+0 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\ \cline{1-1}
+1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 0 \\ \cline{1-1}
+2 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 0 & 1 \\ \cline{1-1}
+3 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 0 & 1 & 2 \\ \cline{1-1}
+4 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 0 & 1 & 2 & 3 \\ \cline{1-1}
+5 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 0 & 1 & 2 & 3 & 4 \\ \cline{1-1}
+6 & 6 & 7 & 8 & 9 & 10 & 11 & 0 & 1 & 2 & 3 & 4 & 5 \\ \cline{1-1}
+7 & 7 & 8 & 9 & 10 & 11 & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\ \cline{1-1}
+8 & 8 & 9 & 10 & 11 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ \cline{1-1}
+9 & 9 & 10 & 11 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \cline{1-1}
+10 & 10 & 11 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\ \cline{1-1}
+11 & 11 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \cline{1-1}
+\end{tabular}
+\label{table:groepstabel}
+\end{table}
+\begin{itemize}
+ \item Hoeveel keer moet je 1 met zichzelf optellen om 0 te bekomen? (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0)$\rightarrow$ 12
+ \item Hoeveel keer moet je 2 met zichzelf optellen om 0 te bekomen? (2, 4, 6, 8, 10, 0) $\rightarrow$ 6
+ \item Hoeveel keer moet je 5 met zichzelf optellen om 0 te bekomen? (5, 10, 3, 8, 1, 6, 11, 4, 9, 2, 7, 0) $\rightarrow$ 12
+\end{itemize}
+De orde van 1 is dus 12, die van 2 is 6 en die van 5 is ook 12.
+
+Een generator is een element of een combinatie van elementen die, als je die met elkaar laat interageren, alle andere elementen 
+van de groep tegenkomt. In de vorige voorbeelden kan je zien dat zowel 1 als 5 een generator zijn aangezien ze elk element tegenkomen.
+Je kan ook elementen combineren om een generator te vormen. Zo is $<2, 3>$ ook een generator want (2 + 2 + 3 + 3 + 3) $\mod$ 12 = 1. 
+1 is een generator.
+
+Tot nu toe hebben we enkel additieve groeptabellen gezien. In tabel \ref{table:groepstabel} kan je zien dat de groep Modulo 12 
+voor de bewerking $\oplus$ een discrete groep is
+
+
+\section{Priemvelden}
+Priemvelden is een eerste methode om een cyclische groep te vinden van een bepaalde orde.
+\begin{itemize}
+ \item \important{Veld}: Verzameling F van elementen \{a, b, c, ...\} die onderling interageren via een interactie $\oplus$ en via 
+een interactie $\otimes$.
+
+ \item \important{Veldaxioma's}
+  \begin{enumerate}
+   \item (F, $\oplus$) $\rightarrow$ Een additieve groep met neutraal element \important{0} (\important{nul}element)
+   \item (F$\backslash$0 , $\otimes$) $\rightarrow$ Multiplicatieve groep met neutraal element \important{1} 
+   (\important{eenheids}element)
+   \item Distributieve eigenschap: a $\otimes$ (b $\oplus$ c) = (a $\otimes$ b) $\oplus$ (a $\otimes$ c)
+  \end{enumerate}
+  \item \important{Eindig veld}: Veld met eindig aantal element n
+  \item Voor elke orde n is er maximum één enkel eindig veld met orde n
+  \item De multiplicatieve groep (F$\backslash$0 , $\otimes$) van een eindig veld (F, $\oplus$ , $\otimes$) is cyclisch
+\end{itemize}
+Hoe kan het veld met orde n geconstrueerd worden met groepstabellen (F, $\oplus$) en (F, $\otimes$)? $\rightarrow$ Alle eindige velden
+kunnen met behulp van één van twee methodes geconstrueerd worden.
+
+(Z$_p$, +, .) vormt een veld met nulelement \important{0} en eenheidselement \important{1} op voorwaarde dat p een priemgetal is. Dit heet een
+\important{priemveld}. Hieruit volgt dat (Z$_p\backslash$0, .) een cyclische groep is indien p een priemgetal is.
+
+
+\subsection{Priemontbinding}
+\begin{itemize}
+ \item \important{Priemontbinding} $\rightarrow$ Een geheel getal ontbinden als een product van machten van priemfactoren.
+ $p_1^n^1 . p_2^n^2 .\;...\;. p_x^n^x $. Dit is uniek voor elk getal.
+\end{itemize}
+
+
+
+\subsection{Algoritme van Euclides}
+\begin{itemize}
+ \item Numerieke uitwerking van het \important{algoritme van Euclides}: \newline
+
+  \begin{tabular}{l l l}
+  99 &  &  \\
+  -84 & 1 (1 keer in 99 = 1 * 84) & 84 \\
+  15 & 5  (5 keer in 84 = 5 * 15) & -75 \\
+  -9 & 1  (1 keer in 15 = 1 * 9)& 9 \\
+  6 & 1   (1 keer in 9 = 1 * 6)& -6 \\
+  -6 & 2 & 3 \\
+  0 & & 
+ \end{tabular}
+
+
+\end{itemize}
+
+
+
+\chapter{Groepen}
+\label{ch:groepen}
 
 \end{document}
