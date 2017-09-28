@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface id="db121" partno="E50529-01" img="database270x170.png" category="Database" schema="db121" dirname="database/121" spreadsheet="yes">
+<title>Oracle Database Online Documentation 12c Release 1 (12.1)</title>
+<releaseinfo/>
+<tab id="id1" template="gs2" filename="index.htm">
+ <title>Get Started</title>
+<section type="h" img="gs_64_learn_q1.png">
+ <title><![CDATA[Learn About Oracle Database]]></title>
+<topic type="1">
+<title><![CDATA[Introduction to Oracle Database]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/CNCPT/intro.htm#CNCPT001]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Oracle Database 12c New Features]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/NEWFT/chapter12102.htm#NEWFT003]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Learn About Multitenant Architecture]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/CNCPT/cdbovrvw.htm#CNCPT89234]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Learn About In-Memory Column Store]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/ADMIN/memory.htm#ADMIN14257]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Learn about Big Data]]></title>
+<linktype><![CDATA[http://docs.oracle.com/cd/E55905_01/doc.40/e55814/concepts.htm#BIGUG107]]></linktype>
+</topic>
+</section>
+<section type="h" img="gs_64_getstarted_q3.png">
+ <title><![CDATA[Get Started With Database Administration]]></title>
+<topic type="1">
+<title><![CDATA[Administration Essentials]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/ADMQS/intro.htm#ADMQS001]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Securing Oracle Database]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPSG/tdpsg_intro.htm#TDPSG94426]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Performance Tuning]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPPT/tdppt_intro.htm#TDPPT002]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Introduction to Oracle Real Application Clusters]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPRC/intro_tdprc.htm#TDPRC109]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Upgrading Oracle Database]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/UPGRD/intro.htm#UPGRD001]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Upgrading Oracle Grid Infrastructure]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/nav/portal_11.htm]]></linktype>
+</topic>
+</section>
+<section type="h" img="gs_64_subscribe_q2.png">
+ <title><![CDATA[Get Started With Application Development]]></title>
+<topic type="1">
+<title><![CDATA[Connecting to Oracle Database and Exploring It]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDDDG/tdddg_connecting.htm#TDDDG99998]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Developing Stored Subprograms and Packages]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDDDG/tdddg_subprograms.htm#TDDDG40000]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Using Triggers]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDDDG/tdddg_triggers.htm#TDDDG50000]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Introducing Oracle Application Express]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPAX/intro_app.htm#TDPAX01000]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Using Java with Oracle Database]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPJD/introduction.htm#TDPJD101]]></linktype>
+</topic>
+<topic type="1">
+<title><![CDATA[Introducing PHP with Oracle Database]]></title>
+<linktype><![CDATA[http://docs.oracle.com/database/121/TDPPH/ch_one.htm#TDPPH109]]></linktype>
+</topic>
+</section>
+</tab>
+<tab id="id11" template="dbtasks" filename="portal_11.htm" nav="yes">
+ <title>Installing and Upgrading</title>
+<description><![CDATA[Installation guides for Oracle Database 12c and accompanying products on various platforms are collected here.Full Installation Guides describe a wider variety of scenarios with more detail.Client Installation Guides describe installing Oracle database client software on hosts where the database server is not installed.Supplementary Installation Guides describe installing products that are included with the database but installed separately.]]></description>
+<column>
+<portlet><title><![CDATA[Essentials]]></title>
+<document docid="READM">
+<title><![CDATA[Readme]]></title>
+<summary>Describes last-minute features and changes not included in the Oracle Database Documentation Library for Oracle Database 12c Release 1 (12.1)</summary><htmllink>../READM/toc.htm</htmllink><pdflink>../READM/E49321-25.pdf</pdflink><epublink>../READM/E49321-25.epub</epublink><mobilink>../READM/E49321-25.mobi</mobilink></document>
+<document docid="UPGRD">
+<title><![CDATA[Upgrade Guide]]></title>
+<summary>Guides you through the process of planning and performing upgrades for Oracle Database. This book also provides information about compatibility, upgrading applications, and changes in the new release that affect upgrading Oracle Database.</summary><htmllink>../UPGRD/toc.htm</htmllink><pdflink>../UPGRD/E41397-12.pdf</pdflink><epublink>../UPGRD/E41397-12.epub</epublink><mobilink>../UPGRD/E41397-12.mobi</mobilink></document>
+<document docid="DRDAA">
+<title><![CDATA[Migration Guide]]></title>
+<summary>Describes the installation, configuration, and administration tasks for all activities related to migrating applications to Oracle Database from other databases, including DB2, MySQL, and Sybase.</summary><htmllink>../DRDAA/toc.htm</htmllink><pdflink>../DRDAA/E22508-11.pdf</pdflink><epublink>../DRDAA/E22508-11.epub</epublink><mobilink>../DRDAA/E22508-11.mobi</mobilink></document>
+<document docid="DUMAG">
+<title><![CDATA[Migration Assistant for Unicode Guide]]></title>
+<summary>Introduces you to the Oracle Database Migration Assistant for Unicode, discusses the database character set migration process, and verifies that there are no character set data problems in a current Unicode database.</summary><htmllink>../DUMAG/toc.htm</htmllink><pdflink>../DUMAG/E48475-07.pdf</pdflink><epublink>../DUMAG/E48475-07.epub</epublink><mobilink>../DUMAG/E48475-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Linux Installation Guides]]></title>
+<document docid="LADBN">
+<title><![CDATA[Release Notes for Linux]]></title>
+<summary>Contains important information not included in the Oracle Database documentation for Linux.</summary><htmllink>../LADBN/toc.htm</htmllink><pdflink>../LADBN/E51263-16.pdf</pdflink><epublink>../LADBN/E51263-16.epub</epublink><mobilink>../LADBN/E51263-16.mobi</mobilink></document>
+<document docid="LADBI">
+<title><![CDATA[Database Installation Guide for Linux]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database and Oracle Grid Infrastructure for a standalone server on Linux.</summary><htmllink>../LADBI/toc.htm</htmllink><pdflink>../LADBI/E41491-18.pdf</pdflink><epublink>../LADBI/E41491-18.epub</epublink><mobilink>../LADBI/E41491-18.mobi</mobilink></document>
+<document docid="LACLI">
+<title><![CDATA[Database Client Installation Guide for Linux]]></title>
+<summary>Describes how to install and configure Oracle Database client on Linux.</summary><htmllink>../LACLI/toc.htm</htmllink><pdflink>../LACLI/E55097-10.pdf</pdflink><epublink>../LACLI/E55097-10.epub</epublink><mobilink>../LACLI/E55097-10.mobi</mobilink></document>
+<document docid="LZDQI">
+<title><![CDATA[Database Quick Installation Guide for IBM: Linux on System z]]></title>
+<summary>Describes how to quickly install Oracle Database on Z/Linux systems.</summary><htmllink>../LZDQI/toc.htm</htmllink><pdflink>../LZDQI/E56895-04.pdf</pdflink><epublink>../LZDQI/E56895-04.epub</epublink><mobilink>../LZDQI/E56895-04.mobi</mobilink></document>
+<document docid="LZCQI">
+<title><![CDATA[Database Client Quick Installation Guide for IBM: Linux on System z]]></title>
+<summary>Describes how to quickly install Oracle Database Client on Z/Linux systems.</summary><htmllink>../LZCQI/toc.htm</htmllink><pdflink>../LZCQI/E56896-04.pdf</pdflink><epublink>../LZCQI/E56896-04.epub</epublink><mobilink>../LZCQI/E56896-04.mobi</mobilink></document>
+<document docid="CWLIN">
+<title><![CDATA[Grid Infrastructure Installation Guide for Linux]]></title>
+<summary>Describes how to install Grid Infrastructure for a cluster software, which includes Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM), on systems running Linux.</summary><htmllink>../CWLIN/toc.htm</htmllink><pdflink>../CWLIN/E48914-21.pdf</pdflink><epublink>../CWLIN/E48914-21.epub</epublink><mobilink>../CWLIN/E48914-21.mobi</mobilink></document>
+<document docid="RILIN">
+<title><![CDATA[Real Application Clusters Installation Guide for Linux and UNIX]]></title>
+<summary>Describes how to install and configure Oracle Real Application Clusters (Oracle RAC) on systems running Linux and UNIX.</summary><htmllink>../RILIN/toc.htm</htmllink><pdflink>../RILIN/E48917-12.pdf</pdflink><epublink>../RILIN/E48917-12.epub</epublink><mobilink>../RILIN/E48917-12.mobi</mobilink></document>
+<document docid="LTCQI">
+<title><![CDATA[Database Client Quick Installation Guide for Linux x86-64]]></title>
+<summary>Describes how to quickly install Oracle Database Client on Linux x86-64 systems.</summary><htmllink>../LTCQI/toc.htm</htmllink><pdflink>../LTCQI/E55098-07.pdf</pdflink><epublink>../LTCQI/E55098-07.epub</epublink><mobilink>../LTCQI/E55098-07.mobi</mobilink></document>
+<document docid="LTDQI">
+<title><![CDATA[Database Quick Installation Guide for Linux x86-64]]></title>
+<summary>Describes how to quickly install Oracle Database on Linux x86-64 systems.</summary><htmllink>../LTDQI/toc.htm</htmllink><pdflink>../LTDQI/E54543-09.pdf</pdflink><epublink>../LTDQI/E54543-09.epub</epublink><mobilink>../LTDQI/E54543-09.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Microsoft Windows Installation Guides]]></title>
+<document docid="NTDBN">
+<title><![CDATA[Release Notes for Microsoft Windows]]></title>
+<summary>Contains important information not included in Oracle Database documentation for Windows.</summary><htmllink>../NTDBN/toc.htm</htmllink><pdflink>../NTDBN/E52120-11.pdf</pdflink><epublink>../NTDBN/E52120-11.epub</epublink><mobilink>../NTDBN/E52120-11.mobi</mobilink></document>
+<document docid="NXDQI">
+<title><![CDATA[Database Quick Installation Guide for Microsoft Windows x64 (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database on Windows x64 systems.</summary><htmllink>../NXDQI/toc.htm</htmllink><pdflink>../NXDQI/E56576-02.pdf</pdflink><epublink>../NXDQI/E56576-02.epub</epublink><mobilink>../NXDQI/E56576-02.mobi</mobilink></document>
+<document docid="NTDBI">
+<title><![CDATA[Database Installation Guide for Microsoft Windows]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database and Oracle Grid Infrastructure for a standalone server on Windows.</summary><htmllink>../NTDBI/toc.htm</htmllink><pdflink>../NTDBI/E41490-10.pdf</pdflink><epublink>../NTDBI/E41490-10.epub</epublink><mobilink>../NTDBI/E41490-10.mobi</mobilink></document>
+<document docid="NXCQI">
+<title><![CDATA[Database Client Quick Installation Guide for Microsoft Windows x64 (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database Client on Windows x64 systems.</summary><htmllink>../NXCQI/toc.htm</htmllink><pdflink>../NXCQI/E56585-01.pdf</pdflink><epublink>../NXCQI/E56585-01.epub</epublink><mobilink>../NXCQI/E56585-01.mobi</mobilink></document>
+<document docid="NTCQI">
+<title><![CDATA[Database Client Quick Installation Guide for Microsoft Windows (32-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database Client on Windows 32-bit systems.</summary><htmllink>../NTCQI/toc.htm</htmllink><pdflink>../NTCQI/E56927-01.pdf</pdflink><epublink>../NTCQI/E56927-01.epub</epublink><mobilink>../NTCQI/E56927-01.mobi</mobilink></document>
+<document docid="NTCLI">
+<title><![CDATA[Database Client Installation Guide for Microsoft Windows]]></title>
+<summary>Describes how to install and configure Oracle Database Client on Windows.</summary><htmllink>../NTCLI/toc.htm</htmllink><pdflink>../NTCLI/E49462-02.pdf</pdflink><epublink>../NTCLI/E49462-02.epub</epublink><mobilink>../NTCLI/E49462-02.mobi</mobilink></document>
+<document docid="CWWIN">
+<title><![CDATA[Grid Infrastructure Installation Guide for Microsoft Windows x64 (64-Bit)]]></title>
+<summary>Describes how to install grid infrastructure for a cluster software, which includes Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM), on systems running Microsoft Windows.</summary><htmllink>../CWWIN/toc.htm</htmllink><pdflink>../CWWIN/E49041-07.pdf</pdflink><epublink>../CWWIN/E49041-07.epub</epublink><mobilink>../CWWIN/E49041-07.mobi</mobilink></document>
+<document docid="RIWIN">
+<title><![CDATA[Real Application Clusters Installation Guide for Microsoft Windows x64 (64-Bit)]]></title>
+<summary>Describes how to install Oracle Real Application Clusters on the Microsoft Windows platform.</summary><htmllink>../RIWIN/toc.htm</htmllink><pdflink>../RIWIN/E49042-07.pdf</pdflink><epublink>../RIWIN/E49042-07.epub</epublink><mobilink>../RIWIN/E49042-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Solaris Installation Guides]]></title>
+<document docid="SSDBN">
+<title><![CDATA[Release Notes for Oracle Solaris]]></title>
+<summary>Contains important information not included in Oracle Database documentation for Solaris.</summary><htmllink>../SSDBN/toc.htm</htmllink><pdflink>../SSDBN/E51863-10.pdf</pdflink><epublink>../SSDBN/E51863-10.epub</epublink><mobilink>../SSDBN/E51863-10.mobi</mobilink></document>
+<document docid="SSDBI">
+<title><![CDATA[Database Installation Guide for Oracle Solaris]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database, and Oracle Grid Infrastructure for a standalone server on Oracle Solaris.</summary><htmllink>../SSDBI/toc.htm</htmllink><pdflink>../SSDBI/E50818-10.pdf</pdflink><epublink>../SSDBI/E50818-10.epub</epublink><mobilink>../SSDBI/E50818-10.mobi</mobilink></document>
+<document docid="SSCLI">
+<title><![CDATA[Database Client Installation Guide for Oracle Solaris]]></title>
+<summary>Describes how to install and configure Oracle Database Client on Oracle Solaris.</summary><htmllink>../SSCLI/toc.htm</htmllink><pdflink>../SSCLI/E55099-04.pdf</pdflink><epublink>../SSCLI/E55099-04.epub</epublink><mobilink>../SSCLI/E55099-04.mobi</mobilink></document>
+<document docid="CWSOL">
+<title><![CDATA[Grid Infrastructure Installation Guide for Oracle Solaris]]></title>
+<summary>Describes how to install Oracle Grid Infrastructure for a cluster software, which includes Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM), on systems running Oracle Solaris.</summary><htmllink>../CWSOL/toc.htm</htmllink><pdflink>../CWSOL/E51120-12.pdf</pdflink><epublink>../CWSOL/E51120-12.epub</epublink><mobilink>../CWSOL/E51120-12.mobi</mobilink></document>
+<document docid="SSDQI">
+<title><![CDATA[Database Quick Installation Guide for Oracle Solaris on SPARC (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database on Oracle Solaris on SPARC (64-Bit).</summary><htmllink>../SSDQI/toc.htm</htmllink><pdflink>../SSDQI/E55100-05.pdf</pdflink><epublink>../SSDQI/E55100-05.epub</epublink><mobilink>../SSDQI/E55100-05.mobi</mobilink></document>
+<document docid="SXDQI">
+<title><![CDATA[Database Quick Installation Guide for Oracle Solaris on x86-64 (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database on Oracle Solaris on x86-64 (64-Bit).</summary><htmllink>../SXDQI/toc.htm</htmllink><pdflink>../SXDQI/E55102-05.pdf</pdflink><epublink>../SXDQI/E55102-05.epub</epublink><mobilink>../SXDQI/E55102-05.mobi</mobilink></document>
+<document docid="SSCQI">
+<title><![CDATA[Database Client Quick Installation Guide for Oracle Solaris on SPARC (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database Client on Oracle Solaris on SPARC (64-Bit).</summary><htmllink>../SSCQI/toc.htm</htmllink><pdflink>../SSCQI/E55101-04.pdf</pdflink><epublink>../SSCQI/E55101-04.epub</epublink><mobilink>../SSCQI/E55101-04.mobi</mobilink></document>
+<document docid="SXCQI">
+<title><![CDATA[Database Client Quick Installation Guide for Oracle Solaris on x86-64 (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database on Oracle Solaris on x86-64 (64-Bit).</summary><htmllink>../SXCQI/toc.htm</htmllink><pdflink>../SXCQI/E55103-04.pdf</pdflink><epublink>../SXCQI/E55103-04.epub</epublink><mobilink>../SXCQI/E55103-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[HP-UX Installation Guides]]></title>
+<document docid="HPDBN">
+<title><![CDATA[Release Notes for HP-UX Itanium]]></title>
+<summary>Contains information that was not included in the platform-specific or product-specific documentation for this release.</summary><htmllink>../HPDBN/toc.htm</htmllink><pdflink>../HPDBN/E52119-05.pdf</pdflink><epublink>../HPDBN/E52119-05.epub</epublink><mobilink>../HPDBN/E52119-05.mobi</mobilink></document>
+<document docid="HIDQI">
+<title><![CDATA[Database Quick Installation Guide for HP-UX Itanium]]></title>
+<summary>Describes how to quickly install Oracle Database on HP-UX Itanium systems.</summary><htmllink>../HIDQI/toc.htm</htmllink><pdflink>../HIDQI/E56893-03.pdf</pdflink><epublink>../HIDQI/E56893-03.epub</epublink><mobilink>../HIDQI/E56893-03.mobi</mobilink></document>
+<document docid="HPDBI">
+<title><![CDATA[Database Installation Guide for HP-UX Itanium]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database, and Oracle Grid Infrastructure for a standalone server on HP-UX systems.</summary><htmllink>../HPDBI/toc.htm</htmllink><pdflink>../HPDBI/E52189-04.pdf</pdflink><epublink>../HPDBI/E52189-04.epub</epublink><mobilink>../HPDBI/E52189-04.mobi</mobilink></document>
+<document docid="HPCLI">
+<title><![CDATA[Database Client Installation Guide for HP-UX Itanium]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database, and Oracle Grid Infrastructure for a standalone server on HP-UX systems.</summary><htmllink>../HPCLI/toc.htm</htmllink><pdflink>../HPCLI/E56892-02.pdf</pdflink><epublink>../HPCLI/E56892-02.epub</epublink><mobilink>../HPCLI/E56892-02.mobi</mobilink></document>
+<document docid="HICQI">
+<title><![CDATA[Database Client Quick Installation Guide for HP-UX Itanium]]></title>
+<summary>Describes how to quickly install Oracle Database Client on HP-UX Itanium.</summary><htmllink>../HICQI/toc.htm</htmllink><pdflink>../HICQI/E56894-03.pdf</pdflink><epublink>../HICQI/E56894-03.epub</epublink><mobilink>../HICQI/E56894-03.mobi</mobilink></document>
+<document docid="CWHPX">
+<title><![CDATA[Grid Infrastructure Installation Guide for HP-UX Itanium]]></title>
+<summary>Describes how to install Oracle Grid Infrastructure for a Cluster software, which includes Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM), on systems running HP-UX Itanium.</summary><htmllink>../CWHPX/toc.htm</htmllink><pdflink>../CWHPX/E51134-04.pdf</pdflink><epublink>../CWHPX/E51134-04.epub</epublink><mobilink>../CWHPX/E51134-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[AIX Installation Guides]]></title>
+<document docid="AXDBN">
+<title><![CDATA[Release Notes for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Contains important information not included in Oracle Database documentation for AIX.</summary><htmllink>../AXDBN/toc.htm</htmllink><pdflink>../AXDBN/E52118-05.pdf</pdflink><epublink>../AXDBN/E52118-05.epub</epublink><mobilink>../AXDBN/E52118-05.mobi</mobilink></document>
+<document docid="AXDQI">
+<title><![CDATA[Database Quick Installation Guide for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database on IBM AIX on POWER Systems (64-Bit).</summary><htmllink>../AXDQI/toc.htm</htmllink><pdflink>../AXDQI/E56891-04.pdf</pdflink><epublink>../AXDQI/E56891-04.epub</epublink><mobilink>../AXDQI/E56891-04.mobi</mobilink></document>
+<document docid="AXDBI">
+<title><![CDATA[Database Installation Guide for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Provides configuration information for network and system administrators, and database installation information for database administrators (DBAs) who install and configure Oracle Database, and Oracle Grid Infrastructure for a standalone server on IBM AIX on POWER Systems (64-Bit).</summary><htmllink>../AXDBI/toc.htm</htmllink><pdflink>../AXDBI/E52188-05.pdf</pdflink><epublink>../AXDBI/E52188-05.epub</epublink><mobilink>../AXDBI/E52188-05.mobi</mobilink></document>
+<document docid="AXCQI">
+<title><![CDATA[Database Client Quick Installation Guide for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Describes how to quickly install Oracle Database Client on IBM AIX on POWER Systems (64-Bit).</summary><htmllink>../AXCQI/toc.htm</htmllink><pdflink>../AXCQI/E56114-04.pdf</pdflink><epublink>../AXCQI/E56114-04.epub</epublink><mobilink>../AXCQI/E56114-04.mobi</mobilink></document>
+<document docid="AXCLI">
+<title><![CDATA[Database Client Installation Guide for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Describes how to install and configure Oracle Database Client on IBM AIX on POWER Systems (64-Bit).</summary><htmllink>../AXCLI/toc.htm</htmllink><pdflink>../AXCLI/E56492-04.pdf</pdflink><epublink>../AXCLI/E56492-04.epub</epublink><mobilink>../AXCLI/E56492-04.mobi</mobilink></document>
+<document docid="CWAIX">
+<title><![CDATA[Grid Infrastructure Installation Guide for IBM AIX on POWER Systems (64-Bit)]]></title>
+<summary>Describes how to install Grid Infrastructure for a cluster software, which includes Oracle Clusterware and Oracle Automatic Storage Management (Oracle ASM), on systems running IBM AIX on POWER Systems (64-Bit).</summary><htmllink>../CWAIX/toc.htm</htmllink><pdflink>../CWAIX/E51133-05.pdf</pdflink><epublink>../CWAIX/E51133-05.epub</epublink><mobilink>../CWAIX/E51133-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Supplementary Installation Guides]]></title>
+<document docid="EXMPL">
+<title><![CDATA[Database Examples Installation Guide]]></title>
+<summary>Describes how to install and configure the products available on the Oracle Database Examples installation media.</summary><htmllink>../EXMPL/toc.htm</htmllink><pdflink>../EXMPL/E55464-03.pdf</pdflink><epublink>../EXMPL/E55464-03.epub</epublink><mobilink>../EXMPL/E55464-03.mobi</mobilink></document>
+<document docid="APPCI">
+<title><![CDATA[Database Gateway for APPC Installation and Configuration Guide for IBM AIX on POWER Systems (64-Bit), Linux x86-64, Oracle Solaris on SPARC (64-Bit), and HP-UX Itanium]]></title>
+<summary>Provides Oracle applications with seamless access to IBM mainframe data and services through Remote Procedure Call (RPC) processing.</summary><htmllink>../APPCI/toc.htm</htmllink><pdflink>../APPCI/E17929-06.pdf</pdflink><epublink>../APPCI/E17929-06.epub</epublink><mobilink>../APPCI/E17929-06.mobi</mobilink></document>
+<document docid="APPCW">
+<title><![CDATA[Database Gateway for APPC Installation and Configuration Guide for Microsoft Windows]]></title>
+<summary>Provides Oracle applications with seamless access to IBM mainframe data and services through Remote Procedure Call (RPC) processing.</summary><htmllink>../APPCW/toc.htm</htmllink><pdflink>../APPCW/E17928-03.pdf</pdflink><epublink>../APPCW/E17928-03.epub</epublink><mobilink>../APPCW/E17928-03.mobi</mobilink></document>
+<document docid="OTGIS">
+<title><![CDATA[Database Gateway Installation and Configuration Guide for IBM AIX on POWER Systems (64-Bit), Linux x86-64, Oracle Solaris on SPARC (64-Bit), Oracle Solaris on x86-64 (64-Bit), and HP-UX Itanium]]></title>
+<summary>Describes how to install and configure Oracle Database Gateway for Sybase, Informix, Teradata, SQL Server, ODBC, and DRDA on UNIX-based platforms.</summary><htmllink>../OTGIS/toc.htm</htmllink><pdflink>../OTGIS/E17927-11.pdf</pdflink><epublink>../OTGIS/E17927-11.epub</epublink><mobilink>../OTGIS/E17927-11.mobi</mobilink></document>
+<document docid="OTGIW">
+<title><![CDATA[Database Gateway Installation and Configuration Guide for Microsoft Windows]]></title>
+<summary>Describes how to install Oracle Database Gateway for Sybase, Informix, Teradata, SQL Server, ODBC, and DRDA on Microsoft Windows (32-bit) and Microsoft Windows (64-bit) platform.</summary><htmllink>../OTGIW/toc.htm</htmllink><pdflink>../OTGIW/E17926-05.pdf</pdflink><epublink>../OTGIW/E17926-05.epub</epublink><mobilink>../OTGIW/E17926-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Upgrade and Migration Scenario Virtual Books for Linux]]></title>
+<document docid="" links="yes">
+<title><![CDATA[Migrating and Upgrading an Oracle Database to Linux Using Data Pump]]></title>
+<htmllink>http://tahiti-stage.us.oracle.com/pls/db121/vbook_subject?subject=uglin2</htmllink>
+</document>
+</portlet>
+<portlet><title><![CDATA[Upgrade and Migration Scenario Virtual Books for Solaris]]></title>
+<document docid="" links="yes">
+<title><![CDATA[Migrating and Upgrading an Oracle Database to Solaris Using Data Pump]]></title>
+<htmllink>http://tahiti-stage.us.oracle.com/pls/db121/vbook_subject?subject=ugsol2</htmllink>
+</document>
+<document docid="" links="yes">
+<title><![CDATA[Upgrade and migrate to Solaris and Oracle ASM from third-party vendor storage]]></title>
+<htmllink>http://tahiti-stage.us.oracle.com/pls/db121/vbook_subject?subject=ugsol1</htmllink>
+</document>
+</portlet>
+</column>
+</tab>
+<tab id="id4" template="dbtasks" filename="portal_4.htm" nav="yes">
+ <title>Database Administration</title>
+<description><![CDATA["Essentials" covers everyday database administration tasks, as performed using the Enterprise Manager GUI. "Supporting Documentation" includes in-depth concept, task and reference material.]]></description>
+<column>
+<portlet><title><![CDATA[Essentials]]></title>
+<document docid="ADMQS">
+<title><![CDATA[2 Day DBA]]></title>
+<summary>Provides a single source reference for administering Oracle Database in a small to midsize environment, using the graphical user interface of Oracle Enterprise Manager Database Express. If you are familiar with computers, but unfamiliar with administering Oracle Database, and your computer has four CPUs or fewer, and you do not expect to support more than 500 users, this book is appropriate for you.</summary><htmllink>../ADMQS/toc.htm</htmllink><pdflink>../ADMQS/E51671-10.pdf</pdflink><epublink>../ADMQS/E51671-10.epub</epublink><mobilink>../ADMQS/E51671-10.mobi</mobilink></document>
+<document docid="TDPSG">
+<title><![CDATA[2 Day + Security Guide]]></title>
+<summary>Provides an introduction to securing an Oracle database using the default security features, such as how to secure the database installation and configuration or manage encryption. It includes beginning level tutorials for creating secure application roles, Oracle Database Vault policies, Oracle Virtual Private Database policies, Oracle Data Redaction policies, Oracle Label Security policies, and unified auditing policies.</summary><htmllink>../TDPSG/toc.htm</htmllink><pdflink>../TDPSG/E17609-26.pdf</pdflink><epublink>../TDPSG/E17609-26.epub</epublink><mobilink>../TDPSG/E17609-26.mobi</mobilink></document>
+<document docid="TDPPT">
+<title><![CDATA[2 Day + Performance Tuning Guide]]></title>
+<summary>Explains how to perform day-to-day database performance tuning tasks using features provided by Oracle Diagnostics Pack, Oracle Tuning Pack, and Oracle Enterprise Manager Cloud Control.</summary><htmllink>../TDPPT/toc.htm</htmllink><pdflink>../TDPPT/E55047-05.pdf</pdflink><epublink>../TDPPT/E55047-05.epub</epublink><mobilink>../TDPPT/E55047-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Supporting Documentation]]></title>
+<document docid="CNCPT">
+<title><![CDATA[Concepts]]></title>
+<summary>Describes Oracle Database architecture and essential topics for database administrators and developers.</summary><htmllink>../CNCPT/toc.htm</htmllink><pdflink>../CNCPT/E41396-14.pdf</pdflink><epublink>../CNCPT/E41396-14.epub</epublink><mobilink>../CNCPT/E41396-14.mobi</mobilink></document>
+<document docid="ADMIN">
+<title><![CDATA[Administrator's Guide]]></title>
+<summary>Describes how to create, configure, and administer an Oracle database. Includes sections on Oracle Scheduler, Oracle Database Resource Manager, Oracle Restart, Pluggable Databases, and distributed computing.</summary><htmllink>../ADMIN/toc.htm</htmllink><pdflink>../ADMIN/E41484-14.pdf</pdflink><epublink>../ADMIN/E41484-14.epub</epublink><mobilink>../ADMIN/E41484-14.mobi</mobilink></document>
+<document docid="REFRN">
+<title><![CDATA[Reference]]></title>
+<summary>Provides reference information about database initialization parameters, static data dictionary views, and dynamic performance views that are part of Oracle Database.</summary><htmllink>../REFRN/toc.htm</htmllink><pdflink>../REFRN/E41527-27.pdf</pdflink><epublink>../REFRN/E41527-27.epub</epublink><mobilink>../REFRN/E41527-27.mobi</mobilink></document>
+<document docid="SQLRF">
+<title><![CDATA[SQL Language Reference]]></title>
+<summary>Contains a complete description of Oracle SQL, the language used to manage information in Oracle Database.</summary><htmllink>../SQLRF/toc.htm</htmllink><pdflink>../SQLRF/E41329-23.pdf</pdflink><epublink>../SQLRF/E41329-23.epub</epublink><mobilink>../SQLRF/E41329-23.mobi</mobilink></document>
+<document docid="TGDBA">
+<title><![CDATA[Performance Tuning Guide]]></title>
+<summary>Provides information about how to tune the performance of Oracle Database using Oracle performance tools.</summary><htmllink>../TGDBA/toc.htm</htmllink><pdflink>../TGDBA/E49058-08.pdf</pdflink><epublink>../TGDBA/E49058-08.epub</epublink><mobilink>../TGDBA/E49058-08.mobi</mobilink></document>
+<document docid="TGSQL">
+<title><![CDATA[SQL Tuning Guide]]></title>
+<summary>Describes how to perform SQL tuning, which is the iterative process of improving SQL statement performance to meet specific, measurable, and achievable goals.</summary><htmllink>../TGSQL/toc.htm</htmllink><pdflink>../TGSQL/E49106-13.pdf</pdflink><epublink>../TGSQL/E49106-13.epub</epublink><mobilink>../TGSQL/E49106-13.mobi</mobilink></document>
+<document docid="ERRMG">
+<title><![CDATA[Error Messages]]></title>
+<summary>Describes error messages that may appear while using products that are part of Oracle Database.</summary><htmllink>../ERRMG/toc.htm</htmllink><pdflink>../ERRMG/E49325-10.pdf</pdflink><epublink>../ERRMG/E49325-10.epub</epublink><mobilink>../ERRMG/E49325-10.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[SQL and PL/SQL]]></title>
+<document docid="SQLRF">
+<title><![CDATA[SQL Language Reference]]></title>
+<summary>Contains a complete description of Oracle SQL, the language used to manage information in Oracle Database.</summary><htmllink>../SQLRF/toc.htm</htmllink><pdflink>../SQLRF/E41329-23.pdf</pdflink><epublink>../SQLRF/E41329-23.epub</epublink><mobilink>../SQLRF/E41329-23.mobi</mobilink></document>
+<document docid="SQLQR">
+<title><![CDATA[SQL Language Quick Reference]]></title>
+<summary>Contains a high-level text description of the SQL syntax used to manage information in Oracle Database.</summary><htmllink>../SQLQR/toc.htm</htmllink><pdflink>../SQLQR/E49206-17.pdf</pdflink><epublink>../SQLQR/E49206-17.epub</epublink><mobilink>../SQLQR/E49206-17.mobi</mobilink></document>
+<document docid="LNPLS">
+<title><![CDATA[PL/SQL Language Reference]]></title>
+<summary>Presents PL/SQL, the Oracle procedural extension of SQL, an advanced fourth-generation programming language. Explains the concepts behind PL/SQL and illustrates every facet of the language.</summary><htmllink>../LNPLS/toc.htm</htmllink><pdflink>../LNPLS/E50727-06.pdf</pdflink><epublink>../LNPLS/E50727-06.epub</epublink><mobilink>../LNPLS/E50727-06.mobi</mobilink></document>
+<document docid="ARPLS">
+<title><![CDATA[PL/SQL Packages and Types Reference]]></title>
+<summary>Describes the PL/SQL packages provided with the Oracle database server that extend database functionality and provide PL/SQL access to SQL features.</summary><htmllink>../ARPLS/toc.htm</htmllink><pdflink>../ARPLS/E41829-07.pdf</pdflink><epublink>../ARPLS/E41829-07.epub</epublink><mobilink>../ARPLS/E41829-07.mobi</mobilink></document>
+<document docid="ADFNS">
+<title><![CDATA[Development Guide]]></title>
+<summary>Provides usage information for developers (all experience levels) of databases and database applications.</summary><htmllink>../ADFNS/toc.htm</htmllink><pdflink>../ADFNS/E41452-07.pdf</pdflink><epublink>../ADFNS/E41452-07.epub</epublink><mobilink>../ADFNS/E41452-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Clients for Database Administration]]></title>
+<document docid="RPTUG">
+<title><![CDATA[SQL Developer User's Guide]]></title>
+<summary>Provides conceptual and usage information about Oracle SQL Developer, a graphical tool that enables you to browse, create, edit, and delete (drop) database objects; run SQL statements and scripts; edit and debug PL/SQL code; manipulate and export data; migrate third-party databases to Oracle; view metadata and data in third-party databases; and view and create reports.Note: This book is for an old release of SQL Developer. You are encouraged to use the latest available release. See http://www.oracle.com/technetwork/developer-tools/sql-developer/ for information about downloads and documentation.</summary><htmllink>../RPTUG/toc.htm</htmllink><pdflink>../RPTUG/E35117-06.pdf</pdflink><epublink>../RPTUG/E35117-06.epub</epublink><mobilink>../RPTUG/E35117-06.mobi</mobilink></document>
+<document docid="SQPRN">
+<title><![CDATA[SQL*Plus Release Notes]]></title>
+<summary>Contains important information not included in the SQL*Plus User's Guide and Reference.</summary><htmllink>../SQPRN/toc.htm</htmllink><pdflink>../SQPRN/E18402-06.pdf</pdflink><epublink>../SQPRN/E18402-06.epub</epublink><mobilink>../SQPRN/E18402-06.mobi</mobilink></document>
+<document docid="SQPUG">
+<title><![CDATA[SQL*Plus User's Guide and Reference]]></title>
+<summary>Contains a complete description of the SQL*Plus command-line interface to Oracle Database, and a complete reference to SQL*Plus commands and syntax.</summary><htmllink>../SQPUG/toc.htm</htmllink><pdflink>../SQPUG/E18404-12.pdf</pdflink><epublink>../SQPUG/E18404-12.epub</epublink><mobilink>../SQPUG/E18404-12.mobi</mobilink></document>
+<document docid="SQPQR">
+<title><![CDATA[SQL*Plus Quick Reference]]></title>
+<summary>Contains a complete list of SQL*Plus command syntax.</summary><htmllink>../SQPQR/toc.htm</htmllink><pdflink>../SQPQR/E18403-08.pdf</pdflink><epublink>../SQPQR/E18403-08.epub</epublink><mobilink>../SQPQR/E18403-08.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Security]]></title>
+<document docid="DBSEG">
+<title><![CDATA[Security Guide]]></title>
+<summary>Explains how to configure an Oracle database to use the default security features.</summary><htmllink>../DBSEG/toc.htm</htmllink><pdflink>../DBSEG/E48135-19.pdf</pdflink><epublink>../DBSEG/E48135-19.epub</epublink><mobilink>../DBSEG/E48135-19.mobi</mobilink></document>
+<document docid="ASOAG">
+<title><![CDATA[Advanced Security Guide]]></title>
+<summary>Explains how to configure and use Oracle Database Advanced Security Transparent Data Encryption (TDE) and Oracle Data Redaction.</summary><htmllink>../ASOAG/toc.htm</htmllink><pdflink>../ASOAG/E50333-18.pdf</pdflink><epublink>../ASOAG/E50333-18.epub</epublink><mobilink>../ASOAG/E50333-18.mobi</mobilink></document>
+<document docid="DBIMI">
+<title><![CDATA[Enterprise User Security Administrator's Guide]]></title>
+<summary>Explains how to configure and use enterprise users, which are users defined in a directory. The guide also covers administrative tasks related to enterprise user security.</summary><htmllink>../DBIMI/toc.htm</htmllink><pdflink>../DBIMI/E17731-18.pdf</pdflink><epublink>../DBIMI/E17731-18.epub</epublink><mobilink>../DBIMI/E17731-18.mobi</mobilink></document>
+<document docid="OLSAG">
+<title><![CDATA[Label Security Administrator's Guide]]></title>
+<summary>Explains how to configure and use Oracle Label Security, which provides row-level access control based on the virtual private database technology of Oracle Database Enterprise Edition.</summary><htmllink>../OLSAG/toc.htm</htmllink><pdflink>../OLSAG/E48437-08.pdf</pdflink><epublink>../OLSAG/E48437-08.epub</epublink><mobilink>../OLSAG/E48437-08.mobi</mobilink></document>
+<document docid="DVADM">
+<title><![CDATA[Database Vault Administrator's Guide]]></title>
+<summary>Explains how to configure an Oracle database to use Oracle Database Vault, which enables users to restrict and monitor administrative user access.</summary><htmllink>../DVADM/toc.htm</htmllink><pdflink>../DVADM/E49109-12.pdf</pdflink><epublink>../DVADM/E49109-12.epub</epublink><mobilink>../DVADM/E49109-12.mobi</mobilink></document>
+<document docid="DBFSG">
+<title><![CDATA[Real Application Security Administrator's and Developer's Guide]]></title>
+<summary>Describes how to implement Real Application Security on the database. Real Application Security is a new feature in Oracle Database 12c. Real Application Security is a database authorization model that enables end-to-end security for multitier applications. It provides an integrated solution to securing the database and application user communities. Also, it advances the security architecture of Oracle Database to meet existing and emerging demands of applications developed for the Internet.</summary><htmllink>../DBFSG/toc.htm</htmllink><pdflink>../DBFSG/E48189-13.pdf</pdflink><epublink>../DBFSG/E48189-13.epub</epublink><mobilink>../DBFSG/E48189-13.mobi</mobilink></document>
+<document docid="JADFS">
+<title><![CDATA[Real Application Security Java API Reference (Javadoc)]]></title>
+<summary>Documents two Java packages: - oracle.security.xs contains the APIs for using lightweight user sessions - oracle.security.xs.admin contains the APIs for administering lightweight user session</summary><htmllink>../JADFS/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[Network Management]]></title>
+<document docid="NETRF">
+<title><![CDATA[Net Services Reference]]></title>
+<summary>Contains complete listing with descriptions of the control utility commands and configuration file parameters available for managing components of Oracle Net Services.</summary><htmllink>../NETRF/toc.htm</htmllink><pdflink>../NETRF/E17611-13.pdf</pdflink><epublink>../NETRF/E17611-13.epub</epublink><mobilink>../NETRF/E17611-13.mobi</mobilink></document>
+<document docid="NETAG">
+<title><![CDATA[Net Services Administrator's Guide]]></title>
+<summary>Explains how to plan, configure, and manage enterprise-wide connectivity with Oracle Net Services.</summary><htmllink>../NETAG/toc.htm</htmllink><pdflink>../NETAG/E17610-11.pdf</pdflink><epublink>../NETAG/E17610-11.epub</epublink><mobilink>../NETAG/E17610-11.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Storage]]></title>
+<document docid="OSTMG">
+<title><![CDATA[Automatic Storage Management Administrator's Guide]]></title>
+<summary>Describes how to administer Oracle Automatic Storage Management (Oracle ASM) for Oracle Database.</summary><htmllink>../OSTMG/toc.htm</htmllink><pdflink>../OSTMG/E41058-11.pdf</pdflink><epublink>../OSTMG/E41058-11.epub</epublink><mobilink>../OSTMG/E41058-11.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Backup and Recovery]]></title>
+<document docid="BRADV">
+<title><![CDATA[Backup and Recovery User's Guide]]></title>
+<summary>Explains how to use Recovery Manager (RMAN) to back up, recover, and duplicate a database, and how to use Oracle Flashback Technology to restore all or a portion of your data to a previous state.</summary><htmllink>../BRADV/toc.htm</htmllink><pdflink>../BRADV/E50658-09.pdf</pdflink><epublink>../BRADV/E50658-09.epub</epublink><mobilink>../BRADV/E50658-09.mobi</mobilink></document>
+<document docid="RCMRF">
+<title><![CDATA[Backup and Recovery Reference]]></title>
+<summary>Provides detailed descriptions of the Recovery Manager (RMAN) commands and recovery catalog views.</summary><htmllink>../RCMRF/toc.htm</htmllink><pdflink>../RCMRF/E50791-08.pdf</pdflink></document>
+<document docid="REPMA">
+<title><![CDATA[Advanced Replication Management API Reference]]></title>
+<summary>Contains reference information about and step-by-step instructions for using the replication management API, which is a set of PL/SQL packages for setting up and managing an Advanced Replication environment. It also includes reference information about data dictionary views that are important for Advanced Replication and security considerations for an Advanced Replication environment.</summary><htmllink>../REPMA/toc.htm</htmllink><pdflink>../REPMA/E18896-09.pdf</pdflink><epublink>../REPMA/E18896-09.epub</epublink><mobilink>../REPMA/E18896-09.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[UNIX and Windows Database Administration]]></title>
+<document docid="UNXAR">
+<title><![CDATA[Administrator's Reference for Linux and UNIX-Based Operating Systems]]></title>
+<summary>Explains how to configure and manage Oracle Database on Linux and UNIX-based operating systems.</summary><htmllink>../UNXAR/toc.htm</htmllink><pdflink>../UNXAR/E10638-25.pdf</pdflink><epublink>../UNXAR/E10638-25.epub</epublink><mobilink>../UNXAR/E10638-25.mobi</mobilink></document>
+<document docid="NTQRF">
+<title><![CDATA[Platform Guide for Microsoft Windows]]></title>
+<summary>Provides platform-specific information for configuring and using Oracle Database software on the Windows platform. Topics discussed include: architecture, services, tools, configuration, administration, tuning, backup, accounts, passwords, user authentication, registry parameters, and application development.</summary><htmllink>../NTQRF/toc.htm</htmllink><pdflink>../NTQRF/E10714-16.pdf</pdflink><epublink>../NTQRF/E10714-16.epub</epublink><mobilink>../NTQRF/E10714-16.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Testing]]></title>
+<document docid="RATUG">
+<title><![CDATA[Testing Guide]]></title>
+<summary>Provides information about how to assure the integrity of database changes and manage test data using Oracle Real Application Testing, data masking, and data subsetting.</summary><htmllink>../RATUG/toc.htm</htmllink><pdflink>../RATUG/E55028-05.pdf</pdflink><epublink>../RATUG/E55028-05.epub</epublink><mobilink>../RATUG/E55028-05.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id5" template="dbtasks" filename="portal_5.htm" nav="yes">
+ <title>Application Development</title>
+<description><![CDATA[Application development for Oracle Database involves a wide range of programming technologies. The supporting documentation covers the languages, programming interfaces, and development tools in detail.]]></description>
+<column>
+<portlet><title><![CDATA[Essentials]]></title>
+<document docid="TDDDG">
+<title><![CDATA[2 Day Developer's Guide]]></title>
+<summary>Explains general concepts behind development with Oracle Database, introduces basic features of SQL and PL/SQL, provides references to in-depth information elsewhere in Oracle Database library, and shows how to create a simple application.</summary><htmllink>../TDDDG/toc.htm</htmllink><pdflink>../TDDDG/E53088-01.pdf</pdflink><epublink>../TDDDG/E53088-01.epub</epublink><mobilink>../TDDDG/E53088-01.mobi</mobilink></document>
+<document docid="TDPAX">
+<title><![CDATA[2 Day + Application Express Developer's Guide]]></title>
+<summary>Introduces you to application development using Oracle Application Express. This manual shows you how to set up a development environment, or access a hosted demonstration environment. It then walks you through building an initial application, modifying it, and previewing it.</summary><htmllink>../TDPAX/toc.htm</htmllink><pdflink>../TDPAX/E17960-05.pdf</pdflink><epublink>../TDPAX/E17960-05.epub</epublink><mobilink>../TDPAX/E17960-05.mobi</mobilink></document>
+<document docid="TDPJD">
+<title><![CDATA[2 Day + Java Developer's Guide]]></title>
+<summary>Guides application developers on how to use Java to access and modify data in Oracle Database.</summary><htmllink>../TDPJD/toc.htm</htmllink><pdflink>../TDPJD/E17944-10.pdf</pdflink><epublink>../TDPJD/E17944-10.epub</epublink><mobilink>../TDPJD/E17944-10.mobi</mobilink></document>
+<document docid="TDPPH">
+<title><![CDATA[2 Day + PHP Developer's Guide]]></title>
+<summary>Provides a tutorial on how to develop PHP scripts that use the database languages SQL and PL/SQL to access and manipulate Oracle data.</summary><htmllink>../TDPPH/toc.htm</htmllink><pdflink>../TDPPH/E18554-05.pdf</pdflink><epublink>../TDPPH/E18554-05.epub</epublink><mobilink>../TDPPH/E18554-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Application Development Concepts]]></title>
+<document docid="ADFNS">
+<title><![CDATA[Development Guide]]></title>
+<summary>Provides usage information for developers (all experience levels) of databases and database applications.</summary><htmllink>../ADFNS/toc.htm</htmllink><pdflink>../ADFNS/E41452-07.pdf</pdflink><epublink>../ADFNS/E41452-07.epub</epublink><mobilink>../ADFNS/E41452-07.mobi</mobilink></document>
+<document docid="CNCPT">
+<title><![CDATA[Concepts]]></title>
+<summary>Describes Oracle Database architecture and essential topics for database administrators and developers.</summary><htmllink>../CNCPT/toc.htm</htmllink><pdflink>../CNCPT/E41396-14.pdf</pdflink><epublink>../CNCPT/E41396-14.epub</epublink><mobilink>../CNCPT/E41396-14.mobi</mobilink></document>
+<document docid="DBSEG">
+<title><![CDATA[Security Guide]]></title>
+<summary>Explains how to configure an Oracle database to use the default security features.</summary><htmllink>../DBSEG/toc.htm</htmllink><pdflink>../DBSEG/E48135-19.pdf</pdflink><epublink>../DBSEG/E48135-19.epub</epublink><mobilink>../DBSEG/E48135-19.mobi</mobilink></document>
+<document docid="ADLOB">
+<title><![CDATA[SecureFiles and Large Objects Developer's Guide]]></title>
+<summary>Describes use of SecureFiles and large object data types BLOB, CLOB, NCLOB, and BFILE in application development. Presents APIs for working with LOBs in supported programmatic environments. Describes database file systems and the Oracle Database File System Hierarchical Store package.</summary><htmllink>../ADLOB/toc.htm</htmllink><pdflink>../ADLOB/E17605-13.pdf</pdflink><epublink>../ADLOB/E17605-13.epub</epublink><mobilink>../ADLOB/E17605-13.mobi</mobilink></document>
+<document docid="ADOBJ">
+<title><![CDATA[Object-Relational Developer's Guide]]></title>
+<summary>Explains how to use the object-relational features of Oracle Database.</summary><htmllink>../ADOBJ/toc.htm</htmllink><pdflink>../ADOBJ/E53277-02.pdf</pdflink><epublink>../ADOBJ/E53277-02.epub</epublink><mobilink>../ADOBJ/E53277-02.mobi</mobilink></document>
+<document docid="ADWSM">
+<title><![CDATA[Workspace Manager Developer's Guide]]></title>
+<summary>Provides usage and reference information about Oracle Workspace Manager, which enables applications to create workspaces and group different versions of table row values in different workspaces.</summary><htmllink>../ADWSM/toc.htm</htmllink><pdflink>../ADWSM/E49170-01.pdf</pdflink><epublink>../ADWSM/E49170-01.epub</epublink><mobilink>../ADWSM/E49170-01.mobi</mobilink></document>
+<document docid="DRDAA">
+<title><![CDATA[Migration Guide]]></title>
+<summary>Describes the installation, configuration, and administration tasks for all activities related to migrating applications to Oracle Database from other databases, including DB2, MySQL, and Sybase.</summary><htmllink>../DRDAA/toc.htm</htmllink><pdflink>../DRDAA/E22508-11.pdf</pdflink><epublink>../DRDAA/E22508-11.epub</epublink><mobilink>../DRDAA/E22508-11.mobi</mobilink></document>
+<document docid="DRDAS">
+<title><![CDATA[Database Provider for DRDA User's Guide for Linux x86-64]]></title>
+<summary>Describes how customers who have a large investment in DB2-based applications can migrate to Oracle Database while keeping these applications largely unchanged.</summary><htmllink>../DRDAS/toc.htm</htmllink><pdflink>../DRDAS/E55482-01.pdf</pdflink><epublink>../DRDAS/E55482-01.epub</epublink><mobilink>../DRDAS/E55482-01.mobi</mobilink></document>
+<document docid="ODBCR">
+<title><![CDATA[ODBC Driver Release Notes]]></title>
+<summary>Describes new features, functionality, platforms supported, software required, server requirements, hardware required, testing matrix, UNIX platform certification matrix, post-installation, known issues, and software problems fixed.</summary><htmllink>../ODBCR/toc.htm</htmllink><pdflink>../ODBCR/E53668-05.pdf</pdflink><epublink>../ODBCR/E53668-05.epub</epublink><mobilink>../ODBCR/E53668-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[SQL and PL/SQL]]></title>
+<document docid="SQLRF">
+<title><![CDATA[SQL Language Reference]]></title>
+<summary>Contains a complete description of Oracle SQL, the language used to manage information in Oracle Database.</summary><htmllink>../SQLRF/toc.htm</htmllink><pdflink>../SQLRF/E41329-23.pdf</pdflink><epublink>../SQLRF/E41329-23.epub</epublink><mobilink>../SQLRF/E41329-23.mobi</mobilink></document>
+<document docid="SQLQR">
+<title><![CDATA[SQL Language Quick Reference]]></title>
+<summary>Contains a high-level text description of the SQL syntax used to manage information in Oracle Database.</summary><htmllink>../SQLQR/toc.htm</htmllink><pdflink>../SQLQR/E49206-17.pdf</pdflink><epublink>../SQLQR/E49206-17.epub</epublink><mobilink>../SQLQR/E49206-17.mobi</mobilink></document>
+<document docid="LNPLS">
+<title><![CDATA[PL/SQL Language Reference]]></title>
+<summary>Presents PL/SQL, the Oracle procedural extension of SQL, an advanced fourth-generation programming language. Explains the concepts behind PL/SQL and illustrates every facet of the language.</summary><htmllink>../LNPLS/toc.htm</htmllink><pdflink>../LNPLS/E50727-06.pdf</pdflink><epublink>../LNPLS/E50727-06.epub</epublink><mobilink>../LNPLS/E50727-06.mobi</mobilink></document>
+<document docid="ARPLS">
+<title><![CDATA[PL/SQL Packages and Types Reference]]></title>
+<summary>Describes the PL/SQL packages provided with the Oracle database server that extend database functionality and provide PL/SQL access to SQL features.</summary><htmllink>../ARPLS/toc.htm</htmllink><pdflink>../ARPLS/E41829-07.pdf</pdflink><epublink>../ARPLS/E41829-07.epub</epublink><mobilink>../ARPLS/E41829-07.mobi</mobilink></document>
+<document docid="AEUTL">
+<title><![CDATA[Application Express SQL Workshop Guide]]></title>
+<summary>Describes how to use Oracle Application Express SQL Workshop and utilities to load and unload data from an Oracle database, generate DDL, view object reports, and restore dropped database objects.</summary><htmllink>../AEUTL/toc.htm</htmllink><pdflink>../AEUTL/E17964-06.pdf</pdflink><epublink>../AEUTL/E17964-06.epub</epublink><mobilink>../AEUTL/E17964-06.mobi</mobilink></document>
+<document docid="COMSC">
+<title><![CDATA[Sample Schemas]]></title>
+<summary>Describes the sample database schemas available with Oracle Database and used in some Oracle documentation and curriculum examples.</summary><htmllink>../COMSC/toc.htm</htmllink><pdflink>../COMSC/E15979-04.pdf</pdflink><epublink>../COMSC/E15979-04.epub</epublink><mobilink>../COMSC/E15979-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[SQL Developer and SQL Plus]]></title>
+<document docid="RPTUG">
+<title><![CDATA[SQL Developer User's Guide]]></title>
+<summary>Provides conceptual and usage information about Oracle SQL Developer, a graphical tool that enables you to browse, create, edit, and delete (drop) database objects; run SQL statements and scripts; edit and debug PL/SQL code; manipulate and export data; migrate third-party databases to Oracle; view metadata and data in third-party databases; and view and create reports.Note: This book is for an old release of SQL Developer. You are encouraged to use the latest available release. See http://www.oracle.com/technetwork/developer-tools/sql-developer/ for information about downloads and documentation.</summary><htmllink>../RPTUG/toc.htm</htmllink><pdflink>../RPTUG/E35117-06.pdf</pdflink><epublink>../RPTUG/E35117-06.epub</epublink><mobilink>../RPTUG/E35117-06.mobi</mobilink></document>
+<document docid="SQPRN">
+<title><![CDATA[SQL*Plus Release Notes]]></title>
+<summary>Contains important information not included in the SQL*Plus User's Guide and Reference.</summary><htmllink>../SQPRN/toc.htm</htmllink><pdflink>../SQPRN/E18402-06.pdf</pdflink><epublink>../SQPRN/E18402-06.epub</epublink><mobilink>../SQPRN/E18402-06.mobi</mobilink></document>
+<document docid="SQPUG">
+<title><![CDATA[SQL*Plus User's Guide and Reference]]></title>
+<summary>Contains a complete description of the SQL*Plus command-line interface to Oracle Database, and a complete reference to SQL*Plus commands and syntax.</summary><htmllink>../SQPUG/toc.htm</htmllink><pdflink>../SQPUG/E18404-12.pdf</pdflink><epublink>../SQPUG/E18404-12.epub</epublink><mobilink>../SQPUG/E18404-12.mobi</mobilink></document>
+<document docid="SQPQR">
+<title><![CDATA[SQL*Plus Quick Reference]]></title>
+<summary>Contains a complete list of SQL*Plus command syntax.</summary><htmllink>../SQPQR/toc.htm</htmllink><pdflink>../SQPQR/E18403-08.pdf</pdflink><epublink>../SQPQR/E18403-08.epub</epublink><mobilink>../SQPQR/E18403-08.mobi</mobilink></document>
+<document docid="CLRNT">
+<title><![CDATA[Extensions for .NET Developer's Guide for Microsoft Windows]]></title>
+<summary>Provides introductory, installation, post-installation configuration, and usage information for Oracle Database Extensions for .NET, which makes it possible to build and run .NET stored procedures or functions with Oracle Database for Microsoft Windows.</summary><htmllink>../CLRNT/toc.htm</htmllink><pdflink>../CLRNT/E18596-03.pdf</pdflink><epublink>../CLRNT/E18596-03.epub</epublink><mobilink>../CLRNT/E18596-03.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Application Express]]></title>
+<document docid="TDPAX">
+<title><![CDATA[2 Day + Application Express Developer's Guide]]></title>
+<summary>Introduces you to application development using Oracle Application Express. This manual shows you how to set up a development environment, or access a hosted demonstration environment. It then walks you through building an initial application, modifying it, and previewing it.</summary><htmllink>../TDPAX/toc.htm</htmllink><pdflink>../TDPAX/E17960-05.pdf</pdflink><epublink>../TDPAX/E17960-05.epub</epublink><mobilink>../TDPAX/E17960-05.mobi</mobilink></document>
+<document docid="HTMRN">
+<title><![CDATA[Application Express Release Notes]]></title>
+<summary>Contains important information not included in the documentation for Oracle Application Express.</summary><htmllink>../HTMRN/toc.htm</htmllink><pdflink>../HTMRN/E17957-07.pdf</pdflink><epublink>../HTMRN/E17957-07.epub</epublink><mobilink>../HTMRN/E17957-07.mobi</mobilink></document>
+<document docid="HTMIG">
+<title><![CDATA[Application Express Installation Guide]]></title>
+<summary>Provides an overview of installing Oracle Application Express and describes issues to consider before installing.</summary><htmllink>../HTMIG/toc.htm</htmllink><pdflink>../HTMIG/E17958-12.pdf</pdflink><epublink>../HTMIG/E17958-12.epub</epublink><mobilink>../HTMIG/E17958-12.mobi</mobilink></document>
+<document docid="AEADM">
+<title><![CDATA[Application Express Administration Guide]]></title>
+<summary>Describes how to perform administration tasks for an Oracle Application Express workspace, application, or an entire development instance.</summary><htmllink>../AEADM/toc.htm</htmllink><pdflink>../AEADM/E17965-08.pdf</pdflink><epublink>../AEADM/E17965-08.epub</epublink><mobilink>../AEADM/E17965-08.mobi</mobilink></document>
+<document docid="AEAPI">
+<title><![CDATA[Application Express API Reference]]></title>
+<summary>Describes the Application Programming Interfaces, referred to as APIs, available when programming in the Oracle Application Express environment.</summary><htmllink>../AEAPI/toc.htm</htmllink><pdflink>../AEAPI/E17963-07.pdf</pdflink><epublink>../AEAPI/E17963-07.epub</epublink><mobilink>../AEAPI/E17963-07.mobi</mobilink></document>
+<document docid="HTMDB">
+<title><![CDATA[Application Express Application Builder User's Guide]]></title>
+<summary>Describes how to use the Oracle Application Express development environment to build and deploy database-centric Web applications.</summary><htmllink>../HTMDB/toc.htm</htmllink><pdflink>../HTMDB/E17961-11.pdf</pdflink><epublink>../HTMDB/E17961-11.epub</epublink><mobilink>../HTMDB/E17961-11.mobi</mobilink></document>
+<document docid="AEMIG">
+<title><![CDATA[Application Express Application Migration Guide]]></title>
+<summary>Describes how to convert applications from either Microsoft Access or Oracle Forms to Oracle Application Express.</summary><htmllink>../AEMIG/toc.htm</htmllink><pdflink>../AEMIG/E17962-07.pdf</pdflink><epublink>../AEMIG/E17962-07.epub</epublink><mobilink>../AEMIG/E17962-07.mobi</mobilink></document>
+<document docid="AEUTL">
+<title><![CDATA[Application Express SQL Workshop Guide]]></title>
+<summary>Describes how to use Oracle Application Express SQL Workshop and utilities to load and unload data from an Oracle database, generate DDL, view object reports, and restore dropped database objects.</summary><htmllink>../AEUTL/toc.htm</htmllink><pdflink>../AEUTL/E17964-06.pdf</pdflink><epublink>../AEUTL/E17964-06.epub</epublink><mobilink>../AEUTL/E17964-06.mobi</mobilink></document>
+<document docid="AEEUG">
+<title><![CDATA[Application Express End User Guide]]></title>
+<summary>Explains common Oracle Application Express end user tasks.</summary><htmllink>../AEEUG/toc.htm</htmllink><pdflink>../AEEUG/E29541-04.pdf</pdflink><epublink>../AEEUG/E29541-04.epub</epublink><mobilink>../AEEUG/E29541-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Java]]></title>
+<document docid="TDPJD">
+<title><![CDATA[2 Day + Java Developer's Guide]]></title>
+<summary>Guides application developers on how to use Java to access and modify data in Oracle Database.</summary><htmllink>../TDPJD/toc.htm</htmllink><pdflink>../TDPJD/E17944-10.pdf</pdflink><epublink>../TDPJD/E17944-10.epub</epublink><mobilink>../TDPJD/E17944-10.mobi</mobilink></document>
+<document docid="JJDEV">
+<title><![CDATA[Java Developer's Guide]]></title>
+<summary>Describes how to develop, load, and run Java applications in Oracle Database.</summary><htmllink>../JJDEV/toc.htm</htmllink><pdflink>../JJDEV/E50793-03.pdf</pdflink><epublink>../JJDEV/E50793-03.epub</epublink><mobilink>../JJDEV/E50793-03.mobi</mobilink></document>
+<document docid="JJDBC">
+<title><![CDATA[JDBC Developer's Guide]]></title>
+<summary>Describes how to use Oracle JDBC drivers to develop powerful Java database applications.</summary><htmllink>../JJDBC/toc.htm</htmllink><pdflink>../JJDBC/E49300-05.pdf</pdflink><epublink>../JJDBC/E49300-05.epub</epublink><mobilink>../JJDBC/E49300-05.mobi</mobilink></document>
+<document docid="JJUCP">
+<title><![CDATA[Universal Connection Pool for JDBC Developer's Guide]]></title>
+<summary>Provides instructions for using Oracle Universal Connection Pooling API. The API is JDBC driver agnostic.</summary><htmllink>../JJUCP/toc.htm</htmllink><pdflink>../JJUCP/E49541-01.pdf</pdflink><epublink>../JJUCP/E49541-01.epub</epublink><mobilink>../JJUCP/E49541-01.mobi</mobilink></document>
+<document docid="OLAAP">
+<title><![CDATA[OLAP Java API Developer's Guide]]></title>
+<summary>Provides guidance for developing client applications using the Oracle OLAP Java API.</summary><htmllink>../OLAAP/toc.htm</htmllink><pdflink>../OLAAP/E17707-05.pdf</pdflink><epublink>../OLAAP/E17707-05.epub</epublink><mobilink>../OLAAP/E17707-05.mobi</mobilink></document>
+<document docid="JSQLJ">
+<title><![CDATA[SQLJ Developer's Guide]]></title>
+<summary>Provides guidance to developers on SQLJ programming. This document can be read by anyone with an interest in SQLJ programming, but assumes at least some prior knowledge of Java, SQLJ, PL/SQL, and Oracle database.</summary><htmllink>../JSQLJ/toc.htm</htmllink><pdflink>../JSQLJ/E17660-12.pdf</pdflink><epublink>../JSQLJ/E17660-12.epub</epublink><mobilink>../JSQLJ/E17660-12.mobi</mobilink></document>
+<document docid="JJPUB">
+<title><![CDATA[JPublisher User's Guide]]></title>
+<summary>Describes the JPublisher utility useful for Java programmers who want classes in their applications to correspond to SQL or PL/SQL entities or server-side Java classes.</summary><htmllink>../JJPUB/toc.htm</htmllink><pdflink>../JJPUB/E49873-02.pdf</pdflink><epublink>../JJPUB/E49873-02.epub</epublink><mobilink>../JJPUB/E49873-02.mobi</mobilink></document>
+<document docid="JAJDB">
+<title><![CDATA[JDBC Java API Reference (Javadoc)]]></title>
+<summary>Provides Java API reference for Java Database connectivity.</summary><htmllink>../JAJDB/toc.htm</htmllink></document>
+<document docid="OLAPI">
+<title><![CDATA[OLAP Java API Reference (Javadoc)]]></title>
+<summary>Provides reference information for the Oracle OLAP Java API.</summary><htmllink>../OLAPI/toc.htm</htmllink></document>
+<document docid="JVGDK">
+<title><![CDATA[Globalization Development Kit Java API Reference (Javadoc)]]></title>
+<summary>Describes APIs for the Oracle Globalization Development Kit.</summary><htmllink>../JVGDK/toc.htm</htmllink></document>
+<document docid="JJUAR">
+<title><![CDATA[Universal Connection Pool for JDBC Java API Reference (Javadoc)]]></title>
+<summary>Provides Java API reference for Universal Connection Pool for JDBC.</summary><htmllink>../JJUAR/toc.htm</htmllink></document>
+<document docid="JAFAN">
+<title><![CDATA[RAC FAN Events Java API Reference (Javadoc)]]></title>
+<summary>Provides easy access to Oracle Fast Application Notification (FAN) events.</summary><htmllink>../JAFAN/toc.htm</htmllink></document>
+<document docid="JAXML">
+<title><![CDATA[XML Java API Reference (Javadoc)]]></title>
+<summary>Describes Java APIs for XML.</summary><htmllink>../JAXML/toc.htm</htmllink></document>
+<document docid="SPAJV">
+<title><![CDATA[Spatial and Graph Java API Reference (Javadoc)]]></title>
+<summary>Provides Javadoc-generated information about interfaces and classes that support features available with Oracle Spatial and Graph, including GeoRaster and the Topology Data Model and Network Data Model Graph features, and with MapViewer, which is packaged with Oracle Fusion Middleware.</summary><htmllink>../SPAJV/toc.htm</htmllink></document>
+<document docid="IMJVC">
+<title><![CDATA[Multimedia Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Oracle Multimedia objects to manage multimedia content within Oracle Database.</summary><htmllink>../IMJVC/toc.htm</htmllink></document>
+<document docid="IMDJC">
+<title><![CDATA[Multimedia DICOM Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using the Oracle Multimedia object designed to store Digital Imaging and Communications in Medicine (DICOM) data within Oracle Database.</summary><htmllink>../IMDJC/toc.htm</htmllink></document>
+<document docid="IMMTJ">
+<title><![CDATA[Multimedia Mid-Tier Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Oracle Multimedia to extract Digital Imaging and Communications in Medicine (DICOM) metadata outside of the database, either on the client or in the middle tier.</summary><htmllink>../IMMTJ/toc.htm</htmllink></document>
+<document docid="IMJSV">
+<title><![CDATA[Multimedia Servlets and JSP Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Java servlets and JavaServer Pages (JSP) to retrieve and upload multimedia data from and to Oracle Database.</summary><htmllink>../IMJSV/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[.NET and Windows Application Development]]></title>
+<document docid="ODPNT">
+<title><![CDATA[Data Provider for .NET Developer's Guide for Microsoft Windows]]></title>
+<summary>Describes provider-specific features and properties of ODP.NET. Oracle Data Provider for .NET is an implementation of Microsoft's ADO.NET interface and provides access to Oracle databases.</summary><htmllink>../ODPNT/toc.htm</htmllink><pdflink>../ODPNT/E17732-11.pdf</pdflink><epublink>../ODPNT/E17732-11.epub</epublink><mobilink>../ODPNT/E17732-11.mobi</mobilink></document>
+<document docid="ASPNT">
+<title><![CDATA[Providers for ASP.NET Developer's Guide for Microsoft Windows]]></title>
+<summary>Provides introductory, installation, postinstallation configuration, and usage information for using these providers with ASP.NET services and controls.</summary><htmllink>../ASPNT/toc.htm</htmllink><pdflink>../ASPNT/E17733-02.pdf</pdflink><epublink>../ASPNT/E17733-02.epub</epublink><mobilink>../ASPNT/E17733-02.mobi</mobilink></document>
+<document docid="CLRNT">
+<title><![CDATA[Extensions for .NET Developer's Guide for Microsoft Windows]]></title>
+<summary>Provides introductory, installation, post-installation configuration, and usage information for Oracle Database Extensions for .NET, which makes it possible to build and run .NET stored procedures or functions with Oracle Database for Microsoft Windows.</summary><htmllink>../CLRNT/toc.htm</htmllink><pdflink>../CLRNT/E18596-03.pdf</pdflink><epublink>../CLRNT/E18596-03.epub</epublink><mobilink>../CLRNT/E18596-03.mobi</mobilink></document>
+<document docid="NTMTS">
+<title><![CDATA[Services for Microsoft Transaction Server Developer's Guide for Microsoft Windows]]></title>
+<summary>Describes Oracle Services for Microsoft Transaction Server, which allows Oracle databases to be used as resource managers in distributed transactions. The guide describes its usage and configuration in a Microsoft Distributed Transaction Coordinator environment.</summary><htmllink>../NTMTS/toc.htm</htmllink><pdflink>../NTMTS/E18595-03.pdf</pdflink><epublink>../NTMTS/E18595-03.epub</epublink><mobilink>../NTMTS/E18595-03.mobi</mobilink></document>
+<document docid="OLEDB">
+<title><![CDATA[Provider for OLE DB Developer's Guide for Microsoft Windows]]></title>
+<summary>Describes Oracle Provider for OLE DB, a high performance, feature rich mechanism for Microsoft ADO and OLE DB data access to Oracle databases, its usage, and its configuration.</summary><htmllink>../OLEDB/toc.htm</htmllink><pdflink>../OLEDB/E53664-01.pdf</pdflink><epublink>../OLEDB/E53664-01.epub</epublink><mobilink>../OLEDB/E53664-01.mobi</mobilink></document>
+<document docid="TTODN">
+<title><![CDATA[Data Provider for .NET Oracle TimesTen In-Memory Database Support User's Guide for Windows]]></title>
+<summary>Enables ADO.NET data access from .NET client applications to TimesTen databases. This document covers features specific to ODP.NET support of and use with TimesTen.</summary><htmllink>../TTODN/toc.htm</htmllink><pdflink>../TTODN/E38358-05.pdf</pdflink><epublink>../TTODN/E38358-05.epub</epublink><mobilink>../TTODN/E38358-05.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[XML]]></title>
+<document docid="ADXDB">
+<title><![CDATA[XML DB Developer's Guide]]></title>
+<summary>This manual describes Oracle XML DB. It includes guidelines and examples for storing, generating, accessing, searching, validating, transforming, evolving, and indexing XML data in Oracle Database.</summary><htmllink>../ADXDB/toc.htm</htmllink><pdflink>../ADXDB/E41152-15.pdf</pdflink><epublink>../ADXDB/E41152-15.epub</epublink><mobilink>../ADXDB/E41152-15.mobi</mobilink></document>
+<document docid="ADXDK">
+<title><![CDATA[XML Developer's Kit Programmer's Guide]]></title>
+<summary>Provides information to application developers who need to use components of the Oracle XML Developer's Kit (XDK) to generate and store XML data in a database or in a document outside the database.</summary><htmllink>../ADXDK/toc.htm</htmllink><pdflink>../ADXDK/E54405-06.pdf</pdflink><epublink>../ADXDK/E54405-06.epub</epublink><mobilink>../ADXDK/E54405-06.mobi</mobilink></document>
+<document docid="JAXML">
+<title><![CDATA[XML Java API Reference (Javadoc)]]></title>
+<summary>Describes Java APIs for XML.</summary><htmllink>../JAXML/toc.htm</htmllink></document>
+<document docid="CAXML">
+<title><![CDATA[XML C API Reference]]></title>
+<summary>Describes Oracle XML Developer's Kits (XDK) and Oracle XML DB APIs for the C programming language. It primarily lists the syntax of functions, methods, and procedures associated with these APIs.</summary><htmllink>../CAXML/toc.htm</htmllink><pdflink>../CAXML/E15885-04.pdf</pdflink><epublink>../CAXML/E15885-04.epub</epublink><mobilink>../CAXML/E15885-04.mobi</mobilink></document>
+<document docid="CPXML">
+<title><![CDATA[XML C++ API Reference]]></title>
+<summary>Describes Oracle XML Developer's Kits (XDK) and Oracle XML DB APIs for the C++ programming language. This manual primarily lists the syntax of functions, methods, and procedures associated with these APIs.</summary><htmllink>../CPXML/toc.htm</htmllink><pdflink>../CPXML/E15977-04.pdf</pdflink><epublink>../CPXML/E15977-04.epub</epublink><mobilink>../CPXML/E15977-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Globalization Support]]></title>
+<document docid="NLSPG">
+<title><![CDATA[Globalization Support Guide]]></title>
+<summary>Describes Oracle globalization support for the database. Explains how to set up a globalization support environment, choose and migrate a character set, customize locale data, do linguistic sorting, program in a global environment, and program with Unicode.</summary><htmllink>../NLSPG/toc.htm</htmllink><pdflink>../NLSPG/E41669-12.pdf</pdflink><epublink>../NLSPG/E41669-12.epub</epublink><mobilink>../NLSPG/E41669-12.mobi</mobilink></document>
+<document docid="JVGDK">
+<title><![CDATA[Globalization Development Kit Java API Reference (Javadoc)]]></title>
+<summary>Describes APIs for the Oracle Globalization Development Kit.</summary><htmllink>../JVGDK/toc.htm</htmllink></document>
+<document docid="DUMAN">
+<title><![CDATA[Migration Assistant for Unicode Release Notes]]></title>
+<summary>Contains late-breaking information for Oracle Database Migration Assistant for Unicode.</summary><htmllink>../DUMAN/toc.htm</htmllink><pdflink>../DUMAN/E51606-05.pdf</pdflink><epublink>../DUMAN/E51606-05.epub</epublink><mobilink>../DUMAN/E51606-05.mobi</mobilink></document>
+<document docid="DUMAG">
+<title><![CDATA[Migration Assistant for Unicode Guide]]></title>
+<summary>Introduces you to the Oracle Database Migration Assistant for Unicode, discusses the database character set migration process, and verifies that there are no character set data problems in a current Unicode database.</summary><htmllink>../DUMAG/toc.htm</htmllink><pdflink>../DUMAG/E48475-07.pdf</pdflink><epublink>../DUMAG/E48475-07.epub</epublink><mobilink>../DUMAG/E48475-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Call Interface]]></title>
+<document docid="LNOCI">
+<title><![CDATA[Oracle Call Interface Programmer's Guide]]></title>
+<summary>Describes the Oracle Call Interface (OCI) which is an application programming interface (API) that allows applications written in C or C++ to interact with Oracle Database.</summary><htmllink>../LNOCI/toc.htm</htmllink><pdflink>../LNOCI/E49886-11.pdf</pdflink><epublink>../LNOCI/E49886-11.epub</epublink><mobilink>../LNOCI/E49886-11.mobi</mobilink></document>
+<document docid="LNCPP">
+<title><![CDATA[Oracle C++ Call Interface Programmer's Guide]]></title>
+<summary>Presents the Oracle C++ Call Interface, an application program interface that enables applications written in C++ to interact with one or more Oracle databases. To extend the functionality of code generated by the Object Type Translator, programmers may want to add code in the OTT-generated file. The OTT can distinguish between OTT-generated code and user-generated code by looking for some predefined markers (tags).</summary><htmllink>../LNCPP/toc.htm</htmllink><pdflink>../LNCPP/E48221-07.pdf</pdflink><epublink>../LNCPP/E48221-07.epub</epublink><mobilink>../LNCPP/E48221-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Precompilers]]></title>
+<document docid="ZZPRE">
+<title><![CDATA[Programmer's Guide to the Oracle Precompilers]]></title>
+<summary>Describes how to develop applications using the Oracle precompilers and the SQL and PL/SQL database languages to access and manipulate Oracle data.</summary><htmllink>../ZZPRE/toc.htm</htmllink><pdflink>../ZZPRE/E53283-01.pdf</pdflink><epublink>../ZZPRE/E53283-01.epub</epublink><mobilink>../ZZPRE/E53283-01.mobi</mobilink></document>
+<document docid="LNPCC">
+<title><![CDATA[Pro*C/C++ Programmer's Guide]]></title>
+<summary>Describes how to develop C++ programs that use the SQL and PL/SQL database languages to access and manipulate Oracle data.</summary><htmllink>../LNPCC/toc.htm</htmllink><pdflink>../LNPCC/E53432-01.pdf</pdflink><epublink>../LNPCC/E53432-01.epub</epublink><mobilink>../LNPCC/E53432-01.mobi</mobilink></document>
+<document docid="LNPCB">
+<title><![CDATA[Pro*COBOL Programmer's Guide]]></title>
+<summary>Describes how to develop COBOL programs that use the database languages SQL and PL/SQL to access and manipulate Oracle data.</summary><htmllink>../LNPCB/toc.htm</htmllink><pdflink>../LNPCB/E53282-01.pdf</pdflink></document>
+<document docid="ZZFOR">
+<title><![CDATA[Pro*FORTRAN Supplement to the Oracle Precompilers Guide]]></title>
+<summary>Supplements the Oracle Database Programmer's Guide to the Oracle precompilers to provide additional information on how to develop FORTRAN programs that use the database languages SQL and PL/SQL to access and manipulate Oracle data.</summary><htmllink>../ZZFOR/toc.htm</htmllink><pdflink>../ZZFOR/E18411-05.pdf</pdflink><epublink>../ZZFOR/E18411-05.epub</epublink><mobilink>../ZZFOR/E18411-05.mobi</mobilink></document>
+<document docid="ZZMOD">
+<title><![CDATA[SQL*Module for Ada Programmer's Guide]]></title>
+</document>
+<document docid="PCCRN">
+<title><![CDATA[Pro*C/C++ Release Notes]]></title>
+<summary>Contains important information not included in the Pro*C/C++ Programmer's Guide.</summary><htmllink>../PCCRN/toc.htm</htmllink><pdflink>../PCCRN/E18409-04.pdf</pdflink><epublink>../PCCRN/E18409-04.epub</epublink><mobilink>../PCCRN/E18409-04.mobi</mobilink></document>
+<document docid="PCBRN">
+<title><![CDATA[Pro*COBOL Release Notes]]></title>
+<summary>Contains important information not included in the Pro*COBOL Programmer's Guide.</summary><htmllink>../PCBRN/toc.htm</htmllink><pdflink>../PCBRN/E18407-06.pdf</pdflink><epublink>../PCBRN/E18407-06.epub</epublink><mobilink>../PCBRN/E18407-06.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id16" template="dbtasks" filename="portal_16.htm" nav="yes">
+ <title>Clustering</title>
+<description><![CDATA[Clustering relieves users from concerns about where data resides and which computer processes their requests. Users request information or computation and have it delivered - as much as they want, whenever they want. For the DBA, the grid is about resource allocation, information sharing, and high availability. Oracle Database with Real Application Clusters and Oracle Clusterware provide the infrastructure for your database grid. Oracle Automatic Storage Management (Oracle ASM) provides the infrastructure for a storage grid. Oracle Enterprise Manager Grid Control provides you with holistic management of your grid.]]></description>
+<column>
+<portlet><title><![CDATA[Essentials]]></title>
+<document docid="TDPRC">
+<title><![CDATA[2 Day + Real Application Clusters Guide]]></title>
+<summary>Describes how to install, configure, and administer Oracle Clusterware and Oracle Real Application Clusters (Oracle RAC) on a two-node system using the Oracle Linux operating system.</summary><htmllink>../TDPRC/toc.htm</htmllink><pdflink>../TDPRC/E17616-18.pdf</pdflink><epublink>../TDPRC/E17616-18.epub</epublink><mobilink>../TDPRC/E17616-18.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Supporting Documentation]]></title>
+<document docid="APQOS">
+<title><![CDATA[Quality of Service Management User's Guide]]></title>
+<summary>Describes the concepts of Oracle Database Quality of Service Management (Oracle Database QoS Management), and explains how to configure, administer, and troubleshoot Oracle Database QoS Management.</summary><htmllink>../APQOS/toc.htm</htmllink><pdflink>../APQOS/E49047-07.pdf</pdflink><epublink>../APQOS/E49047-07.epub</epublink><mobilink>../APQOS/E49047-07.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Real Application Clusters]]></title>
+<document docid="RACAD">
+<title><![CDATA[Real Application Clusters Administration and Deployment Guide]]></title>
+<summary>Describes the Oracle Real Application Clusters (Oracle RAC) architecture and provides an overview of this product. This book also describes administrative and deployment topics for Oracle RAC.</summary><htmllink>../RACAD/toc.htm</htmllink><pdflink>../RACAD/E48838-11.pdf</pdflink><epublink>../RACAD/E48838-11.epub</epublink><mobilink>../RACAD/E48838-11.mobi</mobilink></document>
+<document docid="GSMUG">
+<title><![CDATA[Global Data Services Concepts and Administration Guide]]></title>
+<summary>Provides dynamic load balancing, failover, and centralized service management for a set of replicated databases that offer common services. The set of databases can include Oracle Real Application Clusters (Oracle RAC) and noncluster Oracle databases interconnected through Oracle Data Guard, or any other replication technology.</summary><htmllink>../GSMUG/toc.htm</htmllink><pdflink>../GSMUG/E22100-11.pdf</pdflink><epublink>../GSMUG/E22100-11.epub</epublink><mobilink>../GSMUG/E22100-11.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Clusterware]]></title>
+<document docid="CWADD">
+<title><![CDATA[Clusterware Administration and Deployment Guide]]></title>
+<summary>Describes the Oracle Clusterware architecture and provides an overview of this product. This book also describes administrative and deployment topics for Oracle Clusterware.</summary><htmllink>../CWADD/toc.htm</htmllink><pdflink>../CWADD/E48819-09.pdf</pdflink><epublink>../CWADD/E48819-09.epub</epublink><mobilink>../CWADD/E48819-09.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Automatic Storage Management]]></title>
+<document docid="OSTMG">
+<title><![CDATA[Automatic Storage Management Administrator's Guide]]></title>
+<summary>Describes how to administer Oracle Automatic Storage Management (Oracle ASM) for Oracle Database.</summary><htmllink>../OSTMG/toc.htm</htmllink><pdflink>../OSTMG/E41058-11.pdf</pdflink><epublink>../OSTMG/E41058-11.epub</epublink><mobilink>../OSTMG/E41058-11.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id30" template="videos" filename="nav/portal_30.htm" nav="yes">
+ <title>Videos</title>
+<oll category="false">https://apexapps.oracle.com/pls/apex/f?p=44785:261:0::NO::P261_PRODUCT_ID:3589</oll>
+<description><![CDATA[<p>Videos provide quick overviews and short demonstrations of features and tasks.</p>
+]]></description>
+</tab>
+<tab id="id17" template="dbtasks" filename="portal_17.htm" nav="yes">
+ <title>Performance</title>
+<column>
+<portlet><title><![CDATA[Essentials]]></title>
+<document docid="TDPPT">
+<title><![CDATA[2 Day + Performance Tuning Guide]]></title>
+<summary>Explains how to perform day-to-day database performance tuning tasks using features provided by Oracle Diagnostics Pack, Oracle Tuning Pack, and Oracle Enterprise Manager Cloud Control.</summary><htmllink>../TDPPT/toc.htm</htmllink><pdflink>../TDPPT/E55047-05.pdf</pdflink><epublink>../TDPPT/E55047-05.epub</epublink><mobilink>../TDPPT/E55047-05.mobi</mobilink></document>
+<document docid="TGDBA">
+<title><![CDATA[Performance Tuning Guide]]></title>
+<summary>Provides information about how to tune the performance of Oracle Database using Oracle performance tools.</summary><htmllink>../TGDBA/toc.htm</htmllink><pdflink>../TGDBA/E49058-08.pdf</pdflink><epublink>../TGDBA/E49058-08.epub</epublink><mobilink>../TGDBA/E49058-08.mobi</mobilink></document>
+<document docid="TGSQL">
+<title><![CDATA[SQL Tuning Guide]]></title>
+<summary>Describes how to perform SQL tuning, which is the iterative process of improving SQL statement performance to meet specific, measurable, and achievable goals.</summary><htmllink>../TGSQL/toc.htm</htmllink><pdflink>../TGSQL/E49106-13.pdf</pdflink><epublink>../TGSQL/E49106-13.epub</epublink><mobilink>../TGSQL/E49106-13.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[TimesTen Application-Tier Database Cache]]></title>
+<document docid="TTREL">
+<title><![CDATA[TimesTen In-Memory Database Release Notes]]></title>
+<summary>Contains important information not included in the documentation for Oracle TimesTen In-Memory Database.</summary><htmllink>../TTREL/toc.htm</htmllink><pdflink>../TTREL/E61818-06.pdf</pdflink><epublink>../TTREL/E61818-06.epub</epublink><mobilink>../TTREL/E61818-06.mobi</mobilink></document>
+<document docid="TTCIN">
+<title><![CDATA[TimesTen Application-Tier Database Cache Introduction]]></title>
+<summary>Describes the features of TimesTen Application-Tier Database Cache and provides information to help developers plan a TimesTen Cache application.</summary><htmllink>../TTCIN/toc.htm</htmllink><pdflink>../TTCIN/E21631-06.pdf</pdflink><epublink>../TTCIN/E21631-06.epub</epublink><mobilink>../TTCIN/E21631-06.mobi</mobilink></document>
+<document docid="TTCAC">
+<title><![CDATA[TimesTen Application-Tier Database Cache User's Guide]]></title>
+<summary>Provides information about designing and configuring the TimesTen Application-Tier Database Cache. It includes information about setting up a cache grid.</summary><htmllink>../TTCAC/toc.htm</htmllink><pdflink>../TTCAC/E21634-12.pdf</pdflink><epublink>../TTCAC/E21634-12.epub</epublink><mobilink>../TTCAC/E21634-12.mobi</mobilink></document>
+<document docid="TTCDV">
+<title><![CDATA[TimesTen In-Memory Database C Developer's Guide]]></title>
+<summary>Provides information about developing C applications to access the Oracle TimesTen In-Memory Database through ODBC. It also includes information about TimesTen support for XLA, OCI, and the Pro*C/C++ Precompiler.</summary><htmllink>../TTCDV/toc.htm</htmllink><pdflink>../TTCDV/E21637-09.pdf</pdflink><epublink>../TTCDV/E21637-09.epub</epublink><mobilink>../TTCDV/E21637-09.mobi</mobilink></document>
+<document docid="TTERR">
+<title><![CDATA[TimesTen In-Memory Database Error Messages and SNMP Traps]]></title>
+<summary>Provides a reference for Oracle TimesTen In-Memory Database error messages and SNMP traps.</summary><htmllink>../TTERR/toc.htm</htmllink><pdflink>../TTERR/E21646-15.pdf</pdflink><epublink>../TTERR/E21646-15.epub</epublink><mobilink>../TTERR/E21646-15.mobi</mobilink></document>
+<document docid="TTINS">
+<title><![CDATA[TimesTen In-Memory Database Installation Guide]]></title>
+<summary>Provides information about installing and upgrading the Oracle TimesTen In-Memory Database.</summary><htmllink>../TTINS/toc.htm</htmllink><pdflink>../TTINS/E21632-17.pdf</pdflink><epublink>../TTINS/E21632-17.epub</epublink><mobilink>../TTINS/E21632-17.mobi</mobilink></document>
+<document docid="TTJDV">
+<title><![CDATA[TimesTen In-Memory Database Java Developer's Guide]]></title>
+<summary>Provides information about developing Java applications to access the Oracle TimesTen In-Memory Database through JDBC. It also includes information about support for TimesTen JMS/XLA.</summary><htmllink>../TTJDV/toc.htm</htmllink><pdflink>../TTJDV/E21638-10.pdf</pdflink><epublink>../TTJDV/E21638-10.epub</epublink><mobilink>../TTJDV/E21638-10.mobi</mobilink></document>
+<document docid="TTJDB">
+<title><![CDATA[TimesTen In-Memory Database JDBC Extensions Java API Reference (Javadoc)]]></title>
+<summary>Provides reference information for TimesTen JDBC classes and interfaces.</summary><htmllink>../TTJDB/toc.htm</htmllink></document>
+<document docid="TTJMS">
+<title><![CDATA[TimesTen In-Memory Database JMS/XLA Java API Reference (Javadoc)]]></title>
+<summary>Provides reference information for TimesTen JMS/XLA classes and interfaces.</summary><htmllink>../TTJMS/toc.htm</htmllink></document>
+<document docid="TTOPR">
+<title><![CDATA[TimesTen In-Memory Database Operations Guide]]></title>
+<summary>Provides information about how Oracle TimesTen In-Memory Database works. It includes step-by-step instructions and examples that show how to perform commonly needed tasks.</summary><htmllink>../TTOPR/toc.htm</htmllink><pdflink>../TTOPR/E21633-12.pdf</pdflink><epublink>../TTOPR/E21633-12.epub</epublink><mobilink>../TTOPR/E21633-12.mobi</mobilink></document>
+<document docid="TTPLS">
+<title><![CDATA[TimesTen In-Memory Database PL/SQL Developer's Guide]]></title>
+<summary>Provides information about using PL/SQL with the Oracle TimesTen In-Memory Database.</summary><htmllink>../TTPLS/toc.htm</htmllink><pdflink>../TTPLS/E21639-07.pdf</pdflink><epublink>../TTPLS/E21639-07.epub</epublink><mobilink>../TTPLS/E21639-07.mobi</mobilink></document>
+<document docid="TTPLP">
+<title><![CDATA[TimesTen In-Memory Database PL/SQL Packages Reference]]></title>
+<summary>Provides reference information for packages provided with TimesTen PL/SQL.</summary><htmllink>../TTPLP/toc.htm</htmllink><pdflink>../TTPLP/E21645-06.pdf</pdflink><epublink>../TTPLP/E21645-06.epub</epublink><mobilink>../TTPLP/E21645-06.mobi</mobilink></document>
+<document docid="TTREF">
+<title><![CDATA[TimesTen In-Memory Database Reference]]></title>
+<summary>Provides a reference for attributes, built-in procedures, utilities, and system limits for the Oracle TimesTen In-Memory Database.</summary><htmllink>../TTREF/toc.htm</htmllink><pdflink>../TTREF/E21643-26.pdf</pdflink><epublink>../TTREF/E21643-26.epub</epublink><mobilink>../TTREF/E21643-26.mobi</mobilink></document>
+<document docid="TTREP">
+<title><![CDATA[TimesTen In-Memory Database Replication Guide]]></title>
+<summary>Provides information about designing and configuring TimesTen to TimesTen replication, including information about TimesTen integration with Oracle Clusterware.</summary><htmllink>../TTREP/toc.htm</htmllink><pdflink>../TTREP/E21635-11.pdf</pdflink><epublink>../TTREP/E21635-11.epub</epublink><mobilink>../TTREP/E21635-11.mobi</mobilink></document>
+<document docid="TTSQL">
+<title><![CDATA[TimesTen In-Memory Database SQL Reference]]></title>
+<summary>Provides a reference for SQL statements, expressions, and functions used with the Oracle TimesTen In-Memory Database, including TimesTen SQL extensions. It also describes data types.</summary><htmllink>../TTSQL/toc.htm</htmllink><pdflink>../TTSQL/E21642-12.pdf</pdflink><epublink>../TTSQL/E21642-12.epub</epublink><mobilink>../TTSQL/E21642-12.mobi</mobilink></document>
+<document docid="TTSYS">
+<title><![CDATA[TimesTen In-Memory Database System Tables and Views Reference]]></title>
+<summary>Describes TimesTen system tables and replication tables.</summary><htmllink>../TTSYS/toc.htm</htmllink><pdflink>../TTSYS/E21644-08.pdf</pdflink><epublink>../TTSYS/E21644-08.epub</epublink><mobilink>../TTSYS/E21644-08.mobi</mobilink></document>
+<document docid="TTTRB">
+<title><![CDATA[TimesTen In-Memory Database Troubleshooting Guide]]></title>
+<summary>Provides information about utilities and procedures for troubleshooting problems that may be encountered when using the Oracle TimesTen In-Memory Database.</summary><htmllink>../TTTRB/toc.htm</htmllink><pdflink>../TTTRB/E21636-11.pdf</pdflink><epublink>../TTTRB/E21636-11.epub</epublink><mobilink>../TTTRB/E21636-11.mobi</mobilink></document>
+<document docid="TTCLS">
+<title><![CDATA[TimesTen In-Memory Database TTClasses Guide]]></title>
+<summary>Describes how to use the TimesTen C++ Interface Classes (TTClasses) library.</summary><htmllink>../TTCLS/toc.htm</htmllink><pdflink>../TTCLS/E21640-08.pdf</pdflink><epublink>../TTCLS/E21640-08.epub</epublink><mobilink>../TTCLS/E21640-08.mobi</mobilink></document>
+<document docid="TTERA">
+<title><![CDATA[Enterprise Manager for Oracle TimesTen In-Memory Database Release Notes]]></title>
+<summary>Provides late-breaking information about the Oracle Enterprise Manager Plug-in for Oracle TimesTen In-Memory Database.</summary><htmllink>../TTERA/toc.htm</htmllink><pdflink>../TTERA/E58956-03.pdf</pdflink><epublink>../TTERA/E58956-03.epub</epublink><mobilink>../TTERA/E58956-03.mobi</mobilink></document>
+<document docid="TTEUA">
+<title><![CDATA[Enterprise Manager for Oracle TimesTen In-Memory Database User's Guide]]></title>
+<summary>Describes how to install the Oracle Enterprise Manager Plug-in for Oracle TimesTen In-Memory Database.</summary><htmllink>../TTEUA/toc.htm</htmllink><pdflink>../TTEUA/E58955-01.pdf</pdflink><epublink>../TTEUA/E58955-01.epub</epublink><mobilink>../TTEUA/E58955-01.mobi</mobilink></document>
+<document docid="TTODN">
+<title><![CDATA[Data Provider for .NET Oracle TimesTen In-Memory Database Support User's Guide for Windows]]></title>
+<summary>Enables ADO.NET data access from .NET client applications to TimesTen databases. This document covers features specific to ODP.NET support of and use with TimesTen.</summary><htmllink>../TTODN/toc.htm</htmllink><pdflink>../TTODN/E38358-05.pdf</pdflink><epublink>../TTODN/E38358-05.epub</epublink><mobilink>../TTODN/E38358-05.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id14" template="dbtasks" filename="portal_14.htm" nav="yes">
+ <title>High Availability</title>
+<column>
+<portlet><title><![CDATA[High Availability]]></title>
+<document docid="HAOVW">
+<title><![CDATA[High Availability Overview]]></title>
+<summary>Introduces Oracle MAA solutions for deploying a highly available environment, helps you determine your availability requirements, and describes the database architectures that can help your business achieve high availability.</summary><htmllink>../HAOVW/toc.htm</htmllink><pdflink>../HAOVW/E49097-04.pdf</pdflink><epublink>../HAOVW/E49097-04.epub</epublink><mobilink>../HAOVW/E49097-04.mobi</mobilink></document>
+<document docid="HABPT">
+<title><![CDATA[High Availability Best Practices]]></title>
+<summary>Provides high availability best practices for configuring and maintaining your Oracle Database system and network components.</summary><htmllink>../HABPT/toc.htm</htmllink><pdflink>../HABPT/E40019-02.pdf</pdflink><epublink>../HABPT/E40019-02.epub</epublink><mobilink>../HABPT/E40019-02.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Data Guard]]></title>
+<document docid="DGBKR">
+<title><![CDATA[Data Guard Broker]]></title>
+<summary>Describes the Oracle Data Guard broker, a management and monitoring interface that automates many of the tasks involved in configuring and monitoring standby databases in an Oracle Data Guard configuration.</summary><htmllink>../DGBKR/toc.htm</htmllink><pdflink>../DGBKR/E48241-08.pdf</pdflink><epublink>../DGBKR/E48241-08.epub</epublink><mobilink>../DGBKR/E48241-08.mobi</mobilink></document>
+<document docid="SBYDB">
+<title><![CDATA[Data Guard Concepts and Administration]]></title>
+<summary>Provides a comprehensive overview of Oracle Data Guard concepts and describes how to configure and implement standby databases that can take over production operations if your production database becomes unusable. This guide includes several database scenarios such as creating, recovering, failing over, switching over, configuring, and backing up standby and primary databases.</summary><htmllink>../SBYDB/toc.htm</htmllink><pdflink>../SBYDB/E48552-07.pdf</pdflink><epublink>../SBYDB/E48552-07.epub</epublink><mobilink>../SBYDB/E48552-07.mobi</mobilink></document>
+<document docid="GSMUG">
+<title><![CDATA[Global Data Services Concepts and Administration Guide]]></title>
+<summary>Provides dynamic load balancing, failover, and centralized service management for a set of replicated databases that offer common services. The set of databases can include Oracle Real Application Clusters (Oracle RAC) and noncluster Oracle databases interconnected through Oracle Data Guard, or any other replication technology.</summary><htmllink>../GSMUG/toc.htm</htmllink><pdflink>../GSMUG/E22100-11.pdf</pdflink><epublink>../GSMUG/E22100-11.epub</epublink><mobilink>../GSMUG/E22100-11.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Global Data Services]]></title>
+<document docid="GSMUG">
+<title><![CDATA[Global Data Services Concepts and Administration Guide]]></title>
+<summary>Provides dynamic load balancing, failover, and centralized service management for a set of replicated databases that offer common services. The set of databases can include Oracle Real Application Clusters (Oracle RAC) and noncluster Oracle databases interconnected through Oracle Data Guard, or any other replication technology.</summary><htmllink>../GSMUG/toc.htm</htmllink><pdflink>../GSMUG/E22100-11.pdf</pdflink><epublink>../GSMUG/E22100-11.epub</epublink><mobilink>../GSMUG/E22100-11.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Backup and Recovery]]></title>
+<document docid="BRADV">
+<title><![CDATA[Backup and Recovery User's Guide]]></title>
+<summary>Explains how to use Recovery Manager (RMAN) to back up, recover, and duplicate a database, and how to use Oracle Flashback Technology to restore all or a portion of your data to a previous state.</summary><htmllink>../BRADV/toc.htm</htmllink><pdflink>../BRADV/E50658-09.pdf</pdflink><epublink>../BRADV/E50658-09.epub</epublink><mobilink>../BRADV/E50658-09.mobi</mobilink></document>
+<document docid="RCMRF">
+<title><![CDATA[Backup and Recovery Reference]]></title>
+<summary>Provides detailed descriptions of the Recovery Manager (RMAN) commands and recovery catalog views.</summary><htmllink>../RCMRF/toc.htm</htmllink><pdflink>../RCMRF/E50791-08.pdf</pdflink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Streams]]></title>
+<document docid="STRMS">
+<title><![CDATA[Streams Concepts and Administration]]></title>
+<summary>Contains conceptual information about Oracle Streams and information about administering, monitoring, and troubleshooting an Oracle Streams environment. It also contains instructions for using Oracle Streams to record table changes. It also contains conceptual information about information provisioning and instructions for using Oracle Streams for information provisioning. It also includes instructions for using Oracle Streams for database upgrades and database maintenance operations.</summary><htmllink>../STRMS/toc.htm</htmllink><pdflink>../STRMS/E53116-02.pdf</pdflink><epublink>../STRMS/E53116-02.epub</epublink><mobilink>../STRMS/E53116-02.mobi</mobilink></document>
+<document docid="STREP">
+<title><![CDATA[Streams Replication Administrator's Guide]]></title>
+<summary>Contains instructions for configuring and managing an Oracle Streams replication environment. It also includes best practices for Oracle Streams replication environments and instructions for migrating from Advanced Replication to Oracle Streams replication.</summary><htmllink>../STREP/toc.htm</htmllink><pdflink>../STREP/E53118-02.pdf</pdflink><epublink>../STREP/E53118-02.epub</epublink><mobilink>../STREP/E53118-02.mobi</mobilink></document>
+<document docid="STREX">
+<title><![CDATA[Streams Extended Examples]]></title>
+<summary>Contains extended examples that configure various types of Oracle Streams environments.</summary><htmllink>../STREX/toc.htm</htmllink><pdflink>../STREX/E17912-10.pdf</pdflink><epublink>../STREX/E17912-10.epub</epublink><mobilink>../STREX/E17912-10.mobi</mobilink></document>
+<document docid="ARPLS">
+<title><![CDATA[PL/SQL Packages and Types Reference]]></title>
+<summary>Describes the PL/SQL packages provided with the Oracle database server that extend database functionality and provide PL/SQL access to SQL features.</summary><htmllink>../ARPLS/toc.htm</htmllink><pdflink>../ARPLS/E41829-07.pdf</pdflink><epublink>../ARPLS/E41829-07.epub</epublink><mobilink>../ARPLS/E41829-07.mobi</mobilink></document>
+<document docid="REFRN">
+<title><![CDATA[Reference]]></title>
+<summary>Provides reference information about database initialization parameters, static data dictionary views, and dynamic performance views that are part of Oracle Database.</summary><htmllink>../REFRN/toc.htm</htmllink><pdflink>../REFRN/E41527-27.pdf</pdflink><epublink>../REFRN/E41527-27.epub</epublink><mobilink>../REFRN/E41527-27.mobi</mobilink></document>
+<document docid="STXJV">
+<title><![CDATA[XStream Java API Reference (Javadoc)]]></title>
+<summary>Describes the Java APIs for XStream.</summary><htmllink>../STXJV/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[Advanced Replication]]></title>
+<document docid="REPLN">
+<title><![CDATA[Advanced Replication]]></title>
+<summary>Contains conceptual information about Oracle Database Advanced Replication. It also includes information about planning an Advanced Replication environment and information about troubleshooting Advanced Replication problems.</summary><htmllink>../REPLN/toc.htm</htmllink><pdflink>../REPLN/E53117-02.pdf</pdflink><epublink>../REPLN/E53117-02.epub</epublink><mobilink>../REPLN/E53117-02.mobi</mobilink></document>
+<document docid="REPMA">
+<title><![CDATA[Advanced Replication Management API Reference]]></title>
+<summary>Contains reference information about and step-by-step instructions for using the replication management API, which is a set of PL/SQL packages for setting up and managing an Advanced Replication environment. It also includes reference information about data dictionary views that are important for Advanced Replication and security considerations for an Advanced Replication environment.</summary><htmllink>../REPMA/toc.htm</htmllink><pdflink>../REPMA/E18896-09.pdf</pdflink><epublink>../REPMA/E18896-09.epub</epublink><mobilink>../REPMA/E18896-09.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id6" template="dbtasks" filename="portal_6.htm" nav="yes">
+ <title>Data Warehousing and Business Intelligence</title>
+<description><![CDATA[Data Warehousing involves large volumes of data used primarily for analysis. This category covers applications such as Business Intelligence and Decision Support Systems.]]></description>
+<column>
+<portlet><title><![CDATA[Supporting Documentation]]></title>
+<document docid="DWHSG">
+<title><![CDATA[Data Warehousing Guide]]></title>
+<summary>Provides conceptual, reference, and implementation material for using Oracle Database in data warehousing. It covers the full range of data warehousing activities, from physical database design to advanced calculation techniques.</summary><htmllink>../DWHSG/toc.htm</htmllink><pdflink>../DWHSG/E41670-11.pdf</pdflink><epublink>../DWHSG/E41670-11.epub</epublink><mobilink>../DWHSG/E41670-11.mobi</mobilink></document>
+<document docid="TGDBA">
+<title><![CDATA[Performance Tuning Guide]]></title>
+<summary>Provides information about how to tune the performance of Oracle Database using Oracle performance tools.</summary><htmllink>../TGDBA/toc.htm</htmllink><pdflink>../TGDBA/E49058-08.pdf</pdflink><epublink>../TGDBA/E49058-08.epub</epublink><mobilink>../TGDBA/E49058-08.mobi</mobilink></document>
+<document docid="TGSQL">
+<title><![CDATA[SQL Tuning Guide]]></title>
+<summary>Describes how to perform SQL tuning, which is the iterative process of improving SQL statement performance to meet specific, measurable, and achievable goals.</summary><htmllink>../TGSQL/toc.htm</htmllink><pdflink>../TGSQL/E49106-13.pdf</pdflink><epublink>../TGSQL/E49106-13.epub</epublink><mobilink>../TGSQL/E49106-13.mobi</mobilink></document>
+<document docid="VLDBG">
+<title><![CDATA[VLDB and Partitioning Guide]]></title>
+<summary>Contains an overview of very large database (VLDB) topics, with emphasis on partitioning and parallel execution as a key component of the VLDB strategy.</summary><htmllink>../VLDBG/toc.htm</htmllink><pdflink>../VLDBG/E41057-12.pdf</pdflink><epublink>../VLDBG/E41057-12.epub</epublink><mobilink>../VLDBG/E41057-12.mobi</mobilink></document>
+<document docid="SUTIL">
+<title><![CDATA[Utilities]]></title>
+<summary>Describes how to use Oracle Database utilities to load data into a database, transfer data between databases, and maintain data. The topics discussed include Data Pump Export, Data Pump Import, SQL*Loader, external tables and associated access drivers, the Automatic Diagnostic Repository Command Interpreter (ADRCI), DBVERIFY, DBNEWID, LogMiner, the Metadata API, original Export, and original Import.</summary><htmllink>../SUTIL/toc.htm</htmllink><pdflink>../SUTIL/E41528-08.pdf</pdflink><epublink>../SUTIL/E41528-08.epub</epublink><mobilink>../SUTIL/E41528-08.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Online Analytical Processing (OLAP)]]></title>
+<document docid="OLAUG">
+<title><![CDATA[OLAP User's Guide]]></title>
+<summary>Explains how SQL applications can extend their analytic processing capabilities and manage summary data by using the OLAP option of Oracle Database.</summary><htmllink>../OLAUG/toc.htm</htmllink><pdflink>../OLAUG/E53237-01.pdf</pdflink><epublink>../OLAUG/E53237-01.epub</epublink><mobilink>../OLAUG/E53237-01.mobi</mobilink></document>
+<document docid="OLAWP">
+<title><![CDATA[OLAP Customizing Analytic Workspace Manager]]></title>
+<summary>Describes the Analytic Workspace Manager XML and Java plug-in interfaces and provides simple examples of implementations of them.</summary><htmllink>../OLAWP/toc.htm</htmllink><pdflink>../OLAWP/E17709-05.pdf</pdflink><epublink>../OLAWP/E17709-05.epub</epublink><mobilink>../OLAWP/E17709-05.mobi</mobilink></document>
+<document docid="OLADM">
+<title><![CDATA[OLAP DML Reference]]></title>
+<summary>Contains a complete description of the OLAP Data Manipulation Language (OLAP DML) used to define and manipulate analytic workspace objects.</summary><htmllink>../OLADM/toc.htm</htmllink><pdflink>../OLADM/E17673-12.pdf</pdflink><epublink>../OLADM/E17673-12.epub</epublink><mobilink>../OLADM/E17673-12.mobi</mobilink></document>
+<document docid="OLAXS">
+<title><![CDATA[OLAP Expression Syntax Reference]]></title>
+<summary>Describes the Oracle OLAP expression syntax used to generate information-rich content from the data stored in dimensional database objects such as cubes and cube dimensions.</summary><htmllink>../OLAXS/toc.htm</htmllink><pdflink>../OLAXS/E23382-06.pdf</pdflink><epublink>../OLAXS/E23382-06.epub</epublink><mobilink>../OLAXS/E23382-06.mobi</mobilink></document>
+<document docid="OLAAP">
+<title><![CDATA[OLAP Java API Developer's Guide]]></title>
+<summary>Provides guidance for developing client applications using the Oracle OLAP Java API.</summary><htmllink>../OLAAP/toc.htm</htmllink><pdflink>../OLAAP/E17707-05.pdf</pdflink><epublink>../OLAAP/E17707-05.epub</epublink><mobilink>../OLAAP/E17707-05.mobi</mobilink></document>
+<document docid="OLAPI">
+<title><![CDATA[OLAP Java API Reference (Javadoc)]]></title>
+<summary>Provides reference information for the Oracle OLAP Java API.</summary><htmllink>../OLAPI/toc.htm</htmllink></document>
+<document docid="" links="yes">
+<title><![CDATA[Using the OLAP APIs (Virtual Book)]]></title>
+<htmllink>http://tahiti-stage.us.oracle.com/pls/db121/vbook_subject?subject=oap</htmllink>
+</document>
+</portlet>
+<portlet><title><![CDATA[Oracle Advanced Analytics]]></title>
+<document docid="DMCON">
+<title><![CDATA[Data Mining Concepts]]></title>
+<summary>Discusses the basic concepts underlying Oracle Data Mining. Includes an overview of the features of Oracle Data Mining and information about mining functions and algorithms.</summary><htmllink>../DMCON/toc.htm</htmllink><pdflink>../DMCON/E17692-19.pdf</pdflink><epublink>../DMCON/E17692-19.epub</epublink><mobilink>../DMCON/E17692-19.mobi</mobilink></document>
+<document docid="DMPRG">
+<title><![CDATA[Data Mining User's Guide]]></title>
+<summary>Explains how to use the SQL interface to Oracle Data Mining to create models and score data. This Guide also addresses administrative issues such as security, import/export, and upgrade for Oracle Data Mining.</summary><htmllink>../DMPRG/toc.htm</htmllink><pdflink>../DMPRG/E53115-05.pdf</pdflink><epublink>../DMPRG/E53115-05.epub</epublink><mobilink>../DMPRG/E53115-05.mobi</mobilink></document>
+<document docid="" links="yes">
+<title><![CDATA[Data Mining API Guide (Virtual Book)]]></title>
+<htmllink>http://tahiti-stage.us.oracle.com/pls/db121/vbook_subject?subject=dma</htmllink>
+</document>
+<document docid="ORERN">
+<title><![CDATA[R Enterprise Release Notes]]></title>
+<summary>Contains important information that was not included in the documentation for Oracle R Enterprise 1.2.</summary><htmllink>../ORERN/toc.htm</htmllink><pdflink>../ORERN/E35159-04.pdf</pdflink><epublink>../ORERN/E35159-04.epub</epublink><mobilink>../ORERN/E35159-04.mobi</mobilink></document>
+<document docid="OREUG">
+<title><![CDATA[R Enterprise User's Guide]]></title>
+<summary>Describes how to install and use Oracle R Enterprise which provides an environment for statistical computing.</summary><htmllink>../OREUG/toc.htm</htmllink><pdflink>../OREUG/E35158-07.pdf</pdflink><epublink>../OREUG/E35158-07.epub</epublink><mobilink>../OREUG/E35158-07.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id7" template="dbtasks" filename="portal_7.htm" nav="yes">
+ <title>Unstructured Data and Content Management</title>
+<description><![CDATA[Oracle Secure Files provides enhanced LOB-type storage for applications managing all types of data. Implement applications that deliver performance comparable to file system storage, with rich information retrieval capabilities organized around specialized semantic content models, such as relational, XML-based, full text, spatial, and multimedia data.]]></description>
+<column>
+<portlet><title><![CDATA[Oracle Secure Files and Large Objects]]></title>
+<document docid="ADLOB">
+<title><![CDATA[SecureFiles and Large Objects Developer's Guide]]></title>
+<summary>Describes use of SecureFiles and large object data types BLOB, CLOB, NCLOB, and BFILE in application development. Presents APIs for working with LOBs in supported programmatic environments. Describes database file systems and the Oracle Database File System Hierarchical Store package.</summary><htmllink>../ADLOB/toc.htm</htmllink><pdflink>../ADLOB/E17605-13.pdf</pdflink><epublink>../ADLOB/E17605-13.epub</epublink><mobilink>../ADLOB/E17605-13.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[XML]]></title>
+<document docid="ADXDB">
+<title><![CDATA[XML DB Developer's Guide]]></title>
+<summary>This manual describes Oracle XML DB. It includes guidelines and examples for storing, generating, accessing, searching, validating, transforming, evolving, and indexing XML data in Oracle Database.</summary><htmllink>../ADXDB/toc.htm</htmllink><pdflink>../ADXDB/E41152-15.pdf</pdflink><epublink>../ADXDB/E41152-15.epub</epublink><mobilink>../ADXDB/E41152-15.mobi</mobilink></document>
+<document docid="ADXDK">
+<title><![CDATA[XML Developer's Kit Programmer's Guide]]></title>
+<summary>Provides information to application developers who need to use components of the Oracle XML Developer's Kit (XDK) to generate and store XML data in a database or in a document outside the database.</summary><htmllink>../ADXDK/toc.htm</htmllink><pdflink>../ADXDK/E54405-06.pdf</pdflink><epublink>../ADXDK/E54405-06.epub</epublink><mobilink>../ADXDK/E54405-06.mobi</mobilink></document>
+<document docid="JAXML">
+<title><![CDATA[XML Java API Reference (Javadoc)]]></title>
+<summary>Describes Java APIs for XML.</summary><htmllink>../JAXML/toc.htm</htmllink></document>
+<document docid="CAXML">
+<title><![CDATA[XML C API Reference]]></title>
+<summary>Describes Oracle XML Developer's Kits (XDK) and Oracle XML DB APIs for the C programming language. It primarily lists the syntax of functions, methods, and procedures associated with these APIs.</summary><htmllink>../CAXML/toc.htm</htmllink><pdflink>../CAXML/E15885-04.pdf</pdflink><epublink>../CAXML/E15885-04.epub</epublink><mobilink>../CAXML/E15885-04.mobi</mobilink></document>
+<document docid="CPXML">
+<title><![CDATA[XML C++ API Reference]]></title>
+<summary>Describes Oracle XML Developer's Kits (XDK) and Oracle XML DB APIs for the C++ programming language. This manual primarily lists the syntax of functions, methods, and procedures associated with these APIs.</summary><htmllink>../CPXML/toc.htm</htmllink><pdflink>../CPXML/E15977-04.pdf</pdflink><epublink>../CPXML/E15977-04.epub</epublink><mobilink>../CPXML/E15977-04.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Text]]></title>
+<document docid="CCAPP">
+<title><![CDATA[Text Application Developer's Guide]]></title>
+<summary>Provides information for building applications with Oracle Text.</summary><htmllink>../CCAPP/toc.htm</htmllink><pdflink>../CCAPP/E41398-07.pdf</pdflink><epublink>../CCAPP/E41398-07.epub</epublink><mobilink>../CCAPP/E41398-07.mobi</mobilink></document>
+<document docid="CCREF">
+<title><![CDATA[Text Reference]]></title>
+<summary>Provides reference information for building applications with Oracle Text.</summary><htmllink>../CCREF/toc.htm</htmllink><pdflink>../CCREF/E41399-12.pdf</pdflink><epublink>../CCREF/E41399-12.epub</epublink><mobilink>../CCREF/E41399-12.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Spatial and Location Information]]></title>
+<document docid="SPATL">
+<title><![CDATA[Spatial and Graph Developer's Guide]]></title>
+<summary>Provides usage and reference information for indexing and storing spatial data and for developing spatial applications using Oracle Spatial and Graph and Oracle Locator.</summary><htmllink>../SPATL/toc.htm</htmllink><pdflink>../SPATL/E49172-07.pdf</pdflink><epublink>../SPATL/E49172-07.epub</epublink><mobilink>../SPATL/E49172-07.mobi</mobilink></document>
+<document docid="GEORS">
+<title><![CDATA[Spatial and Graph GeoRaster Developer's Guide]]></title>
+<summary>Provides usage and reference information for the GeoRaster feature of Oracle Spatial and Graph, which lets you store, index, query, analyze, and deliver raster data (raster image and gridded data and its associated metadata).</summary><htmllink>../GEORS/toc.htm</htmllink><pdflink>../GEORS/E49118-05.pdf</pdflink><epublink>../GEORS/E49118-05.epub</epublink><mobilink>../GEORS/E49118-05.mobi</mobilink></document>
+<document docid="TOPOL">
+<title><![CDATA[Spatial and Graph Topology Data Model and Network Data Model Graph Developer's Guide]]></title>
+<summary>Provides usage and reference information about the Topology Data Model and Network Data Model Graph features of Oracle Spatial and Graph.</summary><htmllink>../TOPOL/toc.htm</htmllink><pdflink>../TOPOL/E53120-04.pdf</pdflink><epublink>../TOPOL/E53120-04.epub</epublink><mobilink>../TOPOL/E53120-04.mobi</mobilink></document>
+<document docid="SPAJV">
+<title><![CDATA[Spatial and Graph Java API Reference (Javadoc)]]></title>
+<summary>Provides Javadoc-generated information about interfaces and classes that support features available with Oracle Spatial and Graph, including GeoRaster and the Topology Data Model and Network Data Model Graph features, and with MapViewer, which is packaged with Oracle Fusion Middleware.</summary><htmllink>../SPAJV/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Multimedia]]></title>
+<document docid="IMURG">
+<title><![CDATA[Multimedia User's Guide]]></title>
+<summary>Presents information about using Oracle Database to store, manage, and retrieve images, audio, video, DICOM format medical images and other objects, or other heterogeneous media data in an integrated fashion with other enterprise information. Oracle Multimedia extends Oracle Database reliability, availability, and data management to multimedia content in traditional, Internet, electronic commerce, medical, financial, and other media-rich applications.</summary><htmllink>../IMURG/toc.htm</htmllink><pdflink>../IMURG/E17697-09.pdf</pdflink><epublink>../IMURG/E17697-09.epub</epublink><mobilink>../IMURG/E17697-09.mobi</mobilink></document>
+<document docid="IMDCM">
+<title><![CDATA[Multimedia DICOM Developer's Guide]]></title>
+<summary>Presents reference and other information about using Oracle Database to store, manage, and retrieve DICOM content such as single-frame and multiframe images, waveforms, slices of 3-D volumes, video segments, and structured reports in an integrated fashion with other enterprise information. Oracle Multimedia DICOM extends Oracle Database reliability, availability, and data management to media objects in medical applications. Oracle Multimedia DICOM supports Digital Imaging and Communications in Medicine, the standard for medical images.</summary><htmllink>../IMDCM/toc.htm</htmllink><pdflink>../IMDCM/E17698-09.pdf</pdflink><epublink>../IMDCM/E17698-09.epub</epublink><mobilink>../IMDCM/E17698-09.mobi</mobilink></document>
+<document docid="AIVUG">
+<title><![CDATA[Multimedia Reference]]></title>
+<summary>Presents reference information about using Oracle Database to store, manage, and retrieve images, audio, video, DICOM format medical images and other objects, or other heterogeneous media data in an integrated fashion with other enterprise information. Oracle Multimedia extends Oracle Database reliability, availability, and data management to multimedia content in Internet, electronic commerce, medical, financial, and other media-rich applications.</summary><htmllink>../AIVUG/toc.htm</htmllink><pdflink>../AIVUG/E17696-09.pdf</pdflink><epublink>../AIVUG/E17696-09.epub</epublink><mobilink>../AIVUG/E17696-09.mobi</mobilink></document>
+<document docid="IMJVC">
+<title><![CDATA[Multimedia Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Oracle Multimedia objects to manage multimedia content within Oracle Database.</summary><htmllink>../IMJVC/toc.htm</htmllink></document>
+<document docid="IMDJC">
+<title><![CDATA[Multimedia DICOM Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using the Oracle Multimedia object designed to store Digital Imaging and Communications in Medicine (DICOM) data within Oracle Database.</summary><htmllink>../IMDJC/toc.htm</htmllink></document>
+<document docid="IMMTJ">
+<title><![CDATA[Multimedia Mid-Tier Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Oracle Multimedia to extract Digital Imaging and Communications in Medicine (DICOM) metadata outside of the database, either on the client or in the middle tier.</summary><htmllink>../IMMTJ/toc.htm</htmllink></document>
+<document docid="IMJSV">
+<title><![CDATA[Multimedia Servlets and JSP Java API Reference (Javadoc)]]></title>
+<summary>Presents reference information about writing Java applications using Java servlets and JavaServer Pages (JSP) to retrieve and upload multimedia data from and to Oracle Database.</summary><htmllink>../IMJSV/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[Other Content Types]]></title>
+<document docid="ADDCI">
+<title><![CDATA[Data Cartridge Developer's Guide]]></title>
+<summary>Describes how to implement custom indexing and query optimization services and how to package and use these as a server extension called a data cartridge.</summary><htmllink>../ADDCI/toc.htm</htmllink><pdflink>../ADDCI/E15882-06.pdf</pdflink><epublink>../ADDCI/E15882-06.epub</epublink><mobilink>../ADDCI/E15882-06.mobi</mobilink></document>
+<document docid="RDFRM">
+<title><![CDATA[Spatial and Graph RDF Semantic Graph Developer's Guide]]></title>
+<summary>Provides usage and reference information about Oracle Database support for semantic technologies, including storage, inference, and query capabilities for data and ontologies based on Resource Description Framework (RDF), RDF Schema (RDFS), and Web Ontology Language (OWL).</summary><htmllink>../RDFRM/toc.htm</htmllink><pdflink>../RDFRM/E51611-07.pdf</pdflink><epublink>../RDFRM/E51611-07.epub</epublink><mobilink>../RDFRM/E51611-07.mobi</mobilink></document>
+<document docid="ADOBJ">
+<title><![CDATA[Object-Relational Developer's Guide]]></title>
+<summary>Explains how to use the object-relational features of Oracle Database.</summary><htmllink>../ADOBJ/toc.htm</htmllink><pdflink>../ADOBJ/E53277-02.pdf</pdflink><epublink>../ADOBJ/E53277-02.epub</epublink><mobilink>../ADOBJ/E53277-02.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id15" template="dbtasks" filename="portal_15.htm" nav="yes">
+ <title>Information Integration</title>
+<description><![CDATA[To take full advantage of your data, you might need to move it, transform it, and combine data from multiple sources.]]></description>
+<column>
+<portlet><title><![CDATA[Advanced Queuing]]></title>
+<document docid="ADQUE">
+<title><![CDATA[Advanced Queuing User's Guide]]></title>
+<summary>Describes features of application development and integration using Oracle Database Advanced Queuing (AQ). This information applies to versions of the Oracle Database server that run on all platforms, unless otherwise specified.</summary><htmllink>../ADQUE/toc.htm</htmllink><pdflink>../ADQUE/E17945-14.pdf</pdflink><epublink>../ADQUE/E17945-14.epub</epublink><mobilink>../ADQUE/E17945-14.mobi</mobilink></document>
+<document docid="JAJMS">
+<title><![CDATA[Advanced Queuing Java API Reference (Javadoc)]]></title>
+<summary>Describes the Java APIs for application development and integration using the Oracle messaging system, Advanced Queuing.</summary><htmllink>../JAJMS/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[XStream]]></title>
+<document docid="XSTRM">
+<title><![CDATA[XStream Guide]]></title>
+<summary>Contains conceptual information about XStream. Also contains instructions for configuring and using XStream.</summary><htmllink>../XSTRM/toc.htm</htmllink><pdflink>../XSTRM/E53119-03.pdf</pdflink><epublink>../XSTRM/E53119-03.epub</epublink><mobilink>../XSTRM/E53119-03.mobi</mobilink></document>
+<document docid="STXJV">
+<title><![CDATA[XStream Java API Reference (Javadoc)]]></title>
+<summary>Describes the Java APIs for XStream.</summary><htmllink>../STXJV/toc.htm</htmllink></document>
+</portlet>
+<portlet><title><![CDATA[Oracle Streams]]></title>
+<document docid="STRMS">
+<title><![CDATA[Streams Concepts and Administration]]></title>
+<summary>Contains conceptual information about Oracle Streams and information about administering, monitoring, and troubleshooting an Oracle Streams environment. It also contains instructions for using Oracle Streams to record table changes. It also contains conceptual information about information provisioning and instructions for using Oracle Streams for information provisioning. It also includes instructions for using Oracle Streams for database upgrades and database maintenance operations.</summary><htmllink>../STRMS/toc.htm</htmllink><pdflink>../STRMS/E53116-02.pdf</pdflink><epublink>../STRMS/E53116-02.epub</epublink><mobilink>../STRMS/E53116-02.mobi</mobilink></document>
+<document docid="STREP">
+<title><![CDATA[Streams Replication Administrator's Guide]]></title>
+<summary>Contains instructions for configuring and managing an Oracle Streams replication environment. It also includes best practices for Oracle Streams replication environments and instructions for migrating from Advanced Replication to Oracle Streams replication.</summary><htmllink>../STREP/toc.htm</htmllink><pdflink>../STREP/E53118-02.pdf</pdflink><epublink>../STREP/E53118-02.epub</epublink><mobilink>../STREP/E53118-02.mobi</mobilink></document>
+<document docid="STREX">
+<title><![CDATA[Streams Extended Examples]]></title>
+<summary>Contains extended examples that configure various types of Oracle Streams environments.</summary><htmllink>../STREX/toc.htm</htmllink><pdflink>../STREX/E17912-10.pdf</pdflink><epublink>../STREX/E17912-10.epub</epublink><mobilink>../STREX/E17912-10.mobi</mobilink></document>
+<document docid="ARPLS">
+<title><![CDATA[PL/SQL Packages and Types Reference]]></title>
+<summary>Describes the PL/SQL packages provided with the Oracle database server that extend database functionality and provide PL/SQL access to SQL features.</summary><htmllink>../ARPLS/toc.htm</htmllink><pdflink>../ARPLS/E41829-07.pdf</pdflink><epublink>../ARPLS/E41829-07.epub</epublink><mobilink>../ARPLS/E41829-07.mobi</mobilink></document>
+<document docid="REFRN">
+<title><![CDATA[Reference]]></title>
+<summary>Provides reference information about database initialization parameters, static data dictionary views, and dynamic performance views that are part of Oracle Database.</summary><htmllink>../REFRN/toc.htm</htmllink><pdflink>../REFRN/E41527-27.pdf</pdflink><epublink>../REFRN/E41527-27.epub</epublink><mobilink>../REFRN/E41527-27.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Heterogeneous Connectivity]]></title>
+<document docid="APPCI">
+<title><![CDATA[Database Gateway for APPC Installation and Configuration Guide for IBM AIX on POWER Systems (64-Bit), Linux x86-64, Oracle Solaris on SPARC (64-Bit), and HP-UX Itanium]]></title>
+<summary>Provides Oracle applications with seamless access to IBM mainframe data and services through Remote Procedure Call (RPC) processing.</summary><htmllink>../APPCI/toc.htm</htmllink><pdflink>../APPCI/E17929-06.pdf</pdflink><epublink>../APPCI/E17929-06.epub</epublink><mobilink>../APPCI/E17929-06.mobi</mobilink></document>
+<document docid="APPCW">
+<title><![CDATA[Database Gateway for APPC Installation and Configuration Guide for Microsoft Windows]]></title>
+<summary>Provides Oracle applications with seamless access to IBM mainframe data and services through Remote Procedure Call (RPC) processing.</summary><htmllink>../APPCW/toc.htm</htmllink><pdflink>../APPCW/E17928-03.pdf</pdflink><epublink>../APPCW/E17928-03.epub</epublink><mobilink>../APPCW/E17928-03.mobi</mobilink></document>
+<document docid="WSMQG">
+<title><![CDATA[Database Gateway for WebSphere MQ Installation and User's Guide]]></title>
+<summary>Provides access to WebSphere MQ services. This gateway requires a system that is capable of running 64-bit applications.</summary><htmllink>../WSMQG/toc.htm</htmllink><pdflink>../WSMQG/E17930-06.pdf</pdflink><epublink>../WSMQG/E17930-06.epub</epublink><mobilink>../WSMQG/E17930-06.mobi</mobilink></document>
+<document docid="OTGIS">
+<title><![CDATA[Database Gateway Installation and Configuration Guide for IBM AIX on POWER Systems (64-Bit), Linux x86-64, Oracle Solaris on SPARC (64-Bit), Oracle Solaris on x86-64 (64-Bit), and HP-UX Itanium]]></title>
+<summary>Describes how to install and configure Oracle Database Gateway for Sybase, Informix, Teradata, SQL Server, ODBC, and DRDA on UNIX-based platforms.</summary><htmllink>../OTGIS/toc.htm</htmllink><pdflink>../OTGIS/E17927-11.pdf</pdflink><epublink>../OTGIS/E17927-11.epub</epublink><mobilink>../OTGIS/E17927-11.mobi</mobilink></document>
+<document docid="OTGIW">
+<title><![CDATA[Database Gateway Installation and Configuration Guide for Microsoft Windows]]></title>
+<summary>Describes how to install Oracle Database Gateway for Sybase, Informix, Teradata, SQL Server, ODBC, and DRDA on Microsoft Windows (32-bit) and Microsoft Windows (64-bit) platform.</summary><htmllink>../OTGIW/toc.htm</htmllink><pdflink>../OTGIW/E17926-05.pdf</pdflink><epublink>../OTGIW/E17926-05.epub</epublink><mobilink>../OTGIW/E17926-05.mobi</mobilink></document>
+<document docid="APPUG">
+<title><![CDATA[Gateway for APPC User's Guide]]></title>
+<summary>Provides Oracle applications seamless access to virtually any APPC-enabled system, including IBM mainframe data and services through Remote Procedure Call (RPC) processing.</summary><htmllink>../APPUG/toc.htm</htmllink><pdflink>../APPUG/E17931-04.pdf</pdflink><epublink>../APPUG/E17931-04.epub</epublink><mobilink>../APPUG/E17931-04.mobi</mobilink></document>
+<document docid="DRDAG">
+<title><![CDATA[Gateway for DRDA User's Guide]]></title>
+<summary>Provides users with transparent access to DB2.</summary><htmllink>../DRDAG/toc.htm</htmllink><pdflink>../DRDAG/E17937-05.pdf</pdflink><epublink>../DRDAG/E17937-05.epub</epublink><mobilink>../DRDAG/E17937-05.mobi</mobilink></document>
+<document docid="TGINU">
+<title><![CDATA[Gateway for Informix User's Guide]]></title>
+<summary>Describes the Oracle Database Gateway for Informix, which enables Oracle client applications to access Informix data through Structured Query Language (SQL).</summary><htmllink>../TGINU/toc.htm</htmllink><pdflink>../TGINU/E17933-04.pdf</pdflink><epublink>../TGINU/E17933-04.epub</epublink><mobilink>../TGINU/E17933-04.mobi</mobilink></document>
+<document docid="ODBCU">
+<title><![CDATA[Gateway for ODBC User's Guide]]></title>
+<summary>Describes the Oracle Database Gateway for ODBC, which enables Oracle client applications to access non-Oracle systems data through Structured Query Language (SQL).</summary><htmllink>../ODBCU/toc.htm</htmllink><pdflink>../ODBCU/E17936-05.pdf</pdflink><epublink>../ODBCU/E17936-05.epub</epublink><mobilink>../ODBCU/E17936-05.mobi</mobilink></document>
+<document docid="GMSWN">
+<title><![CDATA[Gateway for SQL Server User's Guide]]></title>
+<summary>Describes the Oracle Database Gateway for SQL Server, which enables Oracle client applications to access SQL Server data through Structured Query Language (SQL).</summary><htmllink>../GMSWN/toc.htm</htmllink><pdflink>../GMSWN/E17935-08.pdf</pdflink><epublink>../GMSWN/E17935-08.epub</epublink><mobilink>../GMSWN/E17935-08.mobi</mobilink></document>
+<document docid="TGSYU">
+<title><![CDATA[Gateway for Sybase User's Guide]]></title>
+<summary>Describes the Oracle Database Gateway for Sybase, which enables Oracle client applications to access Sybase data through Structured Query Language (SQL).</summary><htmllink>../TGSYU/toc.htm</htmllink><pdflink>../TGSYU/E17932-04.pdf</pdflink><epublink>../TGSYU/E17932-04.epub</epublink><mobilink>../TGSYU/E17932-04.mobi</mobilink></document>
+<document docid="TGTEU">
+<title><![CDATA[Gateway for Teradata User's Guide]]></title>
+<summary>Describes the Oracle Database Gateway for Teradata, which enables Oracle client applications to access Teradata data through Structured Query Language (SQL).</summary><htmllink>../TGTEU/toc.htm</htmllink><pdflink>../TGTEU/E17934-04.pdf</pdflink><epublink>../TGTEU/E17934-04.epub</epublink><mobilink>../TGTEU/E17934-04.mobi</mobilink></document>
+<document docid="HETER">
+<title><![CDATA[Heterogeneous Connectivity User's Guide]]></title>
+<summary>Describes Oracle's approach to information integration in a heterogeneous environment. Describes Oracle Database Gateways and is a user's guide for these Oracle products.</summary><htmllink>../HETER/toc.htm</htmllink><pdflink>../HETER/E17907-06.pdf</pdflink><epublink>../HETER/E17907-06.epub</epublink><mobilink>../HETER/E17907-06.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Advanced Replication]]></title>
+<document docid="REPLN">
+<title><![CDATA[Advanced Replication]]></title>
+<summary>Contains conceptual information about Oracle Database Advanced Replication. It also includes information about planning an Advanced Replication environment and information about troubleshooting Advanced Replication problems.</summary><htmllink>../REPLN/toc.htm</htmllink><pdflink>../REPLN/E53117-02.pdf</pdflink><epublink>../REPLN/E53117-02.epub</epublink><mobilink>../REPLN/E53117-02.mobi</mobilink></document>
+<document docid="REPMA">
+<title><![CDATA[Advanced Replication Management API Reference]]></title>
+<summary>Contains reference information about and step-by-step instructions for using the replication management API, which is a set of PL/SQL packages for setting up and managing an Advanced Replication environment. It also includes reference information about data dictionary views that are important for Advanced Replication and security considerations for an Advanced Replication environment.</summary><htmllink>../REPMA/toc.htm</htmllink><pdflink>../REPMA/E18896-09.pdf</pdflink><epublink>../REPMA/E18896-09.epub</epublink><mobilink>../REPMA/E18896-09.mobi</mobilink></document>
+</portlet>
+<portlet><title><![CDATA[Network Management]]></title>
+<document docid="NETAG">
+<title><![CDATA[Net Services Administrator's Guide]]></title>
+<summary>Explains how to plan, configure, and manage enterprise-wide connectivity with Oracle Net Services.</summary><htmllink>../NETAG/toc.htm</htmllink><pdflink>../NETAG/E17610-11.pdf</pdflink><epublink>../NETAG/E17610-11.epub</epublink><mobilink>../NETAG/E17610-11.mobi</mobilink></document>
+<document docid="NETRF">
+<title><![CDATA[Net Services Reference]]></title>
+<summary>Contains complete listing with descriptions of the control utility commands and configuration file parameters available for managing components of Oracle Net Services.</summary><htmllink>../NETRF/toc.htm</htmllink><pdflink>../NETRF/E17611-13.pdf</pdflink><epublink>../NETRF/E17611-13.epub</epublink><mobilink>../NETRF/E17611-13.mobi</mobilink></document>
+<document docid="ADMIN">
+<title><![CDATA[Administrator's Guide]]></title>
+<summary>Describes how to create, configure, and administer an Oracle database. Includes sections on Oracle Scheduler, Oracle Database Resource Manager, Oracle Restart, Pluggable Databases, and distributed computing.</summary><htmllink>../ADMIN/toc.htm</htmllink><pdflink>../ADMIN/E41484-14.pdf</pdflink><epublink>../ADMIN/E41484-14.epub</epublink><mobilink>../ADMIN/E41484-14.mobi</mobilink></document>
+</portlet>
+</column>
+</tab>
+<tab id="id25" template="dbtasks" filename="portal_25.htm" nav="yes">
+ <title>Security</title>
+<description><![CDATA[Security has never been more important as databases have become a target for gaining access to valuable information.  Oracle Database has a wealth of security features spanning preventive, detective, and administrative controls. ]]></description>
+<column>
+<portlet><title><![CDATA[Database Security]]></title>
+<document docid="TDPSG">
+<title><![CDATA[2 Day + Security Guide]]></title>
+<summary>Provides an introduction to securing an Oracle database using the default security features, such as how to secure the database installation and configuration or manage encryption. It includes beginning level tutorials for creating secure application roles, Oracle Database Vault policies, Oracle Virtual Private Database policies, Oracle Data Redaction policies, Oracle Label Security policies, and unified auditing policies.</summary><htmllink>../TDPSG/toc.htm</htmllink><pdflink>../TDPSG/E17609-26.pdf</pdflink><epublink>../TDPSG/E17609-26.epub</epublink><mobilink>../TDPSG/E17609-26.mobi</mobilink></document>
+<document docid="DBSEG">
+<title><![CDATA[Security Guide]]></title>
+<summary>Explains how to configure an Oracle database to use the default security features.</summary><htmllink>../DBSEG/toc.htm</htmllink><pdflink>../DBSEG/E48135-19.pdf</pdflink><epublink>../DBSEG/E48135-19.epub</epublink><mobilink>../DBSEG/E48135-19.mobi</mobilink></document>
+<document docid="ASOAG">
+<title><![CDATA[Advanced Security Guide]]></title>
+<summary>Explains how to configure and use Oracle Database Advanced Security Transparent Data Encryption (TDE) and Oracle Data Redaction.</summary><htmllink>../ASOAG/toc.htm</htmllink><pdflink>../ASOAG/E50333-18.pdf</pdflink><epublink>../ASOAG/E50333-18.epub</epublink><mobilink>../ASOAG/E50333-18.mobi</mobilink></document>
+<document docid="DVADM">
+<title><![CDATA[Database Vault Administrator's Guide]]></title>
+<summary>Explains how to configure an Oracle database to use Oracle Database Vault, which enables users to restrict and monitor administrative user access.</summary><htmllink>../DVADM/toc.htm</htmllink><pdflink>../DVADM/E49109-12.pdf</pdflink><epublink>../DVADM/E49109-12.epub</epublink><mobilink>../DVADM/E49109-12.mobi</mobilink></document>
+<document docid="OLSAG">
+<title><![CDATA[Label Security Administrator's Guide]]></title>
+<summary>Explains how to configure and use Oracle Label Security, which provides row-level access control based on the virtual private database technology of Oracle Database Enterprise Edition.</summary><htmllink>../OLSAG/toc.htm</htmllink><pdflink>../OLSAG/E48437-08.pdf</pdflink><epublink>../OLSAG/E48437-08.epub</epublink><mobilink>../OLSAG/E48437-08.mobi</mobilink></document>
+<document docid="RASAD">
+<title><![CDATA[Real Application Security Administration]]></title>
+<summary>Provides a graphical user interface (RASADM) that security administrators and developers using Real Application Security can use to develop end-to-end security for mid-tier applications. The RASADM application allows users to develop declarative data security policies to enforce access control requirements at the database layer to protect data at both the row and column levels. This approach allows developers to control application user access to data in Oracle database throughout all components of an Oracle enterprise in a common manner.</summary><htmllink>../RASAD/toc.htm</htmllink><pdflink>../RASAD/E61899-07.pdf</pdflink><epublink>../RASAD/E61899-07.epub</epublink><mobilink>../RASAD/E61899-07.mobi</mobilink></document>
+<document docid="DBFSG">
+<title><![CDATA[Real Application Security Administrator's and Developer's Guide]]></title>
+<summary>Describes how to implement Real Application Security on the database. Real Application Security is a new feature in Oracle Database 12c. Real Application Security is a database authorization model that enables end-to-end security for multitier applications. It provides an integrated solution to securing the database and application user communities. Also, it advances the security architecture of Oracle Database to meet existing and emerging demands of applications developed for the Internet.</summary><htmllink>../DBFSG/toc.htm</htmllink><pdflink>../DBFSG/E48189-13.pdf</pdflink><epublink>../DBFSG/E48189-13.epub</epublink><mobilink>../DBFSG/E48189-13.mobi</mobilink></document>
+<document docid="JADFS">
+<title><![CDATA[Real Application Security Java API Reference (Javadoc)]]></title>
+<summary>Documents two Java packages: - oracle.security.xs contains the APIs for using lightweight user sessions - oracle.security.xs.admin contains the APIs for administering lightweight user session</summary><htmllink>../JADFS/toc.htm</htmllink></document>
+<document docid="JADSS">
+<title><![CDATA[Real Application Security Session Service Java API Reference (Javadoc)]]></title>
+<summary>Documents one Java package: - oracle.security.xs.ee.session contains the APIs for using an application session service.</summary><htmllink>../JADSS/toc.htm</htmllink></document>
+<document docid="DBIMI">
+<title><![CDATA[Enterprise User Security Administrator's Guide]]></title>
+<summary>Explains how to configure and use enterprise users, which are users defined in a directory. The guide also covers administrative tasks related to enterprise user security.</summary><htmllink>../DBIMI/toc.htm</htmllink><pdflink>../DBIMI/E17731-18.pdf</pdflink><epublink>../DBIMI/E17731-18.epub</epublink><mobilink>../DBIMI/E17731-18.mobi</mobilink></document>
+<document docid="DMKSB">
+<title><![CDATA[Data Masking and Subsetting Guide]]></title>
+<summary>Provides information about how to manage data using the Oracle Data Masking and Subsetting features of the Enterprise Manager for Oracle Database Plug-in.</summary><htmllink>../DMKSB/toc.htm</htmllink><pdflink>../DMKSB/E63408-05.pdf</pdflink></document>
+</portlet>
+<portlet><title><![CDATA[Related Product Information]]></title>
+<document docid="">
+<title><![CDATA[Oracle Audit Vault and Database Firewall Product Information]]></title>
+</document>
+</portlet>
+</column>
+</tab>
+<tab id="idb" template="dbbooks" filename="portal_booklist.htm" nav="yes" generate="no">
+ <title>Books</title>
+</tab>
+</interface>

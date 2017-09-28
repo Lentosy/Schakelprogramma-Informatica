@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Description of image file</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<pre>
+<b>ALTER INDEX</b> [ schema. ]index
+  { { deallocate_unused_clause
+    | allocate_extent_clause
+    | shrink_clause
+    | parallel_clause
+    | physical_attributes_clause
+    | logging_clause
+    | partial_index_clause
+    } ...
+  | rebuild_clause
+  | <b>PARAMETERS</b> ( 'ODCI_parameters' )
+               )
+  | <b>COMPILE</b>
+  | { <b>ENABLE</b> | <b>DISABLE</b> }
+  | <b>UNUSABLE</b> [ <b>ONLINE</b> ]
+  | <b>VISIBLE</b> | <b>INVISIBLE</b>
+  | <b>RENAME</b> <b>TO</b> new_name
+  | <b>COALESCE</b> [ <b>CLEANUP</b> ] [ parallel_clause ]
+  | { <b>MONITORING</b> | <b>NOMONITORING</b> } <b>USAGE</b>
+  | <b>UPDATE BLOCK REFERENCES</b>
+  | alter_index_partitioning
+  }
+  ;
+</pre>
+</body>
+</html>

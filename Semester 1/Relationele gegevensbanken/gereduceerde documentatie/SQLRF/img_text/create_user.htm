@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Description of image file</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<pre>
+<b>CREATE USER</b> user
+   <b>IDENTIFIED</b> { <b>BY</b> password
+              | <b>EXTERNALLY</b> [ <b>AS</b> 'certificate_DN'  |  <b>AS</b> 'kerberos_principal_name' ]
+              | <b>GLOBALLY</b> [ <b>AS</b> '[ directory_DN ]' ]
+              }
+   [ <b>DEFAULT TABLESPACE</b> tablespace
+   | <b>TEMPORARY TABLESPACE</b>
+        { tablespace | tablespace_group_name }
+   | { <b>QUOTA</b> { size_clause | <b>UNLIMITED</b> } <b>ON</b> tablespace }...
+   | <b>PROFILE</b> profile
+   | <b>PASSWORD EXPIRE</b>
+   | <b>ACCOUNT</b> { <b>LOCK</b> | <b>UNLOCK</b> }
+     [ <b>DEFAULT TABLESPACE</b> tablespace
+     | <b>TEMPORARY TABLESPACE</b>
+          { tablespace | tablespace_group_name }
+     | { <b>QUOTA</b> { size_clause | <b>UNLIMITED</b> } <b>ON</b> tablespace }...
+     | <b>PROFILE</b> profile
+     | <b>PASSWORD EXPIRE</b>
+     | <b>ACCOUNT</b> { <b>LOCK</b> | <b>UNLOCK</b> }
+     | <b>ENABLE EDITIONS</b>
+     | <b>CONTAINER</b> = { <b>CURRENT</b> | <b>ALL</b> }
+     ]...
+  ] ;
+</pre>
+</body>
+</html>
