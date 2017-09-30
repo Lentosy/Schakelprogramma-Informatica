@@ -9,15 +9,16 @@ double msin(double r);
 
 /* Oefening op reeksontwikkeling => efficient zijn */
 int main(void){
-	int min = -3200;
-	int max = 3199;
+	
+	printf("Enter your angle in radians: ");
+	double radians;
+	if(scanf("%lf", &radians) == 0){
+		printf("Error: not a number\n.");
+	}
 
-	srand(time(NULL));
-	int r = (int)rand() %(max - min + 1) + min;
-	double radians = r / 1000.0;
 	printf("sin %f\n", radians);
 
-	printf("%.3f ==== %.3f\n", msin(radians), sin(radians));
+	printf("msin = %.3f\n sin = %.3f\n", msin(radians), sin(radians));
 }
 
 
@@ -36,7 +37,7 @@ double msin(double radians){
 	double prev_term = 1; // The previous result, will be used to compare new result
 	double result = 0; // The end-result
 	int i = 0;
-	while(result != prev_term){
+	while(fabs(prev_term - result) > 0.000000001){
 
 		prev_term = result;
 		numerator = i % 2 == 0 ? 1 : -1;

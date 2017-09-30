@@ -6,6 +6,7 @@
 \usepackage{color}
 \usepackage{amsmath} % Matrices
 \usepackage{amsfonts}
+\usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{sectsty}
@@ -42,7 +43,7 @@
 
 \part{Theorie}
 \chapter{Complexe Getallen}
-\section{Inleiding}
+\important{Inleiding}
 \begin{itemize}
  \item $\mathbb{N}$ = Natuurlijke getallen: \{0, 1, 2, 3, ...\}
  \item $\mathbb{Z}$ = Gehele getallen: \{..., -2, -1, 0, 1, 2, ...\}
@@ -50,75 +51,47 @@
  \item $\mathbb{R}$ = Reële getallen: \{ $\sqrt{2}$ , $\pi$ \}
  \item $\mathbb{C}$ = Complexe getallen: $j^2 = -1$, $j = $ imaginaire eenheid
 \end{itemize}
-
-  $z = \mathimportant{a}{orange} + \mathimportant{b}{orange}j$ met $z \in \mathbb{C}$, $a \in \mathbb{R}, b \in \mathbb{R}$ en $j = \sqrt{-1}$
-  \newline
-  $Re(z) = a$
-  \newline
-  $Im(z) = b$
-
-\section{Eigenschappen}
-$\mathimportant{z_1}{orange} = a + bj$
-\newline
-$\mathimportant{z_2}{red} = c + dj$
+\important{Definitie}
+$z = \mathimportant{a}{orange} + \mathimportant{b}{orange}j$ met $z \in \mathbb{C}$, $a \in \mathbb{R}, b \in \mathbb{R}$ en $j = \sqrt{-1}$ met
+\begin{itemize}
+ \item $Re(z) = a$
+ \item $Im(z) = b$
+\end{itemize}
+\important{3 Vormen}
+\begin{itemize}
+ \item Cartesische vorm: $z = a + bj$
+ \item Goniometrische vorm: $z = r[cos(\theta) + jsin(\theta)]$
+ \item Exponentiële vorm: $re^{j\theta}$
+\end{itemize}
+\important{Vlak van Gauss}
+\begin{itemize}[label={}]
+ \item \includegraphics[width=\linewidth]{goniometrischevorm}
+\end{itemize}
+\important{a en b}
+\begin{itemize}
+ \item $a = rcos(\theta)$
+ \item $b = rsin(\theta)$
+\end{itemize}
+\important{r en $\theta$}
+\begin{itemize}
+ \item $r \geq 0$
+ \item $r = \sqrt{a^2 + b^2}$
  
-\begin{itemize}
- \item Som: $\mathimportant{z_1}{orange} + \mathimportant{z_2}{red}
-\newline
-= \mathimportant{a + bj}{orange} + \mathimportant{c + dj}{red} 
-\newline
-= \mathimportant{a}{orange} + \mathimportant{c}{red} + (\mathimportant{b}{orange} + \mathimportant{d}{red})j$ 
-  \item Product: $\mathimportant{z_1}{orange} \times \mathimportant{z_2}{red}$ 
-\newline
-  = $\mathimportant{(a + bj)}{orange} \times \mathimportant{(c + dj)}{red}$
-\newline
-  = $\mathimportant{a}{orange}\mathimportant{c}{red} + \mathimportant{a}{orange}\mathimportant{d}{red}j + \mathimportant{b}{orange}\mathimportant{c}{red}j + \mathimportant{b}{orange}\mathimportant{d}{red}j^2$
-\newline
-  = $\mathimportant{a}{orange}\mathimportant{c}{red} - \mathimportant{b}{orange}\mathimportant{d}{red} + (\mathimportant{a}{orange}\mathimportant{d}{red} + \mathimportant{b}{orange}\mathimportant{c}{red})j$
-  \item Complex toegevoegde $\rightarrow$  $\overline{z} = a - bj$
+ \item $\theta \in [0, 2\pi]$
+ \item $\theta \in ]-\pi, \pi[$
+ \item $tg(\theta) = \frac{b}{a} (+ \pi)$
 \end{itemize}
-
-\subsection{Oefening}
-$z_1 = 2 + 3j$
-\newline
-$z_2 = 1 + 2j$
-
+\important{Complex toegevoegde}
 \begin{itemize}
- \item Som: $z_1 + z_2 
- \newline
- = (2 + 3j) + (1 + 2j) 
- \newline
- = 2 + 1 + 3j + 2j 
- \newline
- = \mathimportant{3 + 5j}{\answercolor}$ 
- \item Product: $z_1 * z_2 
- \newline
- = (2 + 3j) \times (1 + 2j) 
-  \newline
- = 2 * 1 + 2 * 2j + 3j * 1 + 3j * 2j 
-  \newline
- = 2 + 4j + 3j + 6j^2 
-  \newline
- = 2 + 7j -6
-  \newline
- = \mathimportant{-4 + 7j}{\answercolor}$
- \item Complex toegevoegde: \newline
- $\overline{z_1} = 2 - 3j$
- \newline
- $\overline{z_2} = 1 - 2j$
+ \item Cartesische vorm: $\overline{z} = a - bj$ 
+ \item Exponentiële vorm: $\overline{z} = re^{-j\theta}$
 \end{itemize}
-
-\section{Voorstellingen van een complex getal}
-\begin{enumerate}
- \item {Cartesische vorm [$z = a + bj$]}
- \item {Goniometrische vorm [$z = r(cos\theta + jsin\theta$]}
- \item {Exponentiële vorm [$z = re^{j\theta}$]}
-\end{enumerate}
-\subsection{Cartesische vorm}
-$z = a + bj$ 
-\newline
-Complex vlak: \includegraphics{cartesischevorm}
-
-
-
+\important{Bewerkingen}
+\begin{itemize}
+ \item $z_1 + z_2$
+ \item $z_1 . z_2 = (r_1 . r_2)e^{j(\theta_1 + \theta_2)}$
+ \item $\frac{z_1}{z_2} = \frac{r_1}{r_2}e^{j(\theta_1 - \theta_2)}$
+ \item $z^{n} = r^{n}e^{jn\theta}$
+ \item $\sqrt[n]{z} = r^{\frac{1}{n}}e^{j\frac{1}{n}}(\theta + 2k\pi)$
+\end{itemize}
 \end{document}
