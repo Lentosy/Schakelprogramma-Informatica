@@ -60,7 +60,7 @@ Er zijn 4 eigenschappen nodig om een geldige groepstabel te hebben.
 	\item {\textbf{Inwendigheid}: x $\oplus$ y = element van G}
 	\item {\textbf{Associativiteit}: (a $\oplus$ b) $\oplus$ c = a $\oplus$ (b $\oplus$ c)}
 	\item {\textbf{Neutraal Element (\important{n})}: x $\oplus$ n = x}
-	\item {\textbf{Invers element}: x $\oplus$ $\overline{x}$ = {\important{n}}
+	\item {\textbf{Invers element}: x $\oplus$ $\overline{x}$ = {\important{n}}}
 \end{itemize}
 Een extra, maar niet verplichte eigenschap is \textbf{Commutativiteit}. x $\oplus$ y = y $\oplus$ x.
 
@@ -115,6 +115,13 @@ Je kan ook elementen combineren om een generator te vormen. Zo is $<2, 3>$ ook e
 Tot nu toe hebben we enkel additieve groeptabellen gezien. In tabel \ref{table:groepstabel} kan je zien dat de groep Modulo 12 
 voor de bewerking $\oplus$ een discrete groep is
 
+Multiplicatie is geen groepstabel tenzij we de 0 uitsluiten en als de groep $n$ aantal element bevat 
+waarbij $n$ een priemgetal is. Dit wordt duidelijk gemaakt in het onderdeel Priemvelden
+
+Een cyclische groep is een groep dat slechts 1 element heeft als generator. 
+$i = (29w^i) \% 36$
+\newline
+29 = invers element via algemeen algoritme van euclides
 
 \section{Priemvelden}
 Priemvelden is een eerste methode om een cyclische groep te vinden van een bepaalde orde.
@@ -151,8 +158,8 @@ kunnen met behulp van één van twee methodes geconstrueerd worden.
 	      	      
 	      \begin{tabular}{l l l}
 	      	99  &                            &     \\
-	      	-84 & 1 (1 keer in 99 = 1 * 84)  & 84  \\
-	      	15  & 5  (5 keer in 84 = 5 * 15) & -75 \\
+	      	-84 & \important{1} (84 kan \important{1} keer in 99 99 - 84 = 15)  & 84  \\
+	      	15  & \important{5} (15 kan \important{5} keer in 84) & -75 \\
 	      	-9  & 1  (1 keer in 15 = 1 * 9)  & 9   \\
 	      	6   & 1   (1 keer in 9 = 1 * 6)  & -6  \\
 	      	-6  & 2                          & 3   \\
@@ -163,8 +170,56 @@ kunnen met behulp van één van twee methodes geconstrueerd worden.
 \end{itemize}
 
 
-# pi = 3 + 1/(7 + 1/(15))...
+ pi = 3 + 1/(7 + 1/(15))...
+ 
+\subsection{Multiplicatieve functies}
+\subsubsection{Euler $\phi$} 
+\important{Definitie}: Hoeveel getallen kleiner dan x zijn priemgetallen?
+\newline
+Voorbeeld: 90 = $2 * 3^2 * 5$
+\newline $\phi(90) = 90 * (1/2) * (2/3) * (4/5) = $ \important{24}
 
+\subsection{Möbius $\mu$}
+Heeft 3 uitkomsten: -1, 0 of 1.
+\begin{itemize}
+ \item \important{0}: Minstens één van de priemfactoren komt meer dan 1 keer voor.
+ \item \important{-1}: Oneven aantal priemfactoren
+ \item \important{1}: Even aantal priemfactoren
+ \item $\mu(35) = 1 $, want $ 5 * 7 = even aantal priemfactoren$
+\end{itemize}
+ 
+\important{Möbius Inversie}:
+\begin{itemize}
+ \item Wordt gebruikt om $\phi(x)$ te berekenen.
+ \item $\phi(x)$ = $\mu(1) * (90/1)$ 
+  \newline +  $\mu(2) * (90/2)$
+  \newline +  $\mu(3) * (90/3)$
+  \newline +  $\mu(5) * (90/5)$
+  \newline +  $\mu(10) * (90/10)$
+  \newline +  $\mu(15) * (90/15)$
+  \newline +  $\mu(30) * (90/30)$
+\end{itemize}
+
+\section{Primitieve wortels}
+Interacties met zichzelf om uiteindelijk 1 uit te komen. 
+Bij de primitieve wortel moet je de $orde$ aantal keer interageren
+met zichzelf om 1 uit te komen
+\newline
+stel $p = 601$
+600 = aantal elementen 
+600 = $2^3 * 3 * 5^2$
+\newline
+rooster opstellen \todo{rooster}
+$8 * 3 * 25 = 600$ is het enige dat als uitkomst 1 mag hebben,
+zonder computer kan je best enkel de laatste aansluitingen controleren
+
+\section{Discrete logaritmen}
+Bepaal index $i$ van het getal $x$ van verzameling $p$ met primitieve wortel $w$
+\newline
+VB: $p = 401, w=3, i=13$
+\subsection{Naïve methode}
+
+\subsection{Baby-step Giant-step}
 \chapter{Groepen}
 \label{ch:groepen}
 
@@ -257,6 +312,27 @@ kunnen met behulp van één van twee methodes geconstrueerd worden.
 	            \begin{enumerate}
 	             \item $\sqrt[3]{2} = $
 	            \end{enumerate}
+
+	      \item Bereken Euler $\phi$(21560). Doe dit zowel via priemontbinding, als via Möbius inversie.
+	      \begin{enumerate}
+	       \item \important{Factorisatie}: $21560 = 2^3 * 5 * 7^2 * 11$
+	       \item \important{Priemontbinding}: $\phi(21560) = 21560 * (1/2) * (4/5) * (6/7) * (10/11) = $ \important{6720}
+	       \item \important{Möbius Inversie}: $\phi(21560) = [1 * (25160/1)] 
+	       + [-1 * (25160/2)] 
+	       + [-1 * (25160/5)] 
+	       + [-1 * (25160/7)] 
+	       + [ 1 * (25160/10)] 
+	       + [-1 * (25160/11)] 
+	       + [ 1 * (25160/14)] 
+	       + [ 1 * (25160/22)] 
+	       + [ 1 * (25160/35)]
+	       + [ 1 * (25160/55)]
+	       + [-1 * (25160/70)] 
+	       + [ 1 * (25160/77)] 
+	       + [-1 * (25160/154)] 
+	       + [-1 * (25160/385)] 
+	       + [ 1 * (25160/770)] = $ \important{6720}
+	      \end{enumerate}
 
 \end{enumerate}
 

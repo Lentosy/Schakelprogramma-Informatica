@@ -11,6 +11,7 @@
 \usepackage{lipsum}
 
 
+
 \partfont{\color{brown}}
 \chapterfont{\color{teal}}
 \sectionfont{\color{cyan}}
@@ -33,6 +34,115 @@
 \maketitle
 \tableofcontents
 
+\chapter{Foutentheorie}
+\section{Vorm}
+\important{Gemeten waarde} $\pm$ \important{absolute fout(AF)}
+\begin{itemize}
+ \item 6,458 $\pm$ 0,027 mV
+ \item 8,67  $\pm$ 0.05 . 10$^3$m
+\end{itemize}
+\important{Relative Fout(RF)} = $\frac{AF}{Gemeten\;waarde}$
+\begin{itemize}
+ \item RF = $\frac{0,027}{6,458} = 0.04 = 0.4\%$
+ \item RF = $\frac{0,05\;.\;10^3}{8,67} = 5.77 = 577\%$
+\end{itemize}
+\section{Soorten}
+\begin{enumerate}
+ \item Fout op meting
+ \item Statistische fout
+ \item Fout op berekening
+\end{enumerate}
+
+\subsection{Fout op meting}
+\begin{itemize}
+ \item Is afhankelijk van de nauwkeurigheid van het meettoestel
+ \item Op een meetlat: $\pm 1mm$
+ \item Op een chronometer: $\pm 0.01s$
+\end{itemize}
+Meten van de lengte van een tafel met een meetlat: $5 \pm 1.10^{-3} m$ 
+
+\subsection{Statistische fout}
+
+Dezelfde lengten van een tafel 5 keer meten met een meetlat = 
+Het gemiddelde nemen van de gemeten waarden en het gemiddelde van de absolute
+fouten
+
+
+\subsection{Fout op berekening}
+Voor de voorbeelden worden volgende X en Y gebruikt: \newline
+$X = 16,5 \pm 0.5 $
+\newline
+$Y = 237,1 \pm 0.9 $
+\begin{itemize}
+ \item \important{Som/Verschil}: $AF(R) = \sqrt{AF(X)^2 + AF(Y)^2}$
+ \begin{enumerate}
+  \item $X + Y = ?$
+  \item $AF(R) = \sqrt{0,5^2 + 0,9^2}$
+  \item $AF(R) = \sqrt{1,06}$
+  \item $AF(R) = 1,03$
+  \item $16,5 + 237,1 \pm 1,03$
+  \item \important{$253,6 \pm 1,0$}
+ \end{enumerate}
+ \begin{enumerate}
+  \item $X - Y = ?$
+  \item $AF(R)_{X-Y} = AF(R)_{X+Y}$ 
+  \item \important{$220,6 \pm 1,0$}
+ \end{enumerate}
+ \item \important{Product/Deling}: $RF(R) = \sqrt{RF(X)^2 + (RF(Y)^2}$
+  \begin{enumerate}
+   \item $X * Y = ?$
+   \item $RF(R) = \sqrt{(\frac{0,5}{16,5})^2 + (\frac{0,9}{237,1})^2}$
+   \item $RF(R) = 0,03$
+   \item $16,5 * 237,1 = 3912,15$
+   \item $AF(R) = 3912,15 * RF(R)$
+   \item $AF(R) = 3912,15 * 0,03$
+   \item $AF(R) = 117,38$
+   \item \important{$3912,2 \pm 117,4$}
+  \end{enumerate}
+  \begin{enumerate}
+   \item $\frac{X}{Y} = ?$
+   \item $RF(R)_{\frac{X}{Y}} = RF(R)_{X * Y}$
+   \item $RF(R) = 0,03$
+   \item $\frac{16,5}{237,1} = 0,0696$
+   \item $AF(R) = 0,0696 * 0.03$
+   \item $AF(R) = 0,0021$
+   \item \important{$0,0696 \pm 0,0021$}
+  \end{enumerate}
+  \item {\important{Macht/Wortel}: $RF(R) = nRF(X)$}
+  \begin{enumerate}
+   \item $x^3 = ?$
+   \item $RF(R) = 3RF(X)$
+   \item $RF(R) = 0,09$
+   \item $(16,5)^3 \pm 0,09$
+   \item \important{$4492,13 \pm 0,09$}
+  \end{enumerate}
+  \begin{enumerate}
+   \item $\sqrt[3]{x} = ?$ 
+   \item $x^{\frac{1}{3}}$
+   \item $RF(R) = \frac{1}{3}RF(X)$
+   \item $RF(R)  = 0,1$
+   \item $\sqrt[3]{16,5} \pm 0,1$
+   \item \important{$2,5 \pm 0,1$}
+  \end{enumerate}
+  
+  \item{\important{Functies}}
+  \begin{enumerate}
+   \item $tg(45\;45' \pm 3') = ?$
+   \item $3' = \frac{3}{60} graden = \frac{\pi}{3600}rad$
+   \item $AF(tg(X)) = \frac{1}{cos^2x}.AF(X)$
+   \item $AF(tg(X)) = \frac{1}{cos^2x}*\frac{\pi}{3600}$
+   \item $AF(tg(X)) = 0,0018$
+   \item $tg(45\;45') \pm 0,0018$
+   \item \important{$1,0265 \pm 0,0018$}
+  \end{enumerate}
+
+
+
+\end{itemize}
+
+
+
+
 \part{Mechanica}
 \chapter{Beweging in 2 en 3 dimensies}
 \section{Begrippen}
@@ -45,7 +155,10 @@
 
 \section{Formules}
 \begin{itemize}
-  \item {\important{Snelheid}: }
+  \item {\important{Snelheid}: $v = \frac{s}{t}$}
+  \item {\important{Versnelling}: $a = \frac{v}{t}$}
+  \item {\important{Projectile motion}: $y = x.tan(\theta_0) - \frac{g}{2v^{2}_0cos^2\theta_0}*x^2$}
+  \item {\important{Uniforme circulaire beweging}: $a = \frac{v^2}{r}$}
 \end{itemize}
 
 \section{Conceptvraag: Helikopter}
@@ -77,8 +190,39 @@
 
 
 \chapter{Kracht en beweging}
+\section{Begrippen}
+\begin{itemize}
+\item {\important{Eerste wet van Newton}: Een voorwerp in uniforme beweging blijft in uniforme beweging. Een voorwerp in 
+rust blijft in rust.}
+\item {\important{Tweede wet van Newton}: De verandering in snelheid is gelijk aan de netto kracht die uitgeoefend wordt op het voorwerp}
+\item {\important{Derde wet van Newton}: Als voorwerp A een kracht uitoefend op voorwerp B, dan zal B een tegengestelde kracht uitoefenen op A}
 
+\end{itemize}
+
+\section{Formules}
+\begin{itemize}
+  \item {\important{Tweede wet van Newton}: 
+  $\underline{\overrightarrow{F}_{net} = m\overrightarrow{a}}$ met $\overrightarrow{F}_{net}$ de som van de vectoren van alle krachten die worden uitgeoefend 
+  op het voorwerp, en $ma$ het product van de massa van het voorwerp en zijn versnelling.}
+  \item {\important{Gewicht}: $\underline{\overrightarrow{w} = m\overrightarrow{g}}$ met $m$ de massa van het voorwerp en $g$ de gravitatieconstante}
+  \item {\important{Wet van Hooke (veren)}: $\underline{F_{s} = -kx}$ met $k$ de krachtconstante van de veer en $x$ de afstand}
+  \item {\important{Lineair momentum}: 
+  $\underline{\overrightarrow{p} = m\overrightarrow{v}}$ 
+  met $\overrightarrow{p}$ de impuls, $m$ de massa en $\overrightarrow{v}$ de snelheid.
+  }
+\end{itemize}
 \chapter{Toepassen wetten van Newton}
+\section{Begrippen}
+\begin{itemize}
+\item {\important{Wrijving}:}
+\end{itemize}
+
+\section{Formules}
+\begin{itemize}
+
+\item formule
+\end{itemize}
+
 
 \chapter{Arbeid, energie en vermogen}
 

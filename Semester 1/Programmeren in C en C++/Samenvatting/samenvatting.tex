@@ -26,15 +26,33 @@
 \color{red}\textunderscore{\textit{TODO: #1}}
 }
 
+\newcommand{\important}[1] {\textbf{\color{orange}#1}}
+
 % DOCUMENT
 \begin{document}
 \maketitle
 \tableofcontents
 
-\part{\todo{part}}
-\chapter{\todo{chapter}}
-\section{\todo{section}}
-\lipsum
+\part{Theorie}
+\chapter{Functies}
+\section{rand()}
+Een getal tussen een minimum en maximum 
+\newline
+(int)(rand() * (max - min + 1) + min
+
+
+\section{printf()}
+Conversiekarakters: \%[-][w][.p]c
+\begin{itemize}
+ \item \important{-}: Links aligneren, default rechts
+ \item \important{w}: minimum breedte
+ \item \important{.p}: Aantal kommagetallen OF karakters
+ \item \important{c} conversiekarakter
+
+\end{itemize}
+
+\section{scanf()}
+\%c, &i
 
 
 \end{document}
