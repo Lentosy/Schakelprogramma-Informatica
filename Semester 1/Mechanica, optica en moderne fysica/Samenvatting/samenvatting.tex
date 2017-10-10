@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{sectsty}
 \usepackage{lipsum}
+\usepackage{enumitem}
 
 
 
@@ -35,6 +36,18 @@
 \tableofcontents
 
 \chapter{Foutentheorie}
+\section{Testvragen}
+De oefeningen op Curios zijn analoog aan de test
+\begin{enumerate}
+ \item Foute notatie omvormen naar juiste notatie.
+ \item Complete foute notatie. De eenheid en macht van 10 moet helemaal achteraan staan. De meetfout 
+ moet 1 of 2 beduidende cijfers bedragen en het waardegetal moet even nauwkeurig zijn als de meetfout.
+ \item Meetfoutberekening (Combinatie van som, verschil, product, deling, macht, sin en cos).
+ \item Fout op gemiddelde. Je moet de standaarddeviatie kunnen uitrekenen van gegeven data.
+ \item Grafiekanalyse. Neem de formule, vorm deze om naar $y = ax + b$. Kijk in uw formule wat
+ overeenkomt met a en b.
+\end{enumerate}
+
 \section{Vorm}
 \important{Gemeten waarde} $\pm$ \important{absolute fout(AF)}
 \begin{itemize}
@@ -67,6 +80,27 @@ Dezelfde lengten van een tafel 5 keer meten met een meetlat =
 Het gemiddelde nemen van de gemeten waarden en het gemiddelde van de absolute
 fouten
 
+Voorbeeld: We meten de slingerperiode met een chronometer tot op 0.01s nauwkeurig een 
+aantal keer. De resultaten zijn 3.29s; 3.12s; 3.45s; 3.18s; 3.21s; 3.26s.
+Wat is de gemiddelde periode?
+\begin{enumerate}
+ \item Gemiddelde = 3,25
+ \item standaarddeviatie = 0,114
+ \item Fout op gemiddelde = $\frac{stdev}{\sqrt{6}}$ = 0,05
+ \item Resultaat = $3,25 \pm 0,05 s$
+\end{enumerate}
+
+
+\subsubsection{Grafiekanalyse}
+y = 0,1134x - 0,0575
+\newline
+delta l = (g/k)x + 0
+\newline
+(g/k) = 0,1134 $\rightarrow$ k = (g/0,1134)
+\newline
+0 = -0,0575 $\pm$ 0,19
+\newline
+0 = -0,06 $\pm$ 0,19
 
 \subsection{Fout op berekening}
 Voor de voorbeelden worden volgende X en Y gebruikt: \newline
@@ -186,6 +220,24 @@ $Y = 237,1 \pm 0.9 $
       \item {Bij (E) vertraagt de snelheid.}
     \end{enumerate}}
 \end{itemize}
+
+\section{Oefeningen}
+\begin{itemize}[label={}]
+ \item 3.48: Een bioloog kijkt door een microscoop en ziet een bacterie op positie 
+ $r_1 = 2,2\overrightarrow{i} + 3,7\overrightarrow{j} - 1,2\overrightarrow{k} \mu m$. Na
+ 6,2 seconden bevindt de bacterie zich op positie 
+ $r_2 = 4,6\overrightarrow{i} + 1,9\overrightarrow{k} \mu m$
+ \begin{enumerate}[label={}]
+  \item $\overrightarrow{v}_{gem} = \frac{(4,4 - 2,2)\overrightarrow{i} + (0 - 3,7)\overrightarrow{j}
+  + (1,9 - (-1,2))\overrightarrow{k}}{6,2}$ = $0,39\overrightarrow{i} - 0,60\overrightarrow{j} + 0,50\overrightarrow{k}$ 
+  \item $V_{gem} = ?$
+ \end{enumerate}
+ \item 3.44: GPS satellieten draaien rond de aarde op een hoogte van ongeveer 20.000km. Op deze 
+ hoogte is de gravitatiekracht slechts 5,8\% ten opzichte van deze op het aardoppervlak. Bepaal
+ de omwentelingsperiode van deze GPS satellieten. ($R_{aarde} = 6,37 . 10^6m$)
+
+\end{itemize}
+
 
 
 
