@@ -37,3 +37,4 @@ void print_array(const char a[], int n){
 	}
 	printf("\n");
 }
+

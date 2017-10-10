@@ -23,15 +23,11 @@ int main(){
 void read(int freq[]){;
 	char c;
 	do{
-		int index;
 		if(c >= 'A' && c <= 'Z'){
-			index = c - 'A';
+			freq[c - 'A']++;
 		}else { //(ch >= 'a' && ch <= 'z')
-			index = c - 'a';
-		}
-		if(index >= 0 && index <= SIZE){
-			freq[index]++; 
-		}
+			freq[c - 'a']++;
+		}	
 	}while(scanf("%c", &c) != 0 && c != '$');
 
 }
