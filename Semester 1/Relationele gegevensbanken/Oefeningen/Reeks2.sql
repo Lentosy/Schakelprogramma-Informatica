@@ -156,13 +156,9 @@ SELECT nation,
   CASE
     WHEN COUNT(CASE WHEN finishaltitude >= 2150 THEN 1 END) > 0 THEN CAST(COUNT(CASE WHEN finishaltitude >= 2150 THEN 1 END) AS CHAR) ELSE ' '
   END hoog,
-  COUNT(
-    CASE 
-      WHEN finishaltitude < 1300 THEN 1
-      WHEN finishaltitude >= 1300 AND finishaltitude < 2150 THEN 1
-      WHEN finishaltitude >= 2150 THEN 1
-    END
-  ) aantal
+  MAX(CASE WHEN finishaltitude BETWEEN    0 AND 1300 THEN 1 ELSE 0 END)
+ + MAX(CASE WHEN finishaltitude BETWEEN 1301 AND 2150 THEN 1 ELSE 0 END)
+ + MAX(CASE WHEN finishaltitude                > 2150 THEN 1 ELSE 0 END) "#"
 FROM resorts
 WHERE finishaltitude is not null
 GROUP BY nation
@@ -214,27 +210,105 @@ GROUP BY
     WHEN iso = 'ned' THEN 'nederlands'
     WHEN iso = 'fra' THEN 'frans'
     WHEN iso = 'dui' THEN 'duits'
+  END,
+  CASE 
+    WHEN iso = 'ned' THEN 1
+    WHEN iso = 'fra' THEN 2
+    WHEN iso = 'dui' THEN 3
+  END
+ORDER BY 
+  CASE 
+    WHEN iso = 'ned' THEN 1
+    WHEN iso = 'fra' THEN 2
+    WHEN iso = 'dui' THEN 3
   END;
 
+-- 24.
+SELECT  lev1 regio, lev2 department,avg(elevation) gem, count(elevation) aant
+FROM Cities
+WHERE iso='FR'
+    AND lev1 is not null AND lev2 is not null
+GROUP BY rollup(lev1,lev2)
+ORDER BY coalesce(lev1,'zz'), coalesce(lev2,'zz');
+
+-- 25.
+SELECT hasc, iso, ROUND(SUM(gebruik), 9) AS gebruik
+FROM taalgebruik
+WHERE hasc IN ('BE', 'FR', 'NL')
+GROUP BY ROLLUP(hasc, iso)
+ORDER BY hasc, iso;
+
+-- 26.
+SELECT 
+  COALESCE(iso, ' ') as code,
+  CASE GROUPING(iso) + GROUPING(lev1)
+    WHEN 1 THEN '   totaal land ' || iso
+    WHEN 2 THEN '   **totaal**'
+    ELSE lev1
+  END as loc,
+ COUNT(1)
+FROM cities
+WHERE iso IN ('DE', 'FR')
+GROUP BY ROLLUP(iso, lev1)
+ORDER BY iso, lev1;
+
+-- 27.
+SELECT
+  COALESCE(CASE
+    WHEN richting(50.830, 4.330, latitude, longitude) < 45 OR richting(50.830, 4.330, latitude, longitude) > 315
+      THEN 'noord'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 45 AND 135 
+      THEN 'oost'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 136 AND 225
+      THEN 'zuid'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 226 AND 315
+      THEN 'west'
+  END, ' ') " ",
+  COUNT(CASE WHEN elevation < 50 THEN 1 END) LAAG,
+  COUNT(CASE WHEN elevation BETWEEN 50 AND 200 THEN 1 END) MIDDEN,
+  COUNT(CASE WHEN elevation >= 200 THEN 1 END) HOOG,
+  COUNT(elevation) TOTAAL
+FROM regios
+WHERE PARENT LIKE 'BE.__.__'
+GROUP BY ROLLUP(CASE
+    WHEN richting(50.830, 4.330, latitude, longitude) < 45 OR richting(50.830, 4.330, latitude, longitude) > 315
+      THEN 'noord'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 45 AND 135 
+      THEN 'oost'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 136 AND 225
+      THEN 'zuid'
+    WHEN richting(50.830, 4.330, latitude, longitude) BETWEEN 226 AND 315
+      THEN 'west'
+  END);
+  
+-- 28.
+SELECT 
+  CASE GROUPING(season)
+    WHEN 1 THEN 'totaal aantal'
+    ELSE 'season   ' || season || '                     '
+  END AS "RESULT",
+  COUNT(CASE discipline WHEN 'DH' THEN 1 END) AS "AFDALING",
+  COUNT(CASE discipline WHEN 'SG' THEN 1 END) AS "SUPERG",
+  COUNT(CASE discipline WHEN 'GS' THEN 1 END) AS "REUZESLALOM",
+  COUNT(CASE discipline WHEN 'SL' THEN 1 END) AS "SLALOM",
+  COUNT(CASE discipline WHEN 'KB' THEN 1 END) AS "COMBINATIE",
+  COUNT(CASE gender WHEN 'M' THEN 1 END) AS "MAN",
+  COUNT(CASE gender WHEN 'L' THEN 1 END) AS "VROUW",
+  COUNT(gender) AS "TOTAAL",
+  ROUND(COUNT(discipline) / COUNT(DISTINCT discipline),2) AS "GEMPERDISC"
+FROM ranking
+GROUP BY ROLLUP(season)
+ORDER BY season;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- 29.
+SELECT 
+  CASE
+    WHEN GROUPING(hasc) = 1 THEN iso || ' wordt gesproken in ' || count(1) || ' landen'
+    WHEN GROUPING(iso) = 1 THEN 'in ' || hasc || ' spreekt men ' || count(1) || ' talen'
+  END AS " "
+FROM Taalgebruik
+WHERE gebruik > 0.02
+GROUP BY CUBE(hasc,iso)
+HAVING COUNT(1) >= 10
+ORDER BY GROUPING(Hasc)

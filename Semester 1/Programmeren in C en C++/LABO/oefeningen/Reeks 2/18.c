@@ -41,9 +41,7 @@ void zoek_extremen(int numbers[], int *max, int *min){
         if(*max < numbers[i]){
             *max = numbers[i];
         }
-    }
-
-    
+    }  
 }
 
 
