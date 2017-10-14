@@ -47,8 +47,7 @@ ORDER BY finishaltitude;
 
 
 -- 4.
--- TODO: per discipline elk resort max 1 keer
-SELECT  discipline, resort
+SELECT DISTINCT discipline, resort
 FROM races
 
 ORDER BY 
@@ -311,5 +310,5 @@ SELECT
     
 FROM races
 WHERE discipline = 'SL'
-ORDER BY zomer, lente, herfst, winter, seizoen ;
+ORDER BY zomer DESC, lente DESC, herfst DESC, winter DESC, seizoen ;
 
