@@ -62,3 +62,18 @@ SELECT   resort, racedate,
 FROM     races
 WHERE    EXTRACT(YEAR FROM racedate) = 2008
 ORDER BY resort;
+
+
+-- 10.
+SELECT hasc,
+      ROUND(SUM(CASE WHEN iso IN ('ned','fra','dui') THEN gebruik * 100 END), 2) AS "NED/FR/DUI",
+      rank() OVER(ORDER BY SUM(CASE WHEN iso IN ('ned','fra','dui') THEN gebruik * 100 END) DESC) AS "RANK",
+      CASE WHEN rank() OVER(ORDER BY SUM(CASE WHEN iso IN ('ned','fra','dui') THEN gebruik * 100 END) DESC) = 1 THEN 'max' ELSE ' ' END AS "MAX",
+      ROUND(SUM(CASE WHEN iso IN ('tur','spa','ita','ara') THEN gebruik * 100 END), 2) AS "TUR/SPA/ARA/ITA",
+      ROUND(sum(gebruik) * 100, 2) AS "SOM" 
+FROM  taalgebruik
+WHERE 
+      iso in ('ned','fra','dui','tur','spa','ita','ara')
+      and hasc in ('BE','NL','FR','DE') 
+GROUP BY hasc
+ORDER BY som DESC
