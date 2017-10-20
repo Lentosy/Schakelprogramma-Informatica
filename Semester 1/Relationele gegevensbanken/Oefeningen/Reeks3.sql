@@ -7,7 +7,7 @@ ORDER BY hasc;
 
 -- 3.
 SELECT resort, discipline, gender, COUNT(1),
-  CASE WHEN SUM(COUNT(1)) OVER(PARTITION BY resort, discipline) = COUNT(1) THEN 'X' ELSE ' ' END
+  CASE WHEN SUM(COUNT(1)) OVER(PARTITION BY resort, discipline) = COUNT(1) THEN 'X' ELSE ' ' END AS "C"
 FROM Races
 GROUP BY resort,discipline,gender
 ORDER BY resort,discipline,gender;

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="hint">hint</string>
+    <string name="ok">ok</string>
+    <string name="answer">Answer</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="take_me_to_google">Take me to google</string>
+    <string name="confirm_hint">Are you sure you want to see the hint?</string>
+    <string name="placeholder_question">In which year did henry VIII become King of England</string>
+
+    <string-array name="questions">
+       <item>In Greek mythology, what was the final resting place of the souls of the heroic and the virtuous: Strawberry Fields; Elysian Fields; or Safaniya Fields?</item>
+        <item>What is the bodyguard character played by Kevin Costner in the 1992 film \'The Bodyguard\': Frank Farmer; Frank Carpenter; Frank Baker; or Frank Butcher?</item>
+        <item>What was US tennis player Anne White instructed to cease wearing at Wimbledon in 1985: Stars and Stripes headband; White lycra jumpsuit; Glinting necklace; or Extraordinarily strong musk perfume? </item>
+    </string-array>
+    <string-array name="answers">
+        <item>Elysian Fields</item>
+        <item>Frank Farmer</item>
+        <item>White lycra jumpsuit</item>
+    </string-array>
+    <string-array name="keywords">
+        <item>Greek mythology final resting place</item>
+        <item>Kevin Costner bodyguard</item>
+        <item>Anne White Wimbledon 1985</item>
+    </string-array>
+
+</resources>
