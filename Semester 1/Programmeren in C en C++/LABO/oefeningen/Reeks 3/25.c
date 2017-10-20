@@ -18,7 +18,7 @@ int main(void){
 void wis(char *s){
 	char *t = s;
 	while(*t){
-		if(isalpha(*t)){
+		if(isalpha(*t) || isspace(*t)){
 			*s++ = *t;
 		}
 		t++;

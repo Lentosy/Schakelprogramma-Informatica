@@ -26,21 +26,22 @@ int main(void){
 
 // ** aangezien de POINTER aangepast moet worden 
 void verzetNaarEersteHoofdletter(const char **p){
-	while(**p < 'A' || **p > 'Z' && **p){
+	while(**p < 'A' && **p > 'Z' && **p){
 		(*p)++;
 	}
 }
 
 const char * pointerNaarEersteKleineLetter(const char *p){
-	while(*p < 'a' || *p > 'z' && *p){
+	while(*p > 'a' && *p < 'z' && *p){
 		p++;
 	}
 	return p;
 }
 
+
 void schrijf(const char *begin, const char *eind){
-	while(*begin != *eind){
-		printf("%c", *begin);
+	while(begin != eind){
+		printf("%c\n", *begin);
 		begin++;
 	}
 }
