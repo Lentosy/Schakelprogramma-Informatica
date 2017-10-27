@@ -14,37 +14,36 @@ int main(int argc, char * argv[]){
 		return 0;
 	}
 
-	int size = argc - 1;
-	char *alfa = alfab_kleinste(argv, size);
+	char * alfa = alfab_kleinste(argv, argc);
 	init_cap(alfa);
-	printf("Dag %s\n!", alfa);
-
-	return 0;
+	printf("%s\n", alfa);
 }
 
 void init_cap(char *s){
 	if(*s >= 'a' && *s <= 'z'){
-		*s = toupper(*s);
+		*s = *s - 'a' + 'A';
 	}
 	while(*s++){
 		if(*s >= 'A' && *s <= 'Z'){
-			*s = tolower(*s);
+			*s = *s - 'A' + 'a';
 		}
 	}
 }
 
-
-
-char * alfab_kleinste(const char ** voornamen, int size){
-	voornamen++; // 1ste argument overslaan
-	char *kleinste = *voornamen;
+char * alfab_kleinste(char ** voornamen, int size){
+	voornamen++;
+	char * kleinste = *voornamen;
 	int i;
 	for(i = 1; i < size; i++){
-		voornamen++;
-		if(**voornamen < *kleinste){
+		if(*kleinste > **voornamen){
 			kleinste = *voornamen;
+
 		}
+		voornamen++;
 	}
 
+
 	return kleinste;
+
+
 }

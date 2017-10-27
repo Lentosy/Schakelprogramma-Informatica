@@ -2,28 +2,42 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
+#include <ctype.h>
 
-#define MAX_LEN 1000
+#define BUFFER_SIZE 4
 
 char * lees();
 
 int main(void){
 	int i;
+	for(i = 0; i < 5; i++){
+		char * tekst = lees();
+		if(tekst){
+			printf("Ik las in %s.\n", tekst);
+			free(tekst);
+		}
+		
+	}
 
-	char * tekst = lees();
-	printf("Ik las in: %s\n", tekst);
-	free(tekst);
 	return 0;
 }
 
-/* buffer groot maken */
-
 char * lees(){
-	char * str = malloc(sizeof(char) * MAX_LEN);
-	fgets(str, MAX_LEN + 1, stdin);
-	return str;
+	char *buffer;
+	fgets(buffer, BUFFER_SIZE + 1, stdin);
+
+	buffer[BUFFER_SIZE] = '\0';
+
+	while(buffer){
+		printf("%c", *buffer);
+		buffer++;
+	}
+
+	char *tekst = malloc(strlen(buffer));
+	return tekst;
+	
 }
+
 
 

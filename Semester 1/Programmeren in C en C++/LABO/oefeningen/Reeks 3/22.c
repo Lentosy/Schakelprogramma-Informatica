@@ -37,13 +37,13 @@ int main(void){
 		b[i] = i;
 	}
 
-	vul_tabel(a, b, c,AANTAL, som);
+	vul_tabel(a, b, c,AANTAL, &som);
 	schrijf(c, AANTAL);
 
-	vul_tabel(a, b, c,AANTAL, product);
+	vul_tabel(a, b, c,AANTAL, &product);
 	schrijf(c, AANTAL);
 
-	vul_tabel(a, b, c,AANTAL, verschil);
+	vul_tabel(a, b, c,AANTAL, &verschil);
 	schrijf(c, AANTAL);
 	return 0;
 }

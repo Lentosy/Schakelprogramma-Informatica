@@ -26,13 +26,13 @@ int main(void){
 
 // ** aangezien de POINTER aangepast moet worden 
 void verzetNaarEersteHoofdletter(const char **p){
-	while(**p < 'A' && **p > 'Z' && **p){
+	while(**p && **p < 'A' && **p > 'Z'){
 		(*p)++;
 	}
 }
 
 const char * pointerNaarEersteKleineLetter(const char *p){
-	while(*p > 'a' && *p < 'z' && *p){
+	while(*p && *p > 'a' && *p < 'z'){
 		p++;
 	}
 	return p;
