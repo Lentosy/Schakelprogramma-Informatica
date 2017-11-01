@@ -52,7 +52,10 @@ int cijfersom_herhaald(int x){
 }
 
 int cijfersom_rec(int x){
-    return x > 10 ? cijfersom_rec(cijfersom(x)) : cijfersom(x);
+    if(x < 10){
+        return x;
+    }
+    return cijfersom_rec(x / 10 + x % 10);
 }   
 
 

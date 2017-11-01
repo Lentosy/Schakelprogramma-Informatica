@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct knoop knoop;
 struct knoop {
@@ -9,24 +10,28 @@ struct knoop {
 	knoop * next;
 };
 
-knoop * zoek(knoop * k, int getal);
+knoop * zoek(knoop * k, int g);
 knoop * maak_gesorteerde_lijst_automatisch(int aantal, int bovengrens);
 void voeg_getal_toe(knoop **k, int g);
 void print_lijst(const knoop *k);
 void vernietig_lijst(knoop ** k);
+void verwijder(knoop **k, int g);
 
 int main(void){
+	srand(time(NULL));
 	knoop *k = maak_gesorteerde_lijst_automatisch(10,100);
+	print_lijst(k);
+	verwijder(&k, k->next->getal);
 	print_lijst(k);
 	vernietig_lijst(&k);
 
 }
 
-knoop * zoek(knoop *lijst, int getal){
-	while(lijst && lijst-> getal != getal){
-		lijst = lijst->next;
+knoop * zoek(knoop *k, int g){
+	while(k->next && k->getal != g){
+		k = k->next;
 	}
-	return lijst;
+	return k;
 }
 
 knoop * maak_gesorteerde_lijst_automatisch(int aantal, int bovengrens){
@@ -71,9 +76,21 @@ void print_lijst(knoop const *k){
 
 
 void vernietig_lijst(knoop ** k){
-	while(*k){
-		knoop *h = (*k)->next;
-		free(*k);
-		*k = h;
+	if((*k)->next){
+		vernietig_lijst(&(*k)->next);
 	}
+	free(*k);
+}
+
+void verwijder(knoop **k, int g){
+	knoop *h = *k;
+	knoop *m = *k;
+	while(m->next && m->getal != g){
+		h = m;
+		m = m->next;
+	}
+
+	h->next = m->next;
+	free(m);
+	
 }
