@@ -12,10 +12,10 @@
 \usepackage{sectsty}
 \usepackage{graphicx}
 \usepackage{lipsum}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
 
-\graphicspath{{img/}}
 
-\newcommand{\answercolor}{teal}
 
 
 \partfont{\color{brown}}
@@ -62,10 +62,6 @@ $z = \mathimportant{a}{orange} + \mathimportant{b}{orange}j$ met $z \in \mathbb{
  \item Cartesische vorm: $z = a + bj$
  \item Goniometrische vorm: $z = r[cos(\theta) + jsin(\theta)]$
  \item Exponentiële vorm: $re^{j\theta}$
-\end{itemize}
-\important{Vlak van Gauss}
-\begin{itemize}[label={}]
- \item \includegraphics[width=\linewidth]{goniometrischevorm}
 \end{itemize}
 \important{a en b}
 \begin{itemize}
@@ -139,60 +135,160 @@ $z = \mathimportant{a}{orange} + \mathimportant{b}{orange}j$ met $z \in \mathbb{
 
 \end{itemize}
 
+\chapter{Afgeleiden}
+\important{Berekenen van afgeleiden}
+\begin{itemize}
+ \item $(f . g)' = f'. g + f.g'$
+ \item $(\dfrac{f}{g})' = \dfrac{f'.g - f.g'}{g^2}$
+ \item $(f^{n})' = nf^{n-1} . f'$
+ \item $(ln f)' = \dfrac{f'}{f}$
+ \item $(e^f)' = e^f .f'$
+ \item $(bgtg\;x)' = \dfrac{1}{1 + x^2}$
+ \item $(bgsin\;x)' = \dfrac{1}{\sqrt{1 + x^2}}$
+ \item $(bgcos\;x)' = \dfrac{-1}{\sqrt{1 + x^2}}$
+\end{itemize}
+\important{Regel van L'Hopital}
+ \begin{itemize}
+  \item Als $\lim_{x\to...} \dfrac{f}{g} = \dfrac{0}{0}\;OF\;\dfrac{\infty}{\infty}$
+  \item Dan $\lim_{x\to...} \dfrac{f}{g} = \lim_{x\to...} \dfrac{f'}{g'}$
+ \end{itemize}
+\important{Raaklijn en normaal}
+\begin{itemize}
+ \item Raaklijn : $y-y_p = y_p'(x - x_p)$
+ \item Normaal  : $y-y_p = \dfrac{1}{y_p'}(x - x_p)$ 
+\end{itemize}
+\important{Foutentheorie}
+\begin{itemize}
+ \item $AF(y) \approx |f'(x)| \pm AF(x)$
+ \item $f(x + AF(x)) \approx f(x) + |f'(x)| \pm AF(x)$
+\end{itemize}
+\important{Extremum}
+\begin{itemize}
+ \item f heeft een extremum in x = a als
+ \begin{enumerate}
+  \item $f'(a) = 0$
+  \item $f'$ verandert van teken in x = a
+ \end{enumerate}
+ $\Rightarrow$ via tekentabel
+\end{itemize}
+\chapter{Parameterkrommen}
+\important{Notatie}
+\\
+\\
+$ K: 
+ \begin{cases}
+  x(t) \\
+  y(t)
+ \end{cases}
+$
+\\
+\\
+\important{Afleiden}
+\begin{itemize}
+ \item $y' = \dfrac{dy}{dx} = \dfrac{dy/dt}{dx/dt}$
+ \item $y'' = \dfrac{dy'}{dx} = \dfrac{dy'/dt}{dx/dt}$
+\end{itemize}
+\important{Raaklijn en normaal}
+\begin{itemize}
+ \item Raaklijn : $y-y_p = y_p'(x - x_p)$
+ \item Normaal  : $y-y_p = \dfrac{1}{y_p'}(x - x_p)$ 
+\end{itemize}
+\chapter{Poolcoördinaten}
+\important{Voorstelling}
+\begin{itemize}
+ \item \important{Cartesische coördinaten:}
+\begin{tikzpicture}
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,2);
+\coordinate (X) at (2,0);
+\coordinate (Y) at (0,2);
+
+\draw[thick, ->] (O) -- (3, 0) node[anchor=north west] {x};
+\draw[thick, ->] (O) -- (0, 3) node[anchor=south east] {y};
+\draw[thick] (-1, 0) -- (O);
+\draw[thick] (0, -1) -- (O);
+\node at (O) {\textbullet};
+\node[text] at (-0.25,-0.25) {0};
 
 
-\part{Oefeningen}
-\chapter{Complexe Getallen}
-  \begin{itemize}
-   \item $1)z_1$
-   \begin{itemize}
-     \item \important{Cartesische vorm} : $z_1 = -1 + \sqrt{3}j$
-     \item \begin{enumerate}
-            \item Bereken: $r = \sqrt{-1^2 + \sqrt{3}^2}$
-			    = $\sqrt{1 + 3} = \sqrt{4} = 2$
-	    \item Bereken: $\theta = bgtg(\frac{\sqrt{3}}{-1})$
-			    = $bgtg(-\sqrt{3}) = -\frac{\pi}{3} + \mathimportant{\pi}{orange}$
-			    \newline
-			    $+\pi$ aangezien $(-1, \sqrt{3} =$ 
-			    kwadrant \textup{\uppercase\expandafter{\romannumeral2}})
-			    = $\frac{2\pi}{3}$
-           \end{enumerate}
-     \item \important{Goniometrische vorm} : $z_1 = 2[cos(\frac{2\pi}{3}) + jsin(\frac{2\pi}{3})]$
-     \item \important{Exponentiële vorm} : $z_1 = 2e^{j\frac{2\pi}{3}}$
+\node at (2,2) {\textbullet};
+\node[text] at (2.3,2.3) {p(x,y)};
+\end{tikzpicture}
+$$
+\begin{cases}
+ x = r\cos\theta \\
+ y = r\sin\theta
+\end{cases}
+$$
 
-    \end{itemize}
-   \item $4)z_1 = - 1 + j\;\;\;z_2 = e^{-\frac{\pi}{4}j}$
-   \begin{itemize}
-    \item $z = z_1.\overline{z_2}$
-     \begin{enumerate}
-           \item $z_1$ Vorm om naar exponentiële vorm: $z_1 = \sqrt{2}e^{j\frac{3\pi}{4}}$
-           \item $z_1 . \overline{z_2}$: $\sqrt{2}e^{j\frac{3\pi}{4}}\;.\;e^{j\frac{\pi}{4}}$
-            = $(\sqrt{2} . 1)e^{j(\frac{3\pi}{4} + \frac{\pi}{4})}$ = $\mathimportant{\sqrt{2}e^{j\pi}}{orange}$
-          \end{enumerate}
-    \item $z = \frac{z_1}{j} . z^{3}_2$
-      \begin{enumerate}
-       \item Bereken $\frac{z_1}{j}$ = $\frac{-1 + j}{j} . \mathimportant{\frac{-j}{-j}}{red}$ = $\frac{-j(-1 + j)}{j(-j)}$
-	= $\frac{-j(-1 + j)}{-j^2}$ = $\frac{j + 1}{1}$ = $1 + j$
-	\item Vorm om naar exponentiële vorm: $\sqrt{2}e^{j\frac{\pi}{4}}$
-	\item Bereken $z^{3}_2$ = $(e^{-\frac{\pi}{4}j})^3$ = $e^{-\frac{3\pi}{4}j}$
-	\item Vermenigvuldig: $\sqrt{2}e^{j\frac{\pi}{4}}\;.\;e^{-\frac{3\pi}{4}j}$
-	= $\mathimportant{\sqrt{2}e^{-\frac{\pi}{2}j}}{orange}$
-
-     \end{enumerate}
-
-   \end{itemize}
-
-   \item $2)z = (\frac{1}{3} - \frac{\sqrt{3}}{3}j)^5$
-   \begin{enumerate}
-    \item Vorm $\frac{1}{3} - \frac{\sqrt{3}}{3}j$ om naar exponentiële vorm = $\frac{2}{3}e^{-\frac{\pi}{3}j}$
-    \item Bereken: $(\frac{2}{3}e^{-\frac{\pi}{3}j})^5$ = $\frac{2^5}{3^5}e^{-\frac{5\pi}{3}j}$ = $\frac{2^5}{3^5}e^{\frac{\pi}{3}j}$
-    \item Bereken: $a = \frac{2^5}{3^5}cos(\frac{\pi}{3})$ = $\frac{2^5}{3^5} . \frac{1}{2} = \frac{2^4}{3^5} = \frac{16}{243}$
-    \item Bereken: $b = \frac{2^5}{3^5}sin(\frac{\pi}{3})$ = $\frac{2^5}{3^5} . \frac{\sqrt{3}}{2} = \frac{16\sqrt{3}}{243}$
-    \item $z = \frac{16}{243} + \frac{16\sqrt{3}}{243}j$
-  \end{enumerate}
+\item \important{Poolcoördinaten:}
+\begin{tikzpicture}
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,2);
+\coordinate (X) at (2,0);
 
 
-  \end{itemize}
+\draw[thick, ->] (O) -- (3, 0) node[anchor=north west] {po};
+\draw[thick] (O) -- (A) node[anchor=south east] {r};
+\node at (A) {\textbullet};
+\node at (O) {\textbullet};
+\node[text] at (-0.25,-0.25) {0};
+\node[text] at (3, 2.3) {p(r, $\theta$)};
+
+\draw (1,1) arc(45:0:1.4);
+\node[] at (30:1.8) {$\theta$};
+\end{tikzpicture}
+$$
+\begin{cases}
+ r = \sqrt{x^2 + y^2} \\
+ \theta = bgtg\dfrac{y}{x}
+\end{cases}
+$$
+\end{itemize}
+\important{Rechte}
+\begin{itemize}
+ \item $r\cos(\theta-\theta_0) = d_0 \;\;\;\; (d_0 > 0)$
+ \begin{tikzpicture}
+  \coordinate (O) at (0,0);
+  \draw[thick, ->] (O) -- (3,0);
+  \draw (O) -- (1,2);
+  \node at (O) {\textbullet};
+  \node[text] at (-0.25,-0.25) {0};
+ \end{tikzpicture}
+\end{itemize}
+\important{Halfrechte}
+\\
+\important{Verloop functieonderzoek}
+\begin{enumerate}
+ \item \begin{enumerate}
+        \item domein en beeld
+        \item Periode
+        \item Symmetrie
+        \begin{itemize}
+         \item Symmetrie t.o.v. poolas als $r(-\theta) = r(\theta)$
+         \item Symmetrie t.o.v. pool als $r(\pi + \theta) = r(\theta)$
+         \item Symmetrie t.o.v. $\theta \pm \dfrac{\pi}{2}$ als $r(\pi - \theta) = r(\theta)$
+        \end{itemize}
+
+        \item Snijpunten met poolas
+        \item Gedrag in pool
+        \item Raaklijnen pool
+       \end{enumerate}
+ \item Afleiden
+ \begin{itemize}
+  \item $r' > 0 \Rightarrow r $ stijgt enkel als $\theta$ stijgt
+  \item $r' < 0 \Rightarrow r $ daalt enkel als $\theta$ stijgt
+  \item $r' = 0 \Rightarrow $ raaklijn $\perp$ voerstraal. r moet $\neq$ 0 
+  \item $r' = \infty \Rightarrow $ raaklijn = voerstraal. r moet $\neq$ 0
+ \end{itemize}
+
+ \item Tabel en schets
+
+\end{enumerate}
+
+
+
 
   
 \end{document}

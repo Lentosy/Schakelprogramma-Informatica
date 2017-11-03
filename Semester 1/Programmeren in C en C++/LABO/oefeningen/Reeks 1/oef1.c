@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 int main(void){
+	int i;
     printf("Hello world!\n");
-    int i;
     for(i = 10; i > 0; i--){
         printf("%d ", i);
     }  

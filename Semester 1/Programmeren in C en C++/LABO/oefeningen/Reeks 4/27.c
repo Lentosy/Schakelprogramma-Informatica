@@ -22,11 +22,11 @@ int main(int argc, char * argv[]){
 
 void init_cap(char *s){
 	if(*s >= 'a' && *s <= 'z'){
-		*s = toupper(*s);
+		*s = *s - 'a' + 'A';
 	}
-	while(s++){
+	while(*s++){
 		if(*s >= 'A' && *s <= 'Z'){
-			*s = tolower(*s);
+			*s = *s - 'A' + 'a';
 		}
 	}
 }

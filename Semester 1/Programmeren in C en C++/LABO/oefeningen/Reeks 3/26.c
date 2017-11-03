@@ -5,7 +5,7 @@
 
 
 void pivoteer(char *, char *, char *);
-void schrijf(char *, char *);
+void schrijf(const char *, const char *);
 int main(void){
 	char tekst[] = {'b','d','?','z','g','o','e','z','e', 'b',' ', 'd','i','g','!','h','o','s','v'};
 
@@ -24,9 +24,10 @@ void pivoteer(char *begin, char *na_einde, char *pivot){
 	}
 }
 
-void schrijf(char *begin, char *na_einde){
+void schrijf(const char *begin, const char *na_einde){
 	while(begin != na_einde){
 		printf("%c", *begin);
 		begin++;
 	}
+	printf("\n");
 }

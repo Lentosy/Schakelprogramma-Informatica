@@ -5,11 +5,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{amsmath} % Matrices
+\usepackage{empheq}
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{sectsty}
 \usepackage{lipsum}
 \usepackage{enumitem}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
 
 
 
@@ -92,15 +95,37 @@ Wat is de gemiddelde periode?
 
 
 \subsubsection{Grafiekanalyse}
-y = 0,1134x - 0,0575
-\newline
-delta l = (g/k)x + 0
-\newline
-(g/k) = 0,1134 $\rightarrow$ k = (g/0,1134)
-\newline
-0 = -0,0575 $\pm$ 0,19
-\newline
-0 = -0,06 $\pm$ 0,19
+$$ \frac{V}{V_{max}} = \frac{S}{K_m + S} $$
+\begin{tikzpicture}
+ \begin{axis}[ ticks=none,
+      xlabel = {$S^{-1} (\frac{dm^{3}}{mol})$},
+      xticklabels = {,,},
+      axis x line = bottom,
+      xmin = 0, xmax = 1,
+      ylabel = {$V^{-1} [\frac{sg}{mol}]$},		
+      ylabel style = {rotate=-90},
+      yticklabels = {,,},
+      axis y line = left,
+      ymin = 0, ymax = 1,
+    ]
+ \end{axis}
+ \draw (0,0) -- (5,5);
+ \node at (1, 1.1) {\textbullet};
+ \node at (2.2, 1.9) {\textbullet};
+ \node at (2.7, 2.9) {\textbullet};
+ \node at (3.5, 3.5) {\textbullet};
+ \node at (4.3, 3.7) {\textbullet};
+ \node[draw, text] at (6,3) {y = 0.468x + 3.55};
+
+\end{tikzpicture}
+\\
+$ y = ax + b $
+\\
+$a: (\frac{sg}{mol})/(\frac{dm^{3}}{mol}) = \frac{sg}{dm^3}$
+\\
+$b: \frac{sg}{mol} $
+\\
+$$v^{-1} = \frac{K_m}{V_{max}}S^{-1} + \frac{1}{V_{max}}$$
 
 \subsection{Fout op berekening}
 Voor de voorbeelden worden volgende X en Y gebruikt: \newline
@@ -179,64 +204,93 @@ $Y = 237,1 \pm 0.9 $
 
 \part{Mechanica}
 \chapter{Beweging in 2 en 3 dimensies}
-\section{Begrippen}
-\begin{itemize}
-\item {\important{Vector}: Een eenheid dat zowel een richting als een hoeveelheid heeft. Dit wordt voorgesteld door een lijnstuk met een pijl dat de richting aangeeft en de lengte die de grootte aangeeft.}
-\item {\important{Eenheidsvector}: Een vector met als grootte 1.}
-\item {\important{Netto verplaatsing}: De totale afstand van punt a tot punt b in vogelvlucht.}
-\item {\important{Afgelegde afstand}: De totale afstand die afgelegd werd om van punt a tot punt b te bekomen.}
-\end{itemize}
+\section{Algemeen}
 
-\section{Formules}
-\begin{itemize}
-  \item {\important{Snelheid}: $v = \frac{s}{t}$}
-  \item {\important{Versnelling}: $a = \frac{v}{t}$}
-  \item {\important{Projectile motion}: $y = x.tan(\theta_0) - \frac{g}{2v^{2}_0cos^2\theta_0}*x^2$}
-  \item {\important{Uniforme circulaire beweging}: $a = \frac{v^2}{r}$}
-\end{itemize}
+$$\overrightarrow{v}_{tot} = \overrightarrow{v}_1 + \overrightarrow{v}_2 + ... + \overrightarrow{v}_n$$
 
-\section{Conceptvraag: Helikopter}
-\begin{itemize}
-\item {\textbf{Vraag}: Een helikopter vliegt horizontaal en laat in positie A een kist met hulpgoederen vallen. Welke baan volgt die kist (wrijving met de lucht verwaarlozen)?}
-\item {\textbf{Antwoord}: \begin{enumerate}
-    \item {Baan (a) kan niet, de kist zal nooit achteruit gaan.}
-    \item {Baan (b) kan niet, dit zou enkel gebeuren als de helikopter stil staat.}
-    \item {Baan (c) kan niet, de zwaartekracht blijkt geen impact te hebben op de kist.}
-    \item {Baan(d) is correct. De kist zal eerst de snelheid van het vliegtuig overnemen, en dan zo alsmaar sneller
-        naar beneden vallen door de zwaartekracht.}
-    \item {Baan(e) kan niet, de kist blijft te lang op dezelfde hoogte.}
-    \end{enumerate}}
-\end{itemize}
+$$
+ \begin{cases}
+  \overrightarrow{v} = \frac{d\overrightarrow{r}}{dt} \\
+  \overrightarrow{a} = \frac{d\overrightarrow{v}}{dt}
+ \end{cases}
+$$
+
+$$
+ \begin{cases}
+  \overrightarrow{v}_{gem} = \frac{\Delta\overrightarrow{r}}{\Delta t} \\
+  \overrightarrow{a}_{gem} = \frac{\Delta\overrightarrow{v}}{\Delta t}
+ \end{cases}
+$$
+
+\section{Eenparige beweging}
+
+$$
+ \begin{cases}
+  \overrightarrow{r} = \overrightarrow{r}_0 + v_0t + \frac{at^{2}}{2} \\
+  \overrightarrow{v} = \overrightarrow{v}_0 + at
+ \end{cases}
+$$
+
+$$
+ \begin{cases}
+  x = x_0 + v_{0x}t + \frac{a_xt^{2}}{2} \\
+  v_x = v_{0x} + a_xt
+ \end{cases}
+$$
+
+$$
+ \begin{cases}
+  y = y_0 + v_{0y}t + \frac{a_yt^{2}}{2} \\
+  v_y = v_{0y} + a_yt
+ \end{cases}
+$$
 
 
-\section{Conceptvraag: Snelheid en versnelling}
-\begin{itemize}
-\item {\textbf{Vraag}: Gegeven zijn de snelheid en versnelling van een bewegende persoon. In welk geval vertraagt de persoon en wijkt af naar rechts(vanuit het standpunt van de persoon)}
-\item {\textbf{Antwoord}: \begin{enumerate}
-    \item {Bij (A) blijft de snelheid constant.}
-    \item {Bij (B) vertraagt de snelheid en wijkt af naar rechts.}
-    \item {Bij (C) versnelt de snelheid en wijkt af naar links.}
-    \item {Bij (D) versnelt de snelheid en wijkt af naar rechts.}
-      \item {Bij (E) vertraagt de snelheid.}
-    \end{enumerate}}
-\end{itemize}
 
-\section{Oefeningen}
-\begin{itemize}[label={}]
- \item 3.48: Een bioloog kijkt door een microscoop en ziet een bacterie op positie 
- $r_1 = 2,2\overrightarrow{i} + 3,7\overrightarrow{j} - 1,2\overrightarrow{k} \mu m$. Na
- 6,2 seconden bevindt de bacterie zich op positie 
- $r_2 = 4,6\overrightarrow{i} + 1,9\overrightarrow{k} \mu m$
- \begin{enumerate}[label={}]
-  \item $\overrightarrow{v}_{gem} = \frac{(4,4 - 2,2)\overrightarrow{i} + (0 - 3,7)\overrightarrow{j}
-  + (1,9 - (-1,2))\overrightarrow{k}}{6,2}$ = $0,39\overrightarrow{i} - 0,60\overrightarrow{j} + 0,50\overrightarrow{k}$ 
-  \item $V_{gem} = ?$
- \end{enumerate}
- \item 3.44: GPS satellieten draaien rond de aarde op een hoogte van ongeveer 20.000km. Op deze 
- hoogte is de gravitatiekracht slechts 5,8\% ten opzichte van deze op het aardoppervlak. Bepaal
- de omwentelingsperiode van deze GPS satellieten. ($R_{aarde} = 6,37 . 10^6m$)
+\begin{tikzpicture}
 
-\end{itemize}
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,2);
+\coordinate (X) at (2,0);
+\coordinate (Y) at (0,2);
+
+\draw[thick, ->] (O) -- (3, 0) node[anchor=north west] {x};
+\draw[thick, ->] (O) -- (0, 3) node[anchor=south east] {y};
+\draw[thick, ->] (O) -- (A);
+\draw[red, ->] (O) -- (X) node[anchor = north east] {$v_{0x} = v_0\cos\theta$};
+\draw[blue, ->] (O) -- (Y) node[anchor = north east]{$v_{0y} = v_0\sin\theta = $};
+\draw[red, dashed] (X) -- (A);
+\draw[blue, dashed] (Y) -- (A);
+
+\draw (1,1) arc(45:0:1.4);
+\node[] at (30:1.8) {$\theta$};
+\end{tikzpicture}
+
+
+\section{Eenparige cirkelbeweging}
+$a = \frac{v^{2}}{r}$
+
+\begin{tikzpicture}
+ \draw (0,0) circle (3cm);
+ 
+ \draw (0, 0) -- (2.12, 2.12) node[anchor=south] {$r$};
+ 
+ 
+ \draw[thick, ->, red] (0, -3) -- (0, -2)  node[anchor=east] {$\overrightarrow{a}$};
+ \draw[thick, ->, blue] (0, -3) -- (1 , -3) node[anchor=north] {$\overrightarrow{v}$};
+ 
+ \draw[thick, ->, red] (3, 0) -- (2, 0) node[anchor=north east] {$\overrightarrow{a}$};
+ \draw[thick, ->, blue] (3, 0) -- (3 , 1) node[anchor=west] {$\overrightarrow{v}$};
+
+ \draw[thick, ->, red] (0, 3) -- (0, 2) node[anchor=east] {$\overrightarrow{a}$};
+ \draw[thick, ->, blue] (0, 3) -- (-1 ,3) node[anchor=south] {$\overrightarrow{v}$};
+ 
+ \draw[thick, ->, red] (-3, 0) -- (-2, 0) node[anchor=west] {$\overrightarrow{a}$};
+ \draw[thick, ->, blue] (-3, -0) -- (-3 , -1) node[anchor=east] {$\overrightarrow{v}$};
+ 
+ \node at (0, 0) {\textbullet};
+\end{tikzpicture}
+
 
 
 
@@ -264,25 +318,121 @@ rust blijft in rust.}
   }
 \end{itemize}
 \chapter{Toepassen wetten van Newton}
-\section{Begrippen}
+\section{Algemeen}
+$$\sum \overrightarrow{F} = m\overrightarrow{a} \Rightarrow 
+\begin{cases}
+  \sum \overrightarrow{F}_x = m\overrightarrow{a_x} \\
+  \sum \overrightarrow{F}_y = m\overrightarrow{a_y} 
+ \end{cases}
+$$
+Bij elk vraagstuk zeker kijken naar:
 \begin{itemize}
-\item {\important{Wrijving}:}
+ \item Zwaartekracht
+ \item Normaalkracht
+ \item Wrijvingskracht
 \end{itemize}
 
-\section{Formules}
-\begin{itemize}
 
-\item formule
-\end{itemize}
+\section{Wrijving}
+$$ F_{w} = \mu N$$
+Zolang $F_w \leq \mu N$ dan spreken  we over statische wrijving, anders spreken we over kinetische wrijving.
+\section{Veerkracht}
+$$ F_v = -kx $$
 
 
 \chapter{Arbeid, energie en vermogen}
-
+\section{Arbeid}
+$$ W = \int_{\overrightarrow{r}_1}^{\overrightarrow{r}_2} \overrightarrow{F} \; d\overrightarrow{r}$$
+Bovenstaande formule zegt hoeveel energie er nodig.
+$$\Rightarrow W = F_{||} \Delta\overrightarrow{r}$$
+De componenten evenwijdig met de as leveren arbeid
+\section{Vermogen}
+$$ P = \frac{dw}{dt} \Rightarrow 
+\begin{cases}
+   P = \overrightarrow{F}\overrightarrow{v} \;\;\;\;\;\; (ogenblikkelijk) \\ 
+   P = \frac{\Delta w}{\Delta t} \;\;\;\;\;\;\;\; (periode)
+\end{cases}
+$$
 \chapter{Behoud van energie}
+\section{Algemeen}
+$$K_0 + U_0 + W_{nc} = K_1 + U_1$$
+Conservatieve energie : Energie dat je terugkrijgt
+\begin{itemize}
+ \item zwaartekracht
+ \item veer
+\end{itemize}
+Niet coneservative energie : Energie dat verloren is
+\begin{itemize}
+ \item wrijving
+ \item duwkracht
+ \item trekkracht
+\end{itemize}
+
+$$ K = \frac{mv^{2}}{2}$$
+$$ U \Rightarrow 
+\begin{cases}
+  mgh \;\;\;\;\;\; (zwaartekracht)\\ 
+  \frac{kx^{2}}{2} \;\;\;\;\;\;\;\; (veer)
+\end{cases}
+$$
+
+
 
 \chapter{Systemen van deeltjes}
+\section{Impuls}
+$$\overrightarrow{p} = m\overrightarrow{v}$$
+$$\sum \overrightarrow{p}_v = \sum \overrightarrow{p}_n$$
+\begin{itemize}
+ \item Bij een elastische botsing: $\sum \overrightarrow{K}_v = \sum \overrightarrow{K}_n$ 
+ \item Bij een niet elastische botsing: /
+ \item Bij een volkomen onelastische botsing: Alle voorwerpen hangen na de botsing aan elkaar en 
+ bewegen voort als één voorwerp. Hieruit volgt $m_n = \sum_i m_i$
+ \item Bij een 1 dimensionale elastische botsing: $v_{1v} - v_{2v} = -(v_{1n} - v_{2n})$
+\end{itemize}
 
 \chapter{Rotatiebewegingen}
+\section{Traagheidsmoment}
+$$ I_O = I_C + md^2$$
+\section{Krachtmoment}
+$$\overrightarrow{\tau} = \overrightarrow{r}\overrightarrow{F}$$
+$$
+\begin{tikzpicture}
+ \coordinate (O) at (0,0);
+ \coordinate (A) at (2,0);
+ \coordinate (B) at (4,2);
+ \coordinate (C) at (4,0);
+ 
+ \draw[red, thick, ->] (O) -- (A) node[anchor=north east] {$\overrightarrow{r}$};
+ \draw[blue, thick, ->] (A) -- (B) node[anchor= west] {$\overrightarrow{F}$};
+ 
+ \draw[dashed, cyan] (B) -- (C) node[anchor=south west] {$F_\perp$};
+ \draw[dashed] (A) -- (C);
+
+\end{tikzpicture}
+$$
+
+$$|\overrightarrow{\tau}| = rF_\perp$$
+\section{Conversies}
+\begin{itemize}
+ \item $r = \theta$
+ \item $v = \omega$
+ \item $a = \alpha$
+ \item $m = I_O$
+ \item $F = \tau$
+ \item $p = L$
+\end{itemize}
+\section{Conversies - Voorbeelden}
+\begin{itemize}
+ \item $\overrightarrow{r} = \overrightarrow{r}_0 + v_0t + \frac{at^{2}}{2} 
+ \\ \Rightarrow \theta = \theta_0 + \omega_0t + \frac{\alpha t^{2}}{2}$
+ \item $\sum \overrightarrow{F} = m\overrightarrow{a}
+ \\ \Rightarrow \sum \tau = I\alpha$
+ \item $K = \frac{mv^{2}}{2}
+ \\ \Rightarrow K = \frac{Iw^{2}}{2}$
+\end{itemize}
+
+
+
 
 \chapter{Rotatie vektoren en impulsmoment}
 
