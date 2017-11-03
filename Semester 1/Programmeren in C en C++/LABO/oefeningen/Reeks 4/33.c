@@ -5,12 +5,14 @@
 #include <ctype.h>
 #include <string.h>
 
-#define AANTAL_WOORDEN            3
+#define AANTAL_WOORDEN             3
 #define GEMIDDELDE_LENGTE_WOORDEN  7
-#define LENGTE_ARRAY_T            AANTAL_WOORDEN * GEMIDDELDE_LENGTE_WOORDEN
+#define LENGTE_ARRAY_T             AANTAL_WOORDEN * GEMIDDELDE_LENGTE_WOORDEN
 
-void lees(char **);
-void schrijf(char **);
+
+
+void lees(char ** const pt);
+void schrijf(char ** const pt);
 
 int main(void){
 	char *pt[AANTAL_WOORDEN + 1]; /* Zodat je ook nog een nullpointer kan wegsteken */
@@ -18,27 +20,32 @@ int main(void){
 	char t[LENGTE_ARRAY_T];
 
 	pt[0] = t;
-	printf("Geef %d woorden in\n", AANTAL_WOORDEN);
 	lees(pt);    /* Leest alle woorden in */
 	schrijf(pt); /* Schrijft alle woorden onder elkaar uit */
 
+	int f;
+	scanf("%d", &f);
 	return 0;
 }
 
-void lees(char ** pt){
+void lees(char * * const pt){
 	int i;
-	char s[GEMIDDELDE_LENGTE_WOORDEN];
-	for(i = 0; i < AANTAL_WOORDEN; i++){
-		if(scanf("%s", s) == 0){
+	char buffer[GEMIDDELDE_LENGTE_WOORDEN];
+	for(i = 0; i < AANTAL_WOORDEN; i++) {
+		printf("Geeft woord %d in: ", (i + 1));
+		if(scanf("%s", &buffer) == 0){
 			printf("Error: invalid character\n");
 			exit(1);
 		}
-		*pt = s;
-		
-	}
-	pt[AANTAL_WOORDEN] = '\0';
+
+		int length = strlen(buffer);
+		char *woord = buffer;
+		*pt = woord;
+    } 
+
+   
 }
 
-void schrijf(char ** pt){
-	
+void schrijf(char * * const pt){
+	printf("%s\n", *pt);
 }
