@@ -10,10 +10,10 @@
 #define LENGTE_ARRAY_T            AANTAL_WOORDEN * (1 + GEMIDDELDE_LENGTE_WOORDEN)
 
 void lees(char **);
-void schrijf(char **);
+void schrijf(const char * const * pt);
 
 int main(void){
-	char *pt[AANTAL_WOORDEN]; /* Zodat je ook nog een nullpointer kan wegsteken */
+	char *pt[AANTAL_WOORDEN + 1]; /* Zodat je ook nog een nullpointer kan wegsteken */
 
 	char t[LENGTE_ARRAY_T];
 
@@ -28,17 +28,14 @@ int main(void){
 void lees(char ** pt){
 	int i;
 	for(i = 0; i < AANTAL_WOORDEN; i++){
-		if(scanf("%s", *pt) == 0){
-			printf("Error: invalid character\n");
-			exit(1);
-		}
+		scanf("%s", *pt);
 		*(pt + 1) = *pt + strlen(*pt) + 1;
-		
+		pt++;
 	}
 	*pt = 0;
 }
 
-void schrijf(char ** pt){
+void schrijf(const char * const * pt){
 	while(*pt){
 		printf("%s\n", *pt);
 		pt++;

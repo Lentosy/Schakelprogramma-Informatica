@@ -5,39 +5,37 @@
 
 #define SIZE 26
 
-
 void read(int freq[]);
-void horiz_graph(const int freq[]);
-void verti_graph(const int freq[]);
-int max_freq(const int freq[]);
+void horizon_graph(int freq[]);
+void vertic_graph(int freq[]);
+int max_freq(int freq[]);
 
-int main(){
+int main(void){
 	int freq[SIZE] = {0};
 	read(freq);
-	horiz_graph(freq);
-	verti_graph(freq);
-	return 0;
+	horizon_graph(freq);
+	vertic_graph(freq);
 }
 
 
-void read(int freq[]){;
+void read(int freq[]){
 	char c;
-	do{
+	while(c != '$' && scanf("%c", &c) != 0){
 		if(c >= 'A' && c <= 'Z'){
-			freq[c - 'A']++;
-		}else { //(ch >= 'a' && ch <= 'z')
-			freq[c - 'a']++;
-		}	
-	}while(scanf("%c", &c) != 0 && c != '$');
-
+			c = c - 'A';
+		}
+		if(c >= 'a' && c <= 'z'){
+			c = c - 'a';
+		}
+		freq[c]++;
+	}
 }
 
-void horiz_graph(const int freq[]){
-	printf("Horizontal frequence graph:\n");
+void horizon_graph(int freq[]){
 	int i;
 	int j;
 	for(i = 0; i < SIZE; i++){
-		printf("%c: ",i + 'a');
+		printf("%c: ", i + 'a');
 		for(j = 0; j < freq[i]; j++){
 			printf("*");
 		}
@@ -45,14 +43,13 @@ void horiz_graph(const int freq[]){
 	}
 }
 
-void verti_graph(const int freq[]){
-	printf("Vertical frequence graph:\n");
+void vertic_graph(int freq[]){
+	int max = max_freq(freq);
 	int i;
-	int j;
-	for(i = max_freq(freq); i > 0; i--){
-		for(j = 0; j < SIZE; j++){
-			if(freq[j] >= i){
-				printf("%c", j + 'a');
+	for(max; max > 0; max--){
+		for(i = 0; i < SIZE; i++){
+			if(freq[i] >= max){
+				printf("%c", i + 'a');
 			}else{
 				printf(" ");
 			}
@@ -61,11 +58,11 @@ void verti_graph(const int freq[]){
 	}
 }
 
-int max_freq(const int freq[]){
+int max_freq(int freq[]){
 	int max = freq[0];
 	int i;
 	for(i = 1; i < SIZE; i++){
-		if(max < freq[i]){
+		if(freq[i] > max){
 			max = freq[i];
 		}
 	}

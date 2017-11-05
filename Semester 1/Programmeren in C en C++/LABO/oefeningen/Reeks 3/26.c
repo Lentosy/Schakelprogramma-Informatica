@@ -4,8 +4,9 @@
 #include <stdlib.h>
 
 
-void pivoteer(char *, char *, char *);
-void schrijf(const char *, const char *);
+void pivoteer(const char *begin, const char *na_einde, char *pivot);
+void schrijf(const char *begin, const char *na_einde);
+
 int main(void){
 	char tekst[] = {'b','d','?','z','g','o','e','z','e', 'b',' ', 'd','i','g','!','h','o','s','v'};
 
@@ -14,14 +15,17 @@ int main(void){
 	return 0;
 }
 
-void pivoteer(char *begin, char *na_einde, char *pivot){
-	char t;
-	while(begin != pivot && na_einde-- != pivot){
-		t = *begin;
-		*begin = *na_einde;
-		*na_einde = t;
-		begin++;
+void pivoteer(const char *begin, const char *na_einde, char *pivot){
+	int links = pivot - begin;
+	int rechts = na_einde - pivot - 1;
+	
+	int i;
+	for(i = 1; i <= links; i++){
+		char t = pivot[i];
+		pivot[i] = pivot[-i];
+		pivot[-i] = t;
 	}
+	
 }
 
 void schrijf(const char *begin, const char *na_einde){
@@ -29,5 +33,4 @@ void schrijf(const char *begin, const char *na_einde){
 		printf("%c", *begin);
 		begin++;
 	}
-	printf("\n");
 }

@@ -10,6 +10,8 @@
 \usepackage{sectsty}
 \usepackage{lipsum}
 \usepackage{enumitem}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
 
 
 \partfont{\color{brown}}
@@ -200,7 +202,7 @@ Heeft 3 uitkomsten: -1, 0 of 1.
   \newline +  $\mu(30) * (90/30)$
 \end{itemize}
 
-\section{Primitieve wortels}
+\subsection{Primitieve wortels}
 Interacties met zichzelf om uiteindelijk 1 uit te komen. 
 Bij de primitieve wortel moet je de $orde$ aantal keer interageren
 met zichzelf om 1 uit te komen
@@ -213,13 +215,378 @@ rooster opstellen \todo{rooster}
 $8 * 3 * 25 = 600$ is het enige dat als uitkomst 1 mag hebben,
 zonder computer kan je best enkel de laatste aansluitingen controleren
 
-\section{Discrete logaritmen}
+\subsection{Discrete logaritmen}
 Bepaal index $i$ van het getal $x$ van verzameling $p$ met primitieve wortel $w$
 \newline
 VB: $p = 401, w=3, i=13$
 \subsection{Naïve methode}
 
 \subsection{Baby-step Giant-step}
-\chapter{Groepen}
+
+\section{Galoisvelden}
+\chapter{Grafen}
+\section{Terminologie}
+\begin{itemize}
+ \item \important{Graad} van een knoop: aantal buren van een knoop.
+ \item Aantal \important{bogen}: de helft van de som van de graden van alle knopen.
+ \item $\delta$: De kleinste graad in een graaf.
+ \item $\Delta$: De grootste graad in een graaf.
+ \item Een graaf is \important{regulier} als $\delta = \Delta$.
+ \item Een graaf is \important{compleet} als elke knoop met elke andere knoop is verbonden.
+ \item \important{Cykelgraaf}: Een graaf waarbij elke knoop 2 buren heeft.
+ \item \important{Wandelen}: Van knoop naar knoop gaan.
+ \item \important{Pad}: Elk knooppunt mag maar één keer in een wandeling voorkomen.
+ \item \important{Brug}: Een boog dat 2 grafen verbindt.
+ \item \important{Gerichte graaf}: Graaf waar de bogen een richting hebben.
+ \item \important{Gewogen graaf}: Graaf waar elke boog een kost heeft.
+ \item \important{Subgraaf}: Een graaf G'' waarvan de knopen - en bogenverzameling een deelverzameling is van een graaf G'.
+ \item \important{Isomorfe graaf}: Een graaf G'' die, als je knopen en bogen verlegt, overeen komt met graaf G'.
+ \item \important{Bipartiete graaf}: De graaf is gepartitioneerd in partities. Enkel bogen tussen partities zijn mogelijk.
+ \item \important{Complete Bipartiete graaf}: Elke knoop van één partitie is verbonden met elke knoop uit de andere partitie.
+ \item \important{Kubus}: Een bipartiete graaf met $2^n$ knopen, binair geïdentificeerd, met bogen tussen knopen waarvan de identificatie 1 bit verschilt. 
+\end{itemize}
+\begin{tikzpicture}
+ \node[text] at (-0.25,-0.25) {0};
+ \node[text] at (2.25,-0.25) {1};
+ \draw[thick] (0,0) -- (2,0);
+ 
+ \node[text] at (3.75,-0.25) {00};
+ \node[text] at (6.25,-0.25) {01};
+ \node[text] at (3.75, 2.25) {10};
+ \node[text] at (6.25, 2.25) {11};
+ \draw[thick] (4,0) -- (6,0); % links onder naar rechts onder
+ \draw[thick] (4,0) -- (4,2); % links onder naar links boven
+ \draw[thick] (4,2) -- (6,2); % links boven naar rechts boven
+ \draw[thick] (6,2) -- (6,0); % rechts boven naar rechts onder
+ 
+ \node[text] at (7.75,-0.25) {000};
+ \node[text] at (10.25,-0.25) {001};
+ \node[text] at (7.75, 2.25) {100};
+ \node[text] at (10.25, 2.25) {101};
+ \node[text] at (8.25,0.5) {\tiny{101}};
+ \node[text] at (8.25, 1.5) {\tiny{110}};
+ \node[text] at (9.75, 0.5) {\tiny{011}};
+ \node[text] at (9.75, 1.5) {\tiny{111}};
+ \draw[thick] (8,0) -- (10,0); % links onder naar rechts onder
+ \draw[thick] (8,0) -- (8,2); % links onder naar links boven
+ \draw[thick] (8,2) -- (10,2); % links boven naar rechts boven
+ \draw[thick] (10,2) -- (10,0); % rechts boven naar rechts onder
+ \draw[thick] (8,0) -- (8.5,0.5);
+ \draw[thick] (8,2) -- (8.5, 1.5);
+ \draw[thick] (10,2) -- (9.5, 1.5);
+ \draw[thick] (10,0) -- (9.5, 0.5);
+ 
+ \draw[thick] (8.5,0.5) -- (8.5, 1.5);
+ \draw[thick] (8.5, 1.5) -- (9.5, 1.5);
+ \draw[thick] (9.5, 1.5) -- (9.5, 0.5);
+ \draw[thick] (9.5, 0.5) -- (8.5, 0.5);
+\end{tikzpicture}
+
+\section{Connectiviteit}
+\subsection{Eulercircuit - \important{Niet kennen}}
+Elke boog mag maar één keer in een wandeling voorkomen.
+\subsection{Hamiltoncircuit}
+Elk knooppunt mag maar één keer in een wandeling voorkomen. Hier gelden twee voorwaarden (\important{Niet te kennen})
+
+De \important{Gray Code} is een Hamiltoncircuit in een kubus. 
+Zie slide 30 van 2a.pptx. Op het examen komt dit in de vorm : \important{Geef gray code van een dimensie 3}.
+
+\begin{tikzpicture}
+ \node[text] at (-0.25,-0.25) {0000};
+ \node[text] at (2.25,-0.25) {0001};
+ \draw[thick, ->, red] (0,0) -- (2,0);
+ 
+ \node[text] at (3.75,-0.25) {0000};
+ \node[text] at (6.25,-0.25) {0001};
+ \node[text] at (3.75, 2.25) {0011};
+ \node[text] at (6.25, 2.25) {0010};
+ \draw[thick, ->,red] (4,0) -- (6,0); % links onder naar rechts onder
+ \draw[thick] (4,0) -- (4,2); % links onder naar links boven
+ \draw[thick, ->,red] (6,2) -- (4,2); % links boven naar rechts boven
+ \draw[thick, ->,red] (6,0) -- (6,2); 
+ 
+ \node[text] at (7.75,-0.25) {000};
+ \node[text] at (10.25,-0.25) {001};
+ \node[text] at (7.75, 2.25) {100};
+ \node[text] at (10.25, 2.25) {101};
+ \node[text] at (8.25,0.5) {\tiny{101}};
+ \node[text] at (8.25, 1.5) {\tiny{110}};
+ \node[text] at (9.75, 0.5) {\tiny{011}};
+ \node[text] at (9.75, 1.5) {\tiny{111}};
+ \draw[thick] (8,0) -- (10,0); % links onder naar rechts onder
+ \draw[thick] (8,0) -- (8,2); % links onder naar links boven
+ \draw[thick] (8,2) -- (10,2); % links boven naar rechts boven
+ \draw[thick] (10,2) -- (10,0); % rechts boven naar rechts onder
+ \draw[thick] (8,0) -- (8.5,0.5);
+ \draw[thick] (8,2) -- (8.5, 1.5);
+ \draw[thick] (10,2) -- (9.5, 1.5);
+ \draw[thick] (10,0) -- (9.5, 0.5);
+ 
+ \draw[thick] (8.5,0.5) -- (8.5, 1.5);
+ \draw[thick] (8.5, 1.5) -- (9.5, 1.5);
+ \draw[thick] (9.5, 1.5) -- (9.5, 0.5);
+ \draw[thick] (9.5, 0.5) -- (8.5, 0.5);
+\end{tikzpicture}
+\\
+In excel\todo{...}: \begin{tabular}{l}
+           000\important{0} \\
+           000\important{1} \\
+           \hline
+           001\important{1} \\
+           001\important{0}\\
+           \hline
+           0110\\
+           0111\\
+           0101\\
+           0100\\
+              \hline
+           1100\\
+           1101\\
+           1111\\
+           1110\\
+           1010\\
+           1011\\
+           1001\\
+           1000
+        
+          \end{tabular}
+
+
+\subsection{Boogconnectiviteit \important{Niet kennen}}
+\subsection{Knoopconnectiviteit}
+De knoopconnectiviteit is het aantal elementen in de kleinste knoopsnede van een graaf. Een knoopsnede is een soort brug dat bestaat uit meerdere knopen.
+Als deze knoopsnede verwijderdt wordt uit de graaf is de graaf niet meer samenhangend, maar bestaat dan uit 2 grafen.
+Voor een willekeurige samenhangende graaf : $K \leq \lambda \leq \delta$. zie slides pls
+
+\section{Matrixvoorstellingen}
+\subsection{Adjacant (\important{''Waardeloos'' - Moreau})}
+\subsection{Incidentiematrix}
+\section{Bomen}
+\subsection{Examenvraag 1: \important{Identificeer een boom volgens Prüfers methode}}
+De knoop met het kleinste label en slechts één buurt heeft verwijderen en het label opschrijven aan welke knoop deze knoop vasthangde.
+Het eindresultaat moeten 2 knopen zijn.
+
+\begin{tikzpicture}
+ \coordinate (2) at (0, 2);
+ \coordinate (T2) at (-0.25, 1.75);
+ 
+ \coordinate (4) at (0, 0);
+ \coordinate (T4) at (-0.25, -0.25);
+ 
+ \coordinate (3) at (2, 0);
+ \coordinate (T3) at (1.75, -0.25);
+ 
+ \coordinate (6) at (2, -2);
+ \coordinate (T6) at (1.75, -2.25);
+ 
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+ 
+ \coordinate (5) at (5, 1);
+ \coordinate (T5) at (4.75, 1);
+ 
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (2) -- (4);
+ \draw (4) -- (3);
+ \draw (3) -- (6);
+ \draw (3) -- (1);
+ \draw (1) -- (5);
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (2) {\textbullet};
+ \node[text] at (3) {\textbullet};
+ \node[text] at (4) {\textbullet};
+ \node[text] at (5) {\textbullet};
+ \node[text] at (6) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T2) {2};
+ \node[text] at (T3) {3};
+ \node[text] at (T4) {4};
+ \node[text] at (T5) {5};
+ \node[text] at (T6) {6};   
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+De knoop met het kleinste label is \important{2} en hangt vast aan \important{4}.
+$\sigma$ = 4
+
+\begin{tikzpicture}
+ 
+ \coordinate (4) at (0, 0);
+ \coordinate (T4) at (-0.25, -0.25);
+ 
+ \coordinate (3) at (2, 0);
+ \coordinate (T3) at (1.75, -0.25);
+ 
+ \coordinate (6) at (2, -2);
+ \coordinate (T6) at (1.75, -2.25);
+ 
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+ 
+ \coordinate (5) at (5, 1);
+ \coordinate (T5) at (4.75, 1);
+ 
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (4) -- (3);
+ \draw (3) -- (6);
+ \draw (3) -- (1);
+ \draw (1) -- (5);
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (3) {\textbullet};
+ \node[text] at (4) {\textbullet};
+ \node[text] at (5) {\textbullet};
+ \node[text] at (6) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T3) {3};
+ \node[text] at (T4) {4};
+ \node[text] at (T5) {5};
+ \node[text] at (T6) {6};   
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+De knoop met het kleinste label is \important{4} en hangt vast aan \important{3}.
+$\sigma$ = 4, 3
+
+\begin{tikzpicture}
+ 
+ \coordinate (3) at (2, 0);
+ \coordinate (T3) at (1.75, -0.25);
+ 
+ \coordinate (6) at (2, -2);
+ \coordinate (T6) at (1.75, -2.25);
+ 
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+ 
+ \coordinate (5) at (5, 1);
+ \coordinate (T5) at (4.75, 1);
+ 
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (3) -- (6);
+ \draw (3) -- (1);
+ \draw (1) -- (5);
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (3) {\textbullet};
+ \node[text] at (5) {\textbullet};
+ \node[text] at (6) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T3) {3};
+ \node[text] at (T5) {5};
+ \node[text] at (T6) {6};   
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+De knoop met het kleinste label is \important{5} en hangt vast aan \important{1}.
+$\sigma$ = 4, 3, 1
+
+\begin{tikzpicture}
+ 
+ \coordinate (3) at (2, 0);
+ \coordinate (T3) at (1.75, -0.25);
+ 
+ \coordinate (6) at (2, -2);
+ \coordinate (T6) at (1.75, -2.25);
+ 
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (3) -- (6);
+ \draw (3) -- (1);
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (3) {\textbullet};
+ \node[text] at (6) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T3) {3};
+ \node[text] at (T6) {6};   
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+De knoop met het kleinste label is \important{6} en hangt vast aan \important{3}.
+$\sigma$ = 4, 3, 1, 3
+
+\begin{tikzpicture}
+ 
+ \coordinate (3) at (2, 0);
+ \coordinate (T3) at (1.75, -0.25);
+ 
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (3) -- (1);
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (3) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T3) {3};  
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+De knoop met het kleinste label is \important{3} en hangt vast aan \important{1}.
+$\sigma$ = 4, 3, 1, 3, 1
+
+\begin{tikzpicture}
+ \coordinate (1) at (4, 0);
+ \coordinate (T1) at (3.75, -0.25);
+
+ \coordinate (7) at (5, -1);
+ \coordinate (T7) at (4.75, -1.25);
+ 
+ \draw (1) -- (7);
+ 
+ \node[text] at (1) {\textbullet};
+ \node[text] at (7) {\textbullet};
+ 
+ \node[text] at (T1) {1};
+ \node[text] at (T7) {7};   
+\end{tikzpicture}
+\\
+2 knopen resterend. Eindresultaat: $\sigma$ = 4, 3, 1, 3, 1
+\subsection{Examenvraag 2: \important{Teken een boom volgens Prüfers methode}}
+$\sigma$ = 4, 3, 1, 3, 1
+\\
+$S$ = {1, 2, 3, 4, 5, 6, 7}
+
+\todo{uitwerken}
+2 komt niet voor in $\sigma$, 4$\rightarrow$ 2
+\\
+4 komt niet voor in $\sigma$ 3$\rightarrow$4
+
+\subsection{Binaire boom}
+Een hiërarchische boom waar op elk niveau maximaal 2 aftakkingen mogelijk zijn. Het \important{Catalan} getal zegt hoeveel bomen er 
+zijn met $n$ aantal knopen. 
+$$ C_n = \frac{1}{n + 1}\binom{2n}{n}$$
+
+
 \label{ch:groepen}
 \end{document}

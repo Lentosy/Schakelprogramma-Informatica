@@ -3,31 +3,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void my_toupper(char *);
+void my_toupper(char *s);
 
 int main(void){
-
-	char s[50] = "snEEuwwITJE<3!!";
+	char s[80] = "snEEuwwITJE<3!!";
+	printf("%s => ", s);
 	my_toupper(s);
 	printf("%s\n", s);
 
-	printf("Geef een woord op:");
-	scanf("%s", s);
-	my_toupper(s);
-	printf("%s\n", s);
-
-	return 0;
+	char w[80];
+	printf("Geef een woord in: ");
+	scanf("%s", w);
+	my_toupper(w);
+	printf("%s\n", w);
 }
 
 
 void my_toupper(char *s){
+	if(*s == 0){
+		return;
+	}
+
 	if(*s >= 'a' && *s <= 'z'){
 		*s = *s - 'a' + 'A';
 	}
-	while(*s++){
+
+	s++;
+
+	while(*s){
 		if(*s >= 'A' && *s <= 'Z'){
 			*s = *s - 'A' + 'a';
 		}
+		s++;
 	}
 }

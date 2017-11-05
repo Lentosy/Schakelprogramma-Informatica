@@ -3,42 +3,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-typedef struct deeltal deeltal;
-struct deeltal{
+typedef struct{
 	int waarde;
 	int aantal_delers;
 	int * delers;
-};
+}deeltal;
 
-void schrijf_ints(int * array, int size);
-void schrijf_deeltal(deeltal *);
+void schrijf_ints(const int * d, int aantal);
+void schrijf_deeltal(const deeltal *d);
 
 int main(void){
 	deeltal d;
 	d.waarde = 6;
 	d.aantal_delers = 3;
-	int delers[3] = {1, 2, 3};
-	d.delers = delers;
-
+	d.delers = malloc(sizeof(int) * d.aantal_delers);
+	d.delers[0] = 1;
+	d.delers[1] = 2;
+	d.delers[2] = 3;
 	schrijf_deeltal(&d);
+
+	free(d.delers);
 	return 0;
+
 }
 
-
-void schrijf_ints(int *array, int size){
-	int i;
-	printf("%d", *array);
-	for(i = 1; i < size; i++){
-		array++;
-		printf("-%d", *array);
-	}
+void schrijf_deeltal(const deeltal *d){
+	printf("%d ", d->waarde);
+	schrijf_ints(d->delers, d->aantal_delers);
 	printf("\n");
 }
 
-void schrijf_deeltal(deeltal *d){
-	printf("%-4d", d->waarde);
-	//int size = sizeof(d->delers) / sizeof(int);
-	int size = 3;
-	schrijf_ints(d->delers, size);
+void schrijf_ints(const int * d, int aantal){
+	int i;
+	for(i = 0; i < aantal - 1; i++){
+		printf("%d-", d[i]);
+	}
+	printf("%d", d[aantal - 1]);
 }

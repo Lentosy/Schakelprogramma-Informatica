@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 typedef struct knoop knoop;
 struct knoop{
 	int getal;
@@ -12,151 +11,131 @@ struct knoop{
 };
 
 knoop * maak_gesorteerde_lijst_automatisch(int aantal, int bovengrens);
-knoop * merge(knoop * m, knoop *n);
-void voeg_getal_toe(knoop **k, int g);
+knoop * merge(knoop **k, knoop **m);
+void voeg_toe_gesorteerd(int d, knoop ** k);
+void verwijder_dubbels(knoop **k);
 void print_lijst(const knoop *k);
-void vernietig_lijst(knoop ** k);
-void verwijder_dubbels(knoop * k);
-void keerom(knoop ** k);
+void vernietig_lijst(knoop **k);
 
 
 int main(void){
 	srand(time(NULL));
-	knoop *m = maak_gesorteerde_lijst_automatisch(10, 1000);
+	printf("Lijst met 10 gesorteerde getallen met als bovengrens 1000 wordt aangemaakt: ");
+	knoop *l = maak_gesorteerde_lijst_automatisch(10, 1000);
+	printf("\n\t\t\tl: ");
+	print_lijst(l);
+
+	printf("\nLijst met  5 gesorteerde getallen met als bovengrens 1000 wordt aangemaakt: ");
 	knoop *n = maak_gesorteerde_lijst_automatisch(5, 1000);
-	printf("\nLIJST m:\n");
-	print_lijst(m);
-	printf("\nLIJST n:\n");
+	printf("\n\t\t\tn: ");
 	print_lijst(n);
-	printf("\nDeze worden gemerged. \n\n");
 
-	knoop *mn = merge(m, n);
-	printf("\nLIJST mn:\n");
-	print_lijst(mn);
+	printf("\nBeide lijsten worden samengevoegd: ");
+	knoop *ln = merge(&l, &n);
+	printf("\n\t\t   ln: ");
+	print_lijst(ln);
+	printf("\n");
 
-	vernietig_lijst(&m);
-	vernietig_lijst(&n);
-	vernietig_lijst(&mn);
-
+	vernietig_lijst(&ln);
 	return 0;
 }
 
-knoop * merge(knoop *m,  knoop *n){
-	knoop *res = malloc(sizeof(knoop));
-	knoop *start = res;
+knoop * merge(knoop **k,  knoop **m){
+	knoop *begin;
+	knoop **res = &begin;
+	knoop *kh = *k;
+	knoop *mh = *m;
 
-	if(m->getal < n->getal){
-		res->getal = m->getal;
-		m = m->next;
-	}else{
-		res->getal = n->getal;
-		n = n->next;
-	}
-
-	res->next = malloc(sizeof(knoop));
-
-	while(m && n){
-		res = res->next;
-		if(m->getal < n->getal){
-			res->getal = m->getal;
-			m = m->next;
+	while(kh && mh){
+		if(kh->getal < mh->getal){
+			*res = kh;
+			kh = kh->next;
 		}else{
-			res->getal = n->getal;
-			n = n->next;
+			*res = mh;
+			mh = mh->next;
 		}
-		res->next = malloc(sizeof(knoop));
+		res = &((*res)->next);
+	}
+	if(kh){
+		*res = kh;
 	}
 
-	while(m){
-		res = res->next;
-		res->getal = m->getal;
-		m = m->next;
-		res->next = malloc(sizeof(knoop));
+	if(mh){
+		*res = mh;
 	}
 
-	while(n){
-		res = res->next;
-		res->getal = n->getal;
-		n = n->next;
-		res->next = malloc(sizeof(knoop));
-	}
-	free(res->next);
-	res->next = 0;
-	return start;
+	*k = 0;
+	*m = 0;
+	return begin;
 }
 
-void keerom(knoop **l){
-	knoop *vorige   = NULL;
-	knoop *huidige  = *l;
-	knoop *volgende = NULL;
 
-	while(huidige){
-		volgende       = huidige->next;
-		huidige->next  = vorige;
-		vorige         = huidige;
-		huidige        = volgende;
-	}
 
-	*l = vorige;
-}
+
 
 knoop * maak_gesorteerde_lijst_automatisch(int aantal, int bovengrens){
-	
-	knoop *l = 0;
-	int g = rand() % bovengrens;
 	int i;
-	for(i = 0; i < aantal; i++){
-		g -= rand() % 3;
-		voeg_getal_toe(&l, g);
-	}
+	int d = rand() % bovengrens;
 
-	return l;
+	knoop *k = 0;
+
+	for(i = 0; i < aantal; i++){
+		d += rand() % (5 - (-5) + 1) + (-5);
+		voeg_toe_gesorteerd(d, &k);
+	}
+	return k;
 }
 
-void voeg_getal_toe(knoop **k, int g){
+
+void voeg_toe_gesorteerd(int d, knoop ** k){;
 	knoop *h;
 	knoop *m;
-	if(*k == 0 || g <= (*k)->getal){
-		h = malloc(sizeof(knoop));
+	if(*k == 0 || d <= (*k)->getal){
+		h = malloc(sizeof(knoop *));
 		h->next = *k;
-		h->getal = g;
+		h->getal = d;
 		*k = h;
 	}else{
 		h = *k;
-		while(h->next && h->next->getal < g){
+		while(h->next && h->next->getal < d){
 			h = h->next;
 		}
-		m = malloc(sizeof(knoop));
-		m->getal = g;
+		m = malloc(sizeof(knoop *));
+		m->getal = d;
 		m->next = h->next;
 		h->next = m;
 	}
 }
 
-void print_lijst(knoop const *k){
+void verwijder_dubbels(knoop **k){
+	knoop *h = *k;
+	knoop *prev = h;
+	h = h->next;
+	while(h){
+		if(prev->getal == h->getal){
+			prev->next = h->next;
+			free(h);
+		}else{
+			prev = h;
+		}
+		h = h->next;
+	}
+}
+
+
+void print_lijst(const knoop* k){
 	while(k){
-		printf("%4d", k->getal);
+		printf("%3d ", k->getal);
 		k = k->next;
 	}
-	printf("\n");
 }
 
-void verwijder_dubbels(knoop * k){
-	while(k){
-		if(k->next && k->getal == k->next->getal){
-			knoop *m = k->next;
-			k->next = m->next->next;
-			free(m);
-			printf("%4d", k->getal);
-		}
-		
-	}
-}
-
-void vernietig_lijst(knoop ** k){
+void vernietig_lijst(knoop **k){
+	knoop *h;
 	while(*k){
-		knoop *h = (*k)->next;
-		free(*k);
-		*k = h;
+		h = *k;
+		*k = h->next;
+		free(h);
 	}
 }
+
