@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView_question;
     EditText editText_answer;
     Button button_hint;
+    Button button_ok;
 
     String[] questions;
     String[] answers;
@@ -47,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, HintActivity.class);
                 intent.putExtra(TAGS.CURRENT_QUESTION_INDEX, currentQuestionIndex);
                 startActivityForResult(intent, TAGS.HINT_REQUEST_CODE);
+            }
+        });
+
+        button_ok = (Button) findViewById(R.id.button_ok);
+        button_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submit(view);
             }
         });
 

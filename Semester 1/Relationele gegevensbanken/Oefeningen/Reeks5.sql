@@ -63,3 +63,17 @@ from   regios a
 where  substr(a.hasc,1,2) = 'BE'
   and  a.niveau = 4
 order by a.name;
+
+
+
+-- 13.
+select a.season, a.gender, a.discipline, a.name, a.points, 1 + count(case when a.points < b.points then 1 end) ranking
+from ranking a
+     join ranking b on a.season = b.season
+                    and a.gender = b.gender
+               	    and a.discipline = b.discipline
+            	    and a.points <= b.points
+where a.season between 1986 and 1990
+group by a.season, a.gender, a.discipline, a.name, a.points
+having count(case when a.points < b.points then 1 end ) < 3
+order by a.season, a.gender, a.discipline, a.points desc;
