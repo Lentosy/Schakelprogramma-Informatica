@@ -191,7 +191,12 @@ HAVING COUNT(
     END) > 1 
 ORDER BY hasc;
 
-
+-- 18.
+SELECT hasc
+FROM  Taalgebruik
+GROUP BY hasc
+HAVING
+    sum(case when iso in ('eng','fra','spa') then 1 else -1 end) =3
 
 
 -- 19.

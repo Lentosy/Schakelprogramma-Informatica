@@ -312,3 +312,81 @@ FROM races
 WHERE discipline = 'SL'
 ORDER BY zomer DESC, lente DESC, herfst DESC, winter DESC, seizoen ;
 
+--16.
+SELECT name,
+  TO_CHAR(birthdate,' yyyy') geboortejaar,
+  CAST((sysdate-birthdate)/365 AS NUMBER(5,2)) AS leeftijd,
+  CASE
+    WHEN width_bucket((sysdate-birthdate)/365,18,69,3) = 1
+    THEN 'x'
+    ELSE ' '
+  END jong,
+  CASE
+    WHEN width_bucket((sysdate-birthdate)/365,18,69,3) = 2
+    THEN 'x'
+    ELSE ' '
+  END middelbaar,
+  CASE
+    WHEN width_bucket((sysdate-birthdate)/365,18,69,3) = 3
+    THEN 'x'
+    ELSE ' '
+  END oud
+FROM     Competitors
+WHERE    extract(MONTH FROM birthdate) = 1
+  AND   (sysdate-birthdate)/365 BETWEEN 18 AND 69
+ORDER BY mod(5-width_bucket((sysdate-birthdate)/365,18,69,3),3),birthdate DESC
+
+
+--17.
+SELECT
+  CASE
+    WHEN nation IN ('CAN','USA')
+    THEN 'Noord Amerika'
+    WHEN nation IN ('BUL','RUS','CZE','SLO','CRO')
+    THEN 'Oost-Europa'
+    WHEN nation IN ('JPN','KOR')
+    THEN 'Azie'
+    ELSE 'West-Europa'
+  END " " ,
+  nation ,
+  name,
+  weight ,
+  CASE
+    WHEN weight < 60
+    THEN 'x'
+    ELSE ' '
+  END "<60" ,
+  CASE
+    WHEN weight >=60
+    AND weight  <=80
+    THEN 'x'
+    ELSE ' '
+  END "60-80" ,
+  CASE
+    WHEN weight > 80
+    THEN 'x'
+    ELSE ' '
+  END ">80"
+FROM competitors
+WHERE weight IS NOT NULL
+AND gender    ='M'
+ORDER BY
+  CASE
+    WHEN nation IN ('CAN','USA')
+    THEN 2
+    WHEN nation IN ('BUL','RUS','CZE','SLO','CRO')
+    THEN 4
+    WHEN nation IN ('JPN','KOR')
+    THEN 3
+    ELSE 1
+  END,
+  CASE
+    WHEN weight < 60
+    THEN 1
+    WHEN weight > 80
+    THEN 3
+    ELSE 2
+  END,
+  name
+
+

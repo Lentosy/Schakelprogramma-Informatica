@@ -77,7 +77,12 @@ SELECT TO_DATE('01/01/2008') FROM dual;
 SELECT ROUND(CURRENT_DATE - TO_DATE('13/10/1995')) FROM dual;
 --17. Geef de maand van vandaag op verschillende manieren 
 --    weer (vb. SEPTEMBER SEP 09 ).
+SELECT to_char(sysdate,'MONTH  MON MM ') FROM DUAL;
 
+--18. Onderzoek volgende reguliere expressie. De ampersand & vraagt een waarde voor tekst. 
+SELECT 'tekst voldoet aan regexp !' AS resultaat
+FROM DUAL
+WHERE regexp_like('&tekst','^.a{1,2}.+$','i');
 
 --19. Zoek met REGEXP_INSTR naar de namen van competitors welke minsters vier
 --    niet-lege substrings bevatten gescheiden door een spatie
@@ -106,8 +111,14 @@ FROM competitors
 
 --22. Zoek op in de SQL Reference het verschil tussen MOD en REMAINDER
 --    MOD gebruikt FLOOR in zijn formule, terwijl REMAINDER de functie ROUND gebruikt
+-- Mod gebruikt FLOOR en REMAINDER ROUND
 
 --23. Vervang de REMAINDER en MOD functies in volgende query, door andere functies en/of bewerkingen te gebruiken:
+select finishaltitude
+     ,(finishaltitude - (7*round(finishaltitude/7))) - REMAINDER(finishaltitude,7)
+     ,(finishaltitude - (7*trunc(finishaltitude/7))) - MOD(finishaltitude,7)
+from   Resorts
+WHERE  finishaltitude is not NULL
 
 --24. Zoek op in de SQL Reference: CREATE OR REPLACE FUNCTION. Schrijf vervolgens een functie cart_afstand,
 --    om de afstand tussen twee punten (met cartesische coördinaten) te bepalen. Test ook uit.
@@ -125,3 +136,54 @@ FUNCTION FULL_NAME (voornaam IN VARCHAR2, familienaam IN VARCHAR2) RETURN VARCHA
 BEGIN
 	RETURN INITCAP(voornaam) || ', ' || INITCAP(familienaam);
 END;
+
+
+--26.
+create or replace FUNCTION datumverschil(d1 date) RETURN VARCHAR2 AS
+ jaren   number;
+ dagen    number;
+ d2 date;
+BEGIN
+     d2:= sysdate;
+     jaren := trunc( months_between( d1, d2 ) / 12 );
+     dagen  := floor(d2 - add_months( d1, jaren*12 ));
+    RETURN 'jaren='||jaren|| ' en dagen='||dagen;
+END ;
+
+
+--27.
+select  name
+       ,extract(minute from time)*60+extract(second from time) as "tijd(sec)"
+       ,width_bucket(extract(minute from time)*60 + extract(second from time),109.38,105.43,24)  as tijdsgroep
+from results
+where rid=9086
+     and time is not null
+order by time 
+
+
+--28.
+SELECT name,birthdate
+from   competitors
+where birthdate is not null and extract(day from birthdate+1)=1
+
+--29.
+SELECT name, substr(name,instr(name,' ',1,1)) voornaam
+     FROM competitors
+     WHERE 
+     SOUNDEX(substr(name,instr(name,' ',1,1)))
+       = SOUNDEX('Mariane')
+ order by 2
+
+--30.
+SELECT  XMLElement("Belgen"
+        ,XMLAgg(XMLElement("competitor"
+                ,XMLAttributes(c.cid as "cid")
+                , initcap(c.name)||' '||to_char(c.birthdate, 'dd-mon-yyyy'))
+                order by c.birthdate
+                )
+                )
+AS "RESULT"
+FROM  Competitors c
+WHERE gender='M' and  nation like 'BEL' and birthdate is not null
+
+
