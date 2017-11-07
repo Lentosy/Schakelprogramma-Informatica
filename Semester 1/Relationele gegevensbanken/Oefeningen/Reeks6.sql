@@ -146,24 +146,60 @@ order by lev1, verschil;
 
 
 -- 9.
--- todo: sorteren op parent somehow
-with x as (select   r.parent, r.name, r.area, row_number() over(partition by parent order by r.parent) as seq, m.afkorting
-           from     regios r
-            join    members m on r.hasc = m.hasc
-           where    m.afkorting IN ( 'G-3','G-5','G-6','G-7','G-8')
-           order by r.parent)
-, y as (select   case seq when 1 then to_char(parent) else ' ' end as parent, 
-                name, area, afkorting
-       from     x)
-, z as (select parent, name, area,
-               count(afkorting) as "#",
-               max(case when afkorting = 'G-3' then 'X' else ' ' end) as "G-3",
-               max(case when afkorting = 'G-5' then 'X' else ' ' end) as "G-5",
-               max(case when afkorting = 'G-6' then 'X' else ' ' end) as "G-6",
-               max(case when afkorting = 'G-7' then 'X' else ' ' end) as "G-7",
-               max(case when afkorting = 'G-8' then 'X' else ' ' end) as "G-8"
-        from y
-        group by parent, name ,area)
-select *
-from z
+with x as (SELECT r.parent,r.hasc,r.name,r.area ,m.afkorting
+           FROM   regios  r 
+           JOIN   members m ON r.hasc=m.hasc
+           WHERE  m.afkorting IN ( 'G-3','G-5','G-6','G-7','G-8'))
+           
+,    y as (select   parent, name, area,
+                    rank() over(partition by parent order by area desc) seq,
+                    count(afkorting) "#",
+                    max(case when afkorting = 'G-3' then 'X' else ' ' end) as "G-3",
+                    max(case when afkorting = 'G-5' then 'X' else ' ' end) as "G-5",
+                    max(case when afkorting = 'G-6' then 'X' else ' ' end) as "G-6",
+                    max(case when afkorting = 'G-7' then 'X' else ' ' end) as "G-7",
+                    max(case when afkorting = 'G-8' then 'X' else ' ' end) as "G-8"
+           from     x
+           group by parent, name, area)
+select case when seq = 1 then to_char( parent) else ' ' end as "parent",
+         name, area, "#", "G-3", "G-5", "G-6", "G-7", "G-8"
+from y
 order by parent, area desc;
+
+
+-- 10.
+with x as (select iso, elevation, elevation - dense_rank() over(partition by iso order by elevation) groep
+           from cities
+           where iso = 'IS')
+select *
+from x;
+select min(elevation) elevation, case when max(elevation) = min(elevation) then ' ' else cast(max(elevation) as char(4)) end as "             "
+from x
+group by groep, iso
+order by elevation
+
+
+-- 11.
+with x as(select b.name as provincie,
+                 a.name as arrondissement,
+                 c.population as stadpop,
+                 c.elevation stadelev,
+                 case when c.population = max(c.population) over(partition by a.parent) then c.elevation end as maxelev
+          from   regios a
+            join cities c on a.cid = c.id
+          join   regios b on a.parent = b.hasc
+          where  b.parent like 'BE.VL%')
+,    y as (select provincie, arrondissement, stadpop, stadelev, max(maxelev) over(partition by provincie) as hoogste
+           from   x)
+,    z as (select provincie, arrondissement, stadpop, stadelev, stadelev - hoogste as verschil, row_number() over(partition by provincie order by stadelev) as seq
+           from   y)
+select case seq
+        when 1 then to_char(provincie)
+        else ' '
+       end as provincie, 
+       arrondissement, stadpop, stadelev, verschil
+from   z
+where seq <= 3;
+
+
+
