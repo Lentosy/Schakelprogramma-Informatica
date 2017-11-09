@@ -6,8 +6,6 @@
 
 [Fysica: Mechanica, optica en moderne fysica](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Mechanica%2C%20optica%20en%20moderne%20fysica)
 
-[Ontwerp en ontwikkeling van mobiele toepassingen](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Ontwerp%20en%20ontwikkeling%20van%20mobiele%20toepassingen)
-
 [Programmeren in C en C++](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Programmeren%20in%20C%20en%20C%2B%2B)
 
 [Relationele gegevensbanken](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Relationele%20gegevensbanken)
