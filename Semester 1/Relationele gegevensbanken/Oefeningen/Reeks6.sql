@@ -203,3 +203,41 @@ where seq <= 3;
 
 
 
+-- 13.
+with x as (select gender, discipline, name, points, rank() over(partition by gender, discipline order by points desc) seq
+           from   ranking
+           where  season = 2007)
+           
+select   gender, discipline, 
+         max(case seq when 1 then name end) as "1",
+         max(case seq when 2 then name end) as "2",
+         max(case seq when 3 then name end) as "3"
+from     x
+where    seq <= 3
+group by gender, discipline
+order by gender, discipline;
+
+
+-- 14.
+with 
+
+ x as (select season, gender, discipline, name, points, 
+                  row_number() over(partition by season, gender, discipline order by points desc) seqp
+           from   ranking
+           where discipline is not null)
+           
+,y as (select season, gender, discipline, name, seqp,
+              row_number() over(partition by season order by season) seqs,
+              row_number() over(partition by season, gender order by gender) seqg
+       from   x
+       where  seqp <= 3)
+       
+select   max(case when seqs = 1 then to_char(season) else ' ' end) as seas,
+         max(case when seqg = 1 then to_char(gender) else ' ' end) as gen, 
+         discipline,
+         max(case seqp when 1 then name end) as "1",
+         max(case seqp when 2 then name end) as "2",
+         max(case seqp when 3 then name end) as "3"
+from     y
+group by season, gender, discipline
+order by season, gender, discipline;
