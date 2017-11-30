@@ -588,5 +588,32 @@ zijn met $n$ aantal knopen.
 $$ C_n = \frac{1}{n + 1}\binom{2n}{n}$$
 
 
+\section{Bipartiete matching}
+Matching in een bipartiete graaf wil zeggen dat je een deelverzameling overhoudt zodat er voor elke knoop maximaal één verbinding is. Het is geen
+voorwaarde dat alle knopen een verbinding moeten hebben.
+\subsection{Volledige matching}
+Een volledige matching is een matching waarbij elke knoop precies één verbinding heeft. De \important{Stelling van Hall} zegt dat een 
+bipartiete graaf een volledige matching heeft als de \important{deficiëntie $\mu$} nul is. De deficiëntie is een getal dat het verschil
+van het aantal knopen tussen de twee grafen van een bipartiete graaf voorstelt. Stel dat de graaf X 4 knopen heeft en Y 5 knopen, dan is er eenheids 
+deficit van 1. De stelling van Hall is hier dus niet geldig.
+
+\subsection{Maximale matching}
+Als een volledige matching niet mogelijk is (stelling van Hall), dan kan er nog altijd een optimale matching gezocht worden.
+\\
+Hongaars algoritme:
+\begin{itemize}
+ \item Trek intuitief een aantal paden
+ \item Verwissel stippellijnen met volle lijnen en omgekeerd (\todo{wtf})
+ \item Vanaf er geen stippellijnen zijn is er een maximale matching bereikt.
+\end{itemize}
+
+\subsection{Stabiele matching}
+Stabiele matching heeft betrekking tot complete bipartiete grafen. Dit wil zeggen dat elke boog gericht zijn en een gewicht hebben.
+\\
+Gale-Shapley algoritme: Vrij eenvoudig. Zie slide 8 van 2c.pptx
+
+
+
+
 \label{ch:groepen}
 \end{document}
