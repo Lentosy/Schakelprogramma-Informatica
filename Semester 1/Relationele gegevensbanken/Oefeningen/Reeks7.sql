@@ -103,3 +103,33 @@ select name, weight
 from x
 where rank <= 5;
 
+
+
+-- 8. TODO : enkel de drie grootste
+with y as (select hasc1, hasc2, length
+           from   grenzen
+           where  length is not null
+             and  (select parent
+                   from   regios
+                   where  hasc1 = hasc) = 'EUR'
+           union 
+           select hasc2, hasc1, length
+           from   grenzen
+           where  length is not null
+             and  (select parent
+                   from   regios
+                   where  hasc1 = hasc) = 'EUR')
+select (select name 
+        from   regios 
+        where  hasc1 = hasc) as hasc1
+      ,(select name 
+        from   regios 
+        where  hasc2 = hasc) as hasc2
+      ,length
+      ,length - (select max(length) 
+        from   y x 
+        where  y.hasc1 = x.hasc1 
+          and  length is not null 
+        group by x.hasc1)  as verschil
+from y y
+order by hasc1, verschil desc;
