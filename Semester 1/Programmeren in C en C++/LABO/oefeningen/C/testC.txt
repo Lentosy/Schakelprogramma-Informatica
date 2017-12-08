@@ -1,0 +1,43 @@
+Meest gemaakte fouten test C
+
+Vraag 1)
+while(g){
+	int freq[10];
+	if(freq[g % 10]){
+		return 0;
+	}else{
+		freq[g%10] = 1;
+	}
+	return 1;
+}
+
+
+
+Vraag 2a)
+void voeg_toe(const char *w, knoop ** l){
+	knoop *new = malloc(sizeof(knoop));
+	new->woord = malloc(strlen(w) + 1);
+	strcpy(new->woord, w);
+	dan strcmp om te kijken waar invoegen
+}
+
+
+Vraag 2b)
+knoop ** maak (const knoop *l){
+	knoop **t = malloc(sizeof(knoop *) * 26);
+	int i;
+	for(i = 0; i < 26; i++){
+		*t[i] = NULL;
+	}
+	char f = *(l->woord);
+	&l[f - 'a'] = ....
+	return t;
+}
+
+Vraag 3)
+
+bij void pointers
+1ste parameter = void pointer (array)
+2de parameter = grootte array
+3de parameter = grootte element
+4de parameter = een functie
