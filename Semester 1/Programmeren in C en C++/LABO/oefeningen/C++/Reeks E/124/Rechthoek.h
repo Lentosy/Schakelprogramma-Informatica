@@ -11,8 +11,9 @@ class Rechthoek {
 		int oppervlakte() const;
 		int omtrek() const;
 	protected:
-		int breedte;
 		int hoogte;
+	private:
+		int breedte;
 };
 
 

@@ -9,5 +9,6 @@ using namespace std;
 
 void GekleurdVierkant::print() const{
 	Vierkant::print();
-	GekleurdeRechthoek::print();
+	cout << "  kleur: " << kleur << endl;
+
 }

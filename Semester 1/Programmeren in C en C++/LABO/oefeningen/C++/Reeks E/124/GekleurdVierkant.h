@@ -8,7 +8,8 @@ using namespace std;
 class GekleurdVierkant : public GekleurdeRechthoek, public Vierkant{
 	public:
 		GekleurdVierkant() {};
-		GekleurdVierkant(int z = 1, string k = "onbekend") : Vierkant(z), kleur(k) {};
+		GekleurdVierkant(int z) : GekleurdVierkant(z, "onbekend") {};
+		GekleurdVierkant(int z, string k) : GekleurdeRechthoek(z, z, k), Vierkant(z) {};
 		void print() const;
 };
 

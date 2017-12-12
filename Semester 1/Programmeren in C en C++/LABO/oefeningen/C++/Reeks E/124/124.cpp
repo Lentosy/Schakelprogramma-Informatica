@@ -41,7 +41,6 @@ int main(void){
     cout << "  Oppervlakte: " << v2.oppervlakte() << endl
 		 << "  Omtrek: " << v2.omtrek() << endl;
 
-
 	GekleurdVierkant gv1;
     gv1.print();
     cout << "  Oppervlakte: " << gv1.Vierkant::oppervlakte() << endl
@@ -56,5 +55,5 @@ int main(void){
     gv3.print();
     cout << "  Oppervlakte: " << gv3.Vierkant::oppervlakte() << endl
 		 << "  Omtrek: " << gv3.Vierkant::omtrek() << endl;
-		 
+		
 }

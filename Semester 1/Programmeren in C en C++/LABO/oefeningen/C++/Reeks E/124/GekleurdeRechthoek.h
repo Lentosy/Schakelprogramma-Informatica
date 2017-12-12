@@ -11,7 +11,7 @@ class GekleurdeRechthoek : public Rechthoek{
 		GekleurdeRechthoek(int h, int b) : GekleurdeRechthoek(h, b, "onbekend") {}
 		GekleurdeRechthoek(int h, int b, string k) : Rechthoek(h, b), kleur(k) {}
 		void print() const;
-	private:
+	protected:
 		string kleur;
 };
 
