@@ -77,3 +77,52 @@ WHERE
       and hasc in ('BE','NL','FR','DE') 
 GROUP BY hasc
 ORDER BY som DESC
+
+
+-- 12.
+select 
+      case 2 * grouping(extract(year from racedate + 183)) + grouping(discipline)
+        when 0 then to_char(extract(year from racedate + 183))
+        when 1 then ' '
+        when 3 then ' '
+        else 'alle seizoenen'
+      end as seizoen,      
+      case 
+        when grouping(discipline) = 1
+        then '--------'
+        else
+          case discipline
+            when 'DH' then 'Afdaling'
+            when 'SG' then 'SuperG'
+            when 'GS' then 'Reuzeslalom'
+            when 'SL' then 'Slalom'
+            when 'KB' then 'Combinatie'
+        end 
+       end as discipline,
+       sum(case when gender = 'M' then 1 end) as man,
+       sum(case when gender = 'L' then 1 end) as vrouw,
+       sum(1) as totaal,
+       case 
+         when grouping(discipline) = 0
+         then to_char(rank() over(partition by extract(year from racedate + 183) order by sum(1) desc) - 1)
+         else ' ' 
+       end as ranking,
+       case when grouping(discipline) = 1 then
+          to_char(round(sum(1) / count(distinct discipline), 2))
+          else ' '
+       end as "#/DISCIPLINE",
+       case when 2 * grouping(extract(year from racedate + 183)) + grouping(discipline) = 2
+        then to_char(count(discipline) over (partition by discipline))
+        else ' '
+       end as "#seizoenen"
+from races
+where discipline in ('DH', 'SG', 'GS', 'SL', 'KB')
+group by cube(extract(year from racedate + 183), discipline)
+order by extract(year from racedate + 183),
+         case discipline
+          when 'Afdaling' then 1
+          when 'SuperG' then 2
+          when 'Reuzeslalom' then 3
+          when 'Slalom' then 4
+          when 'Combinatie' then 5
+         end
