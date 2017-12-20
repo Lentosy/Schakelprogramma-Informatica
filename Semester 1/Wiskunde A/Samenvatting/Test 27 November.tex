@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\title{Test Wiskunde A 27 november 2017}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+ \item Bereken de integraal: 
+      \begin{align*}
+       \int \cos^{2}(t) - \sin^{3}\cos^{6}dt &= \int \cos^{2}(t)dt - \int \sin^{3}\cos^{6}dt
+      \end{align*}
+      \begin{align*}
+       \int \cos^{2}(t)dt &= \int \frac{1 + \cos(2t)}{2} dt \\
+       &= \frac{1}{2} \biggl(\int dt + \int \cos(2t) dt\biggl) \\
+       &= \frac{1}{2} \biggl(t + \frac{\cos(2t)}{2} \biggl) \\
+       &= \frac{t}{2} + \frac{\cos(2t)}{4}
+      \end{align*}
+      \begin{align*}
+       \int \sin^{3}\cos^{6}dt &= \int \sin(t)\sin^{2}(t)cos^{6}(t)dt \\
+       &= \int \sin(t)\biggl(1 - \cos^{2}(t)\biggl)cos^{6}(t)dt \\
+       &= -\int (1 - u^{2}) u^{6} du \\
+       &= -\biggl(\int u^{6} du - \int u^{8} du \biggl)\\
+       &= -\int u^{6} du + \int u^{8} du \\
+       &= -\frac{u^{7}}{7} + \frac{u^{9}}{9} \\
+       &= -\frac{\cos^{7}(t)}{7} + \frac{\cos^{9}(t)}{9} 
+      \end{align*}
+      \begin{align*}
+	\int \cos^{2}(t)dt - \int \sin^{3}\cos^{6}dt &= \frac{t}{2} + \frac{\cos(2t)}{4} - (-\frac{\cos^{7}(t)}{7} + \frac{\cos^{9}(t)}{9} )
+      \\&= \frac{t}{2} + \frac{\cos(2t)}{4} + \frac{\cos^{7}(t)}{7} - \frac{\cos^{9}(t)}{9}
+     \end{align*}
+ \newpage
+ \item Bepaal de 2de orde afgeleide van: 
+ \newpage
+ \item Geef de oplossingen van $z$ in $ a + bj $ vorm: $z^{3} = -8\biggl(\frac{\sqrt{3}}{2} + \frac{1}{2}j\biggl)^{30}$
+ \begin{align*}
+    &r = \sqrt{\biggl(\frac{\sqrt{3}}{2}\biggl)^{2} + \biggl(\frac{1}{2}\biggl)^{2}} = 1 \\
+    &\theta = \arctan{\biggl(\frac{\frac{1}{2}}{\frac{\sqrt{3}}{2}}\biggl)} = \arctan{\biggl(\frac{1}{\sqrt{3}}}\biggl) = \frac{\pi}{6} \\
+    &\frac{\sqrt{3}}{2} + \frac{1}{2}j = e^{j\frac{\pi}{6}} \\
+    &\Rightarrow -8(e^{j\frac{\pi}{6}})^{30} \\
+    &= -8e^{j\frac{30\pi}{6}} \\ 
+    &= -8e^{j5\pi} \\ 
+    &= -8e^{j\pi} 
+ \end{align*}
+ \begin{align*}
+  &z^{3} = -8e^{j\pi}  \\
+  &z=\sqrt[3]{-8e^{j\pi}} \\
+  &z = -2e^{j(\frac{\pi}{3} + 2k\pi)}\;\text{met k} \in \{0, 1, 2\}
+ \end{align*}
+ 
+ \begin{itemize}
+  \item $z_1 = -2e^{j\frac{\pi}{3}} = -\sqrt{3} - 1j$
+  \item $z_2 = -2e^{j\frac{7\pi}{3}} = -\sqrt{3} - 1j$
+  \item $z_3 = -2e^{j\frac{14\pi}{3}} = -\sqrt{3} - 1j$
+ \end{itemize}
+
+\newpage
+ \item Teken de rechte in poolcoördinaten: $r\sin(\theta + \frac{\pi}{3}) = 3$
+ \begin{align*}
+  &     r\sin(\theta + \frac{\pi}{3}) = 3  \\
+  &<=> r\cos\biggl(\frac{\pi}{2} - (\theta + \frac{\pi}{3})\biggl) = 3 \\
+  &<=> r\cos\biggl(\frac{\pi}{2} - \theta - \frac{\pi}{3}\biggl) = 3 \\
+  &<=> r\cos\biggl(\frac{\pi}{6} - \theta\biggl) = 3 \\
+  &<=> r\cos\biggl( - \theta + \frac{\pi}{6}\biggl) = 3 \\
+  &<=> r\cos\biggl(\theta - \frac{\pi}{6}\biggl) = 3 
+ \end{align*}
+
+
+  \newpage
+ \item Bereken de limiet:
+      \begin{align*}
+       \lim_{x\to\frac{\pi}{2}}(\sin(x))^{\frac{1}{\pi - 2x}} &= (\sin(\frac{\pi}{2}))^\frac{1}{\pi - 2\frac{\pi}{2}} = 1^{\infty} \\
+       &= \lim_{x\to\frac{\pi}{2}} e^{\frac{\ln(\sin(x))}{\pi - 2x}} 
+      \\ &= e^{\frac{\lim_{x\to\frac{\pi}{2}} \ln(\sin(x))}{\lim_{x\to\frac{\pi}{2}} \pi - 2x}} = e^{\frac{0}{0}}
+      \\ &= \lim_{x\to\frac{\pi}{2}} e^{\frac{\frac{d[\ln(\sin(x))]}{dx}}{\frac{d[\pi - 2x]}{dx}}}
+      \\ &= \lim_{x\to\frac{\pi}{2}} e^{\frac{\cot(x)}{2}} 
+      \\ &=  e^{\frac{\lim_{x\to\frac{\pi}{2}}\cot(x)}{\lim_{x\to\frac{\pi}{2}}2}}
+      \\ &= e^{\frac{0}{2}}
+      \\ &= e^{0}
+      \\ &= 1
+      \end{align*} 
+
+\end{enumerate}
+ 
+ 
+\end{document}
