@@ -6,9 +6,9 @@
 
 
 template<typename T>
-void mijn_vector<T>::verdubbel(bool y){
+void mijn_vector<T>::verdubbel(bool herhaal_elk_element){
 	typename vector<T>::iterator it = (*this).begin();
-	if(y){
+	if(herhaal_elk_element){
 		while(it != (*this).end()){
 			it = (*this).insert(it++, *it);
 			it += 2;
