@@ -1,4 +1,6 @@
-# Schakelprogramma tot Master of Science in de industriële wetenschappen: informatica, academiejaar 2017 - 2018
+﻿# Schakelprogramma tot Master of Science in de industriële wetenschappen: informatica, academiejaar 2017 - 2018
+
+[Studieprogramma](https://studiegids.ugent.be/2017/NL/FACULTY/E/SCHA/EZ7INS/EZ7INS.htm)
 
 ## Semester I
 
