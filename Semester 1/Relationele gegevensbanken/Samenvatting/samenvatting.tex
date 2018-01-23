@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\begin{document}
+
+\def\warning#1{\color{red}#1 \color{black}}
+\def\note#1{\color{cyan}#1 \color{black}}
+
+\title{Samenvatting Relationele Gegevensbanken 2017--2018}
+\author{}
+\date{}
+\maketitle
+\tableofcontents
+\section{NoSQL}
+Relationele databanken zijn niet goed genoeg voor enorme toepassingen (bv Facebook, Google, Amazon, ...) wegens drie oorzaken:
+\begin{enumerate}
+	\item {Enorme hoeveelheden data (+ Petabytes)}
+	\item {Gedistribueerd over duizenden servers}
+	\item {Niet of wening gestructureerde gegevens}
+\end{enumerate}
+NoSQL betekent ``niet relationeel''. Er bestaan verschillende soorten:
+\begin{itemize}
+	\item {Key/Value (bv. \note{Redis, Voldermort, Riak}}
+	\item {Kolom-georiënteerde databanken (bv. \note{Bitable, Cassandra, HBase, Hypertable}}
+	\item {Document-georiënteerde databanken (bv. \note{MongoDb, CouchDb})}
+	\item {Graaf-georiënteerde databanken (bv. \note{Neo4J, FlockDb})}
+\end{itemize}
+
+\section{Gedimensioneerde Gegevensmodellering}
+Tijdens het ontwerp van een databank zijn er twee keuzes:
+\begin{enumerate}
+	\item {De transactiedatabank (gewone databank). Dit maakt gebruik van het gewone relationele model.}
+	\item {De datawarehouse (bijhouden van historiek). Dit maakt gebruik van \note{gedimensioneerde gegevensmodellering}.}
+\end{enumerate}
+De transactiedatabank wordt ontworpen met zo weinig mogelijk redundantie. Bij datawarehouses is zo een model te complex omdat zelfs bij eenvoudige queries vaak tabellen aan elkaar gelinkt moeten worden rekening houdend met de \note{historiek}.
+
+Gedimensioneerde gegevensmodellering stelt tabellen van een databank voor in een sterschema. Dit schema bevat:
+\begin{enumerate}
+	\item {Slechts één feitentabel (kan petabytes aan informatie bevatten). Kenmerken van de feitentabel zijn:
+		\begin{itemize}
+			\item {Meervoudige sleutels die elk verwijzen naar een dimensietabel.}
+			\item {Meerdere attributen (de meetwaarden, meestal numeriek want ze moeten geaggregeerd kunnen worden.}
+		\end{itemize}}
+	\item {Meerdere dimensietabellen. Kenmerken van een dimensietabel zijn:
+		\begin{itemize}
+			\item {Een enkelvoudige sleutel (meestal artificieël gegenereerd zonder logische betekenis).}
+			\item {Kolommen die relevant zijn bij de bevraging van de tabel.}
+			\item {De tabel moet niet aan de derde normaalvorm voldoen. De reden is omdat er dan minder tabellen moeten aangesproken worden. De query verloopt dus sneller, maar er zijn dus wel meer kolommen en redundante gegevens.}
+		\end{itemize}
+		
+	}
+\end{enumerate}
+
+De feitentabel kan enkel geraadpleegd worden via een dimensietabel omdat het sequentieël aflopen van de feitentabel geen haalbaar alternatief is. Een query verloopt op volgende manier:
+\begin{enumerate}
+	\item {Men zoekt eerst in de diverse dimensietabellen op welke de sleutels zijn van de rijen die aan de selectiecriteria voldoen.}
+	\item {Vervolgens construeert men de sleutels in de feitentabel om de feiten effectief op te halen.}
+\end{enumerate}
+
+\section{Implementatie van Joins}
+Er bestaan vier implementaties van joins:
+\begin{enumerate}
+	\item {Block Nested Loop Join}
+	\item {Index Nested Loop Join}
+	\item {Sort-Merge Join}
+	\item {Hash Join}
+\end{enumerate}
+De keuze ligt niet aan de programmeur, maar aan de databaseomgeving zelf. De database beslist aan de hand van bestaande indices welke implementatie gebruikt zal worden.
+
+Er worden een aantal symbolen gebruikt om de tijdsduur van een algoritme te beschrijven. De gebruikte symbolen zijn:
+\begin{itemize}
+	\item {\note{T}: De uiteindelijke verwerkingstijd}
+	\item {\note{$\beta_x$}: Het aantal disk-blokken voor tabel X}
+	\item {\note{$\beta_y$}: Het aantal disk-blokken voor tabel Y}
+	\item {\note{$\#_x$}: Het aantal rijen van tabel X}
+	\item {\note{$\#_y$}: Het aantal rijen van tabel Y}
+\end{itemize}
+\subsection{Block Nested Loop Join}
+\begin{itemize}
+	\item {Het eenvoudigste algoritme maar ook het slechtste}
+	\item {Wordt uitgevoerd indien er \note{geen} indices zijn}
+	\item {In \warning{vier} geneste lussen worden elke rij van X vergeleken met elke rij van Y
+		\begin{itemize}
+			\item {De twee buitenste lussen lezen blokken van elke tabel in het geheugen}
+			\item {De twee inwendige lussen vergelijken elke rij van het eerste blok met elke rij van het tweede blok}
+		\end{itemize}
+	}
+	\item {Het aantal blokken wordt te groot wat een impact heeft op performantie door het blokkeren van I/O}
+	      \item{\note{Uitvoeringstijd: $T\sim[\beta_x + (\beta_x * \beta_y)]$}. $\beta_X$ komt overeen met de linkeroperand van de join operatie, en bevat best dus het minst rijen om de uitvoeringstijd te doen dalen.}
+\end{itemize}
+  
+\subsection{Index Nested Loop Join}
+\begin{itemize}
+	\item {Wordt uitgevoerd indien alle optredende attributen van één van de tabellen geïndexeerd zijn.}
+	\item {\warning{Drie} geneste lussen
+		\begin{itemize}
+			\item{De mest uitwendige lus leest blokken in van de niet-geïndexeerde tabel X.}
+			\item {De middenste lus loopt doorheen elke rij van de blokken.}
+			\item {De binnenste lus zoekt via de indices naar de corrseponderende rijen van Y.}
+		\end{itemize}
+	}
+	\item {\note{Uitvoeringstijd: $T\sim[\beta_x + \#_x * f_y]$}. $f_y$ is een functie van de gebruikte indexmethode en van de aantallen rijen die aan het join-predicaat voldoen. De Index Nested Loop Join is bij een equijoin ( een join waarbij het on predicaat een gelijkheid heeft. bv on ``x.id = y.id'' }
+\end{itemize}
+
+\subsection{Sort Merge Join}
+\begin{itemize}
+	\item {Wordt uitgevoerd indien beide tabellen gesorteerd zijn volgens de attributen van het equijoin predicaat.}
+	\item {\warning{Geen} lussen}
+	\item {De tabellen worden gemerged.}
+	\item {Er wordt van elke tabel één blok in het geheugen genomen en wordt er telkens één rije beschouwd. Afhankelijk van de relatieve volgorde van deze twee rijen, wordt er een rij verder geschoven in één van de blokken.}
+	\item {\note{Uitvoeringstijd: $T\sim[\beta_x + \beta_y]$}. Enkel indien beide tabellen al op voorhand gesorteerd zijn}
+\end{itemize}
+
+\subsection{Hash Join}
+idk
+
+\section{DDL Aspecten}
+DDL = Data Definition Language (create, updates enz)
+\subsection{Tabel-En-Kolomdefinities}
+...
+\subsection{Constraints}
+Constraints zijn beperkingen die opgelegd worden aan kolommen.
+De belangrijkste constraints zijn:
+\begin{itemize}
+\item {Not Null
+    \begin{itemize}
+    \item {De waarde is verplicht}
+    \item {Enkel inline definitie van deze constraint is mogelijk}
+    \end{itemize}
+  }
+\item {Primaire Sleutel
+    \begin{itemize}
+    \item {De waarde is uniek voor elke rij}
+    \item {Wordt geïmplementeerd door ``primaire index'' (een algoritme)}
+      \item {Zonder primaire sleutel kunnen duplicate rijen optreden}
+    \end{itemize}
+  }
+\item {Verwijzende sleutel
+    \begin{itemize}
+    \item {Een sleutel die verwijst naar een rij in een andere tabel}
+    \item {Als een rij waarnaar verwijzen wordt verwijdert wordt, kunnen er drie acties optreden
+        \begin{itemize}
+        \item {\note{No Action}: Het verwijderen van de ouderrij wordt onmogelijk indien er nog verwijzingen naar zijn. Het kindrij moet dus eerst aangepast worden.}
+        \item {\note{Cascade}: Bij een wijziging van een ouderrij worden alle kindrijen trapsgewijs aangepast. Indien er andere regels zijn die deze aanpassingen tegenhouden, wordt de actie in het geheel afgebroken}
+         \item {\note{Set Null/Set Default}: Als een ouderrij aangepast of verwijdert wordt, kan de waarde van de verwijzende sleutel op de null/default waarde gezet worden. Indien er andere regels zijn die deze aanpassingen tegenhouden, wordt de actie in zijn geheel afgebroken.}
+        \end{itemize}}
+
+      \end{itemize}
+    }
+  \item {Unique
+      \begin{itemize}
+      \item {Om meerdere kolomcombinaties uniek te maken. Dit wordt vaak gebruikt bij kandidaatsleutels die niet primaire sleutel zijn. (bv primaire sleutel is ``id'', de combinatie van ``id'' en ``naam'' kan unique gedeclareerd worden.}
+      \end{itemize}}
+  \item {Check
+      \begin{itemize}
+        \item{Wordt gebruikt om bv. intervallen op te leggen (enkel waarden tussen 10 en 20 toegelaten), of enkel woorden met de letters 'a', 'b', 'c'}
+      \end{itemize}}
+\end{itemize}
+\subsection{Views}
+Een view is een aparte tabel dat uitsluitend bedoelt is om te lezen en te gebruiken in queries (analoog aan Common Table Expressions).
+\begin{itemize}
+\item {\note{Materialisation}: De view wordt op voorhand uitgevoerd en de resulterende tabel wordt opgeslagen in het geheugen of de schijf }
+  \item {\note{Resolution}: De view wordt selectief met de hoofdquery verwerkt.}
+\end{itemize}
+Een view kan in meerdere queries gebruikt worden. Views kan in de meeste gevallen enkel door de database administrator aangemaakt worden. CTE heeft het voordeel dat iedereen ze kan maken.
+De inhoud van een view kan gewijzigd worden, voor zover de view aan dezelfde restricties voldoet als wijzigbare CTE’s. De with check option zal de view controleren indien deze view gewijzigd wordt. Indien er rijen worden toegevoegd of kolommen worden aangepast, zal er gekeken worden of de view nog altijd aan de constraints voldoet. Indien dit niet het geval is wordt de operatie in het geheel afgebroken.
+
+
+INDEXERING
+BESTANDSORGANISATIE
+1.	Heap Bestanden
+•	Rijen worden toegevoegd in volgorde van creatie
+•	Beste oplossing voor kleine tabellen waarop niet selectief geslecteerd wordt
+2.	Sequentiële bestanden
+•	Rijen worden gesorteerd volgens sorteerdeorde (niet in blok zelf, maar bloken ten opzichte van elkaar zijn gesorteerd)
+•	Niet goed voor updates/inserts
+•	Binaire zoekmethode
+3.	Hash bestanden
+•	I
+
+
+\end{document}
