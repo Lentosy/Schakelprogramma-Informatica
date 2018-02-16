@@ -1,0 +1,351 @@
+\documentclass[12pt]{report} 
+
+% PACKAGES 
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{amsmath} % Matrices
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\usepackage{lipsum}
+
+\partfont{\color{brown}}
+\chapterfont{\color{teal}}
+\sectionfont{\color{cyan}}
+
+% DOCUMENT INFORMATION
+\title{Samenvatting Wiskunde B}
+\author{Bert De Saffel}
+\date{2017-2018}
+
+
+% CUSTOM COMMANDS
+\setlength{\extrarowheight}{5pt} % More spacing between tabular row items
+
+\newcommand{\todo}[1] {
+  \color{red}\textunderscore{\textit{TODO: #1}}
+}
+
+\newcommand{\example}[2] {
+  \begin{flushleft}\fbox{\parbox{\textwidth}
+	{#1
+
+	#2}}
+  \end{flushleft}
+}
+
+\newcommand{\red}[1] {
+\color{red} \textit{#1} \color{black}
+}
+
+\newcommand{\orange}[1] {
+\color{orange} \textit{#1} \color{black}
+}
+
+% DOCUMENT
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{Herhaling Wiskunde A}
+\chapter{Onbepaalde Integralen}
+\section{Substitutiemethode}
+%Stel $$\alpha = \varphi(t),\;dx = \varphi'(t)$$
+%dan $$\int f(\varphi(t))\varphi'(t)dt = \int f(x) dx$$
+\subsection{Voorbeeld 1}
+$$\int \frac{t - 1}{t^2 + 4}dt = \int \frac{t}{t^2 + 4}dt - \int \frac{dt}{t^2 + 4}$$
+$$\hbox{stel}\;\; u = t^2 + 4$$
+$$\hbox{dan}\;\; du = 2tdt \rightarrow dt = \frac{du}{2t}$$
+$$= \int \frac{t}{2t u} du - \frac{1}{2}\arctan{\frac{t}{2}}$$
+$$= \frac{1}{2}\int \frac{du}{u} - \frac{1}{2}\arctan{\frac{t}{2}}$$
+$$= \frac{1}{2}\ln{u} - \frac{1}{2}\arctan{\frac{t}{2}}$$
+$$= \frac{1}{2}\ln{t^2 + 4} - \frac{1}{2}\arctan{\frac{t}{2}} + C$$
+\subsection{Voorbeeld 2}
+$$\int \frac{dy}{e^y + 4e^{-y}} = \int \frac{e^y}{(e^y)^2 + 4} dy$$
+$$\hbox{stel}\;\; u = e^y$$
+$$\hbox{dan}\;\; du = e^ydy \rightarrow dy = \frac{du}{e^y}$$
+$$= \int \frac{e^y}{e^y(u^2 + 4)} du$$
+$$= \int \frac{du}{u^2 + 4}$$
+$$= \frac{1}{2}\arctan{\frac{u}{2}}$$
+$$= \frac{1}{2}\arctan{\frac{e^y}{2}} + C$$
+\section{Partieële integratie}
+$$\int u\;dv = uv - \int v\;du$$
+\subsection{Voorbeeld 1}
+$$\int \ln(x) dx = \int 1\cdot \ln(x) dx$$
+$$\hbox{stel}\; u = ln(x) \; \hbox{en}\; v = \int dx$$
+$$\hbox{dan}\; du = \frac{1}{x}dx \; \hbox{en}\; v = x$$
+$$= x\ln(x) - \int x\cdot\frac{1}{x}dx$$
+$$= x\ln(x) - \int dx$$
+$$= x\ln(x) - x + C$$
+\subsection{Voorbeeld 2}
+$$\int \frac{x + 1}{\cos^2(x)}$$
+$$\hbox{stel}\; u = x + 1 \; \hbox{en}\; v = \int \frac{1}{\cos^2(x)}dx$$
+$$\hbox{dan}\; du = dx \; \hbox{en}\; v = \tan(x)$$
+$$= (x+1)\tan(x) - \int \tan(x)dx$$
+$$= (x+1)\tan(x) + ln|cos(x)| + C$$
+\subsection{Voorbeeld 3}
+$$\int e^{-x}\sin(2x)$$
+$$\hbox{stel}\; u = \sin(2x) \; \hbox{en}\; v = \int e^{-x}dx$$
+$$\hbox{dan}\; du = 2\cos(2x)dx \; \hbox{en}\; v = -e^{-x}$$
+$$= -e^{-x}\sin(2x) + 2 \int e^{-x}\cos(2x) dx$$
+$$\hbox{stel}\; u = \cos(2x) \; \hbox{en}\; v = \int e^{-x}dx$$
+$$\hbox{dan}\; du = -2\sin(2x)dx \; \hbox{en}\; v = -e^{-x}$$
+$$= -e^{-x}\sin(2x) + 2\bigg[-e^{-x}\cos(2x)  - 2\int e^{-x}\sin(2x)dx   \bigg]$$
+$$= -e^{-x}\sin(2x) - 2e^{-x}\cos(2x) -  4\int e^{-x}\sin(2x)dx$$
+Dus
+$$\int e^{-x}\sin(2x) =  -e^{-x}\sin(2x) - 2e^{-x}\cos(2x) -  4\int e^{-x}\sin(2x)dx$$
+$$5\int e^{-x}\sin(2x) = -e^{-x}[\sin(2x) + 2\cos(2x)]$$
+$$\int e^{-x}\sin(2x) = \frac{-e^{-x}[\sin(2x) + 2\cos(2x)]}{5}$$
+\subsection{Voorbeeld 4}
+$$\int \sin^4(\theta) d\theta = \int (\sin^2(\theta))^2 d\theta$$
+$$= \int \bigg(\frac{1 - \cos(2\theta)}{2}\bigg)^2 d\theta$$
+$$= \int \bigg(\frac{1}{4} - \frac{\cos(2\theta)}{2} + \frac{\cos^2(2\theta)}{4} \bigg)d\theta$$
+$$= \int \frac{1}{4}d\theta - \int \frac{\cos(2\theta)}{2}d\theta + \int \frac{\cos^2(2\theta)}{4}d\theta$$
+$$= \frac{\theta}{4} - \frac{\sin(2\theta)}{4} + \frac{\sin(4\theta) + 4\theta}{32}$$
+$$= \frac{12\theta - 8\sin(2\theta) + \sin(4\theta)}{32} + C$$
+
+\part{Differentiaalvergelijkingen}
+\chapter{Basisbegrippen}
+\section{Definities}
+De algemene definitie is: 
+$$F(x, y, y', y'', ..., y^{(\red{n})}) = 0$$
+waarbij: \begin{itemize}
+          \item \textbf{x} een veranderlijke is.
+          \item \textbf{y} een functie van x is.
+          \item er minstens één afgeleide van y is.
+         \end{itemize}
+\example{Voorbeeld differentiaalvergelijking}{$$x + y + y' = 0$$}
+Een differentiaalvergelijking heeft een \textbf{orde} en een \textbf{graad}
+\begin{itemize}
+ \item \textbf{Orde}: Dit is de orde van de hoogste afgeleide dat voorkomt, dus \red{n}.
+ \item \textbf{Graad}: De graad bestaat niet altijd maar is wel altijd een strik positief geheel getal. De graad is de macht die behoort tot de afgeleide met de grootste orde. $y^{(\red{n})^{\orange{r}}}$
+\end{itemize}
+\example{Voorbeeld orde en graad}
+{
+  \begin{center}
+    \begin{tabular}{l | l | l}
+      Differentiaalvergelijking & Orde & Graad \\
+      \hline
+      $y\ - 2y'^3 = yx$ & 2 & 1 \\
+      $1 + (y'')^4 + 2y' + x(y''')^2 = sin(x)$ & 3 & 2 \\
+      $(x - 1)(y'') - xy' + y = 0$ & 2 & 1 \\
+      $e^s\frac{d^3s}{dt^3} + (\frac{ds^2}{dt^2})^3 = 0$ & 3 & 1 \\
+      $xy' + e^{y'} + y'' = 1$ & 1 & / \\
+      \hline
+      $\sin\sqrt {y'} = x + 2$ & 1 & / \\
+      $\;\;\rightarrow y' = \arcsin^2(x+2)$ & 1 & 1 \\
+      \hline
+      $\sin y' = xy'^2$ & 1 & / \\
+      $\;\;\rightarrow y' = \arcsin(xy'^2)$ & 1 & / \\
+      \hline
+      $y^{'3} + \frac{x}{y''} + y'' = 1$ & 2 & ? \\
+      $\;\;\rightarrow y^{'3}y'' + x + (y'')^2 = 1$ & 2 & 2
+   
+    \end{tabular}
+  \end{center}
+}
+
+\section{Soorten oplossingen}
+Tijdens het oplossen van een differentiaalvergelijking van de \red{n}-de orde worden drie oplossingen onderscheidt:
+\begin{enumerate}
+ \item De \textbf{Algemene oplossing (AO)}: Verzameling van functies zodat de differentiaalvergelijking klopt. De algemene oplossing bevat \red{n }onafhankelijke constanten. Deze constanten zijn getallen en geen functies.
+ \item De \textbf{Particuliere oplossing (PO)}: Dit is één van de krommen van de AO en is afhankelijk van de beginvoorwaarden van het probleem.
+ \item De \textbf{Singuliere oplossing (SO)}: Een oplossing die niet voldoet aan de AO maar wel een oplossing is voor de DVG.
+\end{enumerate}
+\example{Voorbeeld onafhankelijke variabelen:}
+{
+  \begin{center}
+    \begin{tabular}{l | l | l}
+      AO & Onafh. C & Orde DVG \\
+      \hline
+      $y = C_1 + C_2x$ & 2 & 2 \\
+      $y = C_1  - C_1^2x$ & 1 & 1 \\
+      \hline
+      $y = C_1(C_2 + C_3e^x)$ & ? & ? \\
+      $\;\;\rightarrow C_1C_2 + C_1C_3e^x$ & ? & ? \\
+      $\;\;\rightarrow a + be^x$ & 2 & 2 \\
+      \hline
+      $y = C_1 + \ln(C_2 x)$ & ? & ? \\
+      $\;\;\rightarrow y = C_1 + \ln(C_2) + \ln(x)$ & ? & ? \\
+      $\;\;\rightarrow y = a + \ln(x)$ & 1 & 1
+
+   
+    \end{tabular}
+  \end{center}
+}
+\example{Voorbeeld 1 AO en PO:}
+{Gegeven een differentiaalvergelijking: $y'' + y = 0$
+\begin{enumerate}
+ \item Toon aan dat $y = a\sin(x) + b\cos(x)$ de AO is.
+ \item Geef enkele PO's.
+ \end{enumerate}
+Oplossing:
+\begin{enumerate}
+ \item $$y = a\sin(x) + b\cos(x)$$
+       $$y' = a\cos(x) - b\sin(x)$$
+       $$y'' = -a\sin(x) - b\cos(x)$$
+       $$\rightarrow y'' + y = 0$$
+       $$-a\sin(x) - b\cos(x) + \sin(x) + b\cos(x) = 0 $$
+       $$0=0 \rightarrow \hbox{Het is een oplossing}$$
+     
+     De differentiaalvergelijking heeft orde 2. De y-vergelijking bevat 2 onafhankelijke constanten en de y-vergelijking is een oplossing. Hierdoor is y de AO van de differentiaalvergelijking.
+ \item Enkele PO's:
+ $$y = 0$$
+ $$y = \sqrt{2}\sin(x)$$
+ $$y = \sin(x) + \cos(x)$$
+\end{enumerate}
+
+}
+
+\example{Voorbeeld 2 AO en PO:}
+{Gegeven een differentiaalvergelijking: $y'^2 - yy'+e^x$
+\begin{enumerate}
+ \item Geef de orde en graad.
+ \item Is $y = \frac{1}{C} + Ce^x$ de AO?
+ \item Wat  voor soort oplossing is $y = 2\sqrt{e^x}$
+ \end{enumerate}
+Oplossing:
+\begin{enumerate}
+ \item {
+   De orde is \red{1} en de graad is \orange{2}.
+ }
+ \item {
+  $$y' = Ce^x$$
+  $$\rightarrow C^2(e^x)^2 - (\frac{1}{C} + Ce^x)Ce^x + e^x = 0$$
+  $$\rightarrow C^2e^{2x} - e^x - C^2e^{2x} + e^x = 0$$
+  $$\rightarrow0=0 \rightarrow \hbox{Het is een oplossing}$$
+  Orde DVG = \red{1} = Onafhankelijke constanten van y
+ }
+ \item {
+  $$y' = 2 \cdot \frac{1}{2\sqrt{e^x}} \cdot e^x = \sqrt{e^x}$$
+  $$\rightarrow (\sqrt{e^x})^2 - 2\sqrt{e^x}\cdot\sqrt{e^x} + e^x = 0$$
+  $$\rightarrow e^x - 2e^x + e^x = 0$$
+  $$\rightarrow 0 = 0$$
+  Dit is een singuliere oplossing aangezien y niet overeenkomt met de AO, maar wel voldoet aan de DVG.
+ }
+
+\end{enumerate}
+
+}
+
+\section{Bepalen van een DVG}
+Indien een AO gegeven is met \red{n} onafhankelijke constanten:
+\begin{enumerate}
+ \item Controleer of de constanten werkelijk onafhankelijk zijn.
+ \item Leid de AO \red{n} maal af.
+ \item Elimineer de \red{n} constanten van de \red{n + 1} bekomen vergelijkingen. De laatste vergelijking moet zeker gebruikt worden.
+ \item Controleer of de DVG van orde \red{n} is.
+\end{enumerate}
+
+\example{Voorbeeld 1: bepalen van een DVG}
+{
+  De algemene oplossing is $$y = C_1 + C_2x$$
+  \begin{enumerate}
+   \item Er zijn \red{2} onafhankelijke constanten.
+   \item Er moet \red{2} keer afgeleid worden:
+   $$
+      \begin{cases}
+	y    & = C_1 + C_2x \\
+	y'   & = C_2 \\
+	y''  & = 0 \\
+      \end{cases}
+   $$
+   \item De constanten zijn al geëlimineerd. 
+   \item De DVG is $y'' = 0$ en heeft orde \red{2}.
+
+  \end{enumerate}
+}
+
+\example{Voorbeeld 2: bepalen van een DVG}
+{
+  Bepaal de DVG van: $$y = C_1 + C_2e^{-x} + C_3e^{3x}$$
+  \begin{enumerate}
+   \item Er zijn \red{3} onafhankelijke constanten.
+   \item Er moet \red{3} maal afgeleid worden.
+    \[ 
+      \begin{cases}
+			y & = C_1 + C_2e^{-x} + C_3e^{3x} \\
+	y'     & = -C_2e^{-x} + 3C_3e^{3x}     \\
+	y'' & = C_2e^{-x} + 9C_3e^{3x}      \\
+	y''' & = -C_2e^{-x} + 27C_3e^{3x}
+      \end{cases}
+    \]
+
+  \item 
+  Tel de 1ste afgeleide op met de 2de afgeleide en tel de 2de afgeleide op met de 3rde afgeleide
+  \[
+    \begin{cases}
+      y + y''    & = 3C_3e^{3x} + 9C_3e^{3x} = 12C_3e^{3x}  \\
+      y'' + y''' & = 9C_3e^{3x} + 27C_3e^{3x} = 36C_3e^{3x}
+    \end{cases}
+  \]
+  Vermenigvuldig de 1ste vergelijking met 3 en trek hiervan de 2de vergelijking af.
+  
+  $$3(y + y'') - y'' - y''' = 3(12C_3e^{3x}) - 36C_3e^{3x} = 0$$
+  $$\rightarrow y''' - 2y'' - 3y' = 0$$
+  \item
+  De orde van deze DVG is \red{3}
+   
+  \end{enumerate}
+}
+
+\example{Voorbeeld 3 : bepalen van een DVG}
+{
+  Bepaal de DVG van alle cirkels met middelpunt y = -x.
+  \begin{enumerate}
+   \item Eerst moet de AO gevonden worden. Het middelpunt van elke cirkel kan gegeven worden met $m(a, -a).$
+    Hieruit volgt de algemene vergelijking van een cirkel: $$(x - a)^2 + (y + a)^2 = R^2$$
+    Er zijn \red{2} onafhankelijke constanten (a en R).
+   \item Er moet \red{2} maal (impliciet) afgeleid worden.
+   \[
+      \begin{cases}
+       (x - a)^2 + (y + a)^2 = R^2 \\
+       \frac{dy}{dx} : (x-a) + y'(y+a) = 0 \\
+       \frac{d^2y}{dx^2} : 1 + y''(y + a) + y'^2 = 0
+      \end{cases}
+   \]
+   \item
+    Vorm $\frac{dy}{dx}$ om naar $a$:
+    $$a = \frac{-x - yy'}{y' - 1}$$
+    Substitueer deze $a$ in $\frac{d^2y}{dx^2}$:
+    $$1 + y''(y + (\frac{-x - yy'}{y' - 1})) + y'^2 = 0$$
+    $$\rightarrow 1 + y''(y + (\frac{x + yy'}{-y' + 1})) + y'^2 = 0$$
+    $$\rightarrow y''(x + y) - y'^3 + y'^2 - y' + 1 = 0$$
+   \item Orde van de DVG = \red{2}  = Aantal onafhankelijke constanten.
+  \end{enumerate}
+}
+
+
+\part{Laplacetransformatie}
+\chapter{Algemene begrippen}
+\section{De Heaviside functie}
+De Heaviside functie heeft als voorschrift:
+$$H(t - \alpha) = 
+\begin{cases}
+  0 \;\; t < \alpha \\
+  1 \;\; t > \alpha
+\end{cases}$$
+
+\example{Voorbeeld Heaviside functie}
+{
+Teken over $x=[-3,4]$ de functie $y = 2H(t + 2) - tH(t) + (t+t^2)H(t-2)$.
+
+Er zijn veranderingen bij $t = -2, t = 0$ en $t = 2$.
+
+    \begin{tabular}{l | l}
+    \hline
+    $2\cdot(0) - t\cdot(0) + (t+t^2)\cdot(0) = 0$ & $t < -2$\\
+    $2\cdot(1) - t\cdot(0) + (t+t^2)\cdot(0) = 2$ & $-2 < t < 0$  \\
+    $2\cdot(1) - t\cdot(1) + (t+t^2)\cdot(0) = 2 - t$ & $0 < t < 2$\\
+    $2\cdot(1) - t\cdot(1) + (t+t^2)\cdot(1) = 2 + t^2$ & $t > 2$\\
+    \end{tabular}
+  \todo{graph}
+
+
+}
+
+\end{document}

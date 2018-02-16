@@ -1,0 +1,192 @@
+\documentclass[12pt]{report} 
+
+% PACKAGES 
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{amsmath} % Matrices
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\usepackage{lipsum}
+\usepackage{listings}
+
+
+\partfont{\color{brown}}
+\chapterfont{\color{teal}}
+\sectionfont{\color{cyan}}
+
+\lstset{language=C++,
+                basicstyle=\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#},
+                frame = single,
+                numbers=left,
+	        stepnumber=1
+}
+
+% DOCUMENT INFORMATION
+\title{Samenvatting Gegevensstructuren en Algoritmen}
+\author{Bert De Saffel}
+\date{2017-2018}
+
+
+% CUSTOM COMMANDS
+\newcommand{\note}[1]{
+  \color{violet}#1 \color{black}
+}
+\newcommand{\todo}[1] {
+  \color{red}\textunderscore{\textit{TODO: #1}}
+}
+
+\def\lc{\left\lceil}   
+\def\rc{\right\rceil}
+\def\lf{\left\lfloor}   
+\def\rf{\right\rfloor}
+
+
+% DOCUMENT
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{Theorie}
+\chapter{Inleiding}
+Een algoritme is een verzameling van opeenvolgende instructies die uitgevoerd worden. Bij een het oplossen van een probleem zijn er twee zaken belangrijk:
+\begin{itemize}
+ \item De juiste aanpak gebruiken (Het algoritme).
+ \item Een goede efficiëntie (De gegevensstructuren).
+\end{itemize}
+De focus van deze cursus ligt op de discrete wiskunde. Voor de continue wiskunde zijn er numerieke algoritmen nodig die niet behandeld worden in deze cursus.
+\chapter{Efficëntie van algoritmen}
+\section{Analyse van algoritmen}
+\textbf{Probleem:} Er bestaat een vector $\note{v}$ met $\note{n}$ getallen. Er moet gezocht worden of er dubbele waarden in deze vector bestaan. Een eerste oplossing zou zijn:
+\begin{lstlisting}
+bool doubles = false;
+ for(int i = 0; i < n; i++){
+  for(int j = 0; j < n; j++){
+    if(i != j && v[i] = v[j]{
+      doubles = true;
+    }
+  }
+}
+\end{lstlisting}
+Deze oplossing heeft volgende nadelen:
+\begin{itemize}
+ \item Indien er een dubbele waarde is gevonden, wordt er nog altijd verder gezocht.
+ \item Als gevolg heeft dit dat de vector tweemaal wordt doorlopen.
+ \item Het if statement op lijn 4 wordt uitgevoerd als bijvoorbeeld $i = 5$ en $j = 27$, maar ook als $i = 27$ en $j = 5$. Er is dus sprake van redundantie.
+\end{itemize}
+Een betere oplossing zou kunnen zijn:
+\begin{lstlisting}
+int i = 0;
+int j = 1;
+while(i < n && v[i] != v[j]){
+  j++;
+  if(j == n){
+    i++;
+    j = i + 1;
+  }
+}
+\end{lstlisting}
+De eerste keer wordt de while $\note{n}$ keer uitgevoerd, de tweede keer $\note{n - 1}$ keer tot uiteindelijk de while nog maar 1 keer uitgevoerd wordt. 
+
+
+Het beste algoritme blijkt het volgende:
+\begin{lstlisting}
+vector<bool> zitErIn(n, false);
+int i = 0;
+while(i < n && !zitErIn[v[i]]){
+  zitErIn[v[i]] = true;
+  i++;
+}
+\end{lstlisting}
+Het voordeel van bovenstaand algoritme is dat de while lus hoogstens $\note{n}$ keer uitgevoerd wordt.
+
+\subsection{Tijdscomplexiteit}
+Het is nuttig om te bekijken welke operaties een impact hebben op een algoritme. Beschouw volgende implementatie van het \textit{insertion sort} algoritme:
+
+\begin{lstlisting}[escapechar=\%]
+void insertion_sort(vector<T> & v){
+  for(int %\fbox{\parbox{32pt}{i = 0}}%; %\fbox{\parbox{76pt}{i < v.size()}}% ; %\fbox{\parbox{26pt}{i ++}}%){
+    %\fbox{\parbox{114pt}{T el = move(v[i]);}}%
+    %\fbox{\parbox{90pt}{int j = i - 1;}}%
+    while(%\fbox{\parbox{36pt}{j $\geq$ 0}}% && %\fbox{\parbox{64pt}{el < v[i]}}%){
+      %\fbox{\parbox{140pt}{v[j + 1] = move(v[j]);}}%
+      %\fbox{\parbox{26pt}{j--;}}%
+    }
+    %\fbox{\parbox{140pt}{v[j + 1] = move(el);}}%
+  }
+}
+\end{lstlisting}
+Elke relevante operatie werd omkaderd en heeft een bepaalde uitvoeringstijd $t$. Voor elke operatie kan de uitvoeringstijd apart beschouwd worden in zijn slechtste en beste geval:
+
+\begin{tabular}{|l | l |l |l|}
+  \hline
+  Operatie          & Tijd  & Aantal(best) & Aantal(slechtst)  \\
+  \hline
+  h           & $t_1$ & 1            & 1                 \\
+  i $<$ v.size()      & $t_2$ & n            & n                 \\
+  i++               & $t_3$ & n - 1        & n - 1             \\
+  T el = move(v[i]) & $t_4$ & n - 1        & n - 1             \\
+  int j = i - 1     & $t_5$ & n - 1        & n - 1             \\
+  j $\geq$ 0        & $t_6$ & n - 1        & (n + 2)(n - 1)/2  \\
+  h < v[j]          & $t_7$ & n - 1        & n(n - 1)/2        \\
+  v[j + 1] = v[j]   & $t_8$ & 0            & n(n - 1)/2        \\
+  j--               & $t_9$ & 0            & n(n - 1)/2        \\
+  v[j + 1]          & $t_10$ & n - 1            & n - 1)        \\
+  \hline
+\end{tabular}
+\newline
+\begin{itemize}
+ \item Beste geval: $$(t_1 + t_8 + t_9) * 1 + (t_2 + t_3 + t_4 + t_5 + t_6 + t_7 + t_{10}) * n$$
+Er kan ook gezegd worden dat de tijdscomplexiteit in het beste geval gelijk is aan $O(n)$
+\item Slechtste geval: $$(t_1) * 1 + (t_2 + t_3 + t_4 + t_5 + t_{10}) * n + (t_6 + t_7 + t_8 + t_9) * n^2$$
+Er kan ook gezegd worden dat de tijdscomplexiteit in het beste geval gelijk is aan $O(n^2)$
+\end{itemize}
+Het bewijs dat enkel de hoogste term de complexiteit bepaalt staat op pagina 10 van de cursus.
+\section{Asymptotische benadering}
+Een asymptotische benadering wil zeggen dat de uitvoeringstijd van een algoritme, vanaf voldoende grote waarden voor n, benadert kunnen worden met functies (Een begrenzende functie). Om deze begrenzende functie voor te stellen bestaan er drie notaties, namelijk: O, $\Theta$ en $\Omega$.
+Onthou dat in de volgende voorbeelden de letter\note{n} het aantal elementen voorstelt.
+\subsection{O-notatie}
+De O-notatie stelt een afschatting naar boven voor. Dit wil zeggen dat een functie (het algoritme) niet sneller groeit dan een andere bepaalde functie, wat dus de bovengrens vormt. Zo wil de uitdrukking $O(n^2)$ zeggen dat het algoritme zeker niet sneller (maar wel gelijk) kan groeien dan de functie $n^2$. 
+\subsection{$\Omega$-notatie}
+De $\Omega$-notatie stelt een afschatting naar onder voor. Dit wil zeggen dat een functie (ook weer het algoritme) niet trager groeit dan een andere bepaalde functie, wat de ondergrens vormt. Zo wil de uitdrukking $\Omega(n^2)$ zeggen dat het algoritme zeker niet traag (maar wel gelijk) kan groeien dan de functie $n^2$
+\subsection{$\Theta$-notatie}
+Indien de ondergrens gelijk is aan de bovengrens wordt de $\Theta$-notatie gebruikt. 
+\subsection{Voorbeeld: sorteren}
+Indien een tabel met $n$ \textit{verschillende} elementen gegeven is, bestaan er $n!$ verschillende permutaties van $n$ elementen. Wat is het efficiëntste sorteeralgoritme? begin vanaf de ongelijkheid $n! < n^n$.
+
+$$ n! < n^n$$ 
+$$\log(n!) = O(n\log n)$$
+$$\frac{n}{2}*(\frac{n}{2}+1) ... n$$
+$$n! > (\frac{n}{2})^{n/2}$$
+$$\log n! > \frac{n}{2}\log\frac{n}{2}$$
+$$\log n! = \Theta(n\log n)$$
+\section{Afschatten van recursiebetrekkingen}
+Soms is het mogelijk een functie f af te schatten door een recursieve betrekking.
+\subsection{Machten van n}
+$$f(n) \leq Cn^{\alpha} + f(n - 1)$$
+$$\leq Cn^\alpha + C(n - 1)^\alpha + f(n - 2)$$
+$$\leq C(n^\alpha + (n - 1)^\alpha) + ... 1^\alpha) + f(0)$$
+De term tussen haakjes kan geschreven worden als de integraal: 
+$$n^\alpha + (n - 1)^\alpha) + ... 1^\alpha = \int_{0}^{n} \lc x\rc^\alpha dx$$
+\subsection{Logaritmische afschattingen}
+$$f(n) = f\bigg(\frac{n}{2}\bigg) + C$$
+$$= f\bigg(\frac{n}{4}\bigg) + C + C$$
+$$= f\bigg(\frac{n}{2^k}\bigg) + kC$$
+indien k groot genoeg wordt
+$$f(1) + kC\; \hbox{met}\; k = \lc\log n \rc$$
+\subsection{Afschatting met sommen}
+$$(x - 1)(1 + x + x^2 + ... + x^p)$$
+$$= x + x^2 + x^3 + ... + x^{p + 1} - 1 - x - x^2 - ... - x^p$$
+$$= - 1 + x^{p + 1}$$
+Gevolg:
+$$1 + x + ... + x^p = \frac{x^{p + 1}}{x-1} = S(x, p)$$
+$$x^p < S(x, p) < x^{p + 1} \; \hbox{voor}\; x \geq 2$$
+$$x + 2x^2 + 3x^3 + ... + px^p < px^{p + 1}$$
+
+
+\end{document}

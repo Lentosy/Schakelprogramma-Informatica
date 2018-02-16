@@ -1,0 +1,166 @@
+\documentclass[12pt]{report} 
+
+% PACKAGES 
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{amsmath} % Matrices
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\usepackage{lipsum}
+
+
+\partfont{\color{brown}}
+\chapterfont{\color{teal}}
+\sectionfont{\color{cyan}}
+
+% DOCUMENT INFORMATION
+\title{Samenvatting Statistiek}
+\author{Bert De Saffel}
+\date{2017-2018}
+
+
+% CUSTOM COMMANDS
+\def\note#1{\color{cyan} #1 \color{black}}
+\newcommand{\todo}[1] {
+\color{red}\textunderscore{\textit{TODO: #1}}
+}
+
+% DOCUMENT
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{Theorie}
+\chapter{Kansrekenen}
+De kans op een gebeurtenis A:
+$$P(A) = \frac{\hbox{\# gunstige gevallen}}{\hbox{tot \# mogelijkheden}}$$
+Altijd geldig: 
+$$0 \leq P(A) \leq 1$$
+\section{Bewerkingen}
+\begin{enumerate}
+ \item $P(A \cap B)$: kans op gebeurtenis A en gebeurtenis B
+ \item $P(A \cup B)$: kans op gebeurtenis A of gebeurtenis B
+ \item $P(A|B)$: Voorwaardelijke kans (lees: Wat is de kans op A indien B waar is). A en B zijn onafhankelijk indien $P(A|B) = P(A)$ of $P(B|A) = P(B)$
+\end{enumerate}
+\section{Rekenregels}
+\begin{enumerate}
+ \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$: optellingswet
+ \item $P(A \cap B) = P(A)P(B)$: Vermenigvuldiginswet indien A en B onafhankelijk zijn
+ \item $P(\overline{A}) = 1 - P(A)$: complementswet
+ \item $P(A \cap \overline{B}) = P(A) - P(A \cap B)$
+\end{enumerate}
+\fbox{\parbox{\textwidth}{
+Voorbeeld: wat is $P(A\cup B\cup C)$?
+$$P(A\cup B\cup C) $$
+$$= P(A\cup B) + P(C) - P[(A \cup B) \cap C] $$
+$$= P(A) + P(B) - P(A\cap B) + P(C) - P[(A \cap B) \cup (B \cap C)]$$
+$$= P(A) + P(B) + P(C) - P(A \cap B) - [P(A \cap C) + P(B \cap C) - P(A \cap B \cap C)]$$
+$$= P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$$}}
+
+\section{Combinatieleer}
+De permutatie(volgorde is van belang): $$P_n = n!$$ (Op hoeveel verschillende manieren kunnen we 5 studenten plaatsen op 5 stoelen \textbf{OF} het aantal verschillende manieren om \textit{n} elementen te ordenen)
+De combinatie(volgorde is niet van belang): $$C_n^p = (_p^n) = \frac{n!}{p!(n - p)!}$$ (Op hoeveel verschillende manieren kunnen we 2 studenten kiezen uit 5 \textbf{OF} het aantal verschillende manieren om \textit{p} elementen te kiezen uit \textit{n}.)
+\fbox{\parbox{\textwidth}{
+Voorbeeld: In een vaas zitten 8 rode, 4 witte en 3 blauwe knikkers. Wat is de kans om met trekken met teruglegging exact 2 rode knikkers te nemene bij het trekken van 5 knikkers?
+\\
+$$P(2R) = \frac{8}{15} \cdot \frac{8}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot C_5^2$$
+
+Het getal $\frac{8}{15}$ stelt de kans voor om een rode knikker te trekken. Het getal $\frac{7}{15}$ stelt de kans voor om geen rode knikker te trekken. Er wordt vermenigvuldigt met $C_5^2$ de 2 rode knikkers elk van de 5 plaatsen kunnen innemen.
+$$=C_5^2 \bigg(\frac{8}{15}\bigg)^2\bigg(\frac{7}{15}\bigg)^3$$
+$$= 10 \cdot \frac{64}{225} \cdot \frac{343}{3375} = 0.29 = 29\%\; \hbox{kans}$$
+
+}}
+
+\section{Regel van Bayes}
+
+
+\fbox{\parbox{\textwidth}{
+Voorbeeld: In een jaszak zitten 2 munten: één normaal(N) en één vervalst(V) (munt aan elke zijde). Een muntstuk wordt aselect gekozen en gegooid. Munt komt bovenaan te liggen. Wat is de kans dat dit het normale muntstuk is? Dit muntstuk wordt opnieuw gegooid. Terug munt. Wat is nu de kans dat dit het normale muntstuk is?
+
+$$P(N) = \frac{1}{2}$$
+$$P(V) = \frac{1}{2}$$
+\\
+De kans dat het munt of kop is bij het normale muntstuk is 0.5.
+$$P(M/N) = P(K/N) = \frac{1}{2}$$
+De kans dat het munt is bij het valse muntstuk is 1.
+$$P(M/V) = 1$$
+Regel van Bayes:
+$$P(N/M) = \frac{P(N)P(M/N)}{P(M/N)P(N) + P(M/V)P(V)}$$
+$$= \frac{\frac{1}{2} \cdot \frac{1}{2}}{\frac{1}{2} \cdot \frac{1}{2} + 1\cdot \frac{1}{2}} = \frac{\frac{1}{4}}{\frac{1}{4} + \frac{1}{2}}
+= \frac{\frac{1}{4}}{\frac{3}{4}} = \note{\frac{1}{3}}$$
+Indien muntstuk opnieuw wordt gegooid:
+$$P(N/2M) = \frac{P(N)P(2M/N)}{P(2M/N)P(N) + P(2M/V)P(V)}$$
+$$= \frac{\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{1}{2})}{(\frac{1}{2} \cdot \frac{1}{2}) \cdot \frac{1}{2} + 1\cdot \frac{1}{2}} 
+= \frac{\frac{1}{4}}{\frac{5}{4}} = \note{\frac{1}{5}}$$
+}}
+
+
+\part{Oefeningen}
+\chapter{Hoofdstuk 1}
+ \textbf{2. Een geldstuk is vervalst zodat kop dubbel zoveel kan voorkomen als munt. Als het geldstuk drie keer geworpen wordt, wat is de kans om juist 2 keer munt te hebben?} Er zijn twee evenementen te definieëren. Kop gooien \textbf{K} en munt gooien \textbf{M}. Kop gooien kan twee keer zoveel voorkomen als munt gooien.
+ $$P(K) = 2P(M)$$
+ De som van alle kansen is gelijk aan 1.
+ $$P(K) + P(M) = 1$$
+ $$2P(M) + P(M) = 1$$
+ $$3P(M) = 1$$
+ $$P(M) = \frac{1}{3}$$
+ dus
+ $$P(K) = \frac{2}{3}$$
+ 
+Aangezien de gebeurtenis munt twee keer moet voorkomen moet kop dus slechts één maal voorkomen.
+$$P(2M \cap K)$$
+Er moet rekening gehouden worden met de verschillende combinaties:
+$$P((M \cap M \cap K) \cup (M \cap K \cap M) \cup (K \cap M \cap M))$$
+$$= P(M \cap M \cap K) \cup P(M \cap K \cap M) \cup (K \cap M \cap M))$$
+$$= P(M)P(M)P(K) + P(M)P(K)P(M) + P(K)P(M)P(M)$$
+$$= \frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3} + \frac{1}{3} \cdot \frac{2}{3} \cdot \frac{1}{3} + \frac{2}{3} \cdot \frac{1}{3} \cdot \frac{1}{3}$$
+$$= 3(\frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3})$$
+$$= 3(\frac{2}{27}) = \frac{6}{27} = \frac{2}{9}$$
+
+  \textbf{3. Een dobbelsteen is vervalst zodat de kans dat een gegeven aantal ogen geworpen wordt evenredig is met het aantal ogen. Is A de gebeurtenis een even aantal te gooien, B de gebeurtenis een priemgetal te gooien en C de gebeurtenis een oneven getal te gooien,
+  \begin{itemize}
+   \item Bepaal P(A), P(B) en P(C)
+   \item Bereken de kans dat men een even getal of een priemgetal gooit.
+   \item Bereken de kans dat men een even getal gooit dat geen priemgetal is.
+   \item Bereken de kans dat men een oneven getal of een priemgetal gooit.
+  \end{itemize}}
+  
+  De kans kan als formule worden voorgesteld.
+  $$P(i) = ip$$
+  waarbij p een willekeurig getal is.
+  We weten dat de som van alle kansen gelijk is aan 1.
+  $$\sum_{i = 1}^{6} P(i) = 1p + 2p + 3p + 4p + 5p + 6p = 1$$
+  Los op naar p
+  $$21p = 1$$
+  $$p = \frac{1}{21}$$
+  
+  1ste deelvraag:
+  $$P(A) = \frac{2}{21} + \frac{4}{21} + \frac{6}{21} = \frac{12}{21} = \frac{4}{7}$$
+  $$P(B) = \frac{2}{21} + \frac{3}{21} + \frac{5}{21} = \frac{10}{21}$$
+  $$P(C) = 1 - P(A) = 1 - \frac{4}{7} = \frac{3}{7}$$
+  
+  \textbf{4. A en B zijn verschijnselen met P(A) = 0.1, P(B) = 0.5. Bepaal $P(A \cup B)$, $P(\overline{A})$, $P(\overline{A} \cap B)$ indien a) de verschijnselen elkaar uitsluiten en b) ze onafhankelijk zijn.}
+  
+  a) 
+  $$P(A \cup B) = P(A) + P(B) - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - 0 = \frac{3}{5}$$
+  $$P(\overline{A}) = 1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10}$$
+  $$P(\overline{A} \cap B) = P(B) - P(A \cap B) = \frac{1}{2} - 0 = \frac{1}{2}$$
+  
+  b)
+  $$P(A \cup B) = P(A) + P(B)  - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - \frac{1}{20} = \frac{11}{20}$$
+  $$P(\overline{A}) = 1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10}$$
+  $$P(\overline{A} \cap B) = P(B) - P(A \cap B) = \frac{1}{2} - \frac{1}{20} = \frac{9}{20}$$
+  \textbf{6. Bereken voor een familie van 3 kinderen de kans op a) 3 jongens en  b) 2 jongens en 1 meisje}
+  $$P(J) \hbox{: Kans op een jongen} = \frac{1}{2}$$
+  $$P(M) \hbox{: Kans op een meisje} = \frac{1}{2}$$
+  a)
+  $$P(J \cap J \cap J)$$
+  $$= P(J)P(J)P(J) = (P(J))^{3} = \bigg(\frac{1}{2}\bigg)^{3} = \frac{1}{8}$$
+  b)
+  $$P(J \cap J \cap M) + P(J \cap M \cap J) + P(M \cap J \cap J)$$
+  $$= 3P(J \cap J \cap M)$$
+  $$= 3(P(J))^3 \;\;\;\;\; \hbox{(aangezien P(J) = P(M))}$$ 
+  $$= 3 \bigg(\frac{1}{2}\bigg)^{3} = \frac{3}{8}$$
+\end{document}
