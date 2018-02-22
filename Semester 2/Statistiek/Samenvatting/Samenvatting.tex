@@ -1,33 +1,43 @@
-\documentclass[12pt]{report} 
+\documentclass[12pt]{report}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % page settings
+\usepackage[dutch]{babel} % provides dutch alternatives for english text
+\usepackage[utf8]{inputenc} % provides UTF-8 encoding
+\usepackage{color} % more color options
+\usepackage{enumitem} % options for enumerations
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage{graphicx} % for displaying images
 
-% PACKAGES 
-\usepackage[dutch]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{color}
-\usepackage{amsmath} % Matrices
-\usepackage{booktabs}
-\usepackage{xcolor}
-\usepackage{sectsty}
-\usepackage{lipsum}
-
-
-\partfont{\color{brown}}
-\chapterfont{\color{teal}}
-\sectionfont{\color{cyan}}
-
-% DOCUMENT INFORMATION
+%DOCUMENT INFORMATION
 \title{Samenvatting Statistiek}
 \author{Bert De Saffel}
 \date{2017-2018}
 
-
 % CUSTOM COMMANDS
-\def\note#1{\color{cyan} #1 \color{black}}
-\newcommand{\todo}[1] {
-\color{red}\textunderscore{\textit{TODO: #1}}
+\setlength{\parindent}{0mm}
+\graphicspath{{./img/}}
+\newcommand{\todo}[1]{
+  {\color{red}\textunderscore{\textit{TODO: #1}}}
 }
+\newcommand{\exercise}[2]{
+  #1
+  
 
-% DOCUMENT
+  \underline{Oplossing}
+  
+  #2
+  
+    \hrulefill
+}
+\newcommand{\example}[2]{
+      \hrulefill
+      
+      Voorbeeld: #1
+      
+      #2
+      
+      \hrulefill
+  }
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -40,127 +50,639 @@ Altijd geldig:
 $$0 \leq P(A) \leq 1$$
 \section{Bewerkingen}
 \begin{enumerate}
- \item $P(A \cap B)$: kans op gebeurtenis A en gebeurtenis B
- \item $P(A \cup B)$: kans op gebeurtenis A of gebeurtenis B
- \item $P(A|B)$: Voorwaardelijke kans (lees: Wat is de kans op A indien B waar is). A en B zijn onafhankelijk indien $P(A|B) = P(A)$ of $P(B|A) = P(B)$
+	\item $P(A \cap B)$: kans op gebeurtenis A en gebeurtenis B
+	\item $P(A \cup B)$: kans op gebeurtenis A of gebeurtenis B
+	\item $P(A|B)$: Voorwaardelijke kans (lees: Wat is de kans op A indien B waar is). A en B zijn onafhankelijk indien $P(A|B) = P(A)$ of $P(B|A) = P(B)$
 \end{enumerate}
 \section{Rekenregels}
 \begin{enumerate}
- \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$: optellingswet
- \item $P(A \cap B) = P(A)P(B)$: Vermenigvuldiginswet indien A en B onafhankelijk zijn
- \item $P(\overline{A}) = 1 - P(A)$: complementswet
- \item $P(A \cap \overline{B}) = P(A) - P(A \cap B)$
+	\item Optellingswet: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+	\item Vermenigvuldigingswet: $P(A \cap B) = P(A)P(B)$
+	\item Complementswet: $P(\overline{A}) = 1 - P(A)$
+	\item $P(A \cap \overline{B}) = P(A) - P(A \cap B)$
 \end{enumerate}
-\fbox{\parbox{\textwidth}{
-Voorbeeld: wat is $P(A\cup B\cup C)$?
-$$P(A\cup B\cup C) $$
-$$= P(A\cup B) + P(C) - P[(A \cup B) \cap C] $$
-$$= P(A) + P(B) - P(A\cap B) + P(C) - P[(A \cap B) \cup (B \cap C)]$$
-$$= P(A) + P(B) + P(C) - P(A \cap B) - [P(A \cap C) + P(B \cap C) - P(A \cap B \cap C)]$$
-$$= P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$$}}
+\example{Wat is $P(A\cup B\cup C)$?}
+{
+	\begin{equation*}
+		\begin{split}
+			& P(A\cup B\cup C)\\
+			= & P(A\cup B) + P(C) - P[(A \cup B) \cap C]\\
+			= & P(A) + P(B) - P(A\cap B) + P(C) - P[(A \cap B) \cup (B \cap C)]\\
+			= & P(A) + P(B) + P(C) - P(A \cap B) - [P(A \cap C) + P(B \cap C) - P(A \cap B \cap C)]\\
+			= & P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)
+		\end{split}
+	\end{equation*}
+}
+
+
 
 \section{Combinatieleer}
 De permutatie(volgorde is van belang): $$P_n = n!$$ (Op hoeveel verschillende manieren kunnen we 5 studenten plaatsen op 5 stoelen \textbf{OF} het aantal verschillende manieren om \textit{n} elementen te ordenen)
+
+
 De combinatie(volgorde is niet van belang): $$C_n^p = (_p^n) = \frac{n!}{p!(n - p)!}$$ (Op hoeveel verschillende manieren kunnen we 2 studenten kiezen uit 5 \textbf{OF} het aantal verschillende manieren om \textit{p} elementen te kiezen uit \textit{n}.)
-\fbox{\parbox{\textwidth}{
-Voorbeeld: In een vaas zitten 8 rode, 4 witte en 3 blauwe knikkers. Wat is de kans om met trekken met teruglegging exact 2 rode knikkers te nemene bij het trekken van 5 knikkers?
-\\
-$$P(2R) = \frac{8}{15} \cdot \frac{8}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot C_5^2$$
 
-Het getal $\frac{8}{15}$ stelt de kans voor om een rode knikker te trekken. Het getal $\frac{7}{15}$ stelt de kans voor om geen rode knikker te trekken. Er wordt vermenigvuldigt met $C_5^2$ de 2 rode knikkers elk van de 5 plaatsen kunnen innemen.
-$$=C_5^2 \bigg(\frac{8}{15}\bigg)^2\bigg(\frac{7}{15}\bigg)^3$$
-$$= 10 \cdot \frac{64}{225} \cdot \frac{343}{3375} = 0.29 = 29\%\; \hbox{kans}$$
-
-}}
+\example{In een vaas zitten 8 rode, 4 witte en 3 blauwe knikkers. Wat is de kans om met trekken met teruglegging exact 2 rode knikkers te nemene bij het trekken van 5 knikkers?}{
+	$$P(2R) = \frac{8}{15} \cdot \frac{8}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot C_5^2$$
+	
+	Het getal $\frac{8}{15}$ stelt de kans voor om een rode knikker te trekken. Het getal $\frac{7}{15}$ stelt de kans voor om geen rode knikker te trekken. Er wordt vermenigvuldigt met $C_5^2$ de 2 rode knikkers elk van de 5 plaatsen kunnen innemen.
+	$$=C_5^2 \bigg(\frac{8}{15}\bigg)^2\bigg(\frac{7}{15}\bigg)^3$$
+	$$= 10 \cdot \frac{64}{225} \cdot \frac{343}{3375} = 0.29 = 29\%\; \hbox{kans}$$
+	
+}
 
 \section{Regel van Bayes}
 
 
-\fbox{\parbox{\textwidth}{
-Voorbeeld: In een jaszak zitten 2 munten: één normaal(N) en één vervalst(V) (munt aan elke zijde). Een muntstuk wordt aselect gekozen en gegooid. Munt komt bovenaan te liggen. Wat is de kans dat dit het normale muntstuk is? Dit muntstuk wordt opnieuw gegooid. Terug munt. Wat is nu de kans dat dit het normale muntstuk is?
+\example{In een jaszak zitten 2 munten: één normaal(N) en één vervalst(V) (munt aan elke zijde). Een muntstuk wordt aselect gekozen en gegooid. Munt komt bovenaan te liggen. Wat is de kans dat dit het normale muntstuk is? Dit muntstuk wordt opnieuw gegooid. Terug munt. Wat is nu de kans dat dit het normale muntstuk is?}{
+	
+	$$P(N) = \frac{1}{2}$$
+	$$P(V) = \frac{1}{2}$$
+	\\
+	De kans dat het munt of kop is bij het normale muntstuk is 0.5.
+	$$P(M/N) = P(K/N) = \frac{1}{2}$$
+	De kans dat het munt is bij het valse muntstuk is 1.
+	$$P(M/V) = 1$$
+	Regel van Bayes:
+	\begin{equation*}
+	 \begin{split}
+	  P(N/M) & = \frac{P(N)P(M/N)}{P(M/N)P(N) + P(M/V)P(V)}\\
+	         & = \frac{\frac{1}{2} \cdot \frac{1}{2}}{\frac{1}{2} \cdot \frac{1}{2} + 1\cdot \frac{1}{2}}
+	          = \frac{\frac{1}{4}}{\frac{3}{4}}
+	          = \frac{1}{3}
+	 \end{split}
+	\end{equation*}
+	Indien muntstuk opnieuw wordt gegooid:
+	\begin{equation*}
+	 \begin{split}
+	   P(N/2M) & = \frac{P(N)P(2M/N)}{P(2M/N)P(N) + P(2M/V)P(V)}\\
+	           & = \frac{\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{1}{2})}{(\frac{1}{2} \cdot \frac{1}{2}) \cdot \frac{1}{2} + 1\cdot \frac{1}{2}}\\
+	           & = \frac{\frac{1}{4}}{\frac{5}{4}} = \frac{1}{5}
+	 \end{split}
+	\end{equation*}
+}
 
-$$P(N) = \frac{1}{2}$$
-$$P(V) = \frac{1}{2}$$
-\\
-De kans dat het munt of kop is bij het normale muntstuk is 0.5.
-$$P(M/N) = P(K/N) = \frac{1}{2}$$
-De kans dat het munt is bij het valse muntstuk is 1.
-$$P(M/V) = 1$$
-Regel van Bayes:
-$$P(N/M) = \frac{P(N)P(M/N)}{P(M/N)P(N) + P(M/V)P(V)}$$
-$$= \frac{\frac{1}{2} \cdot \frac{1}{2}}{\frac{1}{2} \cdot \frac{1}{2} + 1\cdot \frac{1}{2}} = \frac{\frac{1}{4}}{\frac{1}{4} + \frac{1}{2}}
-= \frac{\frac{1}{4}}{\frac{3}{4}} = \note{\frac{1}{3}}$$
-Indien muntstuk opnieuw wordt gegooid:
-$$P(N/2M) = \frac{P(N)P(2M/N)}{P(2M/N)P(N) + P(2M/V)P(V)}$$
-$$= \frac{\frac{1}{2} \cdot (\frac{1}{2} \cdot \frac{1}{2})}{(\frac{1}{2} \cdot \frac{1}{2}) \cdot \frac{1}{2} + 1\cdot \frac{1}{2}} 
-= \frac{\frac{1}{4}}{\frac{5}{4}} = \note{\frac{1}{5}}$$
-}}
+\chapter{Beschrijvende statistiek}
+\section{Populaties en steekproeven}
+\begin{itemize}
+	\item \textbf{Populatie}: Een verzameling van elementen 
+	\item \textbf{Steekproef}: Een deelverzameling van de populatie. Deze moet representatief zijn (bv $3/4$ van de populatie is vrouw. In de steekproef moet ook $3/4$ vrouw zijn)
+\end{itemize}
+\section{Veranderlijken}
+\begin{itemize}
+	\item {\textbf{Stochastische variabele}: Kan waarden aannemen elk met een bepaalde kans.}
+	\item {\textbf{Kwalitatieve variabele}: Geen numerieke waarden (bloedgroep, studierichting)}
+	\item {\textbf{Kwantiatieve variabele}: Numerieke waarden (gewicht, leeftijd)}
+	\item {\textbf{Ordinale variabele}: Er kan een bepaalde orde toegekend worden (zeer goed, goed, matig, voldoende, slecht en zeer slecht)}
+	\item {\textbf{Nominale variabele}: Er kan geen bepaalde orde toegekend worden (studierichting)}
+	\item {\textbf{Onafhankelijke variabele}: De ene meting beïnvloed de andere niet (gooien van een dobbelsteen)}
+	\item {\textbf{Afhankelijke variabele}: De ene meting beïnvloed de andere (grootte per geslacht)}
+	\item {\textbf{Discrete variabele}: Heeft enkel discrete waarden (1, 0.4, 7, 9 , 1/100)}
+	\item {\textbf{Continue variabele}: Heeft continue waarden ($\sqrt{2}$, $[-10, 10]$)}
+\end{itemize}
+\section{Discrete veranderlijken}
+\subsection{Ordenen van gegevens}
+Stel \textit{n} het aantal elementen van de populatie of van een steekproef en \textit{k} het aantal verschillende waarden dat de veranderlijke kan aannemen.
+$$\sum_{i=1}^{k} n_i = n$$
+\begin{itemize}
+	\item {\textbf{Absolute frequentie}: Het aantal keer dat een bepaalde waarde aangenomen wordt.
+			
+	}
+	\item {\textbf{Relatieve frequentie}: De verhouding van de absolute frequentie tot het aantal elementen
+		$$f_i = \frac{n_i}{n}\;\;\;\hbox{en}\;\;\;\sum_{i = 1}^{k} f_i = 1$$
+	}
+	\item {\textbf{Cumulatieve absolute frequentie}: 
+		$$N_i = \sum_{j=1}^{i} n_j$$
+	}
+	\item {\textbf{Cumulatieve relatieve frequentie}:
+		$$F_i = \sum_{j=1}^{i} f_i$$
+	}
+	\item {\textbf{Frequentietabel}: Voorstelling van alle frequenties.\\
+		Een toets bij 204 studenten, gequoteerd op 10, leverde volgende resultaten:\\
+		\begin{tabular}{l | l l l l l l l l l}
+			score & 2 & 3 & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\
+			\hline
+			$n_i$ & 1 & 5 & 16 & 21 & 39 & 44 & 50 & 26 & 2  
+		\end{tabular}\\
+		De frequentietabel wordt:\\
+		\begin{tabular}{l | l | l | l | l | l | l | l | l | l}
+			score & 2     & 3     & 4     & 5     & 6     & 7     & 8     & 9     & 10   \\
+			\hline
+			$n_i$ & 1     & 5     & 16    & 21    & 39    & 44    & 50    & 26    & 2    \\
+			$f_i$ & 0.005 & 0.025 & 0.078 & 0.103 & 0.191 & 0.216 & 0.245 & 0.127 & 0.01 \\
+			$N_i$ & 1     & 6     & 22    & 43    & 82    & 126   & 176   & 202   & 204  \\
+			$F_i$ & 0.005 & 0.029 & 0.108 & 0.211 & 0.402 & 0.618 & 0.863 & 0.990 & 1    
+		\end{tabular}
+	}
+\end{itemize}
+\subsection{Plaatsparameters en spreidingsparameters}
+\begin{itemize}
+	\item {\textbf{Steekproefgemiddelde}: De som van alle waarnemingen gedeeld door het totaal aantal waarnemingen
+		$$\overline{x} = \frac{1}{n}(x_1 + x_2 + ... + x_n) = \frac{1}{n} \sum_{i = 1}^{n} = x_i$$
+	}
+	\item {\textbf{Modus}: De waarde met de grootste absolute frequentie.}
+	\item {\textbf{Mediaan}: Na orderning van de waarnemingen, de middelste waarde als n oneven is en het gemiddelde van de middelste twee als n even is.}
+	\item {\textbf{Variantie}: Het rekenkundig gemiddelde van de \textbf{kwadraten van de afwijkingen} van de waarnemingsgetallen ten op zichte van hun rekenkundig gemiddelde:
+		$$s^2 = \frac{1}{n - 1}\sum_{i=1}^{n}(x_i - \overline{x})^2$$}
+	\item {\textbf{Standaardafwijking}: De vierkantswortel uit de steekproefvariantie. 
+		$$\sigma = \sqrt{s^2} = s$$}
+\end{itemize}
+\section{Continue veranderlijken}
+\subsection{Ordenen van gegevens}
+Het ordenen van continue veranderlijken wordt gedaan met klassen.
+\begin{itemize}
+	\item {\textbf{Spreidingsbreedte (range)}: Het verschil tussen het grootste en het kleinste waarnemingsgetal.}
+	\item {\textbf{Aantal klassen}: Het aantal klassen is de vierkantswortel uit het aantal elementen: $$k = \sqrt{n}$$}
+	\item {\textbf{Klassebreedte ($\Delta x$)}: De breedte van elke klasse. Indien elke klasse een verschillende breedte heeft wordt $\Delta x_i$ gebruikt om de \textit{i}-de klasse aan te duiden.}
+	\item {De frequenties zijn analoog aan discrete veranderlijken}
+\end{itemize}
+
+\subsection{Plaatsparameters en spreidingsparameters}
+\begin{itemize}
+	\item {\textbf{Het rekenkundig gemiddelde}: 
+		$$\overline{x} = \frac{1}{n}\sum_{i=1}^{k}n_ic_i$$
+		met $c_i$ het klassemidden van de \textit{i}-de klasse.
+	}
+	\item {\textbf{De modale klasse}: De klasse met de grootste absolute frequentie.}
+	\item {\textbf{De mediale klasse}: De klasse met de laagste waarden waarin de cumulatieve relatieve frequentie minstens 0.5 bedraagt}
+	\item {\textbf{De variantie}:
+		$$s^2 = \frac{1}{n-1}\sum_{i=1}^{k}n_i(c_i-\overline{x})^2$$
+	}
+	\item {\textbf{Standaardafwijking}:
+		$$\sigma = \sqrt{s^2} = s$$}
+\end{itemize}
+
+\subsection{Momenten van een steekproef}
+\todo{epic}
+
+\chapter{verdelingsfuncties van een populatie}
+Twee soorten verdelingsfuncties:
+\begin{itemize}
+	\item Kansfunctie: bij discrete kansen (sommeren)
+	\item Dichtheidsfunctie: bij continue kansen (integreren)
+\end{itemize}
+\section{Kansfunctie}
+De som van alle kansen is gelijk aan 1:
+$$\sum_{i = 1}^{k} f(x_i) = 1$$
+\section{Dichtheidsfunctie}
+De som van alle kansen is gelijk aan 1:
+$$\int_{-\infty}^{+\infty} f(x)\;dx = 1$$
+Aangezien we integreren:
+$$\int_{a}^{a} f(x)\;dx = 0$$
+Hieruit volgt:
+\begin{equation*}
+	\begin{split}
+		& P(a \leq x \leq b) \\
+		= & P(a < x \leq b)  \\
+		= & P(a < x < b)     \\
+		= & P(a \leq x < b)
+	\end{split}
+\end{equation*}
+\example{Stel $f(x) = 
+	\begin{cases} 
+		a + b(x - 1)^2  & 0 \leq x \leq 2
+		               \\ 0 &  anders 
+		
+	\end{cases}$.\\ 
+	Bepaal a en b zodat f een geldige dichtheidsfunctie is. Bepaal ook $F(t)$.}{
+	
+	\begin{equation*}
+		\begin{split}
+			\int_{-\infty}^{+\infty} f(x)\; dx = 1 
+			& \Leftrightarrow \int_{0}^{2} a + b(x - 1)^3 \; dx = 1 \\
+			& \Leftrightarrow ax + b\frac{(x - 1)^4}{4}\bigg|_{0}^{2} = 1 \\
+			& \Leftrightarrow 2a + \frac{b}{4}(1 - 1) = 2 \\
+			& \Leftrightarrow a = \frac{1}{2}
+		\end{split}
+	\end{equation*}
+	
+	Is $f(x) \geq 0\;\forall\;x$?
+	\\
+	Is $\frac{1}{2} + b(x - 1)^3 \geq 0$? $(x \in [0, 2])$
+	$$\Rightarrow x \in [0, 2] \Rightarrow -1 \leq (x - 1)^3 \leq 1$$
+	
+	\underline{Als $b > 0$:}
+	$$- b \leq b(x-1)^3 \leq b$$
+	$$\frac{1}{2} - b \leq b(x-1)^3 + \frac{1}{2} \leq b + \frac{1}{2}$$
+	$f(x)$ zal $\geq 0$ indien $\frac{1}{2} - b \geq 0$
+	$$\Rightarrow b \leq \frac{1}{2}$$
+	
+	\underline{Als $b < 0$:}
+	\begin{equation*}
+		\begin{split}
+			- b \geq b(x-1)^3 \geq b & \Rightarrow b \leq b(x-1)^3 \leq -b \\
+			& \Rightarrow b + \frac{1}{2} \leq b(x-1)^3+ \frac{1}{2}  \leq -b + \frac{1}{2}
+		\end{split}
+	\end{equation*}
+	$f(x)$ zal $\geq 0$ indien $\frac{1}{2} + b \geq 0$
+	$$\Rightarrow b \geq -\frac{1}{2}$$
+	
+	\begin{equation*}
+	 \begin{split}
+	  F(t) & = \int_{0}^{t} \frac{1}{2} + b(x - 1)^3\; dx \;\; (t \in [0, 2])\\
+	       & = \frac{1}{2}x + b\frac{(x-1)^4}{4}\bigg|_{0}^{t} \\
+	       & = \frac{1}{2}t + \frac{b}{4}[(t-1)^4 - 1]
+	 \end{split}
+	\end{equation*}
+	Bovendien is $F(t) = 0$ als $t < 0$ en is $F(t) = 1$ als $t > 2$
+	
+}
+
+\section{Spreidingsparameters}
+\subsection{Gemiddelde van een populatie}
+De verwachte waarde voor x ($E[x]$) wordt gegeven door:
+$$E[x] = \sum_{i} x_{i}p(X = x_i)$$
+\example{Wat is de gemiddelde waarde bij het gooien van een dobbelsteen}{
+  \begin{equation*}
+   \begin{split}
+    \mu & = 1\cdot\frac{1}{6} + 2\cdot\frac{1}{6} +3\cdot\frac{1}{6} +4\cdot\frac{1}{6} +5\cdot\frac{1}{6}+ 5\cdot\frac{1}{6}\\
+    &= 3.5
+   \end{split}
+  \end{equation*}
+}
+\example{Bepaal de gemiddelde winst als bij kop 3 euro wordt betaald en bij munt 5 euro. Het munstuk is vervalst zodat P(k) = 2P(M)}{
+We maken een stelsel op met 2 formules. De extra formule is de som van alle kansen die gelijk is aan 1.
+$$\begin{cases}
+   P(K) = 2P(M) \\
+   P(K) + P(M) = 1
+  \end{cases}
+$$
+Hieruit wordt afgeleid dat 
+\begin{equation*}
+ \begin{split}
+   P(K) &= \frac{2}{3} \\
+   P(M) &= \frac{1}{3}
+ \end{split}
+\end{equation*}
+De winstfunctie wordt gedefinieerd als g met g(K) = 3 en g(M) = 5.
+\begin{equation*}
+ \begin{split}
+  E[g(x)] & = g(K)\cdot P(K) + g(M)\cdot P(M)\\
+          & = 3 \cdot \frac{2}{3} + 5 \cdot \frac{1}{3}\\
+          & = 2 + \frac{5}{3}\\
+          & = \frac{11}{3}
+ \end{split}
+\end{equation*}
+}
+\example{Bereken de gemiddelde winst x met F(x) zoals grafisch weergegeven 
+\begin{center}
+ \includegraphics[width=0.5\linewidth]{slide_7}
+\end{center}
+
+}{
+\begin{equation*}
+ \begin{split}
+  \mu & = E[x] \\
+      & = \int_{-1}^{1} x\cdot f(x)\; dx + \int_{2}^{3} x\cdot f(x)\; dx
+ \end{split}
+\end{equation*}
+De functie kan gedefinieerd worden als:
+$$F(x) = \begin{cases}
+   0.2(x + 1) & x \in [-1,1] \\
+   1 + 0.6(x-3) & x \in [2,3] \\
+   0 & x < -1 \\
+   1 & x > 3 \\
+   0.4 & x \in [1, 2]
+\end{cases}$$
+We weten dat $f(x) = \frac{dF(x)}{dx}$. We leiden $F(x)$ af voor de intervallen $[-1, 1]$ en $[2, 3]$ 
+\begin{equation*}
+      \begin{split}
+       \mu & = \int_{-1}^{1} x\cdot \frac{1}{5}\; dx + \int_{2}^{3} x\cdot \frac{3}{5}\; dx \\
+           & = \frac{x^2}{10}\bigg|_{-1}^{1} + \frac{3x^2}{10}\bigg|_{2}^{3} \\
+           & = \frac{1}{10}\bigg[(1 - 1) + 3(9 - 4)      \bigg] \\
+           & = \frac{15}{10} = \frac{3}{2}
+      \end{split}
+\end{equation*}
+}
+\example{Bereken de mediaan van x
+\begin{center}
+ \includegraphics[width=0.90\textwidth]{oef_mediaan}
+\end{center}
+}{
+De oppervlakte van het rechterdeel moet gelijk zijn aan 50\%. We gebruiken de formule van de oppervlakte van een driehoek.
+
+\begin{equation*}
+ \begin{split}
+  &  \frac{(3 - M) \cdot f(M)}{2} = \frac{1}{2} \\
+  \Leftrightarrow & (3 - M) \cdot f(M) = 1
+ \end{split}
+\end{equation*}
+De som van alle kansen moet gelijk zijn aan 1.
+\begin{equation*}
+ \begin{split}
+  \int_{0}^{3}f(x)\;dx = 1 & \Leftrightarrow \frac{a}{2} + a = 1\\
+  & \Leftrightarrow a = \frac{2}{3}
+ \end{split}
+\end{equation*}
+De rechte door $(2, \frac{2}{3})$ en $(3, 0)$ wordt gegeven door 
+$$y = -\frac{1}{3}(x-3)$$
+Herschrijf:
+$$f(M) = -\frac{1}{3}(M - 3)$$
+Nu kan de formule van de oppervlakte van de driehoek terug gebruikt worden:
+\begin{equation*}
+ \begin{split}
+  & (3 - M)(-\frac{1}{3}(M - 3)) = 1  \\
+  \Leftrightarrow & M = 3 \pm \sqrt{3}\\
+  \Leftrightarrow & M = 3 - \sqrt{3} \;\;\;\hbox{(aangezien de functie niet hoger gaat dan 3)}
+  \end{split}
+\end{equation*}
+}
+
+\subsection{Spreiding van een populatie}
+\begin{itemize}
+ \item \textbf{Continu}: $$\sigma^2 = V[x] = \int_{-\infty}^{+\infty}(x-\mu)^2 f(x)\; dx$$
+ \item \textbf{Discreet}: $$\sigma^2 = V[x] = \sum_{i}(x_i - \mu)^2 f(x_i)$$
+\end{itemize}
+De standaardafwijking blijft $\sigma = \sqrt{\sigma^2}$
+
+\example{Bewijs $V[ax + b] = a^2V[x]$}{
+We bewijzen enkel voor een continue dichtheidsfunctie, maar is analoog aan discrete kansfuncties.
+
+\begin{equation*}
+ \begin{split}
+  V[ax + b] & = \int_{-\infty}^{+\infty}(ax + b - a\mu + b)^2 f(x)\; dx \\
+            & = \int_{-\infty}^{+\infty}a^2(x - \mu)^2 f(x)\; dx \\
+            & = a^2\int_{-\infty}^{+\infty}(x - \mu)^2 f(x)\; dx \\
+            & = a^2V[x]
+ \end{split}
+\end{equation*}
+}
+\example{Bewijs $V[x] = E[x^2] - \mu^2$}{
+\begin{equation*}
+ \begin{split}
+  V[x] & = E[(x - \mu)^2] \\
+       & = E[x^2 - 2x\mu + \mu^2] \\
+       & = E[x^2] - E[2x\mu] + E[\mu^2] \\
+       & = E[x^2] - 2\mu E[x] + \mu^2E[1] \\
+       & = E[x^2] - 2\mu^2 + \mu^2 \\
+       & = E[x^2] - \mu^2
+ \end{split}
+\end{equation*}
+
+
+}
+
+\section{Momenten}
+Het moment van de orde k ten opzichte van het punt c:
+$$E[(x - c)^k]$$
+Er bestaan 2 gevallen voor c.
+\begin{itemize}
+ \item $c = 0\;:\; \mu'_{k} = E[x^k]$
+ \item $c = \mu \;:\; \mu_k = E[(x - \mu)^k]$
+\end{itemize}
+Een aantal voorbeelden:
+\begin{enumerate}
+ \item $\mu'_0 = E[x^0] = E[1] = 1$
+ \item $\mu'_1 = E[x^1] = \mu$
+ \item $\mu_0 = E[(x - \mu)^0] = E[1] = 1$
+ \item $\mu_1 = E[(x - \mu)^1] = E[x] - \mu = 0$
+ \item $\mu_2 = E[(x - \mu)^2] = V[x] = \sigma$
+\end{enumerate}
+
+\subsection{De momentenfunctie}
+De momentenfunctie wordt gedefinieerd als:
+$$M(t) = E[e^{tx}]$$
+\begin{itemize}
+ \item \textbf{Discreet}: $$M(t) = \sum_{i} e^{tx_i} f(x_i)$$
+ \item \textbf{Continu}: $$M(t) = \int_{-\infty}^{+\infty} e^{tx} f(x)\; dx$$
+\end{itemize}
+Wat ook altijd geldig is:
+$$E[x^k] = \frac{d^kM(t)}{dt^k}\bigg|_{t=0}$$
+Bewijs:
+\begin{equation*}
+ \begin{split}
+  \frac{dM(t)}{dt}             & = \frac{d}{dt}\int_{-\infty}^{+\infty} e^{tx} f(x)\; dx \bigg|_{t=0} \\
+                               & = \int_{-\infty}^{+\infty} xe^{tx} f(x)\; dx \bigg|_{t=0} \\
+                               & = \int_{-\infty}^{+\infty} x f(x)\; dx \\
+                               & = E[x] \\
+                               & = \mu
+ \end{split}
+\end{equation*}
+\begin{equation*}
+ \begin{split}
+  \frac{d^2M(t)}{dt^2}         & = \frac{d}{dt}\int_{-\infty}^{+\infty} xe^{tx} f(x)\; dx \bigg|_{t=0} \\
+                               & = \int_{-\infty}^{+\infty} x^2e^{tx} f(x)\; dx \bigg|_{t=0} \\
+                               & = \int_{-\infty}^{+\infty} x^2 f(x)\; dx \\
+                               & = E[x^2]
+ \end{split}
+\end{equation*}
+\begin{equation*}
+ \begin{split}
+  \frac{d^kM(t)}{dt^k}             & = \frac{d}{dt}\int_{-\infty}^{+\infty} x^k f(x)\; dx \\
+                                   & = E[x^k]
+ \end{split}
+\end{equation*}
+\example{Stel $$f(x) = \begin{cases}
+                       e^{a - x} & x \geq 1 \\
+                       0         & x < 1
+                      \end{cases}
+$$
+Bepaal $\mu = E[x]$ op 2 manieren.}{
+
+\begin{enumerate}
+ \item 
+  \begin{equation*}
+   \begin{split}
+    \mu & = \int_{1}^{+\infty} x f(x)\; dx \\
+        & = \int_{1}^{+\infty} x e^{a-x}\; dx \\
+        & = ...
+   \end{split}
+  \end{equation*}
+ \item
+  \begin{equation*}
+   \begin{split}
+    M(t) & = \int_{1}^{+\infty}e^{tx} f(x)\; dx \\
+         & = \int_{1}^{+\infty} e^{tx} e^{a-x}\; dx \\
+         & = ...
+   \end{split}
+  \end{equation*}
+\end{enumerate}
+
+}
+
+
+
+
+
 
 
 \part{Oefeningen}
-\chapter{Hoofdstuk 1}
- \textbf{2. Een geldstuk is vervalst zodat kop dubbel zoveel kan voorkomen als munt. Als het geldstuk drie keer geworpen wordt, wat is de kans om juist 2 keer munt te hebben?} Er zijn twee evenementen te definieëren. Kop gooien \textbf{K} en munt gooien \textbf{M}. Kop gooien kan twee keer zoveel voorkomen als munt gooien.
- $$P(K) = 2P(M)$$
- De som van alle kansen is gelijk aan 1.
- $$P(K) + P(M) = 1$$
- $$2P(M) + P(M) = 1$$
- $$3P(M) = 1$$
- $$P(M) = \frac{1}{3}$$
- dus
- $$P(K) = \frac{2}{3}$$
- 
-Aangezien de gebeurtenis munt twee keer moet voorkomen moet kop dus slechts één maal voorkomen.
-$$P(2M \cap K)$$
-Er moet rekening gehouden worden met de verschillende combinaties:
-$$P((M \cap M \cap K) \cup (M \cap K \cap M) \cup (K \cap M \cap M))$$
-$$= P(M \cap M \cap K) \cup P(M \cap K \cap M) \cup (K \cap M \cap M))$$
-$$= P(M)P(M)P(K) + P(M)P(K)P(M) + P(K)P(M)P(M)$$
-$$= \frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3} + \frac{1}{3} \cdot \frac{2}{3} \cdot \frac{1}{3} + \frac{2}{3} \cdot \frac{1}{3} \cdot \frac{1}{3}$$
-$$= 3(\frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3})$$
-$$= 3(\frac{2}{27}) = \frac{6}{27} = \frac{2}{9}$$
+\chapter{Kansrekenen}
+  
+\begin{itemize}[label={}, leftmargin=*]
+	\item {\exercise{2. Een geldstuk is vervalst zodat kop dubbel zoveel kan voorkomen als munt. Als het geldstuk drie keer geworpen wordt, wat is de kans om juist 2 keer munt te hebben?}{
+		Er zijn twee evenementen te definieëren. Kop gooien \textbf{K} en munt gooien \textbf{M}. Kop gooien kan twee keer zoveel voorkomen als munt gooien.
+		$$P(K) = 2P(M)$$
+		We kunnen gebruik maken van het feit dat de som van alle kansen gelijk is aan 1.
+		
+		
+		\begin{equation*}
+			\begin{split}
+				&  P(K) + P(M) = 1    \\
+				\Leftrightarrow & 2P(M) + P(M) = 1    \\
+				\Leftrightarrow & 3P(M) = 1           \\
+				\Leftrightarrow & P(M) = \frac{1}{3}  \\
+			\end{split}
+		\end{equation*}
+		dus
+		$$P(K) = \frac{2}{3}$$
+		Aangezien de gebeurtenis munt twee keer moet voorkomen moet kop dus slechts één maal voorkomen.
+		$$P(2M \cap K)$$
+		Er moet rekening gehouden worden met de verschillende combinaties:
+		\begin{equation*}
+			\begin{split}
+				& P((M \cap M \cap K) \cup (M \cap K \cap M) \cup (K \cap M \cap M))  \\
+				= & P(M \cap M \cap K) \cup P(M \cap K \cap M) \cup (K \cap M \cap M)) \\
+				= & P(M)P(M)P(K) + P(M)P(K)P(M) + P(K)P(M)P(M) \\
+				= & \frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3} + \frac{1}{3} \cdot \frac{2}{3} \cdot \frac{1}{3} + \frac{2}{3} \cdot \frac{1}{3} \cdot \frac{1}{3} \\
+				= & 3(\frac{1}{3} \cdot \frac{1}{3} \cdot \frac{2}{3}) \\
+				= & 3(\frac{2}{27}) = \frac{6}{27} = \frac{2}{9} 
+			\end{split}
+		\end{equation*}
+	}}
+	    
+	    
+	\item { \exercise{3. Een dobbelsteen is vervalst zodat de kans dat een gegeven aantal ogen geworpen wordt evenredig is met het aantal ogen. Is A de gebeurtenis een even aantal te gooien, B de gebeurtenis een priemgetal te gooien en C de gebeurtenis een oneven getal te gooien,
+		\begin{enumerate}
+			\item Bepaal P(A), P(B) en P(C)
+			\item Bereken de kans dat men een even getal of een priemgetal gooit.
+			\item Bereken de kans dat men een even getal gooit dat geen priemgetal is.
+			\item Bereken de kans dat men een oneven getal of een priemgetal gooit.
+		\end{enumerate}}
+		{
+			De kans kan als formule worden voorgesteld.
+			$$P(i) = ip$$
+			waarbij p een willekeurig getal is.
+			We weten dat de som van alle kansen gelijk is aan 1.
+			$$\sum_{i = 1}^{6} P(i) = 1p + 2p + 3p + 4p + 5p + 6p = 1$$
+			Los op naar p
+			$$21p = 1$$
+			$$p = \frac{1}{21}$$
+			De deeloplossingen:
+			\begin{enumerate}
+				\item   \begin{equation*}
+				      \begin{split}
+				      	P(A) = & \frac{2}{21} + \frac{4}{21} + \frac{6}{21} = \frac{12}{21} = \frac{4}{7}\\
+				      	P(B) = &\frac{2}{21} + \frac{3}{21} + \frac{5}{21} = \frac{10}{21}\\
+				      	P(C) = & 1 - P(A) = 1 - \frac{4}{7} = \frac{3}{7}
+				      \end{split}
+				\end{equation*}
+				\item $$P(A\cup B) = P(A) + P(B) - P(A \cap B) = \frac{4}{7} +\frac{10}{21} - \frac{2}{21} = \frac{20}{21}$$
+				\item $$P(A \cap \overline{B}) = P(A) - P(A \cap B) = \frac{4}{7} - \frac{2}{21} = \frac{10}{21}$$
+				\item $$P(B \cup C) = P(B) + P(C) - P(B \cap C) = \frac{10}{21} + \frac{3}{7} - (\frac{3}{21} + \frac{5}{21}) = \frac{11}{21}$$
+			\end{enumerate}}}
+	  
+	  
+	\item {\exercise{4. A en B zijn verschijnselen met P(A) = 0.1, P(B) = 0.5. Bepaal $P(A \cup B)$, $P(\overline{A})$, $P(\overline{A} \cap B)$ indien a) de verschijnselen elkaar uitsluiten en b) ze onafhankelijk zijn.}
+		{
+			\begin{enumerate}[label=(\alph*)]
+				\item \begin{align*}
+				      P(A \cup B) =  & P(A) + P(B) - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - 0 = \frac{3}{5} \\
+				      P(\overline{A}) =  & 1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10} \\
+				      P(\overline{A} \cap B) = & P(B) - P(A \cap B) = \frac{1}{2} - 0 = \frac{1}{2} \\
+				\end{align*}
+				\item \begin{align*}
+				      P(A \cup B) = & P(A) + P(B)  - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - \frac{1}{20} = \frac{11}{20} \\
+				      P(\overline{A}) =  &1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10} \\
+				      P(\overline{A} \cap B) = & P(B) - P(A \cap B) = \frac{1}{2} - \frac{1}{20} = \frac{9}{20}
+				\end{align*}
+			\end{enumerate}}}
+	
+	\item \exercise{6. Bereken voor een familie van 3 kinderen de kans op a) 3 jongens en  b) 2 jongens en 1 meisje}{
+	      $$P(J) \hbox{: Kans op een jongen} = \frac{1}{2}$$
+	      $$P(M) \hbox{: Kans op een meisje} = \frac{1}{2}$$
+	      \begin{enumerate}[label=(\alph*)]
+	      	\item \begin{equation*}
+	      	      \begin{split}
+	      	      	P(J \cap J \cap J) & = P(J)P(J)P(J)\\
+	      	      	& = (P(J))^{3} \\
+	      	      	& = \bigg(\frac{1}{2}\bigg)^{3} \\
+	      	      	& = \frac{1}{8}
+	      	      \end{split}
+	      	\end{equation*}
+	      	\item \begin{equation*}
+	      	      \begin{split}
+	      	      	& P(J \cap J \cap M) + P(J \cap M \cap J) + P(M \cap J \cap J)  \\
+	      	      	= & 3P(J \cap J \cap M)\\
+	      	      	= & 3(P(J))^3 \;\;\;\;\; \hbox{(aangezien P(J) = P(M))} \\
+	      	      	= & 3 \bigg(\frac{1}{2}\bigg)^{3} = \frac{3}{8}
+	      	      \end{split}
+	      	\end{equation*}
+	      \end{enumerate}}
+	      
+	      
+	      
+	\item{\exercise{7. Een paar onvervalste dobbelstenen worden geworpen. Wat is de kans dat de som van de ogen een totaal van minstens 8 vertoont.}{
+	      \begin{equation*}
+	      	\begin{split}
+	      		A =  &\;\hbox{som van de ogen} \geq 8\\
+	      		P(A) =  &\{2, 6\} \cup \{3, 5\} \cup \{3, 6\} \cup ... \cup \{6,6\} \\
+	      		P(A) = & \frac{15}{36} = \frac{5}{12}
+	      	\end{split}
+	      \end{equation*}}}
+	       
+	\item \exercise{17. Uit een spel van 52 kaarten trekt men willekeurig maar tezelfdertijd vijf kaarten. Bereken de kans dat 
+	      \begin{enumerate}
+	      	\item het vijf zwarte kaarten zijn,
+	      	\item het drie heren en twee vrouwen zijn,
+	      	\item er tenminsten één aas bij is,
+	      	\item er ten hoogste één harten bij is.
+	      \end{enumerate}}{
+	      \begin{enumerate}
+	      	\item {
+	      		\begin{equation*}
+	      			\begin{split}
+	      				P(5Z) & = \frac{C_{26}^{5}}{C_{52}^{5}}                     \\
+	      				& = \frac{\frac{26!}{5!(26 - 5)!}}{\frac{52!}{5!(52 - 5)!}}\;\;\; \hbox{(vereenvoudigen voor rekenmachine)}\\
+	      				& = \frac{26!}{21!} \cdot \frac{47!}{52!}                   \\
+	      				& = \frac{26 \cdot 25 \cdot 24 \cdot 23 \cdot 22}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48} \\
+	      				& = 0.025
+	      			\end{split}
+	      		\end{equation*}
+	      	}
+	      	\item {
+	      		$$P(3H \cap 2V) = \frac{C_{4}^{3} \cdot C_{4}^{2}}{C_{52}^{5}}$$
+	      		Meestal zullen ze vragen 'geef de correcte uitdrukking' om geen tijd te verliezen aan banaal rekenwerk.
+	      	}
+	      	\item {
+	      		$$P(\hbox{minstens 1 aas}) = 1 - P(\hbox{geen aas}) = 1 - \frac{C_{4}^{0} \cdot C_{48}^{5}}{C_{52}^{5}}$$
+	      	}
+	      	\item {
+	      		\begin{equation*}
+	      			\begin{split}
+	      				P(\hbox{ten hoogste 1 hart}) & = P(\hbox{0 hart} \cap \overline{\hbox{5 hart}}) \cup P(\hbox{1 hart} \cap \overline{\hbox{4 hart}})  \\
+	      				& =  \frac{C_{39}^{5}}{C_{52}^{5}} + \frac{C_{13}^{1} \cdot C_{39}^{4}}{C_{52}^{5}}
+	      			\end{split}
+	      		\end{equation*}
+	      	}
+	      	   
+	      \end{enumerate} }
+	  
+	\item{\exercise{20. Bepaal de kans om minstens één maal zes te gooien bij 4 worpen met een dobbelsteen. Bepaal de kans om minstens één maal dubbel zes te gooien bij 24 worpen met 2 dobbelstenen.}{
+	        
+	      \begin{equation*}
+	      	\begin{split}
+	      		P(\hbox{minstens één 6 bij 4 worpen}) & = 1 - P(\hbox{geen 6 bij 4 worpen})\\
+	      		& = 1 - \bigg(\frac{5}{6}\bigg)^4
+	      	\end{split}
+	      \end{equation*}
+	      \begin{equation*}
+	      	\begin{split}
+	      		P(\hbox{minstens één keer dubbel 6 bij 24 worpen}) & = 1 - P(\hbox{geen dubbel 6 bij 24 worpten})\\
+	      		& = 1 - \bigg(\frac{35}{36}\bigg)^{24}
+	      	\end{split}
+	      \end{equation*}
+	        
+	}}
+	  
+	\item{\exercise{21. Bepaal de kans om met de belgische lotto a)drie cijfers b)vier cijfers en c)zes cijfers goed te hebben.}{  $$P(x) = \frac{C_6^x \cdot C_{42 - x}^{6 - x}}{C_{42}^{6}}$$
+	x in te vullen met 3, 4 of 6.}}
+\end{itemize}
 
-  \textbf{3. Een dobbelsteen is vervalst zodat de kans dat een gegeven aantal ogen geworpen wordt evenredig is met het aantal ogen. Is A de gebeurtenis een even aantal te gooien, B de gebeurtenis een priemgetal te gooien en C de gebeurtenis een oneven getal te gooien,
-  \begin{itemize}
-   \item Bepaal P(A), P(B) en P(C)
-   \item Bereken de kans dat men een even getal of een priemgetal gooit.
-   \item Bereken de kans dat men een even getal gooit dat geen priemgetal is.
-   \item Bereken de kans dat men een oneven getal of een priemgetal gooit.
-  \end{itemize}}
-  
-  De kans kan als formule worden voorgesteld.
-  $$P(i) = ip$$
-  waarbij p een willekeurig getal is.
-  We weten dat de som van alle kansen gelijk is aan 1.
-  $$\sum_{i = 1}^{6} P(i) = 1p + 2p + 3p + 4p + 5p + 6p = 1$$
-  Los op naar p
-  $$21p = 1$$
-  $$p = \frac{1}{21}$$
-  
-  1ste deelvraag:
-  $$P(A) = \frac{2}{21} + \frac{4}{21} + \frac{6}{21} = \frac{12}{21} = \frac{4}{7}$$
-  $$P(B) = \frac{2}{21} + \frac{3}{21} + \frac{5}{21} = \frac{10}{21}$$
-  $$P(C) = 1 - P(A) = 1 - \frac{4}{7} = \frac{3}{7}$$
-  
-  \textbf{4. A en B zijn verschijnselen met P(A) = 0.1, P(B) = 0.5. Bepaal $P(A \cup B)$, $P(\overline{A})$, $P(\overline{A} \cap B)$ indien a) de verschijnselen elkaar uitsluiten en b) ze onafhankelijk zijn.}
-  
-  a) 
-  $$P(A \cup B) = P(A) + P(B) - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - 0 = \frac{3}{5}$$
-  $$P(\overline{A}) = 1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10}$$
-  $$P(\overline{A} \cap B) = P(B) - P(A \cap B) = \frac{1}{2} - 0 = \frac{1}{2}$$
-  
-  b)
-  $$P(A \cup B) = P(A) + P(B)  - P(A \cap B) = \frac{1}{10} + \frac{1}{2} - \frac{1}{20} = \frac{11}{20}$$
-  $$P(\overline{A}) = 1 - P(A) = 1 - \frac{1}{10} = \frac{9}{10}$$
-  $$P(\overline{A} \cap B) = P(B) - P(A \cap B) = \frac{1}{2} - \frac{1}{20} = \frac{9}{20}$$
-  \textbf{6. Bereken voor een familie van 3 kinderen de kans op a) 3 jongens en  b) 2 jongens en 1 meisje}
-  $$P(J) \hbox{: Kans op een jongen} = \frac{1}{2}$$
-  $$P(M) \hbox{: Kans op een meisje} = \frac{1}{2}$$
-  a)
-  $$P(J \cap J \cap J)$$
-  $$= P(J)P(J)P(J) = (P(J))^{3} = \bigg(\frac{1}{2}\bigg)^{3} = \frac{1}{8}$$
-  b)
-  $$P(J \cap J \cap M) + P(J \cap M \cap J) + P(M \cap J \cap J)$$
-  $$= 3P(J \cap J \cap M)$$
-  $$= 3(P(J))^3 \;\;\;\;\; \hbox{(aangezien P(J) = P(M))}$$ 
-  $$= 3 \bigg(\frac{1}{2}\bigg)^{3} = \frac{3}{8}$$
+ 
+
+
+
 \end{document}
+
+
