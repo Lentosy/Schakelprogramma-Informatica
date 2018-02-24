@@ -224,6 +224,8 @@ Twee soorten verdelingsfuncties:
 \section{Kansfunctie}
 De som van alle kansen is gelijk aan 1:
 $$\sum_{i = 1}^{k} f(x_i) = 1$$
+De cumulatieve distributiefunctie wordt gegeven door:
+$$F(x) = P(x \leq t) = \sum_{x_i \leq t} f(x_i)\;dx$$
 \section{Dichtheidsfunctie}
 De som van alle kansen is gelijk aan 1:
 $$\int_{-\infty}^{+\infty} f(x)\;dx = 1$$
@@ -238,6 +240,8 @@ Hieruit volgt:
 		= & P(a \leq x < b)
 	\end{split}
 \end{equation*}
+De cumulatieve distributiefunctie wordt gegeven door:
+$$F(x) = P(x \leq t) = \int_{-\infty}^{t} f(x)\;dx$$
 \example{Stel $f(x) = 
 	\begin{cases} 
 		a + b(x - 1)^2  & 0 \leq x \leq 2
