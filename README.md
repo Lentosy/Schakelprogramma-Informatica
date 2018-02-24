@@ -15,6 +15,12 @@
 [Discrete wiskunde](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%201/Discrete%20Wiskunde)
 ## Semester II
 
+[Algoritmen I](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Algoritmen%20I)
+
+[Statistiek](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Statistiek/Samenvatting)
+
+[Wiskunde B](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Wiskunde%20B/Samenvatting)
+
 [Besturingssystemen I (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Besturingssystemen%20I)
 
 [Besturingssystemen II (2016-2017)](https://github.com/Lentosy/Schakelprogramma-Informatica/tree/master/Semester%202/Besturingssystemen%20II)
