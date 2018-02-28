@@ -7,6 +7,7 @@
 \usepackage{amsmath} % Matrices
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{graphicx}
 \usepackage{sectsty}
 \usepackage{lipsum}
 \usepackage{listings}
@@ -34,6 +35,8 @@
 
 
 % CUSTOM COMMANDS
+\setlength{\parindent}{0mm}
+\graphicspath{{./img/}}
 \newcommand{\note}[1]{
   \color{violet}#1 \color{black}
 }
@@ -187,6 +190,87 @@ Gevolg:
 $$1 + x + ... + x^p = \frac{x^{p + 1}}{x-1} = S(x, p)$$
 $$x^p < S(x, p) < x^{p + 1} \; \hbox{voor}\; x \geq 2$$
 $$x + 2x^2 + 3x^3 + ... + px^p < px^{p + 1}$$
+\subsection{Bernouilliverdeling}
+Iets heeft een kans p om te mislukken.
+$$p = \frac{1}{10e}$$
+Een bepaald algoritme moet een slaagkans hebben van 80\%. Zal dit lukken met de kans p?
+De kans dat er bij $m$ pogingen het $j$ keer misgaat is:
+$$\sum_{k=0}^{k=j}C^{k}_{m}(1 - p)^{m-k}p^k < \sum_{k=0}^{k=j}\bigg(\frac{emp}{k}\bigg)^k$$
+\section{Optimalisatie}
+Stel een algoritme $a$ met 2 afschattingen.
+$$
+  \begin{cases}
+    f_1(n) = \Omega(g_1(n)) \rightarrow \hbox{Actie}\; f_1(n)\; \hbox{keer}\\
+    f_2(n) = \Omega(g_2(n)) \rightarrow \hbox{efficiëntie van 1 actie}\\
+  \end{cases}
+$$
+De afschatting wordt $\Omega(g_1(n)g_2(n))$
+Een voorbeeld is een quizwedstrijd. Bij een quiz mag elke ploeg een prijs kiezen, en dit in volgorde van de uitslag. Stel dat deze uitslag gegeven is in een tabel \texttt{uitslag} zodang dat \texttt{uitslag[i]} aangeeft wat de rangschikking is van ploeg \textit{i}. Er bestaan twee manieren om ploegen in volgorde aan te spreken.
+\begin{lstlisting}
+ for(int i = 0; i < n ; i++){
+  int j = 0;
+  while ( uitslag[j] != i){
+    j++;
+  }
+  kies(j);
+ }
+\end{lstlisting}
+De forlus ($g_1(n)$) wordt $n$ keer uitgevoerd. De whilelus ($g_2(n)$) wordt ook $n$ keer uitgevoerd. De afschatting wordt dus
+$$\Omega(g_1(n)g_2(n)) = \Omega(n^2)$$
+Een betere methode:
+\begin{lstlisting}
+ vector<int> invers(n);
+ for(int i = 0; i < n; i++){
+  invers[uitslag[i]] = i;
+ }
+ for(int j = 0; j < n; j++){
+  kies[invers[j]);
+ }
+\end{lstlisting}
+Dit voorbeeld heeft geen geneste lus, wat ervoor zorgt dat de afschatting $\Omega(n)$ wordt.
+\chapter{Rangschikking}
+\section{Insertion Sort}
+\begin{lstlisting}
+void insertion_sort(vector<T> & v){
+  for(int i = 0; i < v.size(); i++){
+    T el = move(v[i]);
+    int j = i - 1;
+    while(j $\geq$ 0 && el < v[i]){
+      v[j + 1] = move(v[j]);
+      j--;
+    }
+    v[j + 1] = move(el);
+  }
+}
+\end{lstlisting}
+\textbf{straight from notities}
 
+O(n + aantal inversies)
+
+tabel v
+
+vomgekeerd[i] = v[n - 1 - i];
+
+vomgekeerd[n - 1 - i] > omgekeerd[n - 1 - j];
+
+\# inversies in v + \#inversies in vomgekeerd = $\frac{n(n - 1)}{2}$
+
+
+
+random tabel
+
+\section{Shell Sort}
+
+................
+
+
+\section{Selection Sort}
+.........
+
+\chapter{Efficiënte Methodes}
+\subsection{Heaps ( = Binaire boom)}
+Een heap lijkt sterk op een gelinkte lijst, maar elke knoop heeft slechts 1 ouder en potentieël 2 kinderen. Een heap loopt van boven naar beneden. Het topelement wordt de \textit{wortel} genoemd. Een knoop zonder kinderen wordt een \textit{blad} genoemd. Een heap moet voldoen aan de \textit{heapvoorwaarde}: Elke sleutel van een knoop heeft een hogere prioriteit dan de sleutels van zijn kinderen.
+\includegraphics{heap_1}
+Toevoegen van een knoop (14)
 
 \end{document}

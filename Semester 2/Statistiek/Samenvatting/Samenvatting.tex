@@ -92,7 +92,7 @@ De combinatie(volgorde is niet van belang): $$C_n^p = (_p^n) = \frac{n!}{p!(n - 
 }
 
 \section{Regel van Bayes}
-
+$$P(A_j|B) = \frac{P(A_j \cap B)}{P(B)} = \frac{P(A_j)P(B|A_j)}{\sum_{i = 1}^{n}P(A_i)P(B|A_i)}$$
 
 \example{In een jaszak zitten 2 munten: één normaal(N) en één vervalst(V) (munt aan elke zijde). Een muntstuk wordt aselect gekozen en gegooid. Munt komt bovenaan te liggen. Wat is de kans dat dit het normale muntstuk is? Dit muntstuk wordt opnieuw gegooid. Terug munt. Wat is nu de kans dat dit het normale muntstuk is?}{
 	
@@ -222,6 +222,9 @@ Twee soorten verdelingsfuncties:
 	\item Dichtheidsfunctie: bij continue kansen (integreren)
 \end{itemize}
 \section{Kansfunctie}
+De kansfunctie $f(x)$:
+$$f(x_i) = P(X = x_i) \qquad \hbox{met}\qquad i = 1, 2, ..., k$$
+$$f(x) = 0 \qquad \hbox{als} \qquad k \notin \{x_1, ..., x_n\}$$
 De som van alle kansen is gelijk aan 1:
 $$\sum_{i = 1}^{k} f(x_i) = 1$$
 De cumulatieve distributiefunctie wordt gegeven door:
@@ -292,10 +295,14 @@ $$F(x) = P(x \leq t) = \int_{-\infty}^{t} f(x)\;dx$$
 	
 }
 
-\section{Spreidingsparameters}
-\subsection{Gemiddelde van een populatie}
-De verwachte waarde voor x ($E[x]$) wordt gegeven door:
-$$E[x] = \sum_{i} x_{i}p(X = x_i)$$
+\section{Plaatsparameters}
+Van een variabele x kennen we de dichtheidsfunctie $f(t)dt$ die de kans epaalt dat x een waarde in het interval $[t, t + dt]$ aanneemt. Voor een willekeurige functie $g(x)$ defineert men de verwachte waarde als volgt:
+\begin{itemize}
+ \item Discreet: $$E[g(x)] = \sum_{i = 1}^{k} g(x_{i})f(x_i)$$
+ \item Continu: $$\int_{-\infty}^{+\infty}g(x)f(x)\; dx$$
+\end{itemize}
+
+
 \example{Wat is de gemiddelde waarde bij het gooien van een dobbelsteen}{
   \begin{equation*}
    \begin{split}
@@ -392,7 +399,8 @@ Nu kan de formule van de oppervlakte van de driehoek terug gebruikt worden:
 \end{equation*}
 }
 
-\subsection{Spreiding van een populatie}
+\section{Spreidingsparameters}
+De variantie:
 \begin{itemize}
  \item \textbf{Continu}: $$\sigma^2 = V[x] = \int_{-\infty}^{+\infty}(x-\mu)^2 f(x)\; dx$$
  \item \textbf{Discreet}: $$\sigma^2 = V[x] = \sum_{i}(x_i - \mu)^2 f(x_i)$$
@@ -624,6 +632,55 @@ Bepaal $\mu = E[x]$ op 2 manieren.}{
 	      		P(A) = & \frac{15}{36} = \frac{5}{12}
 	      	\end{split}
 	      \end{equation*}}}
+	      
+	\item{\exercise{11. Gegeven 3 kasten A, B en C. Elke kast heeft een aantal laden die ofwel een goudstuk(G), ofwel een zilverstuk(Z) ofwel niets bevatten(N) en dit als volgt:
+	\begin{itemize}[label={}]
+	 \item A: [G|G|G|Z]
+	 \item B: [G|Z|Z]
+	 \item C: [G|G|N|Z|Z]
+	\end{itemize}
+	Men kiesst willekeurig één van de kasten, opent daarvan at random één lade, en grijpt het muntstuk(indien mogelijk). Wat is de kans dat men kast A heeft uigekozen indien men een goudstuk heeft genomen?
+	}{
+	De kans om eender welke lade te pakken:
+	$$P(A) = P(B) = P(C) = \frac{1}{3}$$
+	De kans om een goudstuk te pakken afhankelijk van de lade:
+	\begin{gather*}
+	 P(G|A) = \frac{3}{4}\\
+	 P(G|B) = \frac{1}{3}\\
+	 P(G|C) = \frac{2}{5}
+	\end{gather*}
+	De kans dat lade A gekozen werd indien het een goudstuk genomen is:
+	\begin{equation*}
+	 \begin{split}
+	  P(A|G) & = \frac{P(A)P(G|A)}{P(A)P(G|A)+P(B)P(G|B)+P(C)P(G|C)} \\
+	         & = \frac{\frac{1}{3}\cdot\frac{3}{4}}{\frac{1}{3}\cdot\frac{3}{4}+\frac{1}{3}\cdot\frac{1}{3}+\frac{1}{3}\cdot\frac{2}{5}} \\
+	         & = \frac{\frac{1}{4}}{\frac{1}{4} + \frac{1}{9} + \frac{2}{15}} \\
+	         & = \frac{45}{89}
+	 \end{split}
+	\end{equation*}
+
+	}}
+	
+	\item{\exercise{16. Wanneer men het waarheidsserum toedient aan een schuldig persoon is het voor 90\% betrouwbaar en aan een onschuldig persoon is het voor 99\% betrouwbaar. Als een verdachte gekozen wordt uit een groep, waarvan 5\% reeds een misdrijf begaan hebben, wat is de kans dat die persoon niet schuldig is als het waarheidsserum schuldig aanwijst?}{
+	2 Gebeurtenissen:
+	\begin{enumerate}
+	 \item PS: De persoon is schuldig
+	 \item WS: Het waarheidsserum wijst schuldig aan
+	\end{enumerate}
+	De kans dat de persoon niet schuldig is als het waarheidsserum schuldig aanwijst:
+	\begin{equation*}
+	 \begin{split}
+	 P(\overline{PS}|WS) & = \frac{P(\overline{PS})P(WS|\overline{PS})}{P(\overline{PS})P(WS|\overline{PS})+P(PS)P(WS|PS)} \\
+	  & = \frac{\frac{19}{20}\cdot\frac{1}{100}}{\frac{19}{20}\cdot\frac{1}{100} + \frac{1}{20}\cdot\frac{9}{10}} \\
+	  & = \frac{\frac{19}{2000}}{\frac{19}{2000} + \frac{9}{200}} \\
+	  & = \frac{\frac{19}{2000}}{\frac{19}{2000} + \frac{90}{2000}} \\
+	  & = \frac{\frac{19}{2000}}{\frac{109}{2000}} \\
+	  & = \frac{19}{109}
+	 \end{split}
+	\end{equation*}
+
+	}
+	}
 	       
 	\item \exercise{17. Uit een spel van 52 kaarten trekt men willekeurig maar tezelfdertijd vijf kaarten. Bereken de kans dat 
 	      \begin{enumerate}
@@ -681,9 +738,170 @@ Bepaal $\mu = E[x]$ op 2 manieren.}{
 	  
 	\item{\exercise{21. Bepaal de kans om met de belgische lotto a)drie cijfers b)vier cijfers en c)zes cijfers goed te hebben.}{  $$P(x) = \frac{C_6^x \cdot C_{42 - x}^{6 - x}}{C_{42}^{6}}$$
 	x in te vullen met 3, 4 of 6.}}
+	
+	\item {\exercise{23. Een urne bevat 10 ballen waarvan \textit{n} rode. De kans om twee rode ballen te trekken op drie trekkingen met terugleggen is 1.08 keer de kans om twee rode ballen te trekken op drie trekkingen zonder terugleggen. Bepaal \textit{n} en sluit de triviale gevallen uit.}{
+	Twee gebeurtenissen:
+	\begin{enumerate}
+	 \item A: 2 rode ballen trekken op 3 trekkingen met teruglegging
+	 \item B: 2 rode ballen trekken op 3 trekkingen zonder teruglegging
+	\end{enumerate}
+	Verder geldt dat $P(A) = 1.08P(B)$ en $2 \leq n \leq 10$
+	
+	De kans op B:
+	\begin{equation*}
+	 \begin{split}
+	  P(B) & = \frac{C_{n}^{2}C_{10 - n}^{1}}{C_{10}^{3}} \\
+	       & = \frac{\frac{n!}{2!(n-2)!}\frac{(10-n)!}{1!(9-n)!}}{\frac{10!}{3!7!}} \\
+	       & = \frac{n!}{2!(n-2)!}\frac{(10-n)!}{(9-n)!}\frac{3!7!}{10!} \\
+	       & = \frac{3n(n-1)(10-n)}{10\cdot9\cdot8}
+	 \end{split}
+	\end{equation*}
+	De kans op geen rode bal:
+	\begin{equation*}
+	 \begin{split}
+	  & P(R) = \frac{n}{10} \\
+	  \Rightarrow&  P(\overline{R}) = 1 - \frac{n}{10} = \frac{10 - n}{n} 
+	 \end{split}
+	\end{equation*}
+	De kans op A:
+	\begin{equation*}
+	 \begin{split}
+	  P(A) & = C_3^2P(R)^2P(\overline{R}) \\
+	  & = 3\bigg(\frac{n}{10}\bigg)^2\bigg(\frac{10 - n}{10}\bigg) \\
+	  & = \frac{3n^2(10 - n)}{10^3}
+	 \end{split}
+	\end{equation*}
+
+	Berekening van \textit{n}
+	\begin{equation*}
+	 \begin{split}
+	  & P(A) = 1.08P(B) \\
+	  \Leftrightarrow & \frac{3n^2(10 - n)}{10^3} = \frac{3n(n-1)(10-n)}{10\cdot9\cdot8} \\
+	  \Leftrightarrow & \frac{n}{10^2} = 1.08\frac{n - 1}{9\cdot 8} \\
+	  \Leftrightarrow & \frac{n}{100} = 1.08\frac{n - 1}{72} \\
+	  \Leftrightarrow & 72n = 108(n-1)\\
+	  \Leftrightarrow & 72n = 108n - 108 \\
+	  \Leftrightarrow & 108n - 72n = 108 \\
+	  \Leftrightarrow & 36n = 108 \\
+	  \Leftrightarrow & n = 3
+	 \end{split}
+	\end{equation*}
+
+	  }
+	
+	
+	}
+\end{itemize}
+\chapter{Verdelingsfunctie van een populatie}
+\begin{itemize}
+ \item{\exercise{3. Ga na of de volgende functi F(x) een cumulatieve distributiefunctie kan zijn. Indien ja, bepaal de corresponderende dichtheidsfunctie f(x)
+ $$F(x) = \begin{cases}
+           0 & x \leq 0 \\
+           1 - e^{-x^{2}} & x > 0
+          \end{cases}
+$$}{
+Voer de drie controles uit:
+\begin{enumerate}
+ \item De functie is nooit negatief.
+ \item De functie is nooit dalend.
+ \item De limiet naar $+\infty$ is 1.
+\end{enumerate}
+\begin{enumerate}
+\item Controle functie nooit negatief:
+\begin{equation*}
+ \begin{split}
+  & 1-e^{-x^{2}} > 0 \\
+  \Leftrightarrow & -e^{-x^{2}} > - 1 \\
+  \Leftrightarrow & e^{-x^{2}} < 1 \\
+  \Leftrightarrow & e^{-x^{2}} > e^0 \\
+  \Leftrightarrow & -x^{2} > 0 \\
+ \end{split}
+\end{equation*}
+\item Controle functie nooit dalend:
+\begin{equation*}
+ \begin{split}
+  F'(x) = 2xe^{-x^2}
+ \end{split}
+\end{equation*}
+De afgeleide is altijd positief, dus daalt de functie nooit.
+\item Controle limiet naar $+\infty$ is gelijk aan 1.
+\begin{equation*}
+ \begin{split}
+  \lim_{t\to+\infty}F(t) & = \lim_{t\to+\infty}1 - e^{-x^{2}} \\
+                         & =  \lim_{t\to+\infty}1 - \frac{1}{e^{x^{2}}} \\
+                         & = 1 - 0 = 1
+ \end{split}
+\end{equation*}
+De kansfunctie hebben we al berekent in stap 2. $f(x) = 2xe^{-x^{2}}$
+\end{enumerate}
+
+
+}}
+ \item{\exercise{5. Bepaal C zodat de volgende functie een dichtheidsfunctie is. Bepaal de corresponderende cumulatieve distributiefunctie
+ $$f(x) = \begin{cases}
+           C(4x - 2x^2) & 0 < x < 2 \\
+           0 & \hbox{elders}
+          \end{cases}
+$$}{
+Bepalen C:
+\begin{equation*}
+ \begin{split}
+  & \int_{-\infty}^{+\infty}C(4x-2x^2)dx = 1 \\
+  \Leftrightarrow & 2C\int_{0}^{2}2x-x^2dx = 1 \\
+  \Leftrightarrow & 2C\bigg[\frac{2x^2}{2} - \frac{x^3}{3}\bigg]_0^2 = 1 \\
+  \Leftrightarrow & 2C\bigg[x^2 - \frac{x^3}{3}\bigg]_0^2 = 1 \\
+  \Leftrightarrow & 2C\bigg[\bigg(4 - \frac{8}{3}\bigg) - \bigg(0 - \frac{0}{3}\bigg)\bigg]= 1 \\
+  \Leftrightarrow & 2C\bigg(\frac{4}{3}\bigg)= 1 \\
+  \Leftrightarrow & C = \frac{3}{8}
+ \end{split}
+\end{equation*}
+
+}}
 \end{itemize}
 
+\chapter{Herhalingsoefeningen}
+\begin{itemize}[label={}]
+ \item {\exercise{1.Een zak bevat 10 rode, 6 groene en 4 blauwe bollen. Men trekt gelijktijdig 7 bollen uit de zak. Wat is de kans
+ dat er minsten 1 groene en minstens 1 blauwe bal getrokken wordt?}{
+ Twee gebeurtenissen: \begin{enumerate}
+                       \item M1G: Minstens 1 groene bal getrokken
+                       \item M1B: Minstens 1 blauwe bal getrokken
+                      \end{enumerate}
+ De kans om minstens 1 groene en 1 blauwe bal te trekken: 
+ \begin{equation*}
+  \begin{split}
+   P(M1G \cap M1B) & = P(\overline{\overline{M1G} \cup \overline{M1B}}) \\
+                   & = 1 - P(\overline{M1G} \cup \overline{M1B})        \\
+                   & = 1 - P(0G \cup 0B) \\
+                   & = 1 - [P(0G)+P(0B)-P(0G \cap 0B)] \\
+                   & = 1 - \bigg[\frac{C_{4}^{0}C_{16}^{7}}{C_{20}^{7}} + \frac{C_{6}^{0}C_{14}^{7}}{C_{20}^{7}} - \frac{C_{4}^{0}C_{6}^{0}C_{10}^{7}}{C_{20}^{7}} \bigg] \\
+                   & = 1 - \bigg[\frac{C_{16}^{7}}{C_{20}^{7}} + \frac{C_{14}^{7}}{C_{20}^{7}} - \frac{C_{10}^{7}}{C_{20}^{7}} \bigg] \\
+                   & = 1 - \frac{1}{C_{20}^{7}}\bigg(C_{16}^{7} + C_{14}^{7} - C_{10}^{7}\bigg)
+  \end{split}
+ \end{equation*}
+
+ }}
  
+ \item{\exercise{16. Om te achterhalen of een persoon een bepaalde ziekte heeft, wordt een bloedtest genomen. Voor de personen die inderdaad ziek zijn, detecteert de bloedtest in 99\% van de gevallen de ziekte; echter voor de personen die niet zijk zijn blijk te bloedtest in 3\% van de gevallen wel ten onrechte de ziekte te detecteren. Als je weet dat 1\% van de bevolking de ziekte heeft, bepaal dan de kans dat een persoon de ziekte heeft in geval de bloedtest dit aangeeft.}{
+ Twee gebeurtenissen:\begin{enumerate}
+                      \item PZ: De persoon is ziek
+                      \item BZ: De bloedtest toont ziek
+                     \end{enumerate}
+  De kans dat een persoon ziek is indien de bloedtest dit aangeeft:
+  \begin{equation*}
+   \begin{split}
+    P(PZ|BZ) & = \frac{P(PZ)P(BZ|PZ)}{P(PZ)P(BZ|PZ) + P(PZ)P(\overline{BZ}|PZ)} \\
+             & = \frac{\frac{1}{100}\cdot\frac{99}{100}}{\frac{1}{100}\cdot\frac{99}{100} + \frac{99}{100}\cdot\frac{3}{100}} \\
+             & = \frac{\frac{99}{100^2}}{\frac{99}{100^2} + \frac{297}{100^2}} \\
+             & = \frac{99}{396}
+   \end{split}
+  \end{equation*}
+
+
+ 
+ }}
+\end{itemize}
+
 
 
 
