@@ -855,8 +855,163 @@ Bepalen C:
   \Leftrightarrow & C = \frac{3}{8}
  \end{split}
 \end{equation*}
-
+Dus:
+ $$f(x) = \begin{cases}
+           \frac{3}{8}(4x - 2x^2) & 0 < x < 2 \\
+           0 & \hbox{elders}
+          \end{cases}
+$$
+De cumulatieve distributiefunctie:
+$$F(x) = \begin{cases}
+          0 & x \leq 2 \\ 
+          0 + \frac{3}{8}\int_0^x (4t - t^2)dt = \frac{3}{8}\bigg(\frac{4x^2}{2} - \frac{2x^3}{3}\bigg) & 0 < x < 2 \\
+          1 & x \geq 2
+         \end{cases}
+$$
 }}
+ \item{\exercise{6. Een vaas bevat 4 rode en 6 witte ballen. Men neemt 3 ballen zonder teruglegging. Als x het aantal getrokken rode ballen voorstelt bepaal dan:
+    \begin{enumerate}
+     \item de dichtheidsfunctie van x
+     \item de grafiek van de dichtheidsfunctie en de corresponderende verdelingsfunctie 
+     \item de gemiddelde waarde en de modus
+     \item de variantie
+     \item $P(x \geq 1)$
+    \end{enumerate}
+}{
+    \begin{enumerate}
+     \item  $x = \# $ getrokken rode ballen.
+     
+            De kans om x = 0, 1, 2 of 3 rode ballen te trekken kan voorgesteld worden als :
+            $$f(x) = \frac{C_4^xC_6^{3 - x}}{C_{10}^3}$$
+            Bijgevolg zijn de kansen:
+            \begin{tabular}{c | c c c c}
+                x & 0 & 1 & 2 & 3 \\
+                f(x) & $\frac{1}{6}$ & $\frac{1}{2}$ & $\frac{3}{10}$ & $\frac{1}{30}$
+            \end{tabular}
+    \item \todo{grafiek}
+        $$F(x) = \begin{cases}
+                    0 & x < 0 \\
+                    \frac{1}{6} & 0 \leq x \leq 1 \\
+                    \frac{1}{6} + \frac{1}{2} = \frac{2}{3} & 1 \leq x \leq 2 \\
+                    \frac{2}{3} + \frac{3}{10} = \frac{29}{30} & 2 \leq x \leq 3 \\
+                    \frac{29}{30} + \frac{1}{30}= 1 & x \geq 3 \\
+                    
+                 \end{cases}$$
+    \item Het gemiddelde:
+        \begin{equation*}
+         \begin{split}
+          \mu = \sum_{i = 0}^{3}x_i f(x_i) \\
+            & = 0f(0) + 1f(1) + 2f(2) + 3f(3) \\
+            & = 0 + \frac{1}{6} + 2\frac{2}{3} + 3\frac{29}{30} \\
+            & = 1.2
+         \end{split}
+        \end{equation*}
+        De modus is 1.
+    \item De variantie:
+        \begin{equation*}
+         \begin{split}
+          \sigma^2 & = \bigg[\sum x^2_i \big(f(x_i)\big)\bigg] - \mu^2 \\
+                   & = 0^2f(0) + 1^2f(1) + 2^2f(2) + 3^2f(3) - \mu^2 \\
+                   & = 0.56
+         \end{split}
+        \end{equation*}
+    \item 
+        $$P(x \geq 1) = 1 - P(x < 1) = 1 - F(0) = 1 - \frac{1}{6} = \frac{5}{6}$$
+    \end{enumerate}
+}}
+\item {
+    \exercise{
+        10. Voor een gokspel met drie onvervalste dobbelstenen bedraagt de inzet steeds 5 euro. Indien iemand juist één 6 werpt krijgt hij zijn inzet terug, indien juist twee stenen een 6 vertonen krijgt hij 10 euro terug en indien de drie dobbelstenen een 6 vertonen krijgt hij 15 euro. Wat is de gemiddelde winst (of verlies)?
+    }{
+        De verwachte waarde van een functie:
+        $$E[g(x)] = \sum g(x_i) f(x_i)$$
+        met $g(x) = $ de winst met een inzet van 5 euro
+        
+        en $f(x) = $ de kans om x aantal zessen te hebben.
+        
+        $x = \#6 $ bij het werpen van een dobbelsteen 
+        De functie $f$ kan geschreven worden als:
+        $$f(x) = C_{3}^{x}\bigg(\frac{1}{6}\bigg)^x \bigg(\frac{5}{6}\bigg)^{3-x}$$
+        Dus:
+        \begin{tabular}{c | c c c c}
+            x & 0 & 1& 2& 3 \\
+            f(x) & $\big(\frac{5}{6}\big)^3$ & $3\frac{5^2}{6^3}$ & $\frac{15}{6^3}$ & $\frac{1}{6^3}$ \\
+            g(x) & -5 & 0 & 5 & 10
+        \end{tabular}
+        Hieruit volgt:
+        \begin{equation*}
+         \begin{split}
+          E[g(x)] & = f(0)g(0) + f(1)g(1) + f(2)g(2) + f(3)g(3) \\
+                  & = -2.5
+         \end{split}
+        \end{equation*}
+        Er is dus gemiddeld een verlies van -2,5 euro
+    }
+}
+\item {
+    \exercise{
+        13. Een toevalsveranderlijke x heeft een gemiddelde $\mu = 12$, een dispersie $\sigma = 3$ en zijn dichtheidsfunctie is niet gekend.
+        
+        Bepaal een ondergrens voor: $P(6 < x < 18)$ en voor $P(3 < x < 21)$
+    }{
+        \begin{equation*}
+         \begin{split}
+          P(6 < x < 18) & = P(6 - \mu < x - \mu < 18 - \mu) \\
+                        & = P(-6 < x - \mu < 6) \\
+                        & = P(-2\sigma < x - \mu < 2\sigma) \\
+                        & = P(|x - \mu| < 2\sigma) \\
+                        & = 1 - \frac{1}{2^2} \\
+                        & = 1 - \frac{1}{4} \\
+                        & = \frac{3}{4}
+         \end{split}
+        \end{equation*}
+        \begin{equation*}
+         \begin{split}
+          P(3 < x < 21) & = P(3 - \mu < x - \mu < 21 - \mu) \\
+                        & = P(-9 < x - \mu < 9) \\
+                        & = P(-3\sigma < x - \mu < 3\sigma) \\
+                        & = P(|x - \mu| < 3\sigma) \\
+                        & = 1 - \frac{1}{3^2} \\
+                        & = 1 - \frac{1}{9} \\
+                        & = \frac{8}{9}
+         \end{split}
+        \end{equation*}
+
+    }
+}
+\item {
+    \exercise{
+        16. Onderstel dat het aantal producten in een fabriek, aangemaakt gedurende één week, een stochastische veranderlijke is met gemiddelde $\mu = 50$. Deze veranderlijke heeft een symmetrische verdeling t.o.v. $\mu$
+        \begin{enumerate}
+         \item Bepaal een bovengrens voor de kans dat de productie van een bepaalde week minstens 75 zal dragen.
+         \item Indien bovendien de variantie gekend is ($\sigma^2 = 25$) wat is dan een ondergrens voor de waarschijnlijkheid dat de productie van een bepaalde week strikt tussen 40 en 60 zal liggen.
+        \end{enumerate}
+    }{
+        \begin{enumerate}
+         \item \begin{equation*}
+                \begin{split}
+                P(x \leq \mu - k\sigma) = P(x \geq \mu + k\sigma) \leq \frac{1}{2k^2} \\
+                \Rightarrow p(x \geq 75) & = P(x -\mu \geq 25) = \frac{1}{2k^2} \\
+                                        & = \frac{1}{2(\frac{25}{\sigma})^2} \\
+                                        & = \frac{\sigma^2}{1250}
+                \end{split}
+                \end{equation*}
+        \item 
+            $$\sigma = \sqrt{\sigma^2} = \sqrt{5^2} = 5$$
+             \begin{equation*}
+               \begin{split}
+                P(40 < x < 60) & = P(-10 < x - \mu < 10) \\
+                               & = P(-2\sigma < x - \mu < 2\sigma) \\
+                               & = 1 - \frac{1}{2^2} \\
+                               & = \frac{3}{4}
+               \end{split}
+              \end{equation*}
+
+        \end{enumerate}
+
+
+    }
+}
 \end{itemize}
 
 \chapter{Herhalingsoefeningen}
