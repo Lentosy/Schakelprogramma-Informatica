@@ -357,6 +357,74 @@ Indien een AO gegeven is met \textit{n} onafhankelijke constanten:
    \item Orde van de DVG = \textit{2}  = Aantal onafhankelijke constanten.
   \end{enumerate}
 }
+\section{Oplossen van een lineaire DVG van orde n met constante reële coëfficiënten}
+\begin{equation*}
+ \begin{split}
+		  & y''' - y''\sin t + ty = t^2 \\
+  \Leftrightarrow & D^3y - D^2y\sin t + ty = t^2 \\
+  \Leftrightarrow & (D^3 - D^2\sin t + t)y = t^2 \\
+  \Leftrightarrow & L(d)y = g(t) \\
+  \Leftrightarrow & \hbox{met} L(d) = \sum_{i = 0}^{n} a_iD^i \qquad ,a_i \in \mathbb{R}
+ \end{split}
+\end{equation*}
+Een lineaire DVG is een DVG waarbij alle coëfficiënten van alle afgeleiden enkel voorkomen als eerste macht.
+\subsection{Particuliere oplossing}
+De particuliere oplossing kan slechts bepaald worden indien alle beginvoorwaarden ($y(0), y'(0),...,y^{(n-1)}(0)$) gekend zijn.
+\subsection{Algemene oplossing}
+Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ respectievelijk gelijkgesteld worden aan $C_1, C_2, ..., C_n$
+
+\example{
+  Bepaal de PO van $y'' + y = g(t)$ indien $y(0) = 0$, $y'(0) = 1$ en 
+  $$
+    g(t) = \begin{cases}
+	      0 & t < 1 \\
+	      e^{-t} & t > 1
+	   \end{cases}
+  $$
+}{
+  \begin{equation*}
+   \begin{split}
+                   & L(d)y = g(t) \\
+   \Leftrightarrow & (D^2 + 1)y = g(t) \\
+   \Leftrightarrow & (D^2 + 1)y = e^{-t}H(t - 1) \\
+   \mathcal{L}\{LL\}(s) & = \mathcal{L}\{y'' + y\}(s) \\
+                        & = s^2Y - sy(0^{+}) + y'(0^{+}) + Y \\
+                        & = s^2Y - 1 + Y \\
+   \mathcal{L}\{RL\}(s) & = \mathcal{L}\{e^{-t}H(t - 1\}(s) \\
+                        & = \mathcal{L}\{e^{-(t - 1) - 1}H(t - 1)\}(s) \\
+                        & = e^{-1}\mathcal{L}\{e^{-(t - 1)}H(t - 1)\}(s) \\
+                        & = e^{-1}e^{-s}\mathcal{L}\{e^{-t}\}(s) \\
+                        & = e^{-1}e^{-s}\frac{1}{s + 1} \\
+                        & = \frac{e^{-(s + 1)}}{s + 1} \\
+   \hbox{dus} \\
+   \Leftrightarrow & s^2Y - 1 + Y = \frac{e^{-(s + 1)}}{s + 1} \\
+   \Leftrightarrow & Y(s^2 + 1) = 1 + \frac{e^{-(s + 1)}}{s+1} \\
+   \Leftrightarrow & Y = \frac{1}{s^2 + 1} + \frac{e^{-(s+1)}}{(s+1)(s^2+1)}     \\
+   \Leftrightarrow & \mathcal{L}^{-1}\{Y\}(t) = \mathcal{L}^{-1}\bigg\{\frac{1}{s^2 + 1} + \frac{e^{-(s+1)}}{(s+1)(s^2+1)}\bigg\}(t) \\
+   \Leftrightarrow & y(t) = \sin t +e^{-1}f(t - 1)H(t - 1) \\
+	   \hbox{met}\; f(t) & = \mathcal{L}^{-1}\bigg\{\frac{1}{(s + 1)(s^2 + 1)}\bigg\}(t) \\
+			     & = \frac{1}{2}\mathcal{L}^{-1}\bigg\{\frac{1}{s + 1} - \frac{s - 2}{s^2 + 1}\bigg\}(t) \\
+			     & = \frac{1}{2}\bigg[e^{-t} - (\cos t + \sin t)\bigg] \\
+	    \hbox{antwoord: }\; y(t)  & = \sin t + \frac{1}{2}\bigg(e^{-t} - e^{-1}\cos (t - 1) + e^{-1} \sin (t - 1) \bigg)H(t - 1)
+   \end{split}
+  \end{equation*}
+
+}
+\example{
+  Bepaal de PO van $y'' + y = \delta\big(t - \frac{\pi}{2}\big)$ indien $y(\frac{\pi}{4}) = 0$, $y'(\frac{\pi}{4}) = 0$
+}{
+  $y(0^+) = C_1$, $y'(0^+) = C_2$
+  \begin{equation*}
+   \begin{split}
+    \mathcal{L}\{LL\}(s) & = \mathcal{L}\{y'' + y\}(s) \\
+			 & = s^2Y - sC_1 - C_2 + Y \\
+    \mathcal{L}\{RL\}(s) & = \mathcal{L}\bigg\{\delta\big(t - \frac{\pi}{4}\bigg)\bigg\}(s) \\
+                         & = \int_0^{+\infty}\delta\big(t - \frac{\pi}{4}\big)e^{-st} \; dt \\
+                         & = e^{-\frac{\pi}{2}s}
+   \end{split}
+  \end{equation*}
+
+}
 
 
 \chapter{Laplacetransformatie}
