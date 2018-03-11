@@ -484,34 +484,6 @@ Bewijs:
                                    & = E[x^k]
  \end{split}
 \end{equation*}
-\example{Stel $$f(x) = \begin{cases}
-                       e^{a - x} & x \geq 1 \\
-                       0         & x < 1
-                      \end{cases}
-$$
-Bepaal $\mu = E[x]$ op 2 manieren.}{
-
-\begin{enumerate}
- \item 
-  \begin{equation*}
-   \begin{split}
-    \mu & = \int_{1}^{+\infty} x f(x)\; dx \\
-        & = \int_{1}^{+\infty} x e^{a-x}\; dx \\
-        & = ...
-   \end{split}
-  \end{equation*}
- \item
-  \begin{equation*}
-   \begin{split}
-   \mu & e``'r= E[x] = \frac{dM}{dt}|_{t = 0} \\
-    M(t) & = \int_{1}^{+\infty}e^{tx} f(x)\; dx \\
-         & = \int_{1}^{+\infty} e^{tx} e^{a-x}\; dx \\
-         & = ...
-   \end{split}
-  \end{equation*}
-\end{enumerate}
-}
-
 
 \example{
         Bereken het gemiddelde en variantie van de geometrische verdeling
@@ -716,13 +688,54 @@ Wat is de kans dat i van de n elementen eig. A bezitten?
 $$f(i) = \frac{C_M^iC_{N - M}^{n - i}}{C_N^n}$$
 
 \example{ 
-    De variabele $p = 0.3$ stelt de kans voor op een geschikte kandidaat. 
+    De variabele $p = 0.3$ stelt de kans voor op een geschikte kandidaat. De variabele $i$ stelt het aantal kandidaten voor totdat er een geschikte kandidaat optreedt en is geometrisch verdeeld. Het kost 90 euro om een kandidaat op geschiktheid te testen. 
+    
+    Bepaal met 75\% kans het interval voor de totale kost(TK) om een geschikte kandidaat te vinden.
 }{
-\todo{todo}
+    $$TK = 90i$$
+    We maken gebruik van de ongelijkheid van Chebychev:
+    $$P(|TK - \mu| < k\sigma) \geq 1 - \frac{1}{k^2}$$
+    Gemiddelde:
+    \begin{equation*}
+     \begin{split}
+      \mu & = E[TK] \\
+          & = 90E[i] \\
+          & = 90\frac{10}{3} \\
+          & = 300
+     \end{split}
+    \end{equation*}
+    Standaarddeviatie:
+    \begin{equation*}
+     \begin{split}
+      \sigma & = \sqrt{\sigma^2} \\
+             & = \sqrt{V[TK]} \\
+             & = \sqrt{90^2V[i]} \\
+             & = \sqrt{90^2\frac{1 - 0.3}{0.3^2}} \\
+             & = \sqrt{63000} \\
+             & \approx 251
+     \end{split}
+    \end{equation*}
+    We willen een bovengrens van 75\%.
+    $$1 - \frac{1}{k^2} = 0.75 \Rightarrow k = 2$$
+    De ongelijkheid wordt:
+    $$P(|TK - 300| < 502) \geq 75\% = P(300 - 502 < TK < 300 + 502) \geq 75\%$$
+    Da totale kost bedraagt met een kans van 75\% 802 euro
+
 }
 
 \section{Poisson verdeling}
-\todo{todo}
+Definitie:
+$$f(i) = P(x = i) = e^{-\lambda}\frac{\lambda^i}{i!}$$
+Controle geldige kansfunctie:
+\begin{equation*}
+ \begin{split}
+  \sum_{i=0}^{+\infty}e^{-\lambda}\frac{\lambda^i}{i!} & = e^{-\lambda}\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!} \qquad \hbox{reeks convergeert naar } e^{\lambda}\\
+  & = e^{\lambda - \lambda} \\
+  & = e^{0} \\
+  & = 1
+ \end{split}
+\end{equation*}
+
 
 \part{Oefeningen}
 \chapter{Kansrekenen}
