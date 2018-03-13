@@ -484,38 +484,257 @@ Bewijs:
                                    & = E[x^k]
  \end{split}
 \end{equation*}
-\example{Stel $$f(x) = \begin{cases}
-                       e^{a - x} & x \geq 1 \\
-                       0         & x < 1
-                      \end{cases}
-$$
-Bepaal $\mu = E[x]$ op 2 manieren.}{
 
-\begin{enumerate}
- \item 
-  \begin{equation*}
-   \begin{split}
-    \mu & = \int_{1}^{+\infty} x f(x)\; dx \\
-        & = \int_{1}^{+\infty} x e^{a-x}\; dx \\
-        & = ...
-   \end{split}
-  \end{equation*}
- \item
-  \begin{equation*}
-   \begin{split}
-    M(t) & = \int_{1}^{+\infty}e^{tx} f(x)\; dx \\
-         & = \int_{1}^{+\infty} e^{tx} e^{a-x}\; dx \\
-         & = ...
-   \end{split}
-  \end{equation*}
-\end{enumerate}
+\example{
+        Bereken het gemiddelde en variantie van de geometrische verdeling
+    }{
+        $i: \#$ herhalingen van een experiment tot dat een gebeurtenis A voor de eerste keer optreedt en $p$ de kans op succes.
+        $$f(i) = (1 - p)^{i - 1}p$$
+        Controle dat dit een geldige kansfunctie is:
+        \begin{equation*}
+         \begin{split}
+                        \sum_{i = 1}^{+\infty} f(i) = 1 \\
+          \Rightarrow & \sum_{i = 1}^{+\infty} (1 - p)^{i - 1}p = 1 \\
+          \Rightarrow & p\sum_{i = 1}^{+\infty} (1 - p)^{i - 1} = 1 \qquad \hbox{reeks convergeert naar}\; \frac{1}{1 - (1-p)}\\ 
+          \Rightarrow & p\frac{1}{1 - (1-p)} = 1 \\
+          \Rightarrow & 1 = 1
+         \end{split}
+        \end{equation*}
+        Het gemiddelde:
+        \begin{equation*}
+         \begin{split}
+          \mu & = \sum_{i=1}^{+\infty} f(i) = \sum_{i = 1}^{+\infty} (1 - p)^{i - 1}p \\
+          \Rightarrow & \qquad \hbox{moeilijk te sommeren, dus gebruik alternatief} \\
+          \mu & = \frac{dM}{dt}|_{t=0} \\
+          M(t) & = \sum_{i = 1}^{+\infty}e^{it}f(i) \\
+               & = \sum_{i = 1}^{+\infty}e^{it}(1 - p)^{i - 1}p \\
+               & = \sum_{i = 1}^{+\infty} \bigg(e^{t}(1 - p)\bigg)^{i - 1}pe^{t} \qquad \hbox{aangezien} \qquad e^{it} = e^{t(i - 1)}e^{t} \\
+               & = pe^{t}\sum_{i = 1}^{+\infty} \bigg(e^{t}(1 - p)\bigg)^{i - 1} \\
+               & = \frac{pe^{t}}{1 - e^t(1 - p)} \\
+          \mu & = \frac{dM}{dt}|_{t=0} \\
+              & = \frac{pe^{t}(-e^t(t - p)) - [1 - e^t(1 - p)]pe^t}{[1 - e^t(1 - p)]^2}\bigg|_{t = 0} \\
+              & = \frac{pe^{t}}{[1 - e^t(1 - p)]^2}\bigg|_{t = 0} \\
+              & = \frac{p}{[1 - 1 - p]^2}\bigg|_{t = 0} \\
+              & = \frac{1}{p}
+         \end{split}
+        \end{equation*}
+        De variantie:
+        \begin{equation*}
+         \begin{split}
+          \sigma^2 & = E[x^2] - \mu^2 \\
+                   & = \frac{d^2M}{dt^2}|_{t=0} - \bigg(\frac{1}{p}\bigg)^2 \\
+                   & = \frac{pe^t(t - e^t(1 - p))^2 - 2pe^t(1 - e^t(1 - p))}{[1 - e^t(1 - p)]^4}\bigg|_{t = 0} - \bigg(\frac{1}{p}\bigg)^2 \\
+                   & = \frac{p^3 - 2p^2(-(1-p))}{p^4} - \bigg(\frac{1}{p}\bigg)^2 \\
+                   & = \frac{p + 2(1 - p)}{p^2} - \bigg(\frac{1}{p}\bigg)^2 \\
+                   & = \frac{2 - p}{p^2} - \bigg(\frac{1}{p}\bigg)^2 \\
+                & = \frac{1 - p}{p^2}
+         \end{split}
+        \end{equation*}
+
+    }
+\section{De ongelijkheid van Chebychev}
+Twee ongelijkheden:
+$$P(|x - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
+$$P(|x - \mu| < k\sigma) \geq 1 - \frac{1}{k^2}$$
+Gebruik enkel deze ongelijkheid als er GEEN informatie is over de verdelingsfunctie.
+\example{
+    Beschouw een $x$ met $\mu = 1$ en $\sigma^2 = \frac{1}{5}$ en  een symmetrische verdeling rond $\mu$.
+    Geef een begrenzing voor $P(0 < x < 2)$ en $P(x \geq 1 + \frac{2}{\sqrt{5}})$
+}{
+    \begin{equation*}
+     \begin{split}
+      P(0 < x < 2) & = P(P(|x - 1| < 1) \\
+                   & = P(P(|x - \mu| < \sqrt{5}\sigma) \\
+                   & \geq 1 - \frac{1}{5} \\
+                   & \geq \frac{4}{5}
+     \end{split}
+    \end{equation*}
+    \begin{equation*}
+     \begin{split}
+      P(x \geq 1 + \frac{2}{\sqrt{5}}) & = P(x - \mu \geq \frac{2}{\sqrt{5}}) \\
+                                       & = \frac{1}{2}P(|x - \mu| \geq \frac{2}{\sqrt{5}}) \\
+                                       & = \frac{1}{8}
+     \end{split}
+    \end{equation*}
+}
+\chapter{Discrete variabelen}
+\section{Uniforme discrete verdeling}
+Elke kans is gelijk.
+
+Voorschrift:
+$$f(i) = \frac{1}{n} \qquad i \in \{1, 2, 3, ..., n\}$$
+Gemiddelde:
+\begin{equation*}
+ \begin{split}
+  \mu & = \sum_{i = 1}^{n}i \frac{1}{n} \\
+      & =  \frac{1}{n} \sum_{i = 1}^{n}i\\.
+      & =  \frac{1}{n}(1 + 2 + 3 + ... + (n - 1) + n)\\
+      & =  \frac{1}{n}\bigg(\frac{n(n + 1)}{2}\bigg)\\ 
+      & = \frac{n + 1}{2}
+ \end{split}
+\end{equation*}
+Variantie:
+\begin{equation*}
+ \begin{split}
+  \sigma^2 & = E[x^2] - \mu^2 \\
+           & = \bigg(\sum_{i = 1}^{n}i^2 \frac{1}{n}\bigg) - \bigg(\frac{n + 1}{2}\bigg)^2 \\
+           & = \frac{1}{n}\bigg(\frac{n(n+1)(2n+1)}{6}\bigg) - \bigg(\frac{n + 1}{2}\bigg)^2 \\
+           & = \bigg(\frac{(n+1)(2n+1)}{6}\bigg) - \bigg(\frac{n + 1}{2}\bigg)^2 \\
+           & = (n + 1)\bigg(\frac{(2n+1)}{6} - \frac{1}{4}\bigg) \\
+           & = \frac{(n + 1)}{12}(4n + 2 - 3n - 3) \\
+           & = \frac{n^2 - 1}{12}
+ \end{split}
+\end{equation*}
+\section{Bernouilli experiment}
+Enkel twee uitkomsten: Succes of geen succes. Success heeft een kans $p$, geen succes heeft een kans $ 1 - p$.
+
+Het gemiddelde:
+\begin{equation*}
+ \begin{split}
+  \mu & = E[x] \\
+      & = \sum_{i = 1}^{2}x_if(x_i) \\
+      & = 0(1 - p) + 1p \\
+      & = p
+ \end{split}
+\end{equation*}
+De variantie:
+\begin{equation*}
+ \begin{split}
+  \sigma^2 & = V[x^2] = E[x^2] - \mu^2 \\
+           & = \bigg[\sum_{i = 1}^{2}x_i^2f(x_i)\bigg] - p \\
+           & = 0^2(1 - p) + 1^2(p) - p^2 \\
+           & = p(1 - p)
+ \end{split}
+\end{equation*}
+\section{Binomiale Verdeling}
+Hoeveel successen zijn er indien $n$ experimenten uitgevoerd worden waarbij elk experiment een kans $p$ heeft om te slagen. De experimenten MOETEN onafhankelijk zijn.
+
+Indien x binomiaal verdeeld: $x : bin(n, p)$
+
+Voorschrift:
+$$f(i) = P(x = i) = C_n^ip^i(1 - p)^{n - 1}$$
+
+\example{
+    Een arts voert op één dag drie operaties uit die elk slagen met kans 0.9. Wat is de kans op twee succesvolle operaties die dag?
+}{
+    $x : bin(3, 0.9)$
+    \begin{equation*}
+     \begin{split}
+        f(2) & = P(x = 2) \\
+             & = C_3^2(0.9)^2(1 - 0.9) \\
+             & \approx \frac{1}{4}
+     \end{split}
+    \end{equation*}
 
 }
 
+Gemiddelde: $np$
+
+Variantie : $np(1 - p)$
+\subsection{Momentenfunctie}
+\begin{equation*}
+ \begin{split}
+  M(t) & = E[e^{ti}] \\
+       & = \sum_{i=0}^n e^{ti}C_n^ip^i(1 -p)^{n - 1} \\
+       & = \sum_{i=0}^n e^{ti}C_n^i\bigg[(pe^t)^i(1 -p)^{n - 1}\bigg] \\ 
+       & = ( 1 - p + pe^t)^n
+ \end{split}
+\end{equation*}
+
+\subsection{Recursieformule}
+\begin{equation*}
+ \begin{split}
+  f(i + 1) & = C_n^{i + 1}p^{i + 1}(1 - p)^{n- (i + 1)} \\
+           & = \frac{n!}{(i + 1)!(n - i - 1)!}p^i(1 -p)^{n - 1} \frac{p}{1 - p} \\
+           & = \frac{n!}{i!(n - i)!(i + 1)!}p^i(1 -p)^{n - 1} \frac{p}{1 - p} \\
+           & = \frac{n!}{i!(n - i)!}p^i(1 -p)^{n - 1} \cdot \frac{n - 1}{i + 1}\frac{p}{1 - p} \\
+           & = f(i) \cdot \frac{(n - 1)p}{(i + 1)(1 - p)}
+ \end{split}
+\end{equation*}
 
 
+\section{Geometrische verdeling}
+Een discrete veranderlijke 
+i
+waarmee we het 
+aantal keer
+weergeven dat  we een experiment 
+moeten herhalen 
+totdat gebeurtenis A zich 
+voordoet
+, heeft een 
+geometrische verdeling.
 
+Voorschrift:
+$$f(i) = (1 - p)^{i - 1}p$$
+\example{
+    We wensen een gepaste persoon te vinden voor een 
+    openstaande betrekking
+    We testen meerdere kandidaten totdat een kandidaat 
+    geschikt bevonden wordt.
+    De kans op ‘niet geschikt’ is 10\%.
+    Wat is de kans dat na het testen van vier kandidaten pas 
+    de gepaste kandidaat gevonden werd?
+}{
+    $i : \#$ experimenten totdat 1ste succes voorkomt en $p: 0.9$
+    $$f(4) = (1 - p)^3p = (0.1)^30.9$$
+}
 
+\section{Hypergeometrische verdeling}
+N elementen waarvan M de eigenschap A bezitten.
+We trekken n elementen .
+Wat is de kans dat i van de n elementen eig. A bezitten?
+
+$$f(i) = \frac{C_M^iC_{N - M}^{n - i}}{C_N^n}$$
+
+\example{ 
+    De variabele $p = 0.3$ stelt de kans voor op een geschikte kandidaat. De variabele $i$ stelt het aantal kandidaten voor totdat er een geschikte kandidaat optreedt en is geometrisch verdeeld. Het kost 90 euro om een kandidaat op geschiktheid te testen. 
+    
+    Bepaal met 75\% kans het interval voor de totale kost(TK) om een geschikte kandidaat te vinden.
+}{
+    $$TK = 90i$$
+    We maken gebruik van de ongelijkheid van Chebychev:
+    $$P(|TK - \mu| < k\sigma) \geq 1 - \frac{1}{k^2}$$
+    Gemiddelde:
+    \begin{equation*}
+     \begin{split}
+      \mu & = E[TK] \\
+          & = 90E[i] \\
+          & = 90\frac{10}{3} \\
+          & = 300
+     \end{split}
+    \end{equation*}
+    Standaarddeviatie:
+    \begin{equation*}
+     \begin{split}
+      \sigma & = \sqrt{\sigma^2} \\
+             & = \sqrt{V[TK]} \\
+             & = \sqrt{90^2V[i]} \\
+             & = \sqrt{90^2\frac{1 - 0.3}{0.3^2}} \\
+             & = \sqrt{63000} \\
+             & \approx 251
+     \end{split}
+    \end{equation*}
+    We willen een bovengrens van 75\%.
+    $$1 - \frac{1}{k^2} = 0.75 \Rightarrow k = 2$$
+    De ongelijkheid wordt:
+    $$P(|TK - 300| < 502) \geq 75\% = P(300 - 502 < TK < 300 + 502) \geq 75\%$$
+    Da totale kost bedraagt met een kans van 75\% 802 euro
+
+}
+
+\section{Poisson verdeling}
+Definitie:
+$$f(i) = P(x = i) = e^{-\lambda}\frac{\lambda^i}{i!}$$
+Controle geldige kansfunctie:
+\begin{equation*}
+ \begin{split}
+  \sum_{i=0}^{+\infty}e^{-\lambda}\frac{\lambda^i}{i!} & = e^{-\lambda}\sum_{i=0}^{+\infty}\frac{\lambda^i}{i!} \qquad \hbox{reeks convergeert naar } e^{\lambda}\\
+  & = e^{\lambda - \lambda} \\
+  & = e^{0} \\
+  & = 1
+ \end{split}
+\end{equation*}
 
 
 \part{Oefeningen}
