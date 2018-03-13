@@ -11,6 +11,7 @@
 \usepackage{sectsty}
 \usepackage{lipsum}
 \usepackage{listings}
+\usepackage[pageanchor=false]{hyperref} % hyperlinks in PDF
 
 
 \partfont{\color{brown}}
@@ -36,6 +37,7 @@
 
 % CUSTOM COMMANDS
 \setlength{\parindent}{0mm}
+\setlength{\parskip}{1em}
 \graphicspath{{./img/}}
 \newcommand{\note}[1]{
   \color{violet}#1 \color{black}
@@ -155,9 +157,9 @@ Een asymptotische benadering wil zeggen dat de uitvoeringstijd van een algoritme
 Onthou dat in de volgende voorbeelden de letter\note{n} het aantal elementen voorstelt.
 \subsection{O-notatie}
 De O-notatie stelt een afschatting naar boven voor. Dit wil zeggen dat een functie (het algoritme) niet sneller groeit dan een andere bepaalde functie, wat dus de bovengrens vormt. Zo wil de uitdrukking $O(n^2)$ zeggen dat het algoritme zeker niet sneller (maar wel gelijk) kan groeien dan de functie $n^2$. 
-\subsection{$\Omega$-notatie}
+\subsection{Omega-notatie}
 De $\Omega$-notatie stelt een afschatting naar onder voor. Dit wil zeggen dat een functie (ook weer het algoritme) niet trager groeit dan een andere bepaalde functie, wat de ondergrens vormt. Zo wil de uitdrukking $\Omega(n^2)$ zeggen dat het algoritme zeker niet traag (maar wel gelijk) kan groeien dan de functie $n^2$
-\subsection{$\Theta$-notatie}
+\subsection{Theta-notatie}
 Indien de ondergrens gelijk is aan de bovengrens wordt de $\Theta$-notatie gebruikt. 
 \subsection{Voorbeeld: sorteren}
 Indien een tabel met $n$ \textit{verschillende} elementen gegeven is, bestaan er $n!$ verschillende permutaties van $n$ elementen. Wat is het efficiëntste sorteeralgoritme? begin vanaf de ongelijkheid $n! < n^n$.
@@ -229,13 +231,36 @@ Een betere methode:
 \end{lstlisting}
 Dit voorbeeld heeft geen geneste lus, wat ervoor zorgt dat de afschatting $\Omega(n)$ wordt.
 \chapter{Rangschikking}
+Belangrijk bij sorteeralgoritmes:
+\begin{itemize}
+ \item Het aantal gegevens
+ \item De aard van die gegevens
+ \item De mate waarin de gegevens reeds geordend zijn
+ \item De plaats waar de gegevens tijdens het rangschikken opgeslagen zijn (inwendig of uitwendig geheugen)
+\end{itemize}
+
+Er wordt aandacht besteedt aan drie zaken:
+\begin{itemize}
+ \item Tijdsefficiëntie
+ \item Geheugengebruik
+ \item Stabiliteit
+\end{itemize}
+
+Veronderstellingen:
+\begin{itemize}
+ \item Alle gegevens bevinden zich in het inwendig geheugen.
+ \item De gegevens worden ondergebracht in een één dimensionale tabel.
+ \item De gegevens zijn klein en bevatten geen bijhorende informatie.
+ \item Er wordt gerangschikt in stijgende volgorde.
+\end{itemize}
+
 \section{Insertion Sort}
 \begin{lstlisting}
 void insertion_sort(vector<T> & v){
   for(int i = 0; i < v.size(); i++){
     T el = move(v[i]);
     int j = i - 1;
-    while(j $\geq$ 0 && el < v[i]){
+    while(j <= 0 && el < v[i]){
       v[j + 1] = move(v[j]);
       j--;
     }
@@ -243,6 +268,17 @@ void insertion_sort(vector<T> & v){
   }
 }
 \end{lstlisting}
+\subsection{Werking}
+Insertion sort is een eenvoudig algoritme dat element per element werkt.
+Vergelijk een element met de opeenvolgende elementen in de tabel. Schuif de grotere elementen op en zet het element op zijn plaats. De gerangschikte en nog te rangschikken zones hebben geen overlap.
+
+\subsubsection{Slechtste geval}
+Wanneer de tabel in omgekeerde volgorde gesorteerd staat. 
+\subsubsection{Gemiddelde geval}
+
+\subsubsection{Beste geval}
+\subsection{Voordelen}
+\subsection{Nadelen}
 \textbf{straight from notities}
 
 O(n + aantal inversies)
@@ -268,9 +304,134 @@ random tabel
 .........
 
 \chapter{Efficiënte Methodes}
-\subsection{Heaps ( = Binaire boom)}
+\section{Heaps ( = Binaire boom)}
 Een heap lijkt sterk op een gelinkte lijst, maar elke knoop heeft slechts 1 ouder en potentieël 2 kinderen. Een heap loopt van boven naar beneden. Het topelement wordt de \textit{wortel} genoemd. Een knoop zonder kinderen wordt een \textit{blad} genoemd. Een heap moet voldoen aan de \textit{heapvoorwaarde}: Elke sleutel van een knoop heeft een hogere prioriteit dan de sleutels van zijn kinderen.
-\includegraphics{heap_1}
+
+Het verband tussen het aantal knopen $n$ en de hoogte $h$: $h = \lf \ln n \rf$
+
+\subsection{Bewerkingen op heaps}
+\includegraphics[width=\textwidth]{heap_1}
 Toevoegen van een knoop (14)
+
+\includegraphics[width=\textwidth]{heap_2}
+Het wortelelement vervangen(17 $\rightarrow$ 3)
+
+\includegraphics[width=\textwidth]{heap_3}
+Het wortelelement verwijderen
+
+\includegraphics[width=\textwidth]{heap_4}
+
+\subsection{Constructie van een heap}
+Element toevoegen
+Samenvoegen van deelheaps
+
+\section{Heapsort}
+\section{Mergesort}
+\section{Quicksort}
+\begin{lstlisting}
+void quicksort (vector<T> & v, int l, int r){
+    // rangschikt de deelvector v[l..r]
+    if(l < r){
+        //partitie met v[l] als spilelement
+        T pivot = v[l]; // Geen T&, geen move!
+        int i = l;
+        int j = r;
+        while(v[j] > pivot){
+            j--;
+        }
+        while(i < j){
+            swap(v[i], v[j]);
+            i++;
+            while(v[i] < pivot){
+                i++;
+            }
+            j--;
+            while(v[j] > pivot){
+                j--;
+            }
+        }
+        //Recursief rangschikken van beide delen
+        quicksort(v, l, j);
+        quicksort(v, j + 1, r);
+    }
+}
+
+void quicksort (vector<T> & v){
+    quicksort(v, 0, v.size());
+}
+\end{lstlisting}
+\subsection{Werking}
+Quicksort is een typisch voorbeeld van een Las Vegas algoritme. De originele tabel wordt opgepslitst in twee delen zodat alle elementen in het linkerdeel kleiner zijn dan de elementen in het rechterdeel.
+
+Er wordt een willekeurige element (de pivot) gekozen. Er worden twee lijsten gemaakt met de ene lijst allemaal elementen kleiner dan de pivot en de andere lijst allemaal groter dan de pivot. Op deze deellijsten wordt er recursief ook quicksort toegepast totdat de grootte van de deellijst gelijk is aan 1.
+
+Volgens de klassieke methode wordt het eerste element in de tabel gekozen als pivot.
+Beschouw de volgende lijst:
+
+
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+ \hline
+ 10 & 10 & 3 & 9 & 17 & 2 & 9 & 8 & 10 & 16 & 15 & 4 \\
+ \hline
+\end{tabular}
+
+Als pivot wordt het eerste element gekozen, dus 10. De variabele $i$ staat op index 0, de variabele $j$ staat op index 11 (laatste element). De waarde 4 is kleiner dan de waarde 10, dus deze worden omgewisseld.
+
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+ \hline
+ 4 & 10 & 3 & 9 & 17 & 2 & 9 & 8 & 10 & 16 & 15 & 10 \\
+ \hline
+\end{tabular}
+\subsubsection{Slechtste geval}
+\begin{equation*}
+ \begin{split}
+  T(n)          & = cn + T(n - 1)\\
+                & = cn + c(n - 1) + T(n - 2) \\
+                & = c(n + (n - 1) + (n - 2) + ... + 1) + T(1) \\
+                & =c\frac{n(n - 1)}{2} \\
+                & = O(n^2)
+ \end{split}
+\end{equation*}
+
+\subsubsection{Gemiddeld geval}
+Wanneer de pivot gemiddeld in het midden van de te partitioneren elementen valt. De grootte van elke deeltabel is dus even waarschijnlijk.
+\begin{equation*}
+ \begin{split}
+  T(n) & = O(n \ln n)
+ \end{split}
+\end{equation*}
+\subsubsection{Beste geval}
+De beide delen zijn even groot.
+$$T(n) = O(n \ln n)$$
+
+
+
+\chapter{Speciale methodes}
+\section{Ondergrens voor de efficiëntie van rangschikken}
+Wat is de snelst mogelijke manier om te sorteren? De efficiënte methoden uit vorig hoofdstuk waren in het slechtste geval $O(n \log n)$ (behalve quicksort met $O(n^2)$). Er bestaan geen snellere methoden die een betere slechtste geval hebben. Dit wordt bewezen met een binaire boom.
+
+Stel een beslissingsboom die vergelijkingen voorstelt. De eerste vergelijking bevindt zich aan de wortel van de boom. De tweede vergelijking in één van de kindknopen van de wortel enz... totdat het juiste resultaat gevonden wordt.
+
+Voor elk sorteeralgoritme kan zo een boom opgesteld worden en zullen allemaal $n!$ bladeren hebben. Het aantal sleutelvergelijkingen dat een algoritme nodig heeft komt overeen met de lengte van de afgelegde weg. Zowel voor het slechtste geval als het gemiddelde geval is de ondergrens $\Omega(n \ln n)$.
+\subsubsection{Slechtste geval}
+\begin{itemize}
+ \item Langst mogelijke weg van wortel naar blad = hoogte van de boom.
+ \item Boom met hoogte h $\Rightarrow$ niet meer dan $2^h$.
+ \item Boom met hoogte $h \Rightarrow$ twee deelbomen met hoogte $h - 1$
+ \item $\Rightarrow 2^{h - 1} < n! \leq 2^h$ waaruit volgt $h = \lc \ln n! \rc$
+ \item Met formule van Stirling blijkt $h > \ln (\frac{n}{e})^n$
+ \item $\Rightarrow$ h = $\Omega(n \ln n)$
+\end{itemize}
+\subsubsection{Gemiddelde geval}
+\begin{itemize}
+ \item Gemiddelde weglengte van wortel naar blad
+ 
+\end{itemize}
+
+\section{Rangschikken door tellen}
+
+\section{Radix Sort}
+
+
 
 \end{document}
