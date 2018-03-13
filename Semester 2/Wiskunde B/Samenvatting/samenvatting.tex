@@ -370,7 +370,9 @@ Bepaal de DVG van alle cirkels met middelpunt y = -x.
 \end{equation*}
 Een lineaire DVG is een DVG waarbij alle coëfficiënten van alle afgeleiden enkel voorkomen als eerste macht.
 \subsection{Particuliere oplossing}
-De particuliere oplossing kan slechts bepaald worden indien alle beginvoorwaarden ($y(0), y'(0),...,y^{(n-1)}(0)$) gekend zijn.
+De particuliere oplossing kan slechts bepaald worden indien alle beginvoorwaarden 
+
+($y(0), y'(0),...,y^{(n-1)}(0)$) gekend zijn.
 \subsection{Algemene oplossing}
 Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ respectievelijk gelijkgesteld worden aan $C_1, C_2, ..., C_n$
 
@@ -414,16 +416,69 @@ Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ r
 \example{
   Bepaal de PO van $y'' + y = \delta\big(t - \frac{\pi}{2}\big)$ indien $y(\frac{\pi}{4}) = 0$, $y'(\frac{\pi}{4}) = 0$
 }{
-  $y(0^+) = C_1$, $y'(0^+) = C_2$
+  Stel: $y(0^+) = C_1$, $y'(0^+) = C_2$
   \begin{equation*}
    \begin{split}
     \mathcal{L}\{LL\}(s) & = \mathcal{L}\{y'' + y\}(s) \\
 			 & = s^2Y - sC_1 - C_2 + Y \\
     \mathcal{L}\{RL\}(s) & = \mathcal{L}\bigg\{\delta\big(t - \frac{\pi}{4}\bigg)\bigg\}(s) \\
                          & = \int_0^{+\infty}\delta\big(t - \frac{\pi}{4}\big)e^{-st} \; dt \\
-                         & = e^{-\frac{\pi}{2}s}
+                         & = e^{-\frac{\pi}{2}s} \\
+    \hbox{dus} \\
+    \Leftrightarrow & s^2Y - sC_1 - C_2 + Y = e^{-\frac{\pi}{2}s}  \\
+    \Leftrightarrow & Y = \frac{e^{-\frac{\pi}{2}s} + sC_1 + C_2}{s^2 + 1} \\
+    \Leftrightarrow & \mathcal{L}^{-1}\{Y\}(t) = \mathcal{L}^{-1}\bigg\{\frac{e^{-\frac{\pi}{2}s} + sC_1 + C_2}{s^2 + 1}\bigg\}(t) \\
+    \Leftrightarrow & y(t) = C_2\sin t + C_1\cos t + f\big(t - \frac{\pi}{2}\big)H\big(t - \frac{\pi}{2}\big)\\
+    \hbox{met}\; f(t) & = \mathcal{L}^{-1}\bigg\{\frac{1}{s^2 + 1}\bigg\}(t) \\
+                      & = \sin t\\
+    \hbox{De algemene oplossing: }\; y(t)  & =  C_2\sin t + C_1\cos t - \bigg(\cos(t) H\big(t - \frac{\pi}{2}\big)\bigg)
    \end{split}
   \end{equation*}
+  De PO voor $t = \frac{\pi}{4} \qquad ( < \frac{\pi}{2}\;\hbox{dus Heaviside is 0})$
+  \begin{equation*}
+   \begin{split}
+    y(t) & = C_2 \sin t + C_1 \cos t  \Rightarrow y(\frac{\pi}{4})  : 0 = C_2\frac{\sqrt{2}}{2} + C_1\frac{\sqrt{2}}{2}\\
+    y'(t) & = C_2 \cos t - C_1 \sin t \Rightarrow y'(\frac{\pi}{4}) : 0 = C_2\frac{\sqrt{2}}{2} - C_1\frac{\sqrt{2}}{2}\\
+    & \begin{cases}
+     0 = C_2 + C_1 \\
+     0 = C_2 - C_1
+    \end{cases} \Rightarrow C_2 = C_1 = 0
+   \end{split}
+  \end{equation*}
+    Het antwoord:
+    $$y(t) = -(\cos t)H(t - \frac{\pi}{2})$$
+}
+\section{DVG van de orde 1 en graad 1}
+\subsection{Gescheiden veranderlijken}
+Indien een DVG van orde 1 en graad 1 te schrijven is als
+$$f(x)\;dx = g(y)\;dy$$
+Algemeen:
+\begin{equation*}
+ \begin{split}
+  M(x, y)\;dx & = -N(x, y)\; dy \\
+  f(x)g(y)\;dx & = -h(x)i(y)\; dy \\
+  \frac{f(x)}{h(x)}\; dx = & -\frac{i(y)}{g(y)}\;dy \\
+  a(x) \; dx & = b(y)\; dy \\
+  \int a(x) \; dx & = \int b(y) \; dy \\
+  A(x) + C_1 & = B(y) + C_2 \\
+  A(x) & = B(y) + C
+ \end{split}
+\end{equation*}
+\example{
+    Bepaal de AO van $yt + \sqrt{1 - t^2}y' = 0$
+}{
+    \begin{equation*}
+     \begin{split}
+      & yt\;dt + \sqrt{1 - t^2}\;dy = 0 \\
+      \Leftrightarrow & \sqrt{1 - t^2}\;dy = -yt\;dt \\
+      \Leftrightarrow & \frac{dy}{y}= -\frac{t\;dt}{\sqrt{1 - t^2}} \\
+      \Leftrightarrow & \int \frac{dy}{y}= -\int \frac{t\;dt}{\sqrt{1 - t^2}} \\
+      \Leftrightarrow & \ln |y| \sqrt{1 - x^2} + C \\
+      \Leftrightarrow & y = e^{\sqrt{1 - x^2} + C} \\
+      \Leftrightarrow & y = e^{\sqrt{1 - x^2}}e^C \\
+      \Leftrightarrow & y = De^{\sqrt{1 - x^2}} \\
+     \end{split}
+    \end{equation*}
 
 }
 
