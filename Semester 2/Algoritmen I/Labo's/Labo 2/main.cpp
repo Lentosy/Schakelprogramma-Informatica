@@ -3,16 +3,15 @@
 #include "sortvector.cpp"
 #include "sedgewickshellsort.cpp"
 #include "shellshellsort.cpp"
+#include "sorteermethode.h"
+#include "volgorde.h"
 #include "csvdata.h"
-#include <algorithm>
 #include <ctime>
 using namespace std;
 
-const int n = 10000; // aantal elementen
+const int kleinste = 10;     // minimum voor meet functie -> (BUG) 1 niet toegelaten want (1 - 1 = 0), kan geen array aanmaken van 0 elementen
+const int grootste = 100000; // maximum voor meet functie
 
-
-const int kortste = 1    ; // minimum voor meet functie
-const int langste = 10000; // maximum voor meet functie
 
 template<class T>
 void is_gesorteerd(Sortvector<T> & v) {
@@ -27,24 +26,18 @@ int main(int argc, char * argv[]) {
 
 	srand(time(0));
 
-	Sortvector<int> sv(n);
-	sv.vul_random_zonder_dubbels();
-
-	/* INSERTION SORT */
 	InsertionSort<int> isort;
-	cout << "INSERTION SORT" << endl;
-	isort.meet(kortste, langste, cout);
-
-	/* SEDGEWICK SHELL SORT */
 	SedgewickShellSort<int> sedgeshellsort;
-	cout << "SEDGEWICK SHELL SORT" << endl;
-	sedgeshellsort.meet(kortste, langste, cout);
-
-	/* SHELL SHELL SORT*/
 	ShellShellSort<int> shellshellsort;
-	cout << "SHELL SHELL SORT" << endl;
-	shellshellsort.meet(kortste, langste, cout);
-
+	
+	vector<Sorteermethode<int>*> s = {&isort, &sedgeshellsort, &shellshellsort};
+	vector<Volgorde> volgordes = {Volgorde::Random, Volgorde::Stijgend, Volgorde::Dalend};
+	/* Elk sorteeralgoritme in sorteermethode met elkaar vergelijken voor verschillende volgordes */
+	for(int i = 0; i < volgordes.size(); i++){
+		Sorteermethode<int>::vergelijk(s, volgordes[i], kleinste, grootste);
+	}
+	
+	
 }
 
 

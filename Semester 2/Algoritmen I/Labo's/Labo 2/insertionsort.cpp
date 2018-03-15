@@ -3,9 +3,7 @@
 #include "sorteermethode.h"
 using namespace std;
 
-/** class Sorteermethode
-    \brief abstracte klasse van methodes die een vector sorteren
-*/
+
 
 template<class T>
 void InsertionSort<T>::operator()(vector<T> & v)const {
@@ -18,4 +16,9 @@ void InsertionSort<T>::operator()(vector<T> & v)const {
 		}
 		v[j + 1] = move(el);
 	}
+}
+
+template<class T>
+string InsertionSort<T>::getName() const{
+	return "Insertion Sort";
 }

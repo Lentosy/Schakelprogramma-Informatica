@@ -4,12 +4,15 @@
 #include "sorteermethode.h"
 
 /** class Insertionsort
-    \brief implementeert insertion sort
+    \brief implementeert Insertion Sort
 */
 
 template <typename T>
 class InsertionSort : public Sorteermethode<T> {
-    public: void operator()(vector<T> & v) const;
+    public: 
+		void operator()(vector<T> & v) const;
+		string getName() const;
+    
 };
 
 #endif

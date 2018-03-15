@@ -1,5 +1,9 @@
 #include "shellsort.h"
 
+
+/** class SedgewickShellSort
+*	\brief Een implementatie van ShellSort dat gebruik maakt van de Sedgewick reeks
+*/
 template<class T>
 class SedgewickShellSort : public ShellSort<T> {
 		void operator()(vector<int> &v) const {
@@ -13,5 +17,10 @@ class SedgewickShellSort : public ShellSort<T> {
 			shell_sort(v, series, size);
 
 		}
+		
+		string getName() const{
+			return "Sedgewick Shell Sort";
+		}
 };
+
 
