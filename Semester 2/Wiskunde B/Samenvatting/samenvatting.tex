@@ -37,9 +37,19 @@
     
     Voorbeeld: #1
     
+    \underline{Uitwerking}
+
+    
     #2
     
     \hrulefill
+}
+\newcommand{\partialof}[1]{
+    \frac{\partial}{\partial #1}
+}
+
+\newcommand{\derivativeof}[1]{
+    \frac{d}{d #1}
 }
 
 \begin{document}
@@ -482,6 +492,345 @@ Algemeen:
 
 }
 
+\todo{LES DINSDAG 13/03}
+\section{Homogene DVG}
+Een DVG is homogeen indien:
+$$f(\lambda x, \lambda y) = \lambda^n f(x,y)$$
+Indien een DVG homogeen is kan volgende oplossingsmethode toegepast worden:
+
+\example{
+        Bepaal de PO van : 
+        $$\frac{dx}{dt} = \frac{x}{t(\ln t - \ln x)}$$
+        waarvoor x(1) = 1.
+}{
+    Berekening algemene oplossing
+    \begin{equation*}
+     \begin{split}
+      & \frac{dx}{dt} = \frac{x}{t(\ln t - \ln x)} \\
+      \Rightarrow & t(\ln t - \ln x) \;dx - x\;dt = 0 \\
+      \Rightarrow & t\ln\bigg(\frac{t}{x}\bigg)\;dx - x\;dt = 0 \\
+      & \hbox{controle homogeen} \\
+      \Rightarrow & \lambda t \ln\bigg(\frac{\lambda t}{\lambda x}\bigg) - \lambda x\\
+      \Rightarrow & \lambda^1 (t \ln\bigg(\frac{t}{x}\bigg)  - x) \qquad \hbox{homogeen want M(x,t) en N(x,t) hebben } \lambda \hbox{ tot de eerste macht} \\
+      & \hbox{substitutie } t = ux \\
+      \Rightarrow & u \ln u \; dx - u \;dx + x\; du = 0 \\
+      \Rightarrow & (u \ln u - u) \; dx = x \; du \\
+      \Rightarrow & \int \frac{du}{u(\ln n -1)} = \int \frac{dx}{x} \\
+      \Rightarrow & \ln | \ln u - 1| = \ln |x| + \ln |C| \\
+      \Rightarrow & \ln | \ln u - 1| = \ln |Cx|  \\ 
+      \Rightarrow & \ln u - 1 = Cx \\ 
+      \Rightarrow & \ln u = Cx + 1 \\
+      \Rightarrow & u = e^{Cx + 1} \\
+      \Rightarrow & t = xe^{Cx + 1}
+     \end{split}
+    \end{equation*}
+    Berekening particuliere oplossing:
+    \begin{equation*}
+     \begin{split}
+      & x(1) = 1 \\
+      \Rightarrow & 1 = 1e^{C + 1} \\
+      \Rightarrow&  C + 1 = 0 \\
+      \Rightarrow & C = -1 \\
+      \Rightarrow & t = xe^{-x + 1}
+     \end{split}
+    \end{equation*}
+
+
+}
+
+
+\section{Exacte DVG}
+\example{
+    Bepaal alle functie f(y) zodanig dat de 
+    DVG $$2y\; dx + (x - 4y\sqrt{y}) \; dy = 0$$
+    na vermenigvuldiging met 
+    f(y) exact wordt.Bepaal daarna haar AO.
+}{
+    Is deze DVG exact?
+    \begin{equation*}
+     \begin{split}
+      \frac{\partial}{\partial y}2y & = 2 \\
+      \frac{\partial}{\partial x}(x - 4y\sqrt{y}) & = 1
+     \end{split}
+    \end{equation*}
+    Deze DVG is dus niet exact. We moeten een functie f(y) bepalen zodat deze DVG wel exact wordt.
+    $$2yf(y)\; dy + (x - 4y\sqrt{y})f(y)\; dy = 0$$
+   \begin{equation*}
+    \begin{split}
+     & \partialof{y}2yf(y)  = \partialof{x}(x - 4y^{3/2}) f(y) \\
+     \Rightarrow & 2f(y) + 2y\derivativeof{y}f(y)  = f(y) \\
+     \Rightarrow &  2y \derivativeof{y}f(y)  = -f(y) \\
+     \Rightarrow & \frac{d}{f(y)}f(y) = - \frac{dy}{2y} \\
+     \Rightarrow & \int \frac{d}{f(y)}f(y) = - \int  \frac{dy}{2y} \\
+     \Rightarrow & \ln|f(y)| = -\frac{1}{2}\ln|y| + \ln|C| \\
+     \Rightarrow & \ln|f(y)| = -\frac{1}{2}\ln|Cy| \\
+     \Rightarrow & \ln|f(y)| = \ln|Cy|^{-1/2} \\ 
+     \Rightarrow & f(y) = \frac{1}{\sqrt{Cy}} \\
+     \Rightarrow & f(y) = \frac{1}{\sqrt{y}} \qquad \hbox{met C = 1}
+    \end{split}
+   \end{equation*}
+   De DVG wordt:
+   $$2\sqrt{y}\; dx  + \bigg(\frac{x}{\sqrt{y}} - 4y\bigg)\; dy = 0$$
+   wat een een exacte DVG oplevert. Nu bepalen we de AO.
+   \begin{equation*}
+    \begin{split}
+     & 2\sqrt{y}\; dx  + \bigg(\frac{x}{\sqrt{y}} - 4y\bigg)\; dy = 0 \\
+     &   \hbox{komt overeen met} \\
+     & \partialof{x}F\; dx + \partialof{y}F\;dy = 0
+    \end{split}
+   \end{equation*}
+    We krijgen volgend stelsel:
+    $$\begin{cases}
+       \partialof{x}F = 2\sqrt{y} (*) \\
+       \partialof{y}F = \frac{x}{\sqrt{y}} - 4y (**)
+      \end{cases}
+    $$
+    \begin{equation*}
+     \begin{split}
+      (*) & \partialof{x}F = 2\sqrt{y}  \\
+      \Rightarrow & F = \int 2\sqrt{y}\; dx  \\
+      \Rightarrow & F = 2\sqrt{y}x + h(y); \\
+      (**) & \partialof{y} = \frac{x}{\sqrt{y}} - 4y = 2x\frac{1}{2\sqrt{y}} + \derivativeof{y}h(y) \\
+      \Rightarrow & \derivativeof{y}h(y) = -4y \\
+      \Rightarrow & h(y) = \int -4y \; dy \\
+      \Rightarrow & h(y) = -2y^2
+     \end{split}
+    \end{equation*}
+    De AO:
+    $$F(x, y) = 2\sqrt{y}x - 2y^2$$
+}
+\example{
+    In een vat bevindt zich $20 m^3 $
+zout-oplossing waarin 1 kg zout opgelost is. Men voert een nieuwe pekeloplossing toe met 
+constante concentratie van 0,5 kg zout/$m^3$
+en aan een snelheid 
+van $2m^3$/min. De oplossing wordt continu gemengd en loopt onderaan weg met een snelheid van $1m^3$/min. 
+Hoeveel zout bevindt zich in de pekeloplossing na 1 uur?
+}{
+    Definitie van de variabelen:
+    \begin{itemize}
+     \item $x : \#$ kg zout na $t$ minuten
+     \item Op $t = 0$ is $x(0) = 1$
+     \item $C_i = \frac{1}{2}kg/m^3$ (Concentratie in)
+     \item $v_i = 2m^3/min$          (Snelheid in) 
+     \item $C_{uit} = \frac{x(t)}{v(t)}$ (Concentratie uit)
+     \item $v_{uit} = 1m^3/min$     (Snelheid uit)
+    \end{itemize}
+    We zoeken een uitdrukking voor $dx$.
+    \begin{itemize}
+     \item $dx = $ verandering $x$ gedurende $dt$ minuten
+     \item $dx = $ hoeveelheid zout binnen gedurende $dt$ minuten - hoeveelheid zout buiten gedurende $dt$ minuten
+    \end{itemize}
+    Berekening AO:
+    \begin{equation*}
+     \begin{split}
+      & dx = C_iv_i \; dt - C_{uit}v_{uit} \; dt \\
+      \Rightarrow & dx = \frac{1}{2}\cdot 2\; dt - \frac{x(t)}{V(t)}\cdot 1\; dt \qquad \hbox{met } V(t) = 20 + 2t - t = 20 + t\\
+      \Rightarrow & dx = dt - \frac{x}{20 + t} \; dt \\
+      \Rightarrow & dx + \bigg(\frac{x}{20 + t} - 1\bigg)\;dt = 0 \\
+      \Rightarrow & (20 + t)\;dx + (x - 20 - t)\;dt = 0 \\
+       & \partialof{t}(20 + t) = 1 = \partialof{x}(x - 20 - t) \Rightarrow \hbox{exact} \\
+       & \begin{cases}
+        \partialof{x}F = 20 + t (*) \\
+        \partialof{t}F = x - 20 -t (**)
+       \end{cases} \\
+       (*) & \partialof{x}F = 20 + t \\
+        \Rightarrow & F = \int( x- 20 - t)\; dt \\
+                    & = xt - 20t - \frac{t^2}{2} + h(x) \\
+        \Rightarrow & 20 + t = \partialof{x}(xt - 20t - \frac{t^2}{2} + h(x)) \\
+        \Rightarrow & 20 +t = t + \partialof{x}h(x) \\
+        \Rightarrow & \derivativeof{x}h(x) = 20 \\
+        \Rightarrow & h(x) = \int 20\;dx = 20x \\
+        \Rightarrow & F = xt - 20t - \frac{t^2}{2} + 20x \\
+        & \hbox{AO: } xt - 20t - \frac{t^2}{2} + 20x = C
+     \end{split}
+    \end{equation*}
+    Bereken PO. Indien $x(0) = 1$ dan $C = 20$. 1 uur = 60 minuten $\Rightarrow$ x(60)
+    \begin{equation*}
+     \begin{split}
+      & xt + 20x = 20t + \frac{t^2}{2} + 20 \\
+      \Rightarrow & x = \frac{20t + \frac{t^2}{2} + 20}{20 + t} \\
+      \Rightarrow & x(60) = 37.75\; kg
+     \end{split}
+    \end{equation*}
+
+    
+}
+
+
+\section{Lineaire DVG van orde 1}
+Algemene definitie:
+$$\hbox{Een DVG is lineair in y en y' indien } y' + P(x)y = Q(x)$$
+\example{ 
+    $$dy + (y\sin x - \cos x)\; dx = 0$$
+}{
+    \begin{equation*}
+     \begin{split}
+      & dy + (y\sin x - \cos x)\; dx = 0 \\
+      \Rightarrow & \frac{dy}{dx} + y\sin x - \cos x = 0 \\
+      \Rightarrow & y' + y\sin x = \cos x
+     \end{split}
+    \end{equation*}
+    Lineair in y en y'
+}
+\example{ 
+    $$ds + (1 - 2t)s\;dt = t^2\;dt$$
+}{
+    \begin{equation*}
+     \begin{split}
+      & ds + (1 - 2t)s\;dt = t^2\;dt \\
+      \Rightarrow & \frac{ds}{dt} + (1 - 2t)s = t^2
+     \end{split}
+    \end{equation*}
+    Lineair in s en s'
+}
+\subsection{Oplossingsmethode}
+\begin{equation*}
+ \begin{split}
+  & y' + P(x)y = Q(x) \\
+  & \hbox{substitutie y = uv} \qquad \hbox{(vrijheidsgraad toevoegen)}\\
+  \Rightarrow & u'v + uv' + P(x)uv = Q(x) \\
+  \Rightarrow & u(P(x) + v') + u'v = Q(x) \qquad (*) \\
+  & \hbox{stel P(x) + v' = 0 (vrijheidsgraad wegnemen)} \\
+  \hbox{Bijgevolg: } \Rightarrow & \frac{dv}{dx} = - P(x)v \\
+    \Rightarrow & \int \frac{dv}{v} = - \int P(x)\; dx \\
+    \Rightarrow & \ln|v| = - \int P(x)\; dx \\
+    \Rightarrow & v  = e^{-\int P(x)\; dx} \\
+    (*)\Rightarrow & \frac{du}{dx} = \frac{Q(x)}{v} \\
+    \Rightarrow & du = e^{\int P(x)\;dx}Q(x) \; dx \\
+    \Rightarrow & u = \int e^{\int P(x)\;dx}Q(x) \; dx \\
+    & \hbox{Vervang substitie om AO te bekomen}
+ \end{split}
+\end{equation*}
+
+\example{
+    Bepaal de AO van
+    $$(4r^2s - 6)\; dr + r^3 \; ds = 0$$
+}{
+    \begin{equation*}
+     \begin{split}
+      & r^3\frac{ds}{dr} + 4r^2s - 6 = 0 \\
+      \Rightarrow & \frac{ds}{dr} + \frac{4}{r}s = \frac{6}{r^3} \\
+      \Rightarrow & s' + P(r)s = Q(r) \\
+      & \hbox{substitutie s = uv} \\
+      \Rightarrow & u'v + uv' + \frac{4}{r}uv = \frac{6}{r^3} \\
+      \Rightarrow & u\bigg(v' + \frac{4}{r}v\bigg) + u'v = \frac{6}{r^3} \\
+       & \frac{dv}{dr} = -\frac{4}{r}v \\
+       & \int \frac{dv}{v} = -4\int \frac{dr}{r} \\
+       & \ln |v| = -4 \ln |r| \\
+       & v = r^{-4} \\
+       \Rightarrow & \frac{du}{dr}\cdot\frac{1}{r^4} = \frac{6}{r^3} \\
+       \Rightarrow & \frac{du}{dr}\cdot\frac{1}{r} = 6 \\
+       \Rightarrow & \int du = \int 6r\; dr \\
+       \Rightarrow &  u = 3r^2 + C \\
+        & s = uv = (3r^2 + C)\frac{1}{r^4} \\
+        & s = \frac{3}{r^2} + \frac{C}{r^4} \qquad \forall C \in \mathbb{R}
+     \end{split}
+    \end{equation*}
+
+}
+
+\section{DVG van type Bernouilli}
+Een DVG is van type Bernouilli indien
+$$y' + P(x)y = Q(x)y^n \qquad \hbox{met } n \in \mathbb{R}$$
+\subsection{Oplossingsmethode}
+Bewijs:
+$$\frac{y'}{y^n} + P(x)\frac{y}{y^n} = Q(x)$$
+Substitutie: $$z = \frac{y}{y^n} = y^{1 - n}$$
+Waaruit volgt: $$z' = \frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dz}$$
+\begin{equation*}
+ \begin{split}
+  z' & = (1 - n)y^{1 - n - 1}y' \\
+     & = (1 - n)y^{-n}y' \\
+     & = \frac{(1 - n)y'}{y^n}
+ \end{split}
+\end{equation*}
+De DVG wordt:
+$$\frac{z'}{1 - n} + P(x)z = Q(x)$$
+Of beter geschreven:
+$$z' + (1 -n)P(x)z = (1 - n)Q(x)$$
+De DVG is lineair in z en z'
+
+\example{
+    Bepaal de AO vanaf $$xy\;dx = (x^2 - y^4) \;dy$$
+}{
+    \begin{equation*}
+     \begin{split}
+      & xy \; dx + (y^4 - x^2)\;dy = 0 \\
+      \Rightarrow & xy \frac{dx}{dy} + (y^4 - x^2) = 0 \\
+      \Rightarrow & \frac{dx}{dy} + \frac{y^4 - x^2}{xy} = 0 \\
+      \Rightarrow & \frac{dx}{dy} - \frac{x}{y} + \frac{y^3}{x} = 0 \\
+      \Rightarrow & \frac{dx}{dy} - \frac{1}{y}x = -y^3\frac{1}{x} 
+     \end{split}
+    \end{equation*}
+    Bernouilli in x en x'
+    $$      \Rightarrow  x\frac{dx}{dy} - \frac{1}{y}x^2 = -y^3$$
+    stel $z = x^2$ dus $z' = 2x\frac{dx}{dy}$ 
+    \begin{equation*}
+     \begin{split}
+      & \frac{1}{2}\frac{dz}{dy} - \frac{1}{y}z = -y^3 \\
+      \Rightarrow & \frac{dz}{dy} - \frac{2z}{y} = -2y^3 \\
+      & \hbox{substitutie } z = uv \\
+      \Rightarrow & u'v + uv' - \frac{2uv}{y} = -2y^3 \\
+      \Rightarrow & u(v' - \frac{2v}{y}) + u'v = -2y^3 \\ 
+      & \frac{dv}{dy} = \frac{2v}{y} \\
+      & \int \frac{dv}{v} = 2 \int \frac {dy}{y} \\
+      & \ln |v| = 2\ln |y| \\
+      & v = y^2  \\
+      \Rightarrow&  \frac{du}{dy}y^2 = -2y^3 \\
+      \Rightarrow & \int \frac{du}{dy} = - \int 2y \; dy \\
+      \Rightarrow & u = -y^2 + C
+     \end{split}
+    \end{equation*}
+    $z = x^2$ en $z = uv = y^2(C - y^2)$
+    De AO wordt:
+    $$x^2 + y^4 = Cy^2$$
+
+
+}
+
+
+\section{Orthogonale krommenbundel}
+Definitie: elke kromme uit de ene bundel snijdt elke kromme uit de andere bundel loodrecht.
+$$
+    \begin{cases}
+     f(x, y, C) = 0 \\
+     f_{\bot}(x, y, C) = 0
+    \end{cases}
+$$
+Raaklijn van $f$ staat loodrecht op raaklijn van $f_{\bot}$. Wiskundig wordt dit vertaald door: $\omega_{RL_{\bot}} = -\frac{1}{\omega_{RL}} = -\frac{1}{y'}$
+De DVG van de orthogonale krommenbundel is
+$$F_{\bot}\bigg(x, y, -\frac{1}{y'}\bigg)$$
+\example{
+    Bepaal de DVG van de orthogonale krommenbundel van alle raaklijnen aan $y = x^2$.
+}{
+    Elk punt op parabool kan beschreven worden als $p(a, a^2)$.
+    \begin{enumerate}
+     \item De vergelijking van de originele krommenbundel
+        \begin{equation*}
+         \begin{split}
+          & y - a^2 = 2a(x - a) \\
+          \Rightarrow & y - a^2 = 2ax - 2a^2 \\
+          \Rightarrow & y = 2ax - a^2
+         \end{split}
+        \end{equation*}
+     \item DVG van de originele krommenbundel
+        $$
+            \begin{cases}
+             y = 2ax - a^2 \\
+             y' = 2a
+            \end{cases} \Rightarrow
+            y = y'x - \frac{y'^2}{4}
+        $$
+     \item DVG van de orthogonale krommenbundel
+        $y' wordt -\frac{1}{y'}$
+        $$ y = \frac{1}{y'}x - \frac{1}{4}\frac{1}{y'^2}$$
+        Uiteindelijk:
+        $$4y'^2y = -4xy' - 1$$
+    \end{enumerate}
+    Deze DVG heeft graad 2, wat niet in deze cursus besproken wordt. Het is dus onoplosbaar.
+
+}
 
 \chapter{Laplacetransformatie}
 \section{De Heaviside functie}
@@ -1099,15 +1448,21 @@ $$\mathcal{L}^{-1}\{F(s)\}(t) = f(t) \qquad \hbox{indien} \qquad \mathcal{L}\{f(
     \end{equation*}
 
 }
-\example{Bereken op 2 verschillende wijzen:
+\example{Bereken:
     $$\mathcal{L}^{-1}\bigg\{\frac{s}{(s^2 + 4)^2}\bigg\}(t)$$
 }{
-    Methode 1:
     \begin{equation*}
      \begin{split}
       \mathcal{L}^{-1}\bigg\{\frac{s}{(s^2 + 4)^2}\bigg\}(t) & = \mathcal{L}^{-1}\bigg\{\frac{s}{(s^2 + 4)}\frac{1}{(s^2 + 4)}\bigg\}(t) \\
                                                              & = \frac{1}{2}\mathcal{L}^{-1}\bigg\{\frac{s}{(s^2 + 4)}\frac{2}{(s^2 + 4)}\bigg\}(t) \\
-                                                             & = \frac{1}{2}(\sin 2t * \cos 2t)
+                                                             & = \frac{1}{2}(\sin 2t * \cos 2t) \\
+                                                             & = \frac{1}{2}\int_0^t \sin 2u \cos [2(t - u)] \; du\\
+                                                             & = \frac{1}{4}\int_0^t \sin(2u - [2(t - u)]) + \sin(2u + [2(t - u)])\; du \\
+                                                             & = \frac{1}{4} \int_0^t \sin(4u - 2t) + \sin 2t\; du \\
+                                                             & = \frac{1}{4}\bigg[ \int_0^t \sin(4u - 2t) \; du  + \int_0^t \sin 2t\; du \bigg] \\
+                                                             & = \frac{1}{16}\bigg[-\cos(4u - 2t)\bigg]_0^t + \frac{1}{4}\bigg[u\sin 2t\bigg]_0^t \\
+                                                             & = \frac{1}{16}\bigg(-\cos 2t + \cos (-2t)\bigg) + \frac{1}{4}t\sin 2t \\
+                                                             & =\frac{1}{4}t\sin 2t
      \end{split}
     \end{equation*}
 

@@ -3,8 +3,6 @@
 #include "sorteermethode.h"
 using namespace std;
 
-
-
 template<class T>
 void InsertionSort<T>::operator()(vector<T> & v)const {
 	for(int i = 1; i < v.size(); i ++){

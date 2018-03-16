@@ -88,8 +88,8 @@ class Sorteermethode {
 			
 			switch(volgorde){
 				case 0: cout << "RANDOM VOLGORDE" << endl; break;
-				case 1: cout << "STIJGENDE VOLGORDE" << endl; break;
-				case 2: cout << "DALENDE VOLGORDE" << endl; break;
+				case 1: cout << "STIJGENDE VOLGORDE (GESORTEERD)" << endl; break;
+				case 2: cout << "DALENDE VOLGORDE (OMGEKEERD GESORTEERD)" << endl; break;
 			}
 				
 			Chrono klok;
