@@ -1,7 +1,7 @@
 #include "sortvector.h"
 #include "insertionsort.h"
 #include "sorteermethode.h"
-using namespace std;
+
 
 template<class T>
 void InsertionSort<T>::operator()(vector<T> & v)const {

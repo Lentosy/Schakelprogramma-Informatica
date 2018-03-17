@@ -7,7 +7,7 @@
     \brief implementeert Insertion Sort
 */
 
-template <typename T>
+template <class T>
 class InsertionSort : public Sorteermethode<T> {
     public: 
 		void operator()(vector<T> & v) const;

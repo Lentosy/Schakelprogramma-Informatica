@@ -5,11 +5,13 @@
 #include "shellsort.cpp"
 #include "sedgewickshellsort.cpp"
 #include "shellshellsort.cpp"
+#include "stdsort.cpp"
 
 #include "volgorde.h"
 #include "csvdata.h"
 #include <ctime>
-using namespace std;
+
+
 
 const int kleinste = 10;     // minimum voor meet functie 
 							 // -> (BUG) 1 niet toegelaten want (1 - 1 = 0), kan geen array aanmaken van 0 elementen 
@@ -23,8 +25,9 @@ int main(int argc, char * argv[]) {
 	InsertionSort<int> isort;
 	SedgewickShellSort<int> sedgeshellsort;
 	ShellShellSort<int> shellshellsort;
+	STDSort<int> stdsort;
 	
-	vector<Sorteermethode<int>*> sorteermethodes = {&isort, &sedgeshellsort, &shellshellsort};
+	vector<Sorteermethode<int>*> sorteermethodes = {&isort, &sedgeshellsort, &shellshellsort, &stdsort};
 	/* Elk sorteeralgoritme in sorteermethode met elkaar vergelijken voor verschillende volgordes */
 	vector<Volgorde> volgordes = {Volgorde::Random, Volgorde::Stijgend, Volgorde::Dalend};
 	
@@ -33,6 +36,3 @@ int main(int argc, char * argv[]) {
 	}
 		
 }
-
-
-

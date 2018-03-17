@@ -10,5 +10,4 @@ enum Volgorde{
 	Dalend
 };
 
-
 #endif
