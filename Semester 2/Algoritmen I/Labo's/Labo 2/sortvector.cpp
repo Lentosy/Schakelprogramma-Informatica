@@ -10,7 +10,7 @@
 #include <map>
 #include <vector>
 #include "sortvector.h"
-using namespace std;
+
 
 /// \fn vul_range vul vector met de waarden T(0)...T(size()-1) in volgorde
 template<class T>

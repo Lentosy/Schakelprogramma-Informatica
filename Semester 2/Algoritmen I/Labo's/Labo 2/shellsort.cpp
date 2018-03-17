@@ -1,6 +1,6 @@
 #include "sortvector.h"
 #include "shellsort.h"
-#include "sorteermethode.h"
+#include "sortmethod.h"
 
 template<class T>
 void shell_sort(vector<T> & v, int series[], int size) {

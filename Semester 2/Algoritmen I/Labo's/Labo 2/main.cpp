@@ -1,22 +1,19 @@
 #include "sortvector.cpp"
 
-#include "sorteermethode.h"
+#include "sortmethod.h"
 #include "insertionsort.cpp"
 #include "shellsort.cpp"
 #include "sedgewickshellsort.cpp"
 #include "shellshellsort.cpp"
 #include "stdsort.cpp"
 
-#include "volgorde.h"
+#include "sequenceorder.h"
 #include "csvdata.h"
 #include <ctime>
 
-
-
-const int kleinste = 10;     // minimum voor meet functie 
-							 // -> (BUG) 1 niet toegelaten want (1 - 1 = 0), kan geen array aanmaken van 0 elementen 
-							 // dit gebeurt bij ShellShellSort
-const int grootste = 100000; // maximum voor meet functie
+const int smallest = 10;    // minimum array size for comparing
+							// (BUG) 1 not allowed because (1 - 1 = 0, used in ShellShellSort). An array of 0 elements cannot exist
+const int biggest = 10000;	// maximum array size for comparing
 
 int main(int argc, char * argv[]) {
 
@@ -27,12 +24,13 @@ int main(int argc, char * argv[]) {
 	ShellShellSort<int> shellshellsort;
 	STDSort<int> stdsort;
 	
-	vector<Sorteermethode<int>*> sorteermethodes = {&isort, &sedgeshellsort, &shellshellsort, &stdsort};
-	/* Elk sorteeralgoritme in sorteermethode met elkaar vergelijken voor verschillende volgordes */
-	vector<Volgorde> volgordes = {Volgorde::Random, Volgorde::Stijgend, Volgorde::Dalend};
+	vector<Sortmethod<int>*> sortmethods = {&isort, &sedgeshellsort, &shellshellsort, &stdsort};
 	
-	for(Volgorde& v : volgordes){
-		Sorteermethode<int>::vergelijk(sorteermethodes, v, kleinste, grootste);
+	/* Compare each sorting algorithm with different array orders*/
+	vector<SequenceOrder>  sequenceOrders = {SequenceOrder::Random, SequenceOrder::Ascending, SequenceOrder::Descending};
+	
+	for(SequenceOrder& sequenceOrder : sequenceOrders){
+		Sortmethod<int>::compare(sortmethods, sequenceOrder, smallest, biggest);
 	}
 		
 }

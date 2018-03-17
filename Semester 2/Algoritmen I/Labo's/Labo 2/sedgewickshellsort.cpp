@@ -1,6 +1,5 @@
 #include "shellsort.h"
 
-
 /** class SedgewickShellSort
 *	\brief Een implementatie van ShellSort dat gebruik maakt van de Sedgewick reeks
 */

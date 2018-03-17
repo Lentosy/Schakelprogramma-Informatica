@@ -1,7 +1,4 @@
 #include "shellsort.h"
-#include <algorithm>
-using namespace std;
-
 
 /** class ShellShellSort
 *	\brief Een implementatie van ShellSort dat gebruik maakt van de Shell reeks

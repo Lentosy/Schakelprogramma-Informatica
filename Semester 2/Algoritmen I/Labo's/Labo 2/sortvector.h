@@ -1,22 +1,23 @@
 #ifndef __SORTVECTOR
 #define __SORTVECTOR
+
+#include <iostream>
+#include <iomanip>   // voor setw
+#include <cstdlib>   // voor rand - opletten!! 
+#include <vector>
+
+using std::istream;
+using std::ostream;
+using std::move;
+using std::swap;
+using std::vector;
+
 /**
  \class sortvector
  \brief is een klasse van sorteerbare vectoren
  Bovenop de vectoreigenschappen zijn er hulpfuncties om sorteervergelijkingen
  te vergemakkelijken.
 */
-#include <iostream>
-using std::istream;
-using std::ostream;
-using std::move;
-using std::swap;
-using std::vector;
-#include <iomanip>   // voor setw
-#include <cstdlib>   // voor rand - opletten!! 
-#include <vector>
-
-
 template<class T>
 class Sortvector : public vector<T>{
   public:

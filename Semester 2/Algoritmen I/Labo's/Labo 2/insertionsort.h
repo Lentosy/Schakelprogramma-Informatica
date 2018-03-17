@@ -1,18 +1,16 @@
 #ifndef __INSERTIONSORT
 #define __INSERTIONSORT
-#include "sortvector.h"
-#include "sorteermethode.h"
+#include "sortmethod.h"
 
 /** class Insertionsort
-    \brief implementeert Insertion Sort
+    \brief implements Insertion Sort
 */
 
 template <class T>
-class InsertionSort : public Sorteermethode<T> {
+class InsertionSort : public Sortmethod<T> {
     public: 
 		void operator()(vector<T> & v) const;
 		string getName() const;
-    
 };
 
 #endif

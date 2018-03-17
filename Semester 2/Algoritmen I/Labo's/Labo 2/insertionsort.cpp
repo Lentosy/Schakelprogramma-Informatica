@@ -1,6 +1,7 @@
-#include "sortvector.h"
 #include "insertionsort.h"
-#include "sorteermethode.h"
+#include "sortmethod.h"
+
+/* Implementation of Insertion Sort */
 
 
 template<class T>
