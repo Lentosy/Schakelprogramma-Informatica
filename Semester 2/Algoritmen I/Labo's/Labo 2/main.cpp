@@ -19,12 +19,12 @@ int main(int argc, char * argv[]) {
 
 	srand(time(0));
 
+	STDSort<int> stdsort;
 	InsertionSort<int> isort;
 	SedgewickShellSort<int> sedgeshellsort;
 	ShellShellSort<int> shellshellsort;
-	STDSort<int> stdsort;
 	
-	vector<Sortmethod<int>*> sortmethods = {&isort, &sedgeshellsort, &shellshellsort, &stdsort};
+	vector<Sortmethod<int>*> sortmethods = {&stdsort, &isort, &sedgeshellsort, &shellshellsort};
 	
 	/* Compare each sorting algorithm with different array orders*/
 	vector<SequenceOrder>  sequenceOrders = {SequenceOrder::Random, SequenceOrder::Ascending, SequenceOrder::Descending};
