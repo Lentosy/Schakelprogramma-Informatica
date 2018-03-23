@@ -3,7 +3,10 @@
 #include <string>
 #include <queue>
 
-#include "doublesmap.cpp"
+// use doublesqueue instead of doublesmap as it is more efficient (thx Xandro)
+// #include "doublesmap.cpp" R I P
+#include "doublesqueue.cpp"
+
 
 using std::cout;
 using std::cerr;
@@ -19,7 +22,7 @@ const int MAX_LINES = 1000000;
 
 
 /*
-* This program looks for doubles in a given file
+* This program looks for doubles in a given file (if 10 and 20 exist in the file, 10 has a double)
 */
 int main() {
 	/* Open file in read mode */
@@ -30,18 +33,15 @@ int main() {
 	}
 	
 	/* Variabele setup */
-	DoublesMap doublesMap;
-	unsigned int number; // The number at the current linenum
-	int linenum = 0;   // the linenumber of the current number
-	int max = MAX_LINES;     // max amount of linenums you wish to read
-	
+	DoublesQueue doublesQueue;
+	unsigned int number; // variable to hold a single number in the file
+		
 	/* Read data */
-	while(!data.fail() && linenum < max){
-		data >> number;
-		doublesMap.add(number);
-	//	cout << doublesMap; FOR DEBUGGING
-		doublesMap.check_doubles();
-		linenum++;
+	while(data >> number){
+		doublesQueue.add(number);
+		if(doublesQueue.check_doubles()){
+			cout << number / 2 << endl;
+		}
 	}
     
 	data.close();   

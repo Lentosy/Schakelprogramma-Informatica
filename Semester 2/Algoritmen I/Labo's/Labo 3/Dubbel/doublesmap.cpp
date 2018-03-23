@@ -1,10 +1,9 @@
 #include <iostream>
 #include "doublesmap.h"
-#include "chrono.h"
 #include <vector>
+
 using std::cout;
 using std::endl;
-
 using std::vector;
 
 
@@ -17,7 +16,7 @@ void DoublesMap::add(unsigned int i){
 
 /*
 * Checks wether or not a double exist
-*  1. Get the last added key  (and also the first added value for action 3.)
+*  1. Get the last added key
 *  2. Check if any of the first n values are smaller than the value of last_key, if so the half of the values do not exist and we erase them from the map
 *  3. Now check if the first_value is equal to the last_key, if yes: first_value / 2 (the original number in the file) has a double. Also remove this from the map
 *  
@@ -44,7 +43,6 @@ void DoublesMap::check_doubles(){
 		// normal iterator to get all the values smaller than last_key
 	iterator it_val = begin();
 
-	
 	// 2.
 		// get all the values that are smaller than last_key and remove these as they have no doubles
 	if (last_key > it_val->second){ 
@@ -59,7 +57,7 @@ void DoublesMap::check_doubles(){
 	it_val = begin();
 	unsigned int first_value = it_val->second;
 	if(last_key == first_value){
-		cout << first_value / 2 << " has a double in the file" <<  endl;
+		cout << first_value / 2  << endl;
 		erase(it_val);
 	}	
 

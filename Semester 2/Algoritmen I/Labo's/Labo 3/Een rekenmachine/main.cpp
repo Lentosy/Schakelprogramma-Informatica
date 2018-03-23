@@ -8,7 +8,6 @@ using std::endl;
 
 int main(void){
 	Calculator calculator;
-	
 	while(!calculator.should_stop()){
 		cout << ":";
 		cin >> calculator;

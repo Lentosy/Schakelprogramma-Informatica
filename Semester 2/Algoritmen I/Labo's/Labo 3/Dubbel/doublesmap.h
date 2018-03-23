@@ -6,7 +6,8 @@ using std::map;
 using std::ostream;
 
 /*
-* This class inherits from map. They key is an unsigned int which exists in the file, the value is the double value of the key
+* This class inherits from map. 
+* They key is an unsigned int which exists in the file, the value is the double value of the key
 */
 class DoublesMap : public map<unsigned int, unsigned int> {
 	public:

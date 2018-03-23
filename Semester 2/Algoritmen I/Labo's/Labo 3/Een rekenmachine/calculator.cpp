@@ -4,17 +4,29 @@
 #include <string>
 #include <stdlib.h>
 #include <math.h>
+#include <functional>
 using std::ostream;
 using std::string;
+using std::function;
 
 /* PUBLIC METHODS */
+
+/*
+* Default constructor
+*/
 Calculator::Calculator() : stop(false) { };
 
-bool Calculator::should_stop(){
+/*
+* Returns wether or not the stop sign has been given;
+*/
+bool Calculator::should_stop() const{
 	return stop;
 }
 
-ostream& operator<<(ostream & stream, const Calculator& calculator){
+/*
+* Prints the full stack on a single line
+*/
+ostream& operator<<(ostream & stream, const Calculator & calculator){
 	Calculator hulp(calculator); 
 	while(!hulp.empty()){
 		stream << hulp.top() << " ";
@@ -23,10 +35,14 @@ ostream& operator<<(ostream & stream, const Calculator& calculator){
 	return stream;
 }
 
+/*
+* Takes input for the next operation. 
+* If the input is a number, it gets pushed on the stack, otherwise the input will be evaluated and matched with the appropriate function
+*/
 istream& operator>>(istream & stream, Calculator & calculator){
 	string input;
 	stream >> input;
-	int conv = atoi(input.c_str());
+	unsigned int conv = atoi(input.c_str());
 	if(conv != 0){
 		calculator.push(conv);
 	}else{
@@ -44,9 +60,9 @@ istream& operator>>(istream & stream, Calculator & calculator){
 				calculator.divide();
 				break;
 			case 's':
-				calculator.power();
+				calculator.square();
 				break;
-			case 'v':
+			case 'r':
 				calculator.square_root();
 				break;
 			case 'c':
@@ -62,51 +78,89 @@ istream& operator>>(istream & stream, Calculator & calculator){
 
 
 /* PRIVATE METHODS */
-void Calculator::get_two_top_elements(unsigned int &n1, unsigned int &n2){
-	n1 = top();
-	clear();
-	n2 = top();
-	clear();
-}
 
+/*
+* Removes the top element
+*/
 void Calculator::clear(){ 
 	pop();
 }
 
+/*
+*
+*/
+void Calculator::do_unary_operation(function<unsigned int(unsigned int)> func){
+	unsigned int n;
+	if(!empty() && size() >= 1){
+		n = top(); clear();
+		push(func(n));
+	} 
+}
+
+/*
+* Replaces the top element with the square root of itself
+*/
 void Calculator::square_root(){
-	unsigned int n = top();
-	clear();
-	push(sqrt(n));
+	do_unary_operation([](unsigned int n){
+		return sqrt(n);
+	});
 }
 
-void Calculator::power(){ 
-	unsigned int n = top();
-	clear();
-	push(n * n);
+/*
+* Replaces the top element with the square of itself
+*/
+void Calculator::square(){ 
+	do_unary_operation([](unsigned int n){
+		return n * n;
+	});
 }
 
-void Calculator::plus(){ 
-	unsigned int n1, n2;
-	get_two_top_elements(n1, n2);
-	push(n1 + n2);
+void Calculator::do_binary_operation(function<unsigned int(unsigned int, unsigned int)> func){
+	unsigned int x;
+	unsigned int y;
+	if(!empty() && size() >= 2){
+		x = top(); clear();
+		if(!empty()){
+			y = top(); clear();
+			push(func(x, y));
+		}
+	}
 }
 
+/*
+* Adds the first and second element on the stack together and pushes the result on the stack
+*/
+void Calculator::plus(){
+	do_binary_operation([](unsigned int x, unsigned int y){
+		return x + y;
+	});
+}
+
+/*
+* Subtracts the first and second element on the stack together and pushes the result on the stack
+*/
 void Calculator::subtract(){ 
-	unsigned int n1, n2;
-	get_two_top_elements(n1, n2);
-	push(n1 - n2);
+	do_binary_operation([](unsigned int x, unsigned int y){
+		return x - y;
+	});
 }
 
+/*
+* Multiplies the first and second element on the stack together and pushes the result on the stack
+*/
 void Calculator::multiply(){
-	unsigned int n1, n2;
-	get_two_top_elements(n1, n2);
-	push(n1 * n2);
+	do_binary_operation([](unsigned int x, unsigned int y){
+		return x * y;
+	});
 }
 
+/*
+* Divides the first and second element on the stack together and pushes the result on the stack
+*/
 void Calculator::divide(){ 
-	unsigned int n1, n2;
-	get_two_top_elements(n1, n2);
-	push(n1 / n2);
+	do_binary_operation([](unsigned int x, unsigned int y){
+		return x / y;
+	});
 }
 
 

@@ -3,48 +3,30 @@
 
 #include <stack>
 #include <iostream>
+#include <functional>
+using std::function;
 using std::ostream;
 using std::istream;
 
 class Calculator : protected std::stack<unsigned int> {
 	public:
 		Calculator();
-		bool should_stop();
+		bool should_stop() const;
 		friend ostream& operator<<(ostream & stream, const Calculator& calculator);
 		friend istream& operator>>(istream & stream, Calculator& calculator);
 	private:
-		void get_two_top_elements(unsigned int &n1, unsigned int &n2);
-		/*
-		* Removes the top element
-		*/
 		void clear();
-		/*
-		* Take the square root of the top element
-		*/
+		
+		
+		void do_unary_operation(function<unsigned int(unsigned int)> func);
 		void square_root();
-		/*
-		* Multiply the top element by 2
-		*/
-		void power();
-		/*
-		* Adds the two top elements with each other and place the result on stack
-		*/
+		void square();
+		
+		void do_binary_operation(function<unsigned int(unsigned int, unsigned int)> func);
 		void plus();
-		/*
-		* Subtract the two top elements with each other and place the result on stack
-		*/
 		void subtract();
-		/*
-		* Multiply the two top elements with each other and place the result on stack 
-		*/
 		void multiply();
-		/*
-		* Divide the two top elements with each other and place the result on stack
-		*/
 		void divide();
-		/*
-		* Checks wether or not the calculator should stop asking for input
-		*/
 
 		bool stop;
 		
