@@ -87,7 +87,7 @@ void Calculator::clear(){
 }
 
 /*
-*
+* This method executes the unary operation given as a function and adds the result on the stack.
 */
 void Calculator::do_unary_operation(function<unsigned int(unsigned int)> func){
 	unsigned int n;
@@ -115,6 +115,9 @@ void Calculator::square(){
 	});
 }
 
+/*
+* This method executes the binary operation given as a function and adds the result on the stack.
+*/
 void Calculator::do_binary_operation(function<unsigned int(unsigned int, unsigned int)> func){
 	unsigned int x;
 	unsigned int y;

@@ -16,8 +16,7 @@ class Calculator : protected std::stack<unsigned int> {
 		friend istream& operator>>(istream & stream, Calculator& calculator);
 	private:
 		void clear();
-		
-		
+			
 		void do_unary_operation(function<unsigned int(unsigned int)> func);
 		void square_root();
 		void square();
