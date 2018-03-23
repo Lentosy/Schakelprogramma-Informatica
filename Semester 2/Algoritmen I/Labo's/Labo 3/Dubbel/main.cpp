@@ -30,22 +30,25 @@ int main() {
 		cerr << "Could not open file: " << FILENAME;
 		return -1;
 	}
-	
+		
 	/* Variabele setup */
 	DoublesMap container;
 	unsigned int number; // variable to hold a single number in the file
-	Chrono clock;
+	
 	/* Read data */
+	Chrono clock;
 	clock.start();
-	while(data >> number){
+	while(data >> number{
 		container.add(number);
 		if(container.check_doubles()){
-			cout << number / 2 << endl;
+			cout << number  << endl;
 		}
 	}
 	clock.stop();
 	cout << "Total time: " << clock.time() << " seconds" << endl;
-    
-	data.close();   
+	data.close(); 	
+	
+
+  
 	return 0;
 }
