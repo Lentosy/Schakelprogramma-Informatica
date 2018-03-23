@@ -11,11 +11,9 @@ int main(void){
 	while(!calculator.should_stop()){
 		cout << ":";
 		cin >> calculator;
-		cout << endl;
-		cout << calculator << endl;	
-		cout << endl;
-		cout << "------";
-		cout << endl;
+		cout << endl << calculator << endl;
+		cout << "------" << endl;
+
 	}
 	
 	return 0;

@@ -1233,6 +1233,185 @@ $$
 }
 \end{itemize}
 
+\chapter{Discrete verdelingen}
+\begin{itemize}[label={}]
+ \item {\exercise{
+    8. Het zelfmoordpercentage in een Amerikaanse staat bedraagt per maand 1 per 100 000 inwoners.
+    \begin{enumerate}
+     \item Wat is de kans dat van 400 000 inwoners in deze staat er 8 of meer zelfmoorden plaatsgrijpen in een bepaalde maand?
+     \item Wat is de kans dat er tenminste 2 maanden in het jaar zullen zijn met minstens 8 zelfmoorden?
+    \end{enumerate}
+ }{
+    \begin{enumerate}
+     \item  Gem \# zelfmoorden bij 100 000 inw/maand = 1\\
+            Gem \# zelfmoorden bij 400 000 inw/maand = 4 \\
+            Dit is poisson verdeeld met $\lambda = 4$ dus $f(i) = e^{-4}\frac{4^i}{i!}$
+            \begin{equation*}
+            \begin{split}
+            P(x \geq 8) & = 1 - p(x < 8) \\
+                        & = 1 - \sum_{i = 0}^{7}e^{-4}\frac{4^i}{i!} \\
+                        & = 1 - e^{-4}\sum_{i = 0}^{7}\frac{4^i}{i!} \\
+                        & \approx 0.0511
+            \end{split}
+            \end{equation*}
+    \item \begin{itemize}
+            \item {n = 2}
+            \item {i = \# maanden met $>$ 8 zelfmoorden}
+            \item {p = 0.0511}
+          \end{itemize}
+          \begin{equation*}
+            \begin{split}
+                P(i \geq 2) &= 1 - P(i < 2) \\
+                            &= 1 - \bigg(C_{12}^{0}p^{0}(1 - p)^{12} + C_{12}^{1}p^{1}(1 - p)^{11}\bigg) \\
+                            &\approx 0.1227
+            \end{split}
+          \end{equation*}  
+    \end{enumerate}
+ }}
+ \item {
+    \exercise{
+        Extra oefening.         
+        Het aantal olietankers dat per dag een bepaalde haven binnenvaart is poisson verdeeld met gemiddelde 2. De haven kan ten hoogste 3 olietankers per dag verwerken. Als er 2 olietankers per dag binnenvaren dan worden ze doorgestuurd.
+            \begin{enumerate}
+             \item Bepaal de kans dat er op een dag olietankers worden bediend.
+             \item Bepaal het gemiddelde aantal olietankers dat per dag bediend wordt.
+            \end{enumerate}
+    }{
+        \begin{enumerate}
+         \item \begin{itemize}
+                    \item $x_i$ : \# olietankers die binnenvaren 
+                    \item $x$   : poisson verdeeld
+                    \item $\lambda = 2 \Rightarrow f(i) = e^{-2}\frac{2^i}{i!}$
+                \end{itemize}
+                \begin{equation*}
+                 \begin{split}
+                  P(x > 3- & = 1 - P(x < 3) \\
+                            & = 1 - \sum_{i = 0}^{3}e^{-2}\frac{2^i}{i!} \\
+                            & = 1 - e^{-2}(1 + 2 + 2 + \frac{8}{6}) \\
+                            & \approx 0.1429
+                 \end{split}
+                \end{equation*}
+        \item y: \# olietankers die bediend worden $\Rightarrow$ E[y] $\Rightarrow \sum x_if(x_i)$
+            \begin{equation*}
+             \begin{split}
+              & 0f(0) + 1f(1) + 2f(2) + 3f(3) + 3P(x > 3) \\
+              & = 0 + 1\cdot 2e^{-2} + 2\cdot 2e^{-2}+ 3\cdot \frac{8}{6}e^{-2} + 3\cdot 0.1429\\
+              & \approx 1.7821
+             \end{split}
+            \end{equation*}
+        \end{enumerate}
+    }
+ }
+ \item {
+    \exercise{
+        13. Een machine produceert bouten waarvan er $2\%$ defect zijn. Wat is de kans dat bij 50 bouten ten hoogste 2 defect zijn?
+    }{
+        \begin{itemize}
+            \item n = 50
+            \item p = 0.02
+            \item i : \# bouten dat defect zijn
+            \item i: binomiaal verdeeld
+        \end{itemize}
+        \begin{equation*}
+         \begin{split}
+          p(i \leq 2) & = \sum_{i = 0}^{2} C_{50}^ip^i(1 - p)^{50 - i} \\
+                      & = 0.9216
+         \end{split}
+        \end{equation*}
+        Kan ook opgelost worden met de benadering van poisson want $n = 50 \geq 50$ en $p = 0.02 \leq 0.1$ dus $\lambda = np = 1$ en $f(i) = e^{-1}\frac{1}{i!}$
+        \begin{equation*}
+         \begin{split}
+          P(i \leq 2 ) & = \sum_{i = 0}^{2}e^{-1}\frac{1}{i!} \\
+                       & \approx 0.9197
+         \end{split}
+        \end{equation*}
+    }
+ }
+ \item {
+    \exercise{ 
+        17. De kans dat een geïnfecteerd persoon sterft aan een ademhalingsinfectie is 0.002. Bepaal de kans dat er minder dan 5 personen van een groep van 2000 geïnfecteerde personen zullen sterven. Gebruik de ongelijkheid van Chebychev en interpreteer het interval $]\mu - 2\sigma, \mu + 2\sigma[$
+    }{
+        De verdeling is binomiaal verdeeld maar we gebruiken de poisson benadering (+ bewijs).
+        \begin{itemize}
+            \item {$n = 2000 \geq 50$}
+            \item {$p = 0.002 \leq 0.1$}
+            \item {$\lambda = np = 2000\cdot(0.002) = 4$}
+            \item {$f(i) = e^{-4}\frac{2^i}{i!}$}
+        \end{itemize}
+        \begin{enumerate}
+         \item 
+                \begin{equation*}
+                    \begin{split}
+                     P(i < 5) & = \sum_{i = 0}^{5}e^{-4}\frac{2^i}{i!}\\
+                              & \approx 0.6228
+                    \end{split}
+                \end{equation*}
+         \item
+            Het interval $]\mu - 2\sigma, \mu + 2\sigma[$:
+            \begin{equation*}
+             \begin{split}
+              & P(|x -\mu| < k\sigma) \geq 1 - \frac{1}{k^2} \\
+               \Leftrightarrow & P(-k\sigma + \mu < x < k\sigma + \mu) \geq 1 - \frac{1}{k^2} \\
+               & \mu = \lambda = 2 \rightarrow \sigma = \sqrt{\lambda} = 2 \\
+               \hbox{dus} & ]4 - 2\cdot 2, 4 + 2\cdot 2[ \Rightarrow ]0, 8[ \\
+               \Leftrightarrow & P(0 < x < 8) \geq 1 - \frac{1}{k^2} \\
+                              & = 0.75\\
+             \end{split}
+            \end{equation*}
+
+        \end{enumerate}
+
+    }
+ }
+ \item {
+    \exercise{ 
+        18. Uit een kaartspel met 52 kaarten wordt 1 kaart getrokken en teruggelegd.
+        \begin{enumerate}
+         \item Wat is de kans det men bij de vierde beurt voor het eerst een aas trekt
+         \item Wat is de kans dat men minstens zes beurten nodig heeft om een aas te trekken
+        \end{enumerate}
+    }{
+        Geometrische verdeling gebruiken
+        \begin{enumerate}
+         \item $x = 4$ en $p = \frac{1}{13}$
+            \begin{equation*}
+            \begin{split}
+            f(4) & = \bigg(\big(1 - \frac{1}{13}\big)^{4 - 1}\cdot\frac{1}{13}\bigg) \\
+                    & = \frac{\big(1 - \frac{1}{13}\big)^{3}}{13} \\
+                    & \approx 0.0605
+            \end{split}
+            \end{equation*}
+         \item 
+            \begin{equation*}
+             \begin{split}
+              P(\hbox{minstens 6 beurten nodig om een aas te trekken}) & = \big(\frac{12}{13}\big)^{5} \\
+              & \approx 0.6702
+             \end{split}
+            \end{equation*}
+        \end{enumerate}
+    }
+ }
+ \item{
+    \exercise{
+        Extra oefening. Het aantal fouten dat een bepaalde secretaresse op een blad typt is poisson verdeeld met gemiddelde 1. De secretaresse typt 50 bladzijden. Wat is de kans dat de eerste fout op bladzijde 3 staat.
+    }{
+        \begin{itemize}
+            \item x: eerste blad met typfout $\rightarrow P(x = 3) = (1 - p)^2p$
+            \item y: poisson met $\lambda = 1 \rightarrow f(i) = e^{-1}\frac{1^i}{i!}$
+        \end{itemize}
+        \begin{equation*}
+         \begin{split}
+          & P(y = 1) = 1 - f(0) = 1 - \frac{1}{e} \\
+          & P(x = 3) = \big(\frac{1}{e}\big)^{2}\big(1 -\frac{1}{e}\big) \\
+          & \approx 0.0855
+         \end{split}
+        \end{equation*}
+
+    }
+ }
+\end{itemize}
+
+
 \chapter{Herhalingsoefeningen}
 \begin{itemize}[label={}]
  \item {\exercise{1.Een zak bevat 10 rode, 6 groene en 4 blauwe bollen. Men trekt gelijktijdig 7 bollen uit de zak. Wat is de kans

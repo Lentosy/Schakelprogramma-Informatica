@@ -12,7 +12,7 @@ using std::ostream;
 class DoublesMap : public map<unsigned int, unsigned int> {
 	public:
 		void add(unsigned int);
-		void check_doubles();
+		bool check_doubles();
 		friend ostream& operator<<(ostream &out, const DoublesMap & doublesMap);
 };
 

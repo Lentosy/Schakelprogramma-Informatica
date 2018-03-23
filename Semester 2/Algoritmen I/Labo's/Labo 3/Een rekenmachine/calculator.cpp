@@ -87,7 +87,7 @@ void Calculator::clear(){
 }
 
 /*
-* This method executes the unary operation given as a function and adds the result on the stack.
+* This method executes the unary operation given as a function. The top element gets consumed and replace with the result of func
 */
 void Calculator::do_unary_operation(function<unsigned int(unsigned int)> func){
 	unsigned int n;
@@ -97,18 +97,14 @@ void Calculator::do_unary_operation(function<unsigned int(unsigned int)> func){
 	} 
 }
 
-/*
-* Replaces the top element with the square root of itself
-*/
+
 void Calculator::square_root(){
 	do_unary_operation([](unsigned int n){
 		return sqrt(n);
 	});
 }
 
-/*
-* Replaces the top element with the square of itself
-*/
+
 void Calculator::square(){ 
 	do_unary_operation([](unsigned int n){
 		return n * n;
@@ -116,7 +112,7 @@ void Calculator::square(){
 }
 
 /*
-* This method executes the binary operation given as a function and adds the result on the stack.
+* This method executes the binary operation given as a function. The first and second element gets consumed and replace with the result of func
 */
 void Calculator::do_binary_operation(function<unsigned int(unsigned int, unsigned int)> func){
 	unsigned int x;
@@ -130,36 +126,28 @@ void Calculator::do_binary_operation(function<unsigned int(unsigned int, unsigne
 	}
 }
 
-/*
-* Adds the first and second element on the stack together and pushes the result on the stack
-*/
+
 void Calculator::plus(){
 	do_binary_operation([](unsigned int x, unsigned int y){
 		return x + y;
 	});
 }
 
-/*
-* Subtracts the first and second element on the stack together and pushes the result on the stack
-*/
+
 void Calculator::subtract(){ 
 	do_binary_operation([](unsigned int x, unsigned int y){
 		return x - y;
 	});
 }
 
-/*
-* Multiplies the first and second element on the stack together and pushes the result on the stack
-*/
+
 void Calculator::multiply(){
 	do_binary_operation([](unsigned int x, unsigned int y){
 		return x * y;
 	});
 }
 
-/*
-* Divides the first and second element on the stack together and pushes the result on the stack
-*/
+
 void Calculator::divide(){ 
 	do_binary_operation([](unsigned int x, unsigned int y){
 		return x / y;

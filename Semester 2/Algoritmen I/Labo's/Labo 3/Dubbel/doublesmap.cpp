@@ -34,32 +34,36 @@ void DoublesMap::add(unsigned int i){
 *	for map 1: The key '20' is equal to the first value '20', the number 10 has a double in the file, the entry '10 : 20' also gets removed from the map
 *	for map 2: The key '45' is bigger than '40' and '44', both these entries need to be removed and have no double in the file
 */
-void DoublesMap::check_doubles(){	
-
+bool DoublesMap::check_doubles(){	
+	bool result = false;
 	// 1.
 		// reverse iterator to get the last key (no need to iterate but i need to get the element somehow)
 	reverse_iterator it_key = rbegin();
 	unsigned int last_key = it_key->first;
+	if(last_key % 2 == 0){
 		// normal iterator to get all the values smaller than last_key
-	iterator it_val = begin();
-
-	// 2.
-		// get all the values that are smaller than last_key and remove these as they have no doubles
-	if (last_key > it_val->second){ 
-		while(it_val != end() && it_val->second < last_key){
+		iterator it_val = begin();
+	
+		// 2.
+			// get all the values that are smaller than last_key and remove these as they have no doubles
+		if (last_key > it_val->second){ 
+			while(it_val != end() && it_val->second < last_key){
+				erase(it_val);
+				it_val++;
+			}
+		}
+		
+		// 3.
+			// reset value iterator to beginning
+		it_val = begin();
+		unsigned int first_value = it_val->second;
+		if(last_key == first_value){
 			erase(it_val);
-			it_val++;
+			result = true; // at last, there exists a double
 		}
 	}
 	
-	// 3.
-		// reset value iterator to beginning
-	it_val = begin();
-	unsigned int first_value = it_val->second;
-	if(last_key == first_value){
-		cout << first_value / 2  << endl;
-		erase(it_val);
-	}	
+	return result;
 
 }
 
