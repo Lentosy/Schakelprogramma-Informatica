@@ -1,5 +1,4 @@
 #include "insertionsort.h"
-#include "sortmethod.h"
 
 /* Implementation of Insertion Sort */
 
@@ -18,6 +17,6 @@ void InsertionSort<T>::operator()(vector<T> & v)const {
 }
 
 template<class T>
-string InsertionSort<T>::getName() const{
+string InsertionSort<T>::get_name() const{
 	return "Insertion Sort";
 }

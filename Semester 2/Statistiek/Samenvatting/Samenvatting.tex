@@ -33,6 +33,8 @@
       
       Voorbeeld: #1
       
+      \underline{Uitwerking}
+      
       #2
       
       \hrulefill
@@ -215,7 +217,7 @@ Het ordenen van continue veranderlijken wordt gedaan met klassen.
 \subsection{Momenten van een steekproef}
 \todo{epic}
 
-\chapter{verdelingsfuncties van een populatie}
+\chapter{Verdelingsfuncties van een populatie}
 Twee soorten verdelingsfuncties:
 \begin{itemize}
 	\item Kansfunctie: bij discrete kansen (sommeren)
@@ -557,7 +559,7 @@ Gebruik enkel deze ongelijkheid als er GEEN informatie is over de verdelingsfunc
      \end{split}
     \end{equation*}
 }
-\chapter{Discrete variabelen}
+\chapter{Discrete verdelingen}
 \section{Uniforme discrete verdeling}
 Elke kans is gelijk.
 
@@ -735,6 +737,59 @@ Controle geldige kansfunctie:
   & = 1
  \end{split}
 \end{equation*}
+
+\chapter{Continue verdelingen}
+\section{Uniforme continue verdeling}
+$$f(x) = \frac{1}{b - a} \hbox{ met } x \in \hbox{ uitkomsteninterval } = [a, b]$$
+\section{Exponentiële verdeling}
+$$f(x) = \frac{1}{\theta}e^{-\frac{x}{\theta}}$$
+\section{Normale verdeling}
+Dichtheidsfunctie normale verdeling:
+$$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}}$$
+x is normaal verdeeld = $x : N(\mu, \sigma)$
+\subsection{Eigenschap}
+Als x normaal is verdeeld dan is y = ax + b ook normaal verddeeld. m.a.w. $x : N(\mu, \sigma)$ en $y = ax + b$ dan is $y : N(\alpha\mu + b, |a|\sigma)$
+
+Bewijs:
+\begin{equation*}
+ \begin{split}
+  P(c \leq y \leq d) & = P(c \leq ax + b \leq d) \\
+                     & = P\big(\frac{c - b}{a} \leq x \leq \frac{d-b}{a}\big) \\
+                     & = \int_{\frac{c - b}{a}}^{\frac{d-b}{a}} \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2}} \; dx  \\
+                     & \hbox{stel } x = \frac{y-b}{a} \\
+                     & \hbox{dan } \frac{d-b}{a} = \frac{y-b}{a} \Rightarrow y = d \\
+                      & \hbox{en } \frac{c-b}{a} = \frac{y-b}{a} \Rightarrow y = c \\
+                      & \hbox{en } dx = \frac{1}{a}dy \\
+                     & = \frac{1}{a}\int_c^d \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\frac{(\frac{y-b}{a} - \mu)^2}{\sigma^2}} \; dy \\
+                     & = \int_c^d \frac{1}{\sigma_y\sqrt{2\pi}}
+                        e^{-\frac
+                                    {1}
+                                    {2}
+                            \frac
+                                    {(y - \mu_y)^2}
+                                    {\sigma^2}} \; dy \\
+                    & = \int_c^d
+                            f_y(y)\; dy
+ \end{split}
+\end{equation*}
+\section{Lineaire combinatie}
+Als $x_i : N(\mu_i, \sigma_i)(i = 1, 2, ..., n)$ onafhankelijke variabelen dan is
+
+$$y = \sum_{i = 1}^{n}a_i x_i + b : N(\sum_{i = 1}^{n} a_i \mu_i + b , \sqrt{\sum_{i = 1}^{n} a_i^2\sigma_i^2})$$
+\example{
+    Stel $x:N(1, 3) \qquad y:N(2, 2)$
+    
+    Bereken $x - 2y$
+}{
+    \begin{equation*}
+     \begin{split}
+      x - 2y & : N(1 - 2\cdot 2, \sqrt{1^2\cdot3^2 + 2^2\cdot2^2}) \\
+             & = N(-3, 5)  
+     \end{split}
+    \end{equation*}
+
+}
+
 
 
 \part{Oefeningen}

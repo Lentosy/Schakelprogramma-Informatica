@@ -24,7 +24,7 @@ class Sortmethod {
 		/**
 		* Geeft de naam van de sorteermethode terug
 		*/
-		virtual string getName() const = 0;
+		virtual string get_name() const = 0;
 
 		/**
 		* Deze static functie zal verschillende sorteermethodes vergelijken op basis van de volgorde. De volgorde heeft drie mogelijke waarden:
@@ -50,7 +50,7 @@ class Sortmethod {
 				Chrono klok;
 				Sortmethod<T> * sortmethod = sortmethods[i];
 				cout << "\t";
-				/* OUTPUT */ cout << setw(columnwidth) <<  sortmethod->getName();
+				/* OUTPUT */ cout << setw(columnwidth) <<  sortmethod->get_name();
 				int arraysize = smallest;
 				while(arraysize <= biggest) {
 					// geen switch nodig voor random aangezien we toch sowieso de

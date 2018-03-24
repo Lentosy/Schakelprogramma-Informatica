@@ -17,7 +17,7 @@ class SedgewickShellSort : public ShellSort<T> {
 
 		}
 		
-		string getName() const{
+		string get_name() const{
 			return "Sedgewick Shell Sort";
 		}
 };

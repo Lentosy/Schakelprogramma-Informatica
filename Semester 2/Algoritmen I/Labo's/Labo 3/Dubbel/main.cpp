@@ -32,13 +32,14 @@ int main() {
 	}
 		
 	/* Variabele setup */
-	DoublesMap container;
+	DoublesQueueithe container;
 	unsigned int number; // variable to hold a single number in the file
+	Chrono clock;
 	
 	/* Read data */
-	Chrono clock;
 	clock.start();
-	while(data >> number{
+
+	while(data >> number){
 		container.add(number);
 		if(container.check_doubles()){
 			cout << number  << endl;

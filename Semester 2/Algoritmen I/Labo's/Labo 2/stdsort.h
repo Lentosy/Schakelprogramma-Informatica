@@ -7,7 +7,7 @@ template<class T>
 class STDSort : public Sortmethod<T> {
 	public:
 		void operator()(vector<T> & v) const;
-		string getName() const;	
+		string get_name() const;	
 };
 
 #endif

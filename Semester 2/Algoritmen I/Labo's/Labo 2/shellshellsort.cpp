@@ -19,8 +19,8 @@ class ShellShellSort : public ShellSort<T> {
 			int size = vhulp.size();
 			int series[size - 1]; // indien size = 1, dan runtime error, dus geen size 1 pls
 
-			for(int i = 0; i < size; i++){
-				series[i] = vhulp[i];
+			for(int i = size - 1; i >= 0; i--){ // add in reverse order
+				series[size - i] = vhulp[i];
 			}
 	
 			
@@ -28,7 +28,7 @@ class ShellShellSort : public ShellSort<T> {
 	
 		}
 		
-		string getName() const{
+		string get_name() const{
 			return "Shell Shell Sort";
 		}
 };

@@ -6,6 +6,9 @@
 #include "sedgewickshellsort.cpp"
 #include "shellshellsort.cpp"
 #include "stdsort.cpp"
+#include "selectionsort.cpp"
+#include "mergesort.cpp"
+#include "quicksort.cpp"
 
 #include "sequenceorder.h"
 #include "csvdata.h"
@@ -23,8 +26,18 @@ int main(int argc, char * argv[]) {
 	InsertionSort<int> isort;
 	SedgewickShellSort<int> sedgeshellsort;
 	ShellShellSort<int> shellshellsort;
+	SelectionSort<int> selectionsort;
+	MergeSort<int> mergesort;
+	QuickSort<int> quicksort;
 	
-	vector<Sortmethod<int>*> sortmethods = {&stdsort, &isort, &sedgeshellsort, &shellshellsort};
+	vector<Sortmethod<int>*> sortmethods = {&stdsort, 
+											&isort, 
+											&sedgeshellsort,
+											&shellshellsort, 
+											&selectionsort,
+											&mergesort,
+											&quicksort
+											};
 	
 	/* Compare each sorting algorithm with different array orders*/
 	vector<SequenceOrder>  sequenceOrders = {SequenceOrder::Random, SequenceOrder::Ascending, SequenceOrder::Descending};

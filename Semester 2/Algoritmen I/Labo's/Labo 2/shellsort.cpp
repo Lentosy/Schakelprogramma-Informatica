@@ -1,10 +1,9 @@
-#include "sortvector.h"
 #include "shellsort.h"
-#include "sortmethod.h"
 
 template<class T>
 void shell_sort(vector<T> & v, int series[], int size) {
 
+	//the series should be in ascending order: {1, 3, 5, .... , 949784, ...}
 	int t = 1;
 	int k = series[size - t];
 

@@ -9,7 +9,7 @@ template <class T>
 class ShellSort : public Sortmethod<T> {
 	public:
 		virtual void operator()(vector<T> & v) const = 0;
-		virtual string getName() const = 0;
+		virtual string get_name() const = 0;
 		void shell_sort(vector<T> & v, int series[], int size) const;
 };
 
