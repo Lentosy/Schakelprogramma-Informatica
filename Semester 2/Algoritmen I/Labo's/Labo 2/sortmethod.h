@@ -12,7 +12,7 @@ using std::endl;
 using std::cout;
 using std::setw;
 using std::string;
-
+using std::logic_error;
 /** class Sorteermethode
     \brief abstracte klasse van methodes die een vector sorteren
 */
@@ -43,40 +43,47 @@ class Sortmethod {
 		static void compare(vector<Sortmethod<T>*> &sortmethods, SequenceOrder sequenceOrder, const int smallest, const int biggest) {
 			const int columnwidth=20;
 
-			printSequenceOrder(sequenceOrder); 
+			printSequenceOrder(sequenceOrder);
 			printHeaderRow(smallest, biggest, columnwidth); /* Naam algoritme    10    100    1000 ...... */
-			
-			for(int i = 0; i < sortmethods.size(); i ++) {
-				Chrono klok;
-				Sortmethod<T> * sortmethod = sortmethods[i];
-				cout << "\t";
-				/* OUTPUT */ cout << setw(columnwidth) <<  sortmethod->get_name();
-				int arraysize = smallest;
-				while(arraysize <= biggest) {
-					// geen switch nodig voor random aangezien we toch sowieso de
-			// default constructor moeten aanroepen (die de elementen random plaatst)	
-					Sortvector<int> sv(arraysize);
-					switch(sequenceOrder){
-						case 1: {
-							sv.vul_range();
-							break;
-						}
-						case 2: {
-							sv.vul_omgekeerd();
-							break;
-						}
-					}
-		
-					/* sorteermethode tijdsregistratie */
-					klok.start();
-					sortmethod->operator()(sv);
-					klok.stop();
 
-					/* OUTPUT */ cout << setw(columnwidth / 2) << klok.tijd();
-					arraysize *= 10;
+
+			for(int i = 0; i < sortmethods.size(); i ++) {
+				try {
+
+
+					Chrono klok;
+					Sortmethod<T> * sortmethod = sortmethods[i];
+					cout << "\t";
+					/* OUTPUT */ cout << setw(columnwidth) <<  sortmethod->get_name();
+					int arraysize = smallest;
+					while(arraysize <= biggest) {
+						// geen switch nodig voor random aangezien we toch sowieso de
+						// default constructor moeten aanroepen (die de elementen random plaatst)
+						Sortvector<int> sv(arraysize);
+						switch(sequenceOrder) {
+							case 1: {
+								sv.vul_range();
+								break;
+							}
+							case 2: {
+								sv.vul_omgekeerd();
+								break;
+							}
+						}
+
+						/* sorteermethode tijdsregistratie */
+						klok.start();
+						sortmethod->operator()(sv);
+						klok.stop();
+
+						/* OUTPUT */ cout << setw(columnwidth / 2) << klok.tijd();
+						arraysize *= 10;
+					} // end while
+					/* OUTPUT */ cout << endl;
+				} catch(logic_error e) {
+					cout << setw(20) << e.what() << endl;
 				}
-				/* OUTPUT */ cout << endl;
-			}
+			} // end for
 			/* OUTPUT */ cout << endl;
 		};
 	private:
@@ -93,7 +100,7 @@ class Sortmethod {
 					break;
 			}
 		};
-		
+
 		static void printHeaderRow(const int smallest, const int biggest, const int columnwidth) {
 			cout << "\t";
 			cout << setw(columnwidth) << "Name of algorithm";
@@ -103,23 +110,23 @@ class Sortmethod {
 				arraysize *= 10;
 			}
 			cout << endl;
-			
+
 			cout << "\t";
-			for(int i = 0; i < columnwidth; i++){
+			for(int i = 0; i < columnwidth; i++) {
 				cout << "-";
 			}
 			arraysize = smallest;
 			while(arraysize <= biggest) {
-				for(int i = 0;  i < columnwidth/ 2; i++){
+				for(int i = 0;  i < columnwidth/ 2; i++) {
 					cout << "-";
 				}
 				arraysize *= 10;
 			}
-			
-			
+
+
 			cout << endl;
 		};
-		
+
 
 
 };

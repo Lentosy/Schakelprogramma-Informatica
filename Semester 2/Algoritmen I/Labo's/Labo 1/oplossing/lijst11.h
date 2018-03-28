@@ -12,6 +12,7 @@
 
 
 
+
 #include <iostream>
 #include <memory>
 #include <algorithm>
@@ -35,14 +36,11 @@ public:
 //overname constructoren van unique_ptr
 
 // te doen....
-	public: Lijstknoopptr<T>& operator=(Lijstknoopptr<T> &&);      	// move assignment
-	public: Lijst<T>& operator=(const Lijst<T> &);                 	// copy assignment
-	public: Lijst(const Lijst<T> &);                      			// copy constructor
-	public: Lijst();                                     			// default constructor
-	public: Lijst(Lijst<T> && );                          			// move constructor
-	public: bool operator==(const Lijstknoopptr<T> &);    //todo implementatie
-	public: bool operator!=(const Lijstknoopptr<T> &);    //todo implementatie
-	
+	public: Lijst();
+	public: Lijst(const Lijst<T> &);
+	public: Lijst(Lijst<T> &&);
+	public: Lijst<T>& operator=(const Lijst<T> &);
+
 //operaties
 //duplicaten zijn toegelaten.
     public: void voegToe(const T&);
@@ -66,6 +64,7 @@ public:
 //preconditie zoekgesorteerd: lijst is gesorteerd
 //teruggeefwaarde: wijst naar Lijst waar sl staat/zou moeten staan.
     protected: Lijst<T>* zoekGesorteerd(const T& sl);
+
 
 //uitschrijven: voor elke knoop de T-waarde, gescheiden door komma's
     friend ostream& operator<< <>(ostream& os, const Lijst& l);
@@ -108,13 +107,13 @@ int Lijstknoop<T>::aantalVerwijderd=0;
 
 template<class T>
 Lijstknoop<T>::Lijstknoop(const T& _sl):sl(_sl){
-    std::cerr<<"Knoop met sleutel "<<sl<<" wordt gemaakt\n";
+//    std::cerr<<"Knoop met sleutel "<<sl<<" wordt gemaakt\n";
     aantalGemaakt++;
 }
 
 template<class T>
 Lijstknoop<T>::~Lijstknoop(){
-    std::cerr<<"Knoop met sleutel "<<sl<<" wordt verwijderd\n";
+//    std::cerr<<"Knoop met sleutel "<<sl<<" wordt verwijderd\n";
     aantalVerwijderd++;
 }
 #ifdef DEBUG
@@ -128,7 +127,6 @@ bool Lijstknoop<T>::controle (int gemaakt, int verwijderd){
         std::cerr<<"Aantal verwijderde knopen: "<<aantalVerwijderd<<" (moet zijn: "<<verwijderd<<")\n";
         throw "Mislukte controle";
     };
-
 };
 #endif
 
@@ -167,34 +165,6 @@ void Lijst<T>::schrijf(ostream & os) const{
     }
 #endif
 }
-//==================================================================================================================
-
-template<class T>
-Lijstknoopptr<T>& Lijst<T>::operator=(Lijstknoopptr<T>&& l){ // move assignment
-	std::cerr << "in move assignment" << std::endl;
-	if(this != &l){
-		swap(*this, l);
-	}
-	return *this;
-}
-
-template<class T>
-Lijst<T>& Lijst<T>::operator=(const Lijst<T> &l) {
-	if( this != &l ) {
-	    *this = std::unique_ptr<Lijstknoop<T> >(new Lijstknoop<T>(l.get()->sl));
-	    Lijst<T>* nieuw = (Lijst<T>*) this;
-	    const Lijst<T>* current = &l;
-	    while(current->get()->volgend){
-        	current = &current->get()->volgend;
-        	Lijstknoopptr<T> volgendeKnoop(new Lijstknoop<T>(current->get()->sl));
-        	nieuw->get()->volgend = move(volgendeKnoop);
-        	nieuw = &nieuw->get()->volgend;
-		}
-	} 
-    return *this;
-}
-
-//==================================================================================================================
 
 template<class T>
 const Lijst<T>* Lijst<T>::zoek(const T& sl) const{
@@ -232,8 +202,8 @@ Lijst<T>* Lijst<T>::zoek(const T& sl){
 template<class T>
 void Lijst<T>::voegToe(const T& sl){
     Lijstknoopptr<T> nieuw(new Lijstknoop<T>(sl));
-    Lijstknoopptr<T>::swap(nieuw->volgend); // this switchen met nieuw->volgend (zodat nieuw vooraan komt)
-    *this=std::move(nieuw);                 // this instellen op de nieuwe knoop; lijn 168
+    Lijstknoopptr<T>::swap(nieuw->volgend);
+    *this=std::move(nieuw);
 }
 
 template<class T>

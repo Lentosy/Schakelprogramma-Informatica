@@ -4,13 +4,13 @@ template<class T>
 void SelectionSort<T>::operator()(vector<T> & v) const {
 	for(int i = v.size() - 1; i > 0; i--){
 		int imax = i;
-		for(int j = 0; j < i; j++){
+		for(int j = 0; j < i ; j++){
 			if(v[j] > v[imax]){
 				imax = j;
-			}
-		}
+			}// end if
+		}// end for
 		swap(v[i], v[imax]);
-	}
+	}// end for
 }
 
 template<class T>

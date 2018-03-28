@@ -18,7 +18,9 @@ int verwijderd=0;
 
 Lijst<int> maak(){
     Lijst<int> l;
+    
     l.voegToe(int(7));
+    /*
     l.voegToe(int(45));
     l.voegToe(int(15));
     l.voegToe(int(45));
@@ -28,33 +30,34 @@ Lijst<int> maak(){
     l.voegToe(int(55));
     gemaakt+=8;
     return l;
+    */
 };
 
 
 int main(){
-    {
-        cerr<<"maak met transfer\n";
+    
+        cerr<<"maak met transfer\n";   
         Lijst<int> l;
-        l=maak();      
+        l=maak();
+        /*
         Lijstknoop<int>::controle(gemaakt,verwijderd);
         cerr<<"verwijderen\n";
         l.verwijder(45);
         verwijderd++;
         l.verwijder(123);
         Lijstknoop<int>::controle(gemaakt,verwijderd);
-//        for (auto s:l)
-//            cerr<<s<<"\n";
-//        l.schrijf(cerr);
+    //    for (auto s:l)
+    //        cerr<<s<<"\n";
+    //    l.schrijf(cerr);
         cerr<<"Losse oproep maak\n";
         maak();
         verwijderd +=8;
-        Lijstknoop<int>::controle(gemaakt,verwijderd);     
+        Lijstknoop<int>::controle(gemaakt,verwijderd);
         cerr<<"maak() in constructor\n";
         Lijst<int> l2(maak());
         Lijstknoop<int>::controle(gemaakt,verwijderd);
-        cerr<<"duplicaat 1\n";  
+        cerr<<"duplicaat 1\n";
         l2=l;
-        /*
         if (l2!=l)
             throw("copy levert andere lijst op.");
         verwijderd+=8;
@@ -93,10 +96,8 @@ int main(){
         swap(l2,l);
         Lijstknoop<int>::controle(gemaakt,verwijderd);
         l2.schrijf(cerr);
-        cerr<<"\n";  
-		     */
-    }
-    /*
+        cerr<<"\n";        
+    
     verwijderd+=19;
     Lijstknoop<int>::controle(gemaakt,verwijderd);
     */

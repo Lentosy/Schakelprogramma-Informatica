@@ -10,6 +10,7 @@ class ShellSort : public Sortmethod<T> {
 	public:
 		virtual void operator()(vector<T> & v) const = 0;
 		virtual string get_name() const = 0;
+	private:
 		void shell_sort(vector<T> & v, int series[], int size) const;
 };
 

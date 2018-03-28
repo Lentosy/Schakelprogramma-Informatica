@@ -19,7 +19,6 @@ const int smallest = 10;    // minimum array size for comparing
 const int biggest = 10000;	// maximum array size for comparing
 
 int main(int argc, char * argv[]) {
-
 	srand(time(0));
 
 	STDSort<int> stdsort;
@@ -29,7 +28,7 @@ int main(int argc, char * argv[]) {
 	SelectionSort<int> selectionsort;
 	MergeSort<int> mergesort;
 	QuickSort<int> quicksort;
-	
+
 	vector<Sortmethod<int>*> sortmethods = {&stdsort, 
 											&isort, 
 											&sedgeshellsort,
@@ -40,6 +39,7 @@ int main(int argc, char * argv[]) {
 											};
 	
 	/* Compare each sorting algorithm with different array orders*/
+	
 	vector<SequenceOrder>  sequenceOrders = {SequenceOrder::Random, SequenceOrder::Ascending, SequenceOrder::Descending};
 	
 	for(SequenceOrder& sequenceOrder : sequenceOrders){

@@ -1,0 +1,58 @@
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % page settings
+\usepackage[dutch]{babel} % provides dutch alternatives for english text
+\usepackage[utf8]{inputenc} % provides UTF-8 encoding
+\usepackage{color} % more color options
+\usepackage{enumitem} % options for enumerations
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage{graphicx} % for displaying images
+\usepackage{array} % manipulating tables
+\usepackage{amsfonts} % for math fonts
+\usepackage[pageanchor=false]{hyperref}
+
+%DOCUMENT INFORMATION
+\title{Samenvatting Statistiek}
+\author{Bert De Saffel}
+\date{2017-2018}
+
+% CUSTOM COMMANDS
+\setlength{\parindent}{0mm}
+\setlength{\extrarowheight}{5pt}
+\graphicspath{{./img/}}
+\newcommand{\todo}[1]{
+{\color{red}\textunderscore{\textit{TODO: #1}}}
+}
+\newcommand{\exercise}[2]{
+#1
+
+
+\underline{Oplossing}
+
+#2
+
+\hrulefill
+}
+\newcommand{\example}[2]{
+    \hrulefill
+    
+    Voorbeeld: #1
+    
+    \underline{Uitwerking}
+
+    
+    #2
+    
+    \hrulefill
+}
+\newcommand{\partialof}[1]{
+    \frac{\partial}{\partial #1}
+}
+
+\newcommand{\derivativeof}[1]{
+    \frac{d}{d #1}
+}
+\newcommand{\invlaplace}[1]{
+    \mathcal{L}^{-1}\{ #1 \}(t)
+}
+\newcommand{\bigginvlaplace}[1]{
+    \mathcal{L}^{-1}\bigg\{ #1 \bigg\}(t)
+}

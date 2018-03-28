@@ -1,0 +1,84 @@
+\part{Herhaling Wiskunde A}
+\chapter{Onbepaalde Integralen}
+\section{Substitutiemethode}
+%Stel $$\alpha = \varphi(t),\;dx = \varphi'(t)$$
+%dan $$\int f(\varphi(t))\varphi'(t)dt = \int f(x) dx$$
+\subsection{Voorbeeld 1}
+\begin{equation*}
+    \begin{split}
+        \int \frac{t - 1}{t^2 + 4}dt & = \int \frac{t}{t^2 + 4}dt - \int \frac{dt}{t^2 + 4} \\
+        \hbox{stel}\;\; &  u = t^2 + 4        \\
+        \hbox{dan}\;\; & du = 2tdt \rightarrow dt = \frac{du}{2t} \\
+        & \Rightarrow \int \frac{t}{2t u} du - \frac{1}{2}\arctan{\frac{t}{2}} \\
+        & = \frac{1}{2}\int \frac{du}{u} - \frac{1}{2}\arctan{\frac{t}{2}}\\
+        & = \frac{1}{2}\ln{u} - \frac{1}{2}\arctan{\frac{t}{2}} \\
+        & = \frac{1}{2}\ln{t^2 + 4} - \frac{1}{2}\arctan{\frac{t}{2}} + C
+    \end{split}
+\end{equation*}
+\subsection{Voorbeeld 2}
+\begin{equation*}
+    \begin{split}
+        \int \frac{dy}{e^y + 4e^{-y}} & = \int \frac{e^y}{(e^y)^2 + 4} dy \\
+        \hbox{stel}\;\; & u = e^y \\
+        \hbox{dan}\;\; & du = e^ydy \rightarrow dy = \frac{du}{e^y}\\
+        & \Rightarrow \int \frac{e^y}{e^y(u^2 + 4)} du \\
+        & = \int \frac{du}{u^2 + 4} \\
+        & = \frac{1}{2}\arctan{\frac{u}{2}}\\
+        & = \frac{1}{2}\arctan{\frac{e^y}{2}} + C\\
+    \end{split}
+\end{equation*}
+\section{Partieële integratie}
+$$\int u\;dv = uv - \int v\;du$$
+\subsection{Voorbeeld 1}
+\begin{equation*}
+    \begin{split}
+        \int \ln(x) dx & = \int 1\cdot \ln(x) dx \\
+        \hbox{stel}\; u & = ln(x) \; \hbox{en}\; v = \int dx\\
+        \hbox{dan}\; du & = \frac{1}{x}dx \; \hbox{en}\; v = x\\
+        & \Rightarrow x\ln(x) - \int x\cdot\frac{1}{x}dx\\
+        & = x\ln(x) - \int dx\\
+        & = x\ln(x) - x + C
+    \end{split}
+\end{equation*}
+\subsection{Voorbeeld 2}
+\begin{equation*}
+    \begin{split}
+        \int \frac{x + 1}{\cos^2(x)}dx & \\
+        \hbox{stel}\; u & = x + 1 \; \hbox{en}\; v = \int \frac{1}{\cos^2(x)}dx\\
+        \hbox{dan}\; du & = dx \; \hbox{en}\; v = \tan(x) \\
+        & \Rightarrow (x+1)\tan(x) - \int \tan(x)dx  \\
+        & = (x+1)\tan(x) + ln|cos(x)| + C  \\
+    \end{split}
+\end{equation*}
+\subsection{Voorbeeld 3}
+\begin{equation*}
+    \begin{split}
+        \int e^{-x}\sin(2x) & \\
+        \hbox{stel}\; u & = \sin(2x) \; \hbox{en}\; v = \int e^{-x}dx\\
+        \hbox{dan}\; du & = 2\cos(2x)dx \; \hbox{en}\; v = -e^{-x}\\
+        & \Rightarrow= -e^{-x}\sin(2x) + 2 \int e^{-x}\cos(2x) dx\\
+        \hbox{stel}\; u & = \cos(2x) \; \hbox{en}\; v = \int e^{-x}dx\\
+        \hbox{dan}\; du & = -2\sin(2x)dx \; \hbox{en}\; v = -e^{-x}\\
+        & \Rightarrow -e^{-x}\sin(2x) + 2\bigg[-e^{-x}\cos(2x)  - 2\int e^{-x}\sin(2x)dx   \bigg]\\
+        & = -e^{-x}\sin(2x) - 2e^{-x}\cos(2x) -  4\int e^{-x}\sin(2x)dx\\
+    \end{split}
+\end{equation*}
+Dus
+\begin{equation*}
+    \begin{split}
+        & \int e^{-x}\sin(2x)  = -e^{-x}\sin(2x) - 2e^{-x}\cos(2x) -  4\int e^{-x}\sin(2x)dx \\
+        \Leftrightarrow\; &  5\int e^{-x}\sin(2x) = -e^{-x}[\sin(2x) + 2\cos(2x)] \\
+        \Leftrightarrow\; & \int e^{-x}\sin(2x) = \frac{-e^{-x}[\sin(2x) + 2\cos(2x)]}{5}
+    \end{split}
+\end{equation*}
+\subsection{Voorbeeld 4}
+\begin{equation*}
+    \begin{split}
+        \int \sin^4(\theta) d\theta & = \int (\sin^2(\theta))^2 d\theta \\
+        & = \int \bigg(\frac{1 - \cos(2\theta)}{2}\bigg)^2 d\theta \\
+        & = \int \bigg(\frac{1}{4} - \frac{\cos(2\theta)}{2} + \frac{\cos^2(2\theta)}{4} \bigg)d\theta \\
+        & = \int \frac{1}{4}d\theta - \int \frac{\cos(2\theta)}{2}d\theta + \int \frac{\cos^2(2\theta)}{4}d\theta \\
+        & = \frac{\theta}{4} - \frac{\sin(2\theta)}{4} + \frac{\sin(4\theta) + 4\theta}{32} \\
+        & = \frac{12\theta - 8\sin(2\theta) + \sin(4\theta)}{32} + C
+    \end{split}
+\end{equation*}

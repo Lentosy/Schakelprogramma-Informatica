@@ -32,7 +32,7 @@ int main() {
 	}
 		
 	/* Variabele setup */
-	DoublesQueueithe container;
+	DoublesQueue container;
 	unsigned int number; // variable to hold a single number in the file
 	Chrono clock;
 	
@@ -53,3 +53,4 @@ int main() {
   
 	return 0;
 }
+
