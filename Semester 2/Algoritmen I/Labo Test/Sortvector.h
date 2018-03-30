@@ -6,7 +6,7 @@ using std::vector;
 template<class T>
 class Sortvector : public vector<T> {
 	public:
-		zoek_k(int k){
+		void zoek_k(int k){
 			if(k is klein of size()-k is klein){
 				zoek_k_klein(k);
 			}else{
@@ -14,8 +14,8 @@ class Sortvector : public vector<T> {
 			}
 		}
 	protected:
-		zoek_k_klein(int k);
-		zoek_k_groot(int k);
+		void zoek_k_klein(int k);
+		void zoek_k_groot(int k);
 };
 
 #endif
