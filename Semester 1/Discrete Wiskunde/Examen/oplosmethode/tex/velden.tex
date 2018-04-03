@@ -1,39 +1,23 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{graphicx}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{amsfonts}
-
-\def\warning#1{\color{red} #1 \color{black}}
-\def\note#1{\color{cyan} #1 \color{black}}
-\def\acca#1{\color{OliveGreen} #1 \color{black}}
-\def\accb#1{\color{Lavender} #1 \color{black}}
-\def\accc#1{\color{Violet} #1 \color{black}}
-\def\circled#1{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
-
-\graphicspath{{./img/}}
-
-\begin{document}
-
-\title{Hoe los ik een examen Discrete Wiskunde op?}
-\date{}
-\author{}
-\maketitle
-
-\tableofcontents
-
-
-Het examen Discrete Wiskunde verandert weinig en bestaat altijd uit zeven vragen. Zes van deze vragen zijn analoog met elke examenperiode en één vraag is willekeurig vanuit heel de cursus. In dit document wil ik technieken toelichten om het examen op een goede manier op te lossen. Dit gaat vooral over trukjes in Excel en de Antiview die je kan gebruiken in plaats van alles manueel te doen. 
-
 \section{Velden}
 \subsection{Het algoritme van Euclides}
-Het algoritme van Euclides komt altijd terug dus dit moet heel goed gekend zijn. Het is nuttig om Excel het meeste werk te laten doen. Stel dat we 97 willen delen door 53. Je begint met de startopstelling.
- \begin{center}
-  \includegraphics{euclidische_deling_1}
-  \label{fig:euclidische_deling_1}
- \end{center}
-Daarna gebruik je de functie \texttt{FLOOR.MATH} om \warning{todo}
+Het algoritme van Euclides komt bij vele onderwerpen terug en moet goed gekend zijn. Het is handig om Excel het meeste werk te laten doen. Het bestand \texttt{algo\_euclides.xlsx} bevat 2 voorbeelden van dit algoritme. De betekenis van hun resultaat wordt later toegelicht. 
+
+Het algoritme van Euclides bepaalt de grootst gemene deler van 2 gehele getallen. Deze bewerking wordt afgekort tot $ggd(A,B)$. Het eerste voorbeeld stelt $ggd(53, 97)$ voor en het tweede voorbeeld stelt $ggd(6, 18)$ voor. Voorbeeld 1 wordt volledig toegelicht.
+
+De waarde 53 komt in de cel $A3$ te staan terwijl de waarde 97 in de cel $C4$ komt. Daarna typ je in de cel $B4$ het volgende: \texttt{=FLOOR.MATH(A3/C4)}. We gebruiken de floor-functie omdat we geïnteresseerd zijn hoeveel keer 97 in 53 past. In cel $A4$ doe je nu de vermenigvuldiging met de waarde 97 en het aantal keer dat deze in 53 past: \texttt{=C4*(-B4)}. We gebruik het minteken bij B4 zodat we een negatief getal krijgen in $A4$ (nu niet want het is 0). Op die manier is het eenvoudiger te zien dat we later cijfers aftrekken. In cel $A5$ tel je nu de twee bovenste cellen op: \texttt{=A3 + A4}. 
+
+Nu wordt er in omgekeerde volgorde gewerkt. In cel $B5$ zetten we de formule \texttt{=FLOOR.MATH(C4/A5)} en in cel $C5$ zetten we \texttt{=A5*(-B5)}. In cel $C6$ steken we nu de som van de twee bovenste cellen: \texttt{=C4 + C5}.
+
+Op dit moment is de basisopstelling klaar. Indien je nog geen 0 uitgekomen bent kan je nu doorslepen. Selecteer de range $[A4:B5]$ en sleep een aantal cellen door. Doe dit hetzelfde met de range $[C5:C6]$. Merk op dat de tweede range een cel lager begint en je beide ranges dus niet kunt combineren. Blijf dit doen totdat je een 0 uitkomt in ofwel de linkerkolom of in de rechterkolom.
+
+Op het moment dat je een 0 tegenkomt mag je stoppen. Het vorige element (het groen gekleurde) is gelijk aan $ggd(53, 97)$. Merk op dat de inkleuring niet gebeurd en je dus zelf moet doen. Het klopt dat $ggd(53, 97) = 1$ want zowel 53 als 97 zijn priemgetallen. Bij het tweede voorbeeld krijgen we $ggd(6, 18) = 6$, wat zondermeer duidelijk is.
+\subsubsection{Veralgemeende algoritme van Euclides}
+Het veralgemeende algoritme van Euclides is een uitbreiding op het normaal algoritme van Euclides. Het heeft 2 zaken van praktisch nut:
+
+\begin{itemize}
+ \item Het controleert of het normale algoritme van Euclides correct uitgevoerd is
+ \item De multiplicatieve inverse kan bepaald worden met het veralgemeende algoritme van Euclides
+\end{itemize}
 
 
 \subsection{Berekenen van een primitieve wortel}
@@ -138,27 +122,3 @@ De eerste stap is altijd het berekenen van alle punten op deze elliptische kromm
 \subsubsection{Verdubbeling van de punten}
 
 \subsubsection{Soort bepalen}
-
-
-
-\section{Groepen}
-\subsection{Partitionering van de groepselementen in conjugatieklassen}
-\subsection{Cykelindex bepalen}
-Op het examen wordt er gevraagd om de cykelindex van een willekeurige drie dimensionele veelhoek te bepalen. Daarna wordt er gevraagd om het aantal configuraties te bepalen waarbij een X aantal kleuren Y maal gebruikt worden.
-
-Op deze vraag moet de AntiView gebruikt worden die standaard al open staat op het examen met de figuur. Dit programma toont default de symmetrie en rotatie-assen niet. Zonder dit hulpmiddel is deze vraag haast onmogelijk. Je kan de assen tonen door op de knop 'Y' te drukken op het toetsenbord. In de voorbeelden gebruiken we een kubus. Je kan deze figuur ook bekomen door het programma AntiView via de commandolijn op te starten met als argument \texttt{cube}.
-
-\begin{center}
- \includegraphics[width=\linewidth]{antiview_cube_1}
-\end{center}
-
-Normaal zie je 3 soorten assen verschijnen: rode, gele en groene. Elke kleur heeft zijn eigen betekenis.
-\begin{itemize}
- \item \textbf{Rood}:
- \item \textbf{Geel}:
- \item \textbf{Groen}:
-\end{itemize}
-
-
-
-\end{document}
