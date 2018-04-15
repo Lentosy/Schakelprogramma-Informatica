@@ -38,7 +38,6 @@ int main() {
 	
 	/* Read data */
 	clock.start();
-
 	while(data >> number){
 		container.add(number);
 		if(container.check_doubles()){
