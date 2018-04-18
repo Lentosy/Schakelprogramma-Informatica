@@ -1,0 +1,124 @@
+\documentclass[12pt]{report}
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc} % provides UTF-8 encoding
+\usepackage{amsmath} 
+\usepackage[a4paper, margin=1.2in]{geometry}
+\title{Antiformularium Statistiek}
+\author{Bert De Saffel}
+\date{}
+\begin{document}
+ \maketitle
+ \tableofcontents
+ \chapter{Kansrekenen}
+ \section{Formularium}
+ Geen
+ \section{Niet op formularium}
+ \begin{itemize}
+  \item De optellingswet
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+  \item De vermenigvuldigingswet
+    $$P(A \cap B) = P(B)P(A|B) = P(A)P(B|A)$$
+  \item Het complement
+    $$P(\overline{A}) = 1 - P(A)$$
+  \item Indien A en B onafhankelijk zijn:
+    $$P(A \cup B) = P(A) + P(B)\qquad\hbox{en}\qquad P(A \cap B) = P(A) \cdot P(B)$$
+  \item Testen ofdat twee gebeurtenissen onafhankelijk zijn:
+    $$P(A|B) = P(A)\qquad\hbox{of}\qquad P(B|A) = P(B)$$
+  \item De wetten van Morgan
+    $$\overline{A \cap B} = \overline{A} \cup \overline{B}\qquad\hbox{en}\qquad \overline{A \cup B} = \overline{A} \cap \overline{B}$$
+  \item $$P(A \cap \overline{B}) = P(A) -  P(A \cap B)$$
+  \item Optellingswet voor 3 gebeurtenissen A, B en C
+    \begin{equation*}
+        \begin{split}
+            P(A \cup B \cup C) = & P(A) + P(B) + P(C) \\ 
+             - & P(A \cap B) - P(A \cap C) - P(B \cap C) \\
+             + & P(A \cap B \cap C)      
+        \end{split}
+    \end{equation*}
+  \item Vermenigvuldigingswet voor 3 gebeurtenissen A, B en C
+    $$P(A \cap B \cap C) = P(A)\cdot P(B|A)\cdot P(C|(A \cap B))$$
+  \item Permutatie
+    $$P_n = n! \qquad\hbox{en}\qquad P_0 = 0! = 1$$
+  \item Combinatie
+    $$C_n^p = \binom np = \frac{n!}{p!(n - p)!}$$
+  \item Regel van Bayes (Zie pagina 10 in cursus voor uitleg)
+    $$P(A_j|B) = \frac{P(A_j)P(B|A_j)}{\sum_{i=1}^{n}P(A_i)P(B|A_i)}$$
+ \end{itemize}
+\chapter{Beschrijvende Statistiek}
+/
+\chapter{Verdelingsfuncties van een populatie}
+In dit hoofdstuk heeft alles met een sommatieteken betrekking tot een discrete populatie en alles met een integraal tot een continue populatie.
+ \section{Formularium}
+ Geen
+ \section{Niet op formularium}
+ \begin{itemize}
+  \item Kansfunctie (= dichtheidsfunctie) (p25)
+  
+    De som van alle kansen is steeds 1
+    $$\sum_{i=1}^k f(x_i) = 1 \qquad \hbox{en}\qquad \int_{-\infty}^{+\infty}f(x)\;dx = 1$$
+  \item Cumulatieve distributiefunctie (= verdelingsfunctie) (p25)
+    $$P(x \leq t) = \sum_{x_i \leq t}f(x_i) \qquad\hbox{en}\qquad P(x \leq t) = \int_{-\infty}^{t}f(x)\;dx$$
+  \item De verwachte waarde van een functie
+    $$E[g(x)] = \sum_{i = 1}^{k}g(x_i)f(x_i) \qquad\hbox{en}\qquad E[g(x)] = \int_{-\infty}^{+\infty}g(x)f(x)\;dx$$
+  \item Het gemiddelde
+    $$\mu = E[x] = \sum_{i = 1}^{k}xf(x_i)\qquad\hbox{en}\qquad \mu = E[x] = \int_{-\infty}^{+\infty}xf(x)\;dx$$
+  \item De variantie
+    $$\sigma^2 = V[x] = E[(x - \mu)^2] = \sum_{i = 1}^{k}(x_i - \mu)^2f(x_i)$$
+    $$\sigma^2 = V[x] = E[(x - \mu)^2] = \int_{-\infty}^{+\infty}(x - \mu)^2f(x)\;dx$$
+  \item De momentenfunctie
+    $$M(t) = E[e^{tx}]$$
+    zodat
+    $$M(t) = \sum_{i = 1}^{k}e^{tx_i}f(x_i)\qquad\hbox{en}\qquad M(t) = \int_{-\infty}^{+\infty}e^{tx}f(x)\;dx$$
+    $$\frac{d^kM(t)}{dt^k} = E[x^ke^{tx}]$$
+  \item De ongelijkheid van Chebychev
+    $$P(|x - \mu| \geq k\sigma) \leq \frac{1}{k^2} \Leftrightarrow P(|x - \mu| < k\sigma) \geq 1 - \frac{1}{k^2}$$
+    
+ \end{itemize}
+\chapter{Discrete verdelingen}
+ \section{Formularium}
+ \begin{itemize}
+  \item Uniform discrete verdeling: $\mu = \frac{n + 1}{2}\quad\hbox{en}\quad \sigma^2 = \frac{n^2 - 1}{12}$
+  \item Bernouilli verdeling: $\mu = p\quad\hbox{en}\quad \sigma^2 = p(1 - p)$
+  \item Binomiale verdeling: $\mu = np\quad\hbox{en}\quad \sigma^2 = np(1 - p)$
+  \item Geometrische verdeling: $\mu = \frac{1}{p}\quad\hbox{en}\quad \sigma^2 = \frac{1-p}{p^2}$
+  \item Poisson verdeling: $\mu = \lambda, \sigma^2 = \lambda, f(i + 1) = f(i)\cdot\frac{\lambda}{i + 1}$
+  \item Als $x$ binomiaal verdeeld met parameters $n$ en $p$ en $p$ klein, dan nadert deze verdeling naar de Poisson verdeling (praktisch $n \geq 50$ en $p \leq 0.1$)
+ \end{itemize}
+ \section{Niet op formularium}
+ \begin{itemize}
+  \item Uniform discrete verdeling
+    $$f(i) = P(x = x_i) = \frac{1}{n}$$
+  \item Bernouilli verdeling
+    $$f(i) = P(x = i) = p^i(1 - p)^{1 - i}$$
+  \item De binomiale verdeling
+    $$f(i) = P(x = i) = C_n^ip^i( 1 -p)^{n - 1}$$
+    Recursierelatie: $$f(i + 1) = f(i)\cdot\frac{p}{(1 - p)}\cdot\frac{(n - i)}{(i + 1)}$$
+    Momentenfunctie: $$M(t) = (1 - p + pe^t)^n$$
+  \item De geometrische verdeling
+    $$f(i) = P(x = i) = p(1 - p)^{i - 1}$$
+  \item De hypergeometrsiche verdelingen
+    $$f(i) = P(x = i) = \frac{C_M^iC_{N - M}^{n - i}}{C_N^n}$$
+    $$\mu = \frac{nM}{N}\qquad\hbox{en}\qquad{\sigma^2 = \frac{N - n}{N - 1}n\frac{M}{N}\bigg(1 - \frac{M}{N}\bigg)}$$
+  \item De poisson verdeling
+    $$f(i) = P(x = i) = \frac{e^{-\lambda}\lambda^i}{i!}$$
+ \end{itemize}
+\chapter{Continue verdelingen}
+ \section{Formularium}
+ \begin{itemize}
+  \item Uniform continue verdeling: $\mu = \frac{1}{2}(a + b)\quad\hbox{en}\quad \sigma^2 = \frac{1}{12}(b - a)^2$
+  \item Exponentiële verdeling: $\mu = \vartheta\quad\hbox{en}\quad \sigma^2 = \vartheta^2$
+  \item Normale verdeling: $N(\mu, \sigma): \qquad f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x - \mu)^2}{2\sigma^2}} voor x \in R$
+  \item Als $x$ binomiaal verdeeld met parameters $n$ en $p$, dan nadert deze verdeling naar de normale verdeling (praktisch: $np \geq 5$ en $n(1 - p) \geq 5)$
+  \item Als $x$ poisson verdeeld met parameter $\lambda$, dan nadert deze verdeling naar de normale verdeling als $\lambda$ voldoende groot is. (praktisch: $\lambda \geq 15$)
+ \end{itemize}
+ \section{Niet op formularium}
+ \begin{itemize}
+  \item Uniform continue verdeling:
+    $$f(x) = \frac{1}{b - a}, \forall x \in [a, b]$$
+  \item Exponentiële verdeling
+    $$f(x) = \frac{1}{\vartheta}e^{-\frac{x}{\vartheta}}\;\hbox{met} x \geq 0\quad \hbox{en}\; \vartheta > 0$$
+
+ \end{itemize}
+
+
+\end{document}

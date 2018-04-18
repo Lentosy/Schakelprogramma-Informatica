@@ -1,0 +1,7 @@
+digraph {
+"0:alfa" -> "1:beta";
+"1:beta" -> "2:gamma";
+"2:gamma" -> "3:delta";
+"3:delta" -> "4:epsilon";
+"4:epsilon" -> "0:alfa";
+}
