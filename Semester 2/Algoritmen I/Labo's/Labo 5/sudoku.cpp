@@ -1,10 +1,11 @@
 #include "sudoku.h"
+#include "graaf.cpp"
 #include <iostream>
 #include <vector>
 #include <fstream>
 
 /*
-* Default constructor. Takes a filename as input. This file should represent a sudoku.
+* Default constructor. De bestandsnaam moet een sudoku voorstellen (9 x 9 matrix met getallen)
 */
 Sudoku::Sudoku(const char * filename){
 	leesBestand(filename);
@@ -12,33 +13,28 @@ Sudoku::Sudoku(const char * filename){
 }
 
 /*
-* Generates output to be used for Graphviz
-*/
-void Sudoku::genereerOutput(const char * filename) const {
-	this->teken(filename);
-}
-
-/*
-* Checks wether or not a completed sudoku has a valid solution
+* Controleert of de sudoku een geldige oplossing bevat. Indien dit niet het geval is zal deze functie zeggen waar de fouten zitten.
 */
 bool Sudoku::isGeldig() const{
+	bool isGeldig = true;
 	//per knoop checken ofdat er andere knopen zijn die verbonden zijn met deze knoop ofdat ze dezelfde waarde hebben
 	for(int i = 0; i < aantalKnopen(); i++){
-		for(int j = i; j < aantalKnopen(); j++){
-			if(verbindingsnummer(i, j) >= 0){
-				// de verbinding bestaat
-				if(this->operator[](i) == this->operator[](j)){
-					// waarden zijn gelijk
-					return false;
-				}
+		int huidigeWaarde = knoopdatavector[i]; // de waarde van het vakje dat we aan het bekijken zijn
+		// alle knopen vergelijken die met de huidige knoop verbonden zijn en controleren op duplicate waarden
+		std::map<int, int>::const_iterator it = knopen[i].begin();
+		while(it != knopen[i].end()){
+			if(huidigeWaarde == knoopdatavector[it->first]){
+				isGeldig = false;
+				std::cout << "Fout gevonden: index=" << i << "  gevonden waarde=" <<knoopdatavector[it->first] << std::endl;
 			}
-		}
-	}
-	return true;
+			it++;
+		}   		
+	}	
+	return isGeldig;
 }
 
 /*
-* Reads the file and adds the number as a node
+* Leest het bestand en maakt voeg de knoop toe aan de graaf
 */
 void Sudoku::leesBestand(const char * filename){
 	std::ifstream input(filename);	
@@ -50,8 +46,7 @@ void Sudoku::leesBestand(const char * filename){
 }
 
 /*
-* This function makes connections with each node that cannot have the same value. 
-* This function makes use of different functions to handle according to row, column and 3x3 matrices
+* Deze functie maakt verbindingen met elke knoop die niet dezelfde waarde als deze knoop
 */
 void Sudoku::maakConnecties(){
 	for(int i = 0; i < 9; i++){
@@ -68,7 +63,7 @@ void Sudoku::maakConnecties(){
 	}
 }
 /*
-* Makes connections based on rows
+* Connecties maken op rij
 */
 void Sudoku::maakRijConnecties(int i){
 	for(int j = i; j < i + 9; j++){ // j = [i, i + 9]
@@ -79,7 +74,7 @@ void Sudoku::maakRijConnecties(int i){
 }
 
 /*
-* Makes connections based on columns
+* Connecties maken op kolom
 */
 void Sudoku::maakKolomConnecties(int i){
 	for(int j = i; j < 81; j += 9){
@@ -89,15 +84,21 @@ void Sudoku::maakKolomConnecties(int i){
 	}	
 }
 
+/*
+* Positieve module ( -1 % 3 = 2)
+*/
 int mod(int a, int b){
-	return (a%b+b) % b;
+	int r = a % b;
+	if(r < 0){
+		r += b;
+	}
+	return r;
 }
 
 /*
-* Makes connections based on the 3x3 matrices
+* Connecties maken op de submatrices (3X3)
 */
 void Sudoku::maakMatrixConnecties(int i){
-	
 	
 	std::vector<int> indices_to_connect = {  i     , i + 1 , i + 2 , 
 										     i + 9 , i + 10, i + 11, 
@@ -141,6 +142,8 @@ void Sudoku::maakMatrixConnecties(int i){
 		voegVerbindingToe(indices_to_connect[j], indices_to_connect[l + 6]);
 	}
 }
+
+
 
 
 
