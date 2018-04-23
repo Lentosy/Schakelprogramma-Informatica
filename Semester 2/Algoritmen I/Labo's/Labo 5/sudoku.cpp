@@ -85,7 +85,7 @@ void Sudoku::maakKolomConnecties(int i){
 }
 
 /*
-* Positieve module ( -1 % 3 = 2)
+* Positieve modulo ( -1 % 3 = 2)
 */
 int mod(int a, int b){
 	int r = a % b;

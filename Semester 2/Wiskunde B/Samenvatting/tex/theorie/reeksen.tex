@@ -1,0 +1,306 @@
+
+
+\chapter{Reeksen}
+\section{Definities}
+Rij [$a_n$] = $a_1, a_2, ..., a_n, ...$ met $a_n$ de algemene term.
+
+$$
+    [a_n] = 
+    \begin{cases}
+     \hbox{convergent als }  \lim\limits_{n\to\infty} a_n \in \mathbb{R} \\
+     \hbox{divergent naar } \infty \hbox{ als } \lim\limits_{n\to\infty} a_n = \infty \\
+     \hbox{divergent als } \lim\limits_{n\to\infty} a_n = ?
+    \end{cases}
+$$
+
+\example{
+    $$\big[\ln(\frac{1}{n})\big]$$
+}{
+    $$\lim\limits_{n\to\infty} \ln(\frac{1}{n}) = \ln(0^+) = -\infty$$
+    Dus divergent naar $-\infty$.
+}
+\example{
+    $$\big[(1 - \frac{1}{n})^n\big]$$
+}{
+    $$\lim\limits_{n\to\infty} (1 - \frac{1}{n})^n = 1^\infty$$
+    Dit is een onbepaaldheid. We maken gebruik van het getal $e$.
+    $$=\lim\limits_{n\to\infty} \bigg(1 + \big(-\frac{1}{n}\big)\bigg)^{n(-1)} = e^{-1}$$
+    Dus convergent.
+}
+\example{
+    $$2, -1, \frac{1}{2}, -\frac{1}{4}, ..., ...$$
+}{
+    Bepaal de algemene term: $a_n = 2\bigg(-\frac{1}{2}\bigg)^{n - 1}$
+    $$\lim\limits_{n\to\infty} 2\bigg(-\frac{1}{2}\bigg)^{n - 1} = 2\cdot0 = 0$$
+    Dus convergent.
+}
+\example{
+    $$[(-2)^n]$$
+}{
+    $$[(-2)^n] = -2, 4, -8, 16, -32, ...$$
+    De laatste term is ofwel positief ofwel negatief. De limiet bestaat niet dus deze reeks is divergent.
+}
+
+\section{Hoofdeigenschappen}
+Een stijgende rij naar boven begrensd is convergent. Een dalende rij naar onder begrensd is convergent.
+
+In symbolen:
+
+$$a_n \uparrow, \forall n \quad a_n \leq b \rightarrow \hbox{ convergent}$$
+$$a_n \downarrow, \forall n \quad b \leq a_n  \rightarrow \hbox{ convergent}$$
+
+\example{
+    $$\bigg[\frac{2n - 1}{n}\bigg]$$
+}{
+    Als $n$ stijgt zal $\frac{1}{n}$ dalen. $2 - \frac{1}{n}$ stijgt dus.
+    Er kan besloten worden dat voor alle $n$ dat $2 - \frac{1}{2} \leq 2$. Deze reeks convergeert
+}
+\example{
+    $$\bigg[\sin\frac{1}{n}\bigg]$$
+}{
+    Als $n$ stijgt zal $\frac{1}{n}$ dalen. $\sin\frac{1}{n}$ daalt dus.
+    Er kan besloten worden dat voor alle $n$ dat $\sin\frac{1}{n} \geq 0$. Deze reeks convergeert. 
+}
+
+\section{Numerieke reeksen}
+$$\sum_{n=0}^{\infty} a_n = a_1 + a_2 + a_3 + ... + a_n$$
+waarbij
+\begin{itemize}
+ \item $S_1 = a_1$
+ \item $S_2 = a_1 + a_2$
+ \item $S_3 = a_1 + a_2 + a_3$
+ \item $S_n = a_1 + a_2 + a_3 + ... + a_n$
+\end{itemize}
+$$
+    \sum a_n = 
+    \begin{cases}
+     \hbox{convergent als }  \lim\limits_{n\to\infty} S_n \in \mathbb{R} \\
+     \hbox{divergent naar } \infty \hbox{ als } \lim\limits_{n\to\infty} S_n = \infty \\
+     \hbox{divergent als } \lim\limits_{n\to\infty} S_n = ?
+    \end{cases}
+$$
+\example{
+    Bewijs dat de volgende reeks convergent of divergent is:
+    $$\sum_{n = 2}^{\infty}\bigg(\frac{1}{\sqrt{n - 1}} - \frac{1}{\sqrt{n + 1}}\bigg)$$
+}{
+    Uitschrijven van een aantal partieelsommen:
+    \begin{itemize}
+     \item n = 2: $S_1 = \frac{1}{\sqrt{1}} - \frac{1}{\sqrt{3}} = 1 - \frac{1}{\sqrt{3}}$
+     \item n = 3: $S_2 = 1 - \frac{1}{\sqrt{3}} + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{4}}$
+     \item n = 4: $S_3 = 1 - \frac{1}{\sqrt{3}} + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{4}} + \frac{1}{\sqrt{3}} - \frac{1}{\sqrt{5}} = 1 + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{4}} - \frac{1}{\sqrt{5}}$
+     \item n = 5: $S_4 = 1 + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{4}} - \frac{1}{\sqrt{5}} + \frac{1}{\sqrt{4}} - \frac{1}{\sqrt{6}} = 1 + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{5}} - \frac{1}{\sqrt{6}}$
+    \end{itemize}
+    Hieruit volgt dat 
+    $$S_n = 1 + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{n + 1}} - \frac{1}{\sqrt{n + 2}}$$
+    Berekening van de limiet:
+    $$\lim\limits_{n\to\infty}S_n = 1 + \frac{1}{\sqrt{2}} - 0 - 0 = 1 + \frac{1}{\sqrt{2}}$$
+    De reeks convergeert.
+}
+\example{
+    Bewijs dat de volgende reeks convergent of divergent is:
+    $$\sum_{n = 0}^{\infty}(-1)^n$$
+}{
+    Uitschrijven van een aantal partieelsommen:
+    \begin{itemize}
+     \item n = 0: $S_1 = 1$
+     \item n = 1: $S_2 = 1 - 1 = 0$
+     \item n = 2: $S_3 = 0 + 1 = 1$
+     \item n = 3: $S_4 = 1 - 1 = 0$
+    \end{itemize}
+    Hieruit volgt dat
+    $$S_{2n} = 0 \qquad \hbox{en} \qquad S_{2n + 1} = 1$$
+    De limiet bestaat niet dus de reeks divergeert.
+}
+
+\section{De meetkundige reeks}
+$$\sum_{n = 0}^{\infty} q^n = 1 + q + q^2 + ... + q^{n - 1} + ...$$
+\subsection{Convergentieonderzoek}
+We weten dat 
+$$S_n = 1 + q + ... + q^{n - 1} = \frac{1 - q^n}{1 - q}$$
+We moeten de limiet van $S_n$ berekenen. We onderscheiden twee gevallen:
+\begin{itemize}
+ \item $q \neq 1$
+    $$\lim\limits_{n\to\infty}\frac{1 - q^n}{1 - q} = \frac{1}{1 - q}(1 - \lim\limits_{n\to\infty} q^n)$$
+    \begin{itemize}[label={als}]
+      \item $|q| < 1 \Rightarrow \lim\limits_{n\to\infty} q^n = 0$
+            dus
+            $\lim\limits_{n\to\infty} S_n = \frac{1}{1 - q}(1 - 0) = \frac{1}{1 - q} \in \mathbb{R}$
+            
+            Convergent
+      \item $|q| > 1 \Rightarrow \lim\limits_{n\to\infty} q^n = +\infty$
+            dus
+            $\lim\limits_{n\to\infty} S_n = +\infty$
+            
+            Divergent naar $+\infty$
+      \item $q \leq 1 \Rightarrow \lim\limits_{n\to\infty} q^n = ?$
+      
+            Divergent
+    \end{itemize}
+ \item $q = 1$
+    $$\sum_{n = 0}^{\infty} 1^n = \sum_{n = 0}^{\infty} 1$$
+    $$S_n = n \rightarrow \lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} n = +\infty$$
+    
+    Divergent naar $+\infty$
+\end{itemize}
+
+Uit dit onderzoek volgt het volgende:
+$$
+\boxed{
+    \sum_{n = 0}^{\infty} q^n = \begin{cases}
+                            |q| < 1 \rightarrow \hbox{Convergent} \\
+                            q \geq 1 \rightarrow \hbox{Divergent naar } +\infty \\
+                            q \leq -1 \rightarrow \hbox{Divergent}
+                            \end{cases}
+}
+$$
+
+\example{
+    Convergeert de reeks $-2 + \frac{2}{3} - \frac{2}{9} + \frac{2}{27} - \frac{2}{81} + ...$ en indien convergent, naar welke reekssom?
+}{
+    Herschrijf de reeks:
+    $$-2(1 - \frac{1}{3} + \frac{1}{9} - \frac{1}{27} + \frac{1}{81} - ... + \bigg(\frac{1}{3}\bigg)^n + ...$$
+    Dit komt overeen met
+    $$-2\sum_{n = 0}^{\infty}\bigg(-\frac{1}{3}\bigg)^n$$
+    Dit is een meetkundige reeks met $q = -\frac{1}{3}$. Het is duidelijk dat $|q| < 1$ dus de reeks convergeert. De reekssom is $$\lim\limits_{n\to\infty} -2 \frac{1}{1 - \frac{1}{3}} = -\frac{3}{2}$$
+}
+
+\section{Eigenschappen}
+\begin{itemize}
+ \item De convergentie of divergentie verandert niet door het weglaten of bijvoegen van een eindig aantal termen.
+ \item Als een reeks $\sum a_n$ convergeert naar $S$ dan convergeert de reekst $\sum k\;a_n$ naar $kS$
+ \item Indien $\sum a_n$ convergeert dan geldt dat: $\lim\limits_{n\to\infty} a_n = 0$
+ 
+        $\rightarrow \lim\limits_{n\to\infty} a_n \neq 0 \Rightarrow \sum a_n $ divergent
+\end{itemize}
+\example{
+    Bewijs convergentie/divergentie van 
+    $$\sum_{n = 1}^{\infty} \bigg(\frac{2n - 5}{2n - 7}\bigg)^n$$
+}{
+    \begin{equation*}
+     \begin{split}
+      \lim\limits_{n\to\infty}\bigg(\frac{2n - 5}{2n - 7}\bigg)^n & = 1^\infty \\
+      \Rightarrow \lim\limits_{n\to\infty}\bigg(1 + \frac{2}{2n - 7}\bigg)^{n\frac{2n - 7}{2}\cdot\frac{2}{2n - 7}} & = e^{\lim\limits_{n\to\infty}\frac{2n}{2n - 7}} \\
+      & = e \neq 0
+     \end{split}
+    \end{equation*}
+    De reeks is divergent naar $+\infty$
+}
+
+\section{Reeksen met 'uitsluitend' positieve termen}
+Dit zijn reeksen waarbij:
+\begin{itemize}
+ \item Een eindig aantal negatieve termen weggelaten mogen worden.
+ \item Reeksen met uitsluitend negatieve termen kunnen vermenigvuldigd worden met -1.
+\end{itemize}
+\subsection{Integraalcriterium van Cauchy}
+Indien $$a_n \geq 0$$
+en $$f(x) = f(n)$$ waarbij $f(x)$ dalend en continu is over $[m, +\infty[$
+dan geldt er
+
+$$\int_m^\infty f(x)\;dx \in \mathbb{R} \Rightarrow \sum a_n \qquad \hbox{convergent}$$ 
+$$\int_m^\infty f(x)\;dx = \infty \Rightarrow \sum a_n \qquad \hbox{divergent naar } \infty$$ 
+
+\example{
+    Onderzoek de convergentie/divergentie van
+    $$\sum_{n = 1}^{\infty} \frac{\ln^2n}{n}$$
+}{
+    $$a_n = \frac{\ln^2n}{n} \geq 0$$
+    $$f(x) = \frac{\ln^2x}{x}$$
+    We bepalen het gebied waar $f(x)$ continue en dalend is. We berekenen de afgeleide:
+    $$f'(x) = \frac{\ln x(2 - \ln x)}{x^2}$$
+    Uit tekenonderzoek kan afgeleid worden dat $f(x)$ continu en dalend is vanaf $e^2$.  Kies $m \geq e^2$. Pak een gemakkelijk getal, zoals $m = 9$
+    \begin{equation*}
+     \begin{split}
+      \int_9^{+\infty} \frac{\ln^2 x}{x}dx & = \bigg[\frac{\ln^3 x}{3}\bigg]_9^{+\infty} \\
+                                           & = \frac{+\infty}{+\infty} - \frac{\ln^3 9}{3} \\
+                                           & = +\infty
+     \end{split}
+    \end{equation*}
+    De reeks divergeert naar $+\infty$.
+}
+
+\section{De hyperharmonische reeks}
+$$\sum_{n=1}^{\infty} \frac{1}{n^p} = 1 + \frac{1}{2^p} + \frac{1}{3^p} + ... + \frac{1}{n^p} + ...$$
+\subsection{Convergentieonderzoek}
+\begin{itemize}
+    \item $p \leq 0 \Rightarrow \lim\limits_{n\to\infty} n^{-p} = +\infty$
+        De reeks divergeert naar $+\infty$
+    \item $p > 0$
+        We gebruiken het Integraalcriterium van Cauchy want
+        $$\sum a_n = \sum \frac{1}{n^p} \qquad a_n \geq 0$$
+        en
+        $$f(x) = \frac{1}{x^p}$$
+        De functie $f(x)$ is continu over $]0, +\infty[$, maar is pas dalend vanaf 1. Dus het interval wordt $[1, +\infty[$. De integraal wordt als volgt:
+        $$\int_{1}^{+\infty} \frac{dx}{x^p} = \bigg[\frac{x^{1 - p}}{1 - p}\bigg]_1^{+\infty} = \frac{1}{1 - p}\bigg(\lim\limits_{n\to\infty}\frac{1}{x^{p-1}} - 1\bigg)$$
+        \begin{itemize}[label={als}]
+            \item $p - 1 > 0 \Rightarrow \lim\limits_{n\to\infty}\frac{1}{x^{p-1}} = 0$
+                    
+                    $\Rightarrow \frac{1}{1 - p}(0 - 1) \in \mathbb{R}$ : convergent
+                    
+            \item $p - 1 < 0 \Rightarrow \lim\limits_{n\to\infty}\frac{1}{x^{p-1}} = \infty$
+            
+                    $\Rightarrow \frac{1}{1 - p}(\infty - 1) = \infty$ : divergent naar $+\infty$
+            
+            \item $p - 1 = 1 \Rightarrow \int_1^{+\infty} \frac{dx}{x} = \infty$
+            
+                divergent naar $+\infty$
+        \end{itemize}
+        
+\end{itemize}
+Uit dit onderzoek volgt het volgende:
+$$
+\boxed{
+    \sum_{n = 1}^{\infty} \frac{1}{n^p} = \begin{cases}
+                            p > 1 \rightarrow \hbox{Convergent} \\
+                            p \leq 1 \rightarrow \hbox{Divergent naar } +\infty \\
+                            \end{cases}
+}
+$$
+\section{Vergelijkingscriteria}
+Indien $\sum a_n$ gevraagd wordt, gebruik een gekende reeks $\sum b_n$. Tot nu toe kennen we twee reeksen: $\sum q^n$ en $\sum \frac{1}{n^p}$
+
+\begin{enumerate}
+ \item 
+    \begin{itemize}
+     \item als $a_n \leq b_n$ en $\sum b_n$ convergent, dan $\sum a_n$ convergent
+     \item als $b_n \leq a_n$ en $\sum b_n$ divergent, dan $\sum a_n$ divergent
+    \end{itemize}
+ \item 
+    als $\lim\limits_{n\to\infty}\frac{a_n}{b_n} \neq 0 \neq \infty$ dan beide reeksen zelfde gedrag.
+
+\end{enumerate}
+
+\example{
+    Onderzoek de convergentie/divergentie van
+    $$\sum_{n = 0}^{\infty} \frac{1}{(3 + (-1)^n)^n}$$
+}{
+    De reeks kan geschreven worden als 
+    $$\sum_{n = 0}^{\infty} \frac{1}{4^n}$$
+    Dit komt overeen met een meetkundige reeks met $q = \frac{1}{4}$. Deze reeks convergeert.
+}
+\example{
+    Onderzoek de convergentie/divergentie van
+    $$\sum_{n = 0}^{\infty}\frac{\sqrt{n - 1}}{(3n - 2)^2}$$
+}{
+    Als $n$ naar oneindig gaat: $\frac{\sqrt{n}}{9n^2} \approx \frac{\sqrt{n}}{n^2} = \frac{1}{n^{3/2}}$
+    Deze reeks kan dus geschreven worden als:
+    $$\sum_{n = 0}^{\infty} \frac{1}{n^{3/2}}$$  
+    wat overeenkomt met de hyperharmonische reeks met $p = 3/2$. We weten dat dit convergeert.
+    We passen de limiet toe:
+    $$\lim\limits_{n\to\infty} \frac{\sqrt{n - 1}}{(3n - 2)^2} \cdot n^{3/2} = \lim\limits_{n\to\infty} \frac{n^{3/2}\sqrt{n}}{9n^2} = \frac{1}{9} \neq 0 \neq \infty$$
+    Deze reeks convergeert.
+}
+\example{
+    Onderzoek de convergentie/divergentie van
+    $$\sum_{n = 3}^{\infty} -\sqrt{\tan{\frac{1}{n}}}$$
+}{
+    In dit geval is $a_n < 0$. We vermenigvuldigen de reeks met -1. De reeks wordt:
+    $$\sum_{n = 3}^{\infty}\sqrt{\tan{\frac{1}{n}}}$$
+    We weten dat als $n$ naar oneindig gaat, dat $\frac{1}{n}$ naar 0 gaat. Voor kleine waarden geldt: $\tan{\frac{1}{n}} = \frac{1}{n}$. De reeks wordt:
+    $$\sum_{n=3}^{\infty} \frac{1}{\sqrt{n}}$$ wat overeenkomt met een hyperharmonische reeks met $p = 0.5$. We weten dat dit divergeert naar $+\infty$
+    
+    We passen de limiet toe:
+    $$\lim\limits_{n\to\infty} \frac{\sqrt{\tan\frac{1}{n}}}{\frac{1}{\sqrt{n}}} = \lim\limits_{n\to\infty} \sqrt{\frac{\tan\frac{1}{n}}{\frac{1}{n}}} = 1 \neq 0 \neq \infty$$
+    Deze reeks divergeert naar $+\infty$
+}
+
