@@ -1,0 +1,88 @@
+\chapter{Differentiaalvergelijkingen}
+\exercise{Bepaal de DVG van \begin{enumerate}
+                        \item $y = C_1x + C_2$
+                        \item de cirkels met hun middelpunt op de x-as 
+                        \item de raaklijnen aan $K: y = x^2$
+                        \end{enumerate}}
+{
+\begin{enumerate}
+\item De vergelijking $y = C_1x + C_2$ heeft 2 onafhankelijke constanten. Er moet dus 2 keer afgeleid worden.
+\begin{equation*}
+\begin{split}
+y' & = C_1 \\
+y'' & = 0
+\end{split}
+\end{equation*}
+De differentiaalvergelijking is $y'' = 0$
+\item Het middelpunt op de x-as kan gedefinieerd worden als $m \in x-as \Rightarrow m(C_1, 0)$. De straal wordt gedefinieerd als $C_2$. De vergelijking van een cirkel wordt dan:
+$$\Gamma: (x - C_1)^2 + y^2 = C_2^2$$
+Er zijn 2 onafhankelijke constanten. Er moet dus 2 keer (impliciet) afgeleid worden.
+\begin{equation*}
+\begin{split}
+\frac{dy}{dx} :\; & 2(x - C_1) + 2yy' = 0 \\
+\frac{d^2y}{dx^2} :\; & 2 + 2(y'y' + yy'') = 0
+\end{split}
+\end{equation*}
+De 2de afgeleide bevat geen constanten meer dus de differentiaalvergelijking wordt: 
+$$yy'' + (y')^2 + 1 = 0$$
+\item De raaklijn wordt gegeven door : $R: y - y'p = y'_p(x - x_p)$
+
+Stel $p \in K$ en $x_p = C$:
+\begin{equation*}
+\begin{split}
+\Rightarrow & y_p = (x_p)^2 = C^2 \\
+\Rightarrow & p(C, C^2)
+\end{split}
+\end{equation*}
+De richtingscoÃ«fficient $y'_p$ wordt gegeven door 
+$$y'= 2x \Rightarrow y'_p = 2C$$
+
+De formule van de raaklijn kan worden ingevuld:
+$$R: (y - C^2) = 2C(x - C)$$
+Deze vergelijking bevat slechts 1 constante en moet dus 1 maal afgeleid worden.
+$$y' = 2C \Leftrightarrow C = \frac{y'}{2}$$
+Substitueer $C$ in de formule van de raaklijn:
+\begin{equation*}
+\begin{split}
+    & y - \bigg(\frac{y'}{2}\bigg)^2 = y'\bigg(\frac{y'}{2}\bigg)\bigg(x - \frac{y'}{2}\bigg) \\
+    \Leftrightarrow \; & 4y - y'^2 = 4xy' - 2y'^2 \\
+    \Leftrightarrow \; & y'^2 - 4y'x + 4y = 0
+\end{split}
+\end{equation*}
+is de differentiaalvergelijking.
+\end{enumerate}
+}
+\section{Lineaire DVG met constante coëfficiënten}
+\exercise{
+        Gegeven $$y'' + y = 0$$
+        \begin{enumerate}
+         \item Bepaal de AO
+         \item Bepaal de PO zodat $y\big(\frac{\pi}{2}\big) = 0 $ en $y(\pi) = 1$
+        \end{enumerate}
+}{
+    \begin{equation*}
+     \begin{split}
+      \laplace{y'' + y}
+     \end{split}
+    \end{equation*}
+
+}
+
+\section{Lineaire DVG in y en y'}
+\exercise{
+    Bepaal de PO door (1, 2) voor $y' + \frac{y}{x} - (x^2 + 1) = 0$
+}{
+    Schrijf de DVG als $y' + \frac{y}{x} = x^2 + 1$. Deze DVG is linear in y en y'. We passen de algemene oplossingsmethode toe.
+    
+    Stel $y=uv, y' =u'v + uv'$.
+    
+    De DVG wordt:
+    
+    \begin{equation*}
+     \begin{split}
+      & u'v + uv' + \frac{uv}{x} = x^2 + 1 \\
+      \Rightarrow & u'v + u(v' + \frac{v}{x}) = x^2 + 1
+     \end{split}
+    \end{equation*}
+
+}

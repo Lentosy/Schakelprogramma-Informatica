@@ -1,0 +1,134 @@
+
+\chapter{Reeksen}
+De volgende reeksen moeten gekend zijn:
+\begin{itemize}
+ \item De meetkundige reeks: 
+        $$
+            \sum_{n = 0}^{\infty} q^n : \begin{cases}
+                                    |q| < 1 \rightarrow \hbox{Convergent} \\
+                                    q \geq 1 \rightarrow \hbox{Divergent naar } +\infty \\
+                                    q \leq -1 \rightarrow \hbox{Divergent}
+                                    \end{cases}
+        $$
+ \item De hyperharmonische reeks:
+        $$
+            \sum_{n = 1}^{\infty} \frac{1}{n^p} : \begin{cases}
+                                    p > 1 \rightarrow \hbox{Convergent} \\
+                                    p \leq 1 \rightarrow \hbox{Divergent naar } +\infty \\
+                                    \end{cases}
+        $$
+ \item De harmonische reeks:
+        $$
+            \sum_{n = 1}^{\infty} \frac{1}{n} : \hbox{divergent naar }+\infty 
+        $$
+\end{itemize}
+
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \frac{\cos^2 n}{4^n}$$
+}{
+    We weten dat $-1 \leq \cos n \leq 1 \Rightarrow 0 \leq \cos^2 n \leq 1$. Hieruit volgt dat $\frac{\cos^2 n}{4^n} \leq \big(\frac{1}{4}\big)^n$. Dit is een meetkundige reeks met $q=1/4$. We weten dat een meetkundige reeks met $|q| < 1$ convergeert. De reeks $\sum \frac{\cos^2 n}{4^n}$ convergeert dus.
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \frac{3n - 1}{n^3 + n}$$
+}{
+    Enkel de hoogste machten spelen een rol bij het bepalen van de convergentie. 
+    
+    $$\frac{3n - 1}{n^3 + n} \approx \frac{n}{n^3} = \frac{1}{n^2}$$
+    Dit is de algemene term van de hyperharmonische reeks met $p = 2$. Een hyperharmonische reeks convergeert als $p > 1$. We moeten echter nog nagaan of de limiet niet nul of oneindig is.
+    
+    $$\lim\limits_{n\to\infty} \frac{3n - 1}{n^3 + n} \cdot n^2 = 3 \neq 0 \neq \infty$$
+    De reeks $\sum \frac{3n - 1}{n^3 + n}$ convergeert.
+}
+
+\exercise{
+    Onderzoek de convergentie van 
+    $$\sum \frac{1}{n}\sin \frac{\pi}{n}$$
+}{
+    Ter herinnering:
+    $$\lim\limits_{x\to0} \frac{\sin x}{x} = 1 \rightarrow \lim\limits_{x\to\infty} \frac{\sin 1/x}{1/x} = 1 \rightarrow \sin 1/x \approx 1/x$$
+    Hieruit volgt:
+    $$\frac{1}{n}\sin \frac{\pi}{n} \approx \frac{1}{n}\frac{1}{n} = \frac{1}{n^2}$$
+    Dit is de algemene term van de hyperharmonische reeks met $p = 2 > 1$. De hyperharmonische reeks convergeert. We berekenen de limiet.
+    $$\lim\limits_{n\to\infty} \frac{1}{n^2}\frac{1}{\sin \frac{\pi}{n}} = \frac{\sin \pi/n}{1/n} = \pi \neq 0 \neq \infty$$
+    De reeks $\sum \frac{1}{n}\sin \frac{\pi}{n}$ convergeert.
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \bigg(\frac{n}{3n -1}\bigg)^{2n}$$
+}{
+    We onderzoeken dit met behulp van Cauchy. Ter herinnering:
+    $$\lim\limits_{n\to\infty} \sqrt[n]{a_n} : \begin{cases}
+                                                > 1 \rightarrow \hbox{ divergent naar } \infty \\
+                                                < 1 \rightarrow \hbox{ convergent } \\
+                                                = 1 \rightarrow \hbox{ geen besluit } 
+                                               \end{cases}
+    $$
+    $$\lim\limits_{n\to\infty} \sqrt[n]{\big(\frac{n}{3n - 1}\big)^{2n}} = \lim\limits_{n\to\infty} \bigg(\frac{n}{3n -1}\bigg)^2 = 1/9 < 1$$
+    De limiet is kleiner dan 1 dus de reeks $\sum (\frac{n}{3n -1})^{2n}$ convergeert.
+}
+
+\exercise{
+    Onderzoek de convergentie van 
+    $$\sum \frac{n}{3^n}$$
+}{
+    We onderzoeken diet met behulp van de stelling van d'Alembert. Ter herinnering:
+    $$\lim\limits_{n\to\infty} \frac{a_n + 1}{a_n} : \begin{cases}
+                                                         > 1 \rightarrow \hbox{ divergent naar } \infty \\
+                                                         < 1 \rightarrow \hbox{ convergent } \\
+                                                         = 1 \rightarrow \hbox{ geen besluit } 
+                                                     \end{cases}
+    $$
+    \begin{equation*}
+     \begin{split}
+      & \lim\limits_{n\to\infty} \frac{n + 1}{3^{n + 1}} \cdot \frac{3^n}{n} \\
+      = & \lim\limits_{n\to\infty} \frac{n + 1}{3} \cdot \frac{1}{n} \\
+      = & \lim\limits_{n\to\infty} \frac{n + 1}{3n} \\
+      = & 1/3 < 1
+     \end{split}
+    \end{equation*}
+    De reeks $\sum \frac{n}{3^n}$ convergeert.
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \frac{n^n}{n!}$$
+}{
+    We lossen dit opnieuw op met d'Alembert.
+    \begin{equation*}
+     \begin{split}
+      & \lim\limits_{n\to\infty} \frac{(n + 1)^{n + 1}}{(n + 1)!} \cdot \frac{n!}{n^n} \\
+      = & \lim\limits_{n\to\infty} \frac{(n + 1)^{n + 1}}{n + 1} \cdot \frac{1}{n^n} \\
+      = & \lim\limits_{n\to\infty} \frac{(n + 1)^n}{n^n} \\
+      = & \lim\limits_{n\to\infty} \bigg(\frac{n + 1}{n}\bigg)^n \\
+      = & \lim\limits_{n\to\infty} \bigg( 1 + \frac{1}{n} \bigg)^n \\
+      = & e > 4
+     \end{split}
+    \end{equation*}
+    De reeks $\sum \frac{n^n}{n!}$ convergeert.
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \frac{\ln n}{n}$$
+}{
+
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \sqrt{n} \tan \frac{\pi}{3n}$$
+}{
+
+}
+
+\exercise{
+    Onderzoek de convergentie van
+    $$\sum \frac{1}{n(\ln n)^2}$$
+}{
+
+}
