@@ -67,12 +67,11 @@ Tijdens het oplossen van een differentiaalvergelijking van de \textit{n}-de orde
     \end{tabular}
 \end{center}
 }
-\example{Oef 1 AO en PO}{Gegeven een differentiaalvergelijking: $y'' + y = 0$
+\example{Gegeven een differentiaalvergelijking: $y'' + y = 0$
 \begin{enumerate}
 \item Toon aan dat $y = a\sin(x) + b\cos(x)$ de AO is.
 \item Geef enkele PO's.
-\end{enumerate}
-Oplossing:
+\end{enumerate}}{
 \begin{enumerate}
 \item 
 \begin{equation*}
@@ -99,15 +98,13 @@ y & = \sin(x) + \cos(x)
 \end{equation*}
 \end{enumerate}
 }
-
-\example{Oef 2 AO en PO}
-{Gegeven een differentiaalvergelijking: $y'^2 - yy'+e^x$
+\example{Gegeven een differentiaalvergelijking: $y'^2 - yy'+e^x$
 \begin{enumerate}
 \item Geef de orde en graad.
 \item Is $y = \frac{1}{C} + Ce^x$ de AO?
 \item Wat  voor soort oplossing is $y = 2\sqrt{e^x}$
-\end{enumerate}
-Oplossing:
+\end{enumerate}}
+{
 \begin{enumerate}
 \item 
 De orde is 1 en de graad is 2.
@@ -148,9 +145,9 @@ Indien een AO gegeven is met \textit{n} onafhankelijke constanten:
 \item Controleer of de DVG van orde \textit{n} is.
 \end{enumerate}
 
-\example{Oef 1 bepalen van een DVG}
+\example{Gegeven de algemene oplossing $y = C_1 + C_2x$. Bepaal de DVG.}
 {
-De algemene oplossing is $$y = C_1 + C_2x$$
+
 \begin{enumerate}
 \item Er zijn \textit{2} onafhankelijke constanten.
 \item Er moet \textit{2} keer afgeleid worden:
@@ -161,15 +158,13 @@ $$
     y''  & = 0 \\
     \end{cases}
 $$
-\item De constanten zijn al geÃ«limineerd. 
+\item De constanten zijn al geëlimineerd. 
 \item De DVG is $y'' = 0$ en heeft orde \textit{2}.
 
 \end{enumerate}
 }
-
-\example{Oef 2 bepalen van een DVG}
+\example{Bepaal de DVG indien $y = C_1 + C_2e^{-x} + C_3e^{3x}$ de algemene oplossing is.}
 {
-Bepaal de DVG van: $$y = C_1 + C_2e^{-x} + C_3e^{3x}$$
 \begin{enumerate}
 \item Er zijn \textit{3} onafhankelijke constanten.
 \item Er moet \textit{3} maal afgeleid worden.
@@ -199,10 +194,8 @@ De orde van deze DVG is \textit{3}
 
 \end{enumerate}
 }
-
-\example{Oef 3 bepalen van een DVG}
+\example{Bepaal de DVG van alle cirkels met middelpunt y = -x.}
 {
-Bepaal de DVG van alle cirkels met middelpunt y = -x.
 \begin{enumerate}
 \item Eerst moet de AO gevonden worden. Het middelpunt van elke cirkel kan gegeven worden met $m(a, -a).$
     Hieruit volgt de algemene vergelijking van een cirkel: $$(x - a)^2 + (y + a)^2 = R^2$$
@@ -225,17 +218,17 @@ Bepaal de DVG van alle cirkels met middelpunt y = -x.
 \item Orde van de DVG = \textit{2}  = Aantal onafhankelijke constanten.
 \end{enumerate}
 }
-\section{Oplossen van een lineaire DVG van orde n met constante reÃ«le coÃ«fficiÃ«nten}
+\section{Oplossen van een lineaire DVG van orde n met constante reële coëfficiënten}
 \begin{equation*}
  \begin{split}
-		  & y''' - y''\sin t + ty = t^2 \\
+      & y''' - y''\sin t + ty = t^2 \\
   \Leftrightarrow & D^3y - D^2y\sin t + ty = t^2 \\
   \Leftrightarrow & (D^3 - D^2\sin t + t)y = t^2 \\
   \Leftrightarrow & L(d)y = g(t) \\
   \Leftrightarrow & \hbox{met} L(d) = \sum_{i = 0}^{n} a_iD^i \qquad ,a_i \in \mathbb{R}
  \end{split}
 \end{equation*}
-Een lineaire DVG is een DVG waarbij alle coÃ«fficiÃ«nten van alle afgeleiden enkel voorkomen als eerste macht.
+Een lineaire DVG is een DVG waarbij alle coëfficiënten van alle afgeleiden enkel voorkomen als eerste macht.
 \subsection{Particuliere oplossing}
 De particuliere oplossing kan slechts bepaald worden indien alle beginvoorwaarden 
 
@@ -247,9 +240,9 @@ Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ r
   Bepaal de PO van $y'' + y = g(t)$ indien $y(0) = 0$, $y'(0) = 1$ en 
   $$
     g(t) = \begin{cases}
-	      0 & t < 1 \\
-	      e^{-t} & t > 1
-	   \end{cases}
+        0 & t < 1 \\
+        e^{-t} & t > 1
+     \end{cases}
   $$
 }{
   \begin{equation*}
@@ -272,10 +265,10 @@ Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ r
    \Leftrightarrow & Y = \frac{1}{s^2 + 1} + \frac{e^{-(s+1)}}{(s+1)(s^2+1)}     \\
    \Leftrightarrow & \mathcal{L}^{-1}\{Y\}(t) = \mathcal{L}^{-1}\bigg\{\frac{1}{s^2 + 1} + \frac{e^{-(s+1)}}{(s+1)(s^2+1)}\bigg\}(t) \\
    \Leftrightarrow & y(t) = \sin t +e^{-1}f(t - 1)H(t - 1) \\
-	   \hbox{met}\; f(t) & = \mathcal{L}^{-1}\bigg\{\frac{1}{(s + 1)(s^2 + 1)}\bigg\}(t) \\
-			     & = \frac{1}{2}\mathcal{L}^{-1}\bigg\{\frac{1}{s + 1} - \frac{s - 2}{s^2 + 1}\bigg\}(t) \\
-			     & = \frac{1}{2}\bigg[e^{-t} - (\cos t + \sin t)\bigg] \\
-	    \hbox{antwoord: }\; y(t)  & = \sin t + \frac{1}{2}\bigg(e^{-t} - e^{-1}\cos (t - 1) + e^{-1} \sin (t - 1) \bigg)H(t - 1)
+     \hbox{met}\; f(t) & = \mathcal{L}^{-1}\bigg\{\frac{1}{(s + 1)(s^2 + 1)}\bigg\}(t) \\
+           & = \frac{1}{2}\mathcal{L}^{-1}\bigg\{\frac{1}{s + 1} - \frac{s - 2}{s^2 + 1}\bigg\}(t) \\
+           & = \frac{1}{2}\bigg[e^{-t} - (\cos t + \sin t)\bigg] \\
+      \hbox{antwoord: }\; y(t)  & = \sin t + \frac{1}{2}\bigg(e^{-t} - e^{-1}\cos (t - 1) + e^{-1} \sin (t - 1) \bigg)H(t - 1)
    \end{split}
   \end{equation*}
 
@@ -287,7 +280,7 @@ Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ r
   \begin{equation*}
    \begin{split}
     \mathcal{L}\{LL\}(s) & = \mathcal{L}\{y'' + y\}(s) \\
-			 & = s^2Y - sC_1 - C_2 + Y \\
+       & = s^2Y - sC_1 - C_2 + Y \\
     \mathcal{L}\{RL\}(s) & = \mathcal{L}\bigg\{\delta\big(t - \frac{\pi}{4}\bigg)\bigg\}(s) \\
                          & = \int_0^{+\infty}\delta\big(t - \frac{\pi}{4}\big)e^{-st} \; dt \\
                          & = e^{-\frac{\pi}{2}s} \\
@@ -315,7 +308,7 @@ Indien de beginvoorwaarden niet gekend zijn moeten $y(0),y'(0)...y^{(n-1)}(0)$ r
     Het antwoord:
     $$y(t) = -(\cos t)H(t - \frac{\pi}{2})$$
 }
-\section{DVG van de orde 1 en graad 1}
+\section{DVG van orde 1 en graad 1}
 \subsection{Gescheiden veranderlijken}
 Indien een DVG van orde 1 en graad 1 te schrijven is als
 $$f(x)\;dx = g(y)\;dy$$
@@ -348,13 +341,15 @@ Algemeen:
     \end{equation*}
 
 }
-
-\todo{LES DINSDAG 13/03}
 \section{Homogene DVG}
 Een DVG is homogeen indien:
 $$f(\lambda x, \lambda y) = \lambda^n f(x,y)$$
 Indien een DVG homogeen is kan volgende oplossingsmethode toegepast worden:
-
+\begin{itemize}
+  \item Stel $y = ux$
+  \item $dy = u\;dx + x\;du$
+  \item DVG is oplosbaar met gescheiden veranderlijken.
+\end{itemize}
 \example{
         Bepaal de PO van : 
         $$\frac{dx}{dt} = \frac{x}{t(\ln t - \ln x)}$$
@@ -396,7 +391,17 @@ Indien een DVG homogeen is kan volgende oplossingsmethode toegepast worden:
 }
 
 
-\section{Exacte DVG}
+\section{Exacte (= totale) DVG}
+Een DVG is exact indien 
+  $$\frac{\partial M(x, y)}{\partial y} = \frac{\partial N(x, y)}{\partial x}$$
+Indien een DVG exact is kan volgende oplossingsmethode toegepast worden:
+\begin{itemize}
+  \item Zoek $F(x, y)$ zodat $\frac{\partial F}{\partial x} = M(x, y)$ en $\frac{\partial F}{\partial y} = N(x,  y)$
+\end{itemize}
+
+  
+
+
 \example{
     Bepaal alle functie f(y) zodanig dat de 
     DVG $$2y\; dx + (x - 4y\sqrt{y}) \; dy = 0$$
