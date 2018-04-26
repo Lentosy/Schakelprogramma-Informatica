@@ -1,0 +1,71 @@
+\chapter{Continue verdelingenen}
+\exercise{
+    11. Een Geigerteller levert gemiddeld 30 tellen per minuut in de omgeving van een radio-actief materiaal. Stel dat het aantal tellen per minuut Poisson verdeeld is. Bepaal de kans dat 
+    \begin{enumerate}
+     \item er juist 32 tellen zijn,
+     \item er tussen 23 en 35 tellen zijn, grenzen niet inbegrepen.
+    \end{enumerate}
+}{
+	Stel: \begin{itemize}
+			\item $x: \#$ tellen
+			\item x is Poisson verdeeld met $\lambda = 30$
+			\item $f(i) = \frac{e^{-30}(30)i}{i!}$
+		  \end{itemize}
+	\begin{enumerate}
+		\item $P(i = 32) = \frac{e^{-30}(30)^32}{32!} = ?$ (teveel werk met rekenmachine)
+
+		We lossen door gebruik te maken van de limietstelling:
+		$$\lambda = 30 \geq 15 \Rightarrow x:N(30, \sqrt{30})$$
+		\begin{equation*}
+			\begin{split}
+				P(x = 32) & \approx P(31,5 < x < 32,5) \\
+						  & = P(\frac{31,5 - 30}{\sqrt{30}} < z < \frac{32,5 - 30}{\sqrt{30}}) \\
+						  & = P(0,27 < z < 0,46) \\
+						  & = P(0 < z < 0,46) - P(0 < z < 0,27) \\
+						  & = 0,1772 - 0,1064 \\
+						  & = 0,0708
+			\end{split}
+		\end{equation*}
+		\item 
+		\begin{equation*}
+			\begin{split}
+				P(23 < x < 35) & \approx P(23,5 < x < 34,5) \\
+							   & = P(\frac{23,5 - 30}{\sqrt{30}} < z < \frac{34,5 - 30}{\sqrt{30}}) \\
+							   & = P(-1,19 < z < 0,82) \\
+							   & = P(0 < z < 0,82) - P(0 < z < 1,19) \\
+							   & = 0,2939 + 0,3830 \\
+							   & = 0,6769
+			\end{split}
+		\end{equation*}
+	\end{enumerate}
+}
+
+\exercise{
+	Extra: Een speler gooit met een dobbelsteen. Bepaal de kans dat hij bij 90 worpen tenminste 39 keer een 5 of een 6 gooit. Geef de exacte formule en bereken met de limiet-stelling.
+}{
+	Stel:
+		\begin{itemize}
+			\item $x : \#$ keer een vijf of zes.
+			\item kans op x = p = $1/3$
+			\item x is binomiaal verdeeld
+			\item $f(i) = C_n^i p^i(1 - p)^{n - i}$ 
+		\end{itemize}
+	De exacte formule wordt:
+	$$P(x \geq 39) = 1 - P(x \leq 38) = 1 - \sum_{i = 0}^{38} C_{90}^{i} \bigg(\frac{1}{3}\bigg)^i\bigg(\frac{2}{3}\bigg)^{n - i}$$
+	We lossen dit op met de limietstelling 2 van het formularium. Bewijs:
+	\begin{itemize}
+		\item $np = 90\frac{1}{3} = 30 \geq 5$
+		\item $n(1 - p) = 90\frac{2}{3} = 60 \geq 5$
+	\end{itemize}
+	De variabele x benadert een normale verdeling.
+	$$x : N(np, \sqrt{np(1 - p)}) = N(30, \sqrt{20})$$
+	\begin{equation*}
+		\begin{split}
+			P(x \geq 39) & \approx P(x \geq 38,5) \\
+						 & = P(z \geq \frac{38,5 - 30}{\sqrt{20}}) \\
+						 & = P(z \geq 1,9) \\
+						 & = 0.5 - 0.4713 \\
+						 & = 0.0287
+		\end{split}
+	\end{equation*}
+}

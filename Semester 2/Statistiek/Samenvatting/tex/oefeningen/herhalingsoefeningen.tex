@@ -1,0 +1,126 @@
+\chapter{Herhalingsoefeningen}
+\exercise{1.Een zak bevat 10 rode, 6 groene en 4 blauwe bollen. Men trekt gelijktijdig 7 bollen uit de zak. Wat is de kans
+ dat er minsten 1 groene en minstens 1 blauwe bal getrokken wordt?}{
+ Twee gebeurtenissen: \begin{enumerate}
+                       \item M1G: Minstens 1 groene bal getrokken
+                       \item M1B: Minstens 1 blauwe bal getrokken
+                      \end{enumerate}
+ De kans om minstens 1 groene en 1 blauwe bal te trekken: 
+ \begin{equation*}
+  \begin{split}
+   P(M1G \cap M1B) & = P(\overline{\overline{M1G} \cup \overline{M1B}}) \\
+                   & = 1 - P(\overline{M1G} \cup \overline{M1B})        \\
+                   & = 1 - P(0G \cup 0B) \\
+                   & = 1 - [P(0G)+P(0B)-P(0G \cap 0B)] \\
+                   & = 1 - \bigg[\frac{C_{4}^{0}C_{16}^{7}}{C_{20}^{7}} + \frac{C_{6}^{0}C_{14}^{7}}{C_{20}^{7}} - \frac{C_{4}^{0}C_{6}^{0}C_{10}^{7}}{C_{20}^{7}} \bigg] \\
+                   & = 1 - \bigg[\frac{C_{16}^{7}}{C_{20}^{7}} + \frac{C_{14}^{7}}{C_{20}^{7}} - \frac{C_{10}^{7}}{C_{20}^{7}} \bigg] \\
+                   & = 1 - \frac{1}{C_{20}^{7}}\bigg(C_{16}^{7} + C_{14}^{7} - C_{10}^{7}\bigg)
+  \end{split}
+ \end{equation*}
+
+ }
+
+\exercise{
+  10. Stel dat $x : N(0, 3)$ verdeeld, $y: N(2, 3)$ verdeeld en $z: \chi^2(7 d.f.)$ verdeeld zijn ($x, y$ en $z$ onafhankelijk). Bepaal
+      \begin{enumerate}
+        \item de kritische waarde $a$ zodat $P((y - 2)^2 > a^2z) = 0.9$
+        \item $P(x^2 + y^2 + 9z > 4y + 26)$
+      \end{enumerate}
+}{
+  \begin{enumerate}
+    \item We weten dat $y : N(2, 3)$, dus $\frac{y - 2}{3} : N(0, 1)$. Per definitie volgt dat $\frac{(y - 2)^2}{9} : \chi^2(1 d.f.)$
+    Aangezien zowel $\frac{(y - 2)^2}{9}$ en $z$ $\chi^2$ verdeeld zijn, kan hieruit de Fischer verdeling afgeleid worden door:
+    $$\frac{\frac{(y - 2)^2}{9}}{\frac{1}{z/7}} = \frac{7}{9}\cdot\frac{(y - 2)^2}{z}\; \hbox{ is } F(1, 7 d.f.) $$
+    De kans wordt:
+    $$0.9 = P((y - 2)^2 > a^2z) = P\bigg(\frac{7}{9}\cdot\frac{(y - 2)^2}{z} > \frac{7}{9}a^2\bigg)$$
+    Hieruit volgt dat $\frac{7}{9}a^2 = F_{0,9}(1, 7 d.f.) = \frac{1}{F_{0,1}(7, 1 d.f.)} = \frac{1}{58,91}$. Hieruit volgt dat $a = \sqrt{\frac{9}{7 \cdot 58.91}} = \pm 0.15$
+
+    \item We moeten van zowel $x$, als $y$ een $\chi^2$ verdeling maken zodat we deze kunnen optellen met $z$.
+      $$x: N(0, 3) \rightarrow \frac{x - 0}{3} : N(0, 1) \rightarrow \frac{x^2}{9} : \chi^2(1 d.f.)$$
+      We weten al van de vorige opgave dat $\frac{(y - 2)^2}{9}$ een $\chi^2$ verdeling is (1 d.f.).
+
+      We passen de lineaire combinatie toe:
+      $$\frac{x^2}{9} + \frac{(y - 2)^2}{9} + z\;\hbox{is}\; \chi^2(1 + 1 + 7 df)$$
+      De kans wordt:
+      \begin{equation*}
+        \begin{split}
+          P(x^2 + y^2 + 9z > 4y  26) & = P(x^2 + y^2 - 4y + 4 + 9z > 26 + 4) \\
+                                     & = P(x^2 + (y - 2)^2 + 9z > 30) \\
+                                     & = P\bigg(\frac{x^2}{9} + \frac{(y - 2)^2}{9} + z > \frac{30}{9}\bigg) \\
+                                     & = 1 - 0.05 = 0.95
+        \end{split}
+      \end{equation*}   
+      Uitleg bij $1 - 0.05 = 0.95$. We weten dat we bezig zijn met een chi-kwadraat verdeling met 9 vrijheidsgraden. Als je de waarde $30/9 = 3.33....$ opzoekt op het formularium bij 9 vrijheidsgraden zie je dat deze waarde behoort bij $\chi^2_{0.05}$. Dus de oppervlakte links van $\frac{30}{9}$ zou $0.05$ zijn, maar we willen de oppervlakte rechts van $\frac{30}{9}$ dus we doen $1 - 0.05 = 0.95$
+  \end{enumerate}
+}
+
+\exercise{
+  11. Het aantal afgestudeerden industrieel ingenieur is normaal verdeeld met gemiddelde 400 en standaarddeviatie 40. Het aantal arbeidsplaatsen dat voor hen beschikbaar is, is ook normaal verdeeld met gemiddelde 450 en standaarddeviatie 20. Bepaal de kans dat er studenten zijn die geen job vinden.
+}{
+  Stel:
+  \begin{itemize}
+    \item $s : \#$ afgestudeerden
+    \item $s$ is normaal verdeeld $\rightarrow s:N(400, 40)$
+    \item $p : \#$ plaatsen
+    \item $p$ is normaal verdeeld $\rightarrow p:N(450, 20)$ 
+  \end{itemize}
+  Het aantal studenten die geen job vinden kan voorgesteld worden als het aantal plaatsen min het aantal studenten. Vermits deze twee normaal verdeeld zijn is de resulterende verdeling ook normaal verdeeld. Stel $x$ het aantal studenten die geen job vinden dan is $x = p - s$ en $x:N(450 - 400, \sqrt{40^2 + 20^2}) = N(50, 20\sqrt{5})$.
+  De kans wordt:
+  \begin{equation*}
+    \begin{split}
+      P(x \leq 0) & = P\bigg(\frac{x - 50}{20\sqrt{5}}) \leq \frac{0 - 50}{20\sqrt{5}} \bigg) \\
+                  & = P(z \leq -1.12) \\
+                  & = 0.5 - 0.3686 \\
+                  & = 0.1314
+    \end{split}
+  \end{equation*}
+}
+
+\exercise{14. Stel dat de oefeningenpunten (op 20) voor statistiek normaal verdeeld zijn. Als $5 \%$ van de studenten meer dan dan 15 behaalt en $20\%$ minder dan 7, bereken dan het gemiddelde en de standaarddeviatie.
+}{
+  Stel:
+  \begin{itemize}
+    \item $x$ : Het aantal punten op de test voor een student
+    \item $x$ is normaal verdeeld $\rightarrow x:N(\mu,\sigma)$
+    \item $P(x > 15) = 0.05$
+    \item $P(x < 7) = 0.2$
+  \end{itemize}
+  We kunnen beide kansen normeren en dan op het formularium opzoeken voor welke waarde van $a$ deze kans waar is. We krijgen dan twee vergelijkingen in $\mu$ en $\sigma$3.
+
+  $$0.05 = P\bigg(\frac{x - \mu}{\sigma} > \frac{15 - \mu}{\sigma}\bigg) = P\bigg(z > \frac{15 - \mu}{\sigma}\bigg) = 0.5 - P\bigg(0 < z < \frac{15 - \mu}{\sigma}\bigg)$$
+  We weten dus dat $P\big(0 < z < \frac{15 - \mu}{\sigma}\big)$ gelijk moet zijn aan 0.45 zodat deze vergelijking klopt. We moeten de waarde $a$ vinden zodat $P(0 < z < a) = 0.45$, daarna stellen we $a = \frac{15 - \mu}{\sigma}$. De waarde 0.45 staat echter niet op het formularium. De waarden 0.4505 en 0.4495 staan er wel op dus we zeggen dat $0.45 = \frac{0.4505 + 0.4495}{2}.$ De kritische waarde $0.4505$ opzoeken komt neer op 1.65 en $0.4495$ komt neer op 1.64. Hieruit volgt dat $a = \frac{1.65 + 1.64}{2} = 1.645 = \frac{15 - \mu}{\sigma}$. 
+
+  Analoog voor de tweede kans:
+
+  $$0.2 = P\bigg(\frac{x - \mu}{\sigma} < \frac{7 - \mu}{\sigma}\bigg) = P\bigg(z < \frac{7 - \mu}{\sigma}\bigg)$$
+  Via dezelfde werkwijze komen we $\frac{7 - \mu}{\sigma} = -0.84$ uit.
+
+  Dit leidt tot het volgende stelsel:
+  $$
+    \begin{cases}
+      \frac{15 - \mu}{\sigma} = 1.645 \\
+      \frac{7 - \mu}{\sigma} = -0.84
+    \end{cases}
+  $$
+  Met eenvoudig rekenwerk bekomt men $\mu = 9.7$ en $\sigma = 3.27$
+}
+ 
+\exercise{16. Om te achterhalen of een persoon een bepaalde ziekte heeft, wordt een bloedtest genomen. Voor de personen die inderdaad ziek zijn, detecteert de bloedtest in 99\% van de gevallen de ziekte; echter voor de personen die niet zijk zijn blijk te bloedtest in 3\% van de gevallen wel ten onrechte de ziekte te detecteren. Als je weet dat 1\% van de bevolking de ziekte heeft, bepaal dan de kans dat een persoon de ziekte heeft in geval de bloedtest dit aangeeft.}{
+ Twee gebeurtenissen:\begin{enumerate}
+                      \item PZ: De persoon is ziek
+                      \item BZ: De bloedtest toont ziek
+                     \end{enumerate}
+  De kans dat een persoon ziek is indien de bloedtest dit aangeeft:
+  \begin{equation*}
+   \begin{split}
+    P(PZ|BZ) & = \frac{P(PZ)P(BZ|PZ)}{P(PZ)P(BZ|PZ) + P(PZ)P(\overline{BZ}|PZ)} \\
+             & = \frac{\frac{1}{100}\cdot\frac{99}{100}}{\frac{1}{100}\cdot\frac{99}{100} + \frac{99}{100}\cdot\frac{3}{100}} \\
+             & = \frac{\frac{99}{100^2}}{\frac{99}{100^2} + \frac{297}{100^2}} \\
+             & = \frac{99}{396}
+   \end{split}
+  \end{equation*}
+
+
+ 
+ }
+
