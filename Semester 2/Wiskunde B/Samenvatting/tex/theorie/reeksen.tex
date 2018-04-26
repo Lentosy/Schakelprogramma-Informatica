@@ -219,9 +219,9 @@ $$\int_m^\infty f(x)\;dx = \infty \Rightarrow \sum a_n \qquad \hbox{divergent na
     De reeks divergeert naar $+\infty$.
 }
 
-\section{De hyperharmonische reeks}
+\subsection{De hyperharmonische reeks}
 $$\sum_{n=1}^{\infty} \frac{1}{n^p} = 1 + \frac{1}{2^p} + \frac{1}{3^p} + ... + \frac{1}{n^p} + ...$$
-\subsection{Convergentieonderzoek}
+\subsubsection{Convergentieonderzoek}
 \begin{itemize}
     \item $p \leq 0 \Rightarrow \lim\limits_{n\to\infty} n^{-p} = +\infty$
         De reeks divergeert naar $+\infty$
@@ -256,7 +256,7 @@ $$
                             \end{cases}
 }
 $$
-\section{Vergelijkingscriteria}
+\subsection{Vergelijkingscriteria}
 Indien $\sum a_n$ gevraagd wordt, gebruik een gekende reeks $\sum b_n$. Tot nu toe kennen we twee reeksen: $\sum q^n$ en $\sum \frac{1}{n^p}$
 
 \begin{enumerate}
@@ -304,3 +304,216 @@ Indien $\sum a_n$ gevraagd wordt, gebruik een gekende reeks $\sum b_n$. Tot nu t
     Deze reeks divergeert naar $+\infty$
 }
 
+
+\subsection{Convergentiecriteria}
+We gebruiken 2 convergentiecriteria:
+\subsubsection{D'Alembert}
+$$\lim\limits_{n\to\infty} \frac{a_{n + 1}}{a_n}$$
+\subsubsection{Cauchy}
+$$\lim\limits_{n\to\infty} \sqrt[n]{a_n}$$
+
+Beide limieten kennen 3 uitkomsten:
+$$
+    \begin{cases}
+        < 1, \hbox{convergentie} \\
+        = 1, ???? \\
+        > 1, \hbox{divergentie}
+    \end{cases}
+$$
+
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 10}^{\infty} \frac{n^3}{3^n - n}$$
+}{
+    We gebruik de convergentiecriterium van D'Alembert.
+    \begin{equation*}
+        \begin{split}
+            \lim\limits_{n\to\infty} \frac{(n + 1)^3}{(3^{n + 1} - (n + 1))} \cdot \frac{3^n - n}{n^3} & = \lim\limits_{n\to\infty} \frac{n^3}{(3^{n + 1} - (n + 1))} \cdot \frac{3^n - n}{n^3} \\
+            & = \lim\limits_{n\to\infty} \frac{3^n - n}{3^{n + 1} - (n + 1)} \\
+            & = \lim\limits_{n\to\infty} \frac{3^n(1 - \frac{n}{3^n})}{3^{n + 1}(1 - \frac{n + 1}{3^{n + 1}})} \\
+            & = \frac{1}{3} < 1 \rightarrow \hbox{convergentie}
+        \end{split}
+    \end{equation*}
+}
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 1}^{\infty} - \bigg(\frac{3n - 1}{3n + 1} \bigg)^n$$
+}{
+    Dit is een reeks met uitsluitend negatieve termen, dus we vermenigvuldigen met -1. We beschouwen nu de reeks:
+    $$\sum_{n = 1}^{\infty} \bigg(\frac{3n - 1}{3n + 1} \bigg)^n$$
+    Dit lijkt het geschikte probleem om op te lossen met Cauchy.
+    $$\lim\limits_{n\to\infty} \sqrt[n]{\bigg(\frac{3n - 1}{3n + 1} \bigg)^n} = \lim\limits_{n\to\infty} \frac{3n - 1}{3n + 1} = 1$$
+    Er kan dus geen besluit gevormd worden. We maken gebruik van de algemene limiet.
+    $$\lim\limits_{n\to\infty} a_n = \lim\limits_{n\to\infty} \bigg(\frac{3n - 1}{3n + 1}\bigg)^n = 1^{\infty}$$
+    We maken gebruik van de definitie van het getal $e$.
+    $$\lim\limits_{n\to\infty} \bigg(1 + \big( - \frac{2}{3n + 1}\big)\bigg)^{-\frac{3n + 1}{2}\cdot(-\frac{2}{3n + 1})n} = \lim\limits_{n\to\infty} e^{-\frac{2n}{3n + 1}} = e^{-2/3}  \neq 0$$
+    Deze reeks is divergent naar $+\infty$. De originele reeks $\sum_{n = 1}^{\infty} - (\frac{3n - 1}{3n + 1} )^n$ is divergent naar $-\infty$
+}
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 4}^{\infty} \bigg(\frac{n}{2n + 1}\bigg)^{n^{2}}$$
+}{
+    We maken gebruik van het convergentiecriterium van Cauchy
+    $$\lim\limits \sqrt[n]{\bigg(\frac{n}{2n + 1}\bigg)^{n^{2}}} = \lim\limits \bigg(\frac{n}{2n + 1}\bigg)^{n} = \bigg(\frac{1}{2}\bigg)^{\infty} = 0 < 1$$
+    Deze reeks convergeert.
+}
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 0}^{\infty} \bigg(\frac{(2n)!n}{(n!)^2} \bigg)$$
+}{
+    Aangezien we te maken hebben met faculteiten is een goede keuze het convergentiecriterium van D'Alembert.
+    \begin{equation*}
+        \begin{split}
+            \lim\limits_{n\to\infty} \frac{(2n + 2)!(n + 1)}{((n + 1)!)^2}\cdot \frac{(n!)^2}{(2n)!n} & = \lim\limits_{n\to\infty} \frac{(2n)!(2n + 1)(2n + 2)(n!)(n!)}{n!(n + 1)(n!)(n + 1)(2n)} \\
+            & = \lim\limits_{n\to\infty} \frac{(2n + 1)(2n + 2)}{(n + 1)^2} \\
+            & = \lim\limits_{n\to\infty} \frac{4n^2}{n^2} \\
+            & = 4 > 1
+        \end{split}
+    \end{equation*}
+    Deze reeks is divergent naar $+\infty$
+}
+
+\section{Willekeurige reeksen}
+Een reeks is willekeurig indien er een oneindig aantal negatieve en positieve termen zijn. Wij zien een speciale soort van willekeurige reeksen: de alternerende reeks. Deze heeft veelal de volgende vorm:
+$$(-1)^n b_n \quad \hbox{met} \quad b_n > 0$$
+
+\subsection{Convergentiecriterium van Leibniz}
+Indien een reeks alternerend is en
+$$\forall n : |a_n| \geq |a_{n + 1}| \quad \hbox{en}\quad \lim\limits_{n\to\infty} |a_n| = 0$$
+dan convergeert de reeks
+
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 10}^{\infty} \frac{(-1)^n}{e^n - n}$$
+}{
+    We onderzoeken de voorwaarden van Leibniz.
+    \begin{itemize}
+        \item De reeks is duidelijk alternerend door $(-1)^n$
+        \item $|a_n|$ moet dalend zijn. We stellen $f(x) = \frac{(-1)^x}{e^x - x}$. De afgeleide hiervan is $f'(x) = \frac{1 - e^x}{(e^x -x)^2}$. Uit tekenonderzoek
+        blijkt dat $|a_n|$ dalend is voor alle $n > 0$.
+        \item $\lim\limits_{n\to\infty} |a_n|$ moet 0 zijn.
+        $$\lim\limits_{n\to\infty} \frac{1}{e^n - n} = \frac{1}{e^n(1 - n/e^n)} = 0$$
+    \end{itemize}
+    De reeks convergeert.
+}
+
+\subsection{Nieuwe begrippen}
+Een reeks is \textbf{absoluut convergent} als $\sum |a_n|$ convergeert. Een reeks is \textbf{semi-convergent} als $\sum |a_n|$ divergeert en $\sum a_n$ convergeert.
+
+Pas de volgende methode toe om een willekeurige reeks te onderzoeken:
+\begin{enumerate}
+    \item Ga na of de reeks absoluut convergent is
+    \item Indien de reeks niet absoluut convergent is, pas dan de voorwaarden van Leibnitz toe.
+    \item Maak ook gebruik van $\lim\limits_{n\to\infty} a_n \leq 0 \Rightarrow \sum a_n$ divergent.
+\end{enumerate}
+
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 1}^{\infty} (-1)^n \frac{n^2}{(2n - 1)!}$$ 
+}{
+    We gaan eerst na of de reeks absoluut convergent is. Dit betekent dus dat we enkel de absolute termen moeten beschouwen. De reeks wordt $\sum_{n = 1}^{\infty} \frac{n^2}{(2n - 1)}$. We passen D'Alembert toe0
+    \begin{equation*}
+        \begin{split}
+            \lim\limits_{n\to\infty} \frac{(n + 1)^2}{(2n + 1)} \cdot \frac{(2n - 1)!}{n^2} & = \lim\limits_{n\to\infty}  \frac{1}{2n(2n + 1)} \\
+            & = 0 < 1
+        \end{split}
+    \end{equation*}
+    De reeks met absolute waarden convergeert. De originele reeks is dus absoluut convergent.
+}
+\example{
+    Onderzoek de convergentie/divergentie van:   
+    $$\sum_{n = 0}^{\infty} (-1)^n \frac{\arctan(n)}{n^2 + 1}$$
+}{
+    We gaan eerst weer na of deze reeks absoluut convergent is. We passen D'Alembert toe.
+    \begin{equation*}
+        \begin{split}
+            \lim\limits_{n\to\infty} \frac{\arctan(n + 1)}{(n + 1)^2 + 1} \cdot \frac{n^2 + 1}{\arctan(n)} & = \lim\limits_{n\to\infty}  \frac{\pi/2 (n^2 + 1)}{(n^2 + 2n + 2)\pi/2} \\
+            & = \lim\limits_{n\to\infty} \frac{n^2}{n^2} \\
+            & = 1
+        \end{split}
+    \end{equation*}
+    Er kan geen besluit genomen worden. We maken gebruik van vergelijkingscriterium II. We zoeken eerst een reeks om mee te vergelijken. 
+    $$\sum \frac{\arctan(n)}{n^2 + 1} \approx \frac{1}{n^2}$$
+    We nemen de limiet
+    $$\lim\limits_{n\to\infty}  \frac{\arctan(n)}{n^2 + 1} \cdot n^2 = \frac{\pi}{2} \neq 0 \neq \infty$$
+    De reeks waarmee we vergeleken hebben is een harmonische reeks met $p = 2$. We weten dat deze reeks convergeert dus $\sum_{n = 0}^{\infty} \frac{\arctan(n)}{n^2 + 1}$ convergeert ook. Bijgevolg is $\sum_{n = 0}^{\infty} (-1)^n \frac{\arctan(n)}{n^2 + 1}$ absoluut convergent.
+}
+\example{
+   Onderzoek de convergentie/divergentie van:   
+   $$\sum_{n = 1}^{\infty}(-1)^{n - 1} \sin \frac{1}{\sqrt{4n - 1}}$$    
+}{
+    Bij het uitrekenen van D'Alembert zou je 1 uitkomen waardoor geen besluit kan genomen worden. We gebruiken volgende redenering.
+
+    Als $n$ stijgt, dan stijgt $4n - 1$, dan stijgt $\sqrt{4n - 1}$, dan daalt $\frac{1}{\sqrt{4n - 1}}$ en dan daalt $\sin \frac{1}{\sqrt{4n - 1}}$. De reeks kan als volgt benaderd worden. 
+    $$\sum_{n = 1}^{\infty} \sin \frac{1}{\sqrt{4n - 1}} \approx \sum_{n = 1}^{\infty} \frac{1}{\sqrt{4n - 1}} \approx \sum_{n = 1}^{\infty}  \frac{1}{\sqrt{n}}$$
+    Dit is een harmonische reeks met $p = 1/2$. Deze reeks is divergent.
+    We maken gebruik van vergelijkingscriterium II en nemen de limiet.
+    \begin{equation*}
+        \begin{split}
+            \lim\limits_{n\to\infty} \frac{\sin \frac{1}{\sqrt{4n - 1}}}{1/\sqrt{n}} & = \frac{\cos \frac{1}{\sqrt{4n - 1}} -\frac{1}{2}(4n - 1)^{-3/2}(4)}{-\frac{1}{2}n^{-3/2}} \\
+            & = \frac{-2}{\frac{-1}{2}} \lim\limits_{n\to\infty} \frac{n^{3/2}}{(4n - 1)^{3/2}} \\
+            & = 4 \lim\limits_{n\to\infty} \frac{n^{3/2}}{4n^{3/2}} \\
+            & = \frac{1}{2} \neq 0 \neq \infty
+        \end{split}
+    \end{equation*}
+    De reeks toont hetzelfde gedrag als de harmonische reeks en is dus divergent. Het besluit is dat deze reeks niet absoluut convergent is. We gaan nu na of de reeks semi-convergent is met de voorwaarden van Leibniz. We hebben al bewezen dat $\sin \frac{1}{\sqrt{4n - 1}}$ dalend is. We berekenen de limiet:
+    $$\lim\limits_{n\to\infty} |a_n| = \lim\limits_{n\to\infty} \frac{1}{\sqrt{4n - 1}} = 0$$
+    De reeks is semi-convergent.
+}
+\example{
+    Onderzoek de convergentie/divergentie van:
+    $$\sum_{n = 0}^{\infty} (-1)^n (1 - \frac{1}{10^n})$$      
+}{
+    Dit is heel eenvoudig na te gaan met $\lim\limits_{n\to\infty} a_n$
+    $$\lim\limits_{n\to\infty} (-1)^n (1 - \frac{1}{10^n}) = \lim\limits_{n\to\infty} (-1)^n (1 - 0) = -1^{\infty}$$
+    De reeks is divergent.
+}
+
+\section{Reeksen van functies}
+$$\sum_{n = 1}^{\infty} u_n(x) = u_1(x) + u_2(x) + ... + u_n(x) + ...$$
+Bij deze soort reeksen zijn we geïnteresseerd in het convergentiegebied van x. Voor welke waarden van x is de overeenkomstige reeks convergent.
+Gebruik volgende methodiek:
+\begin{enumerate}
+    \item Bereken
+        $$L(x) = \lim\limits_{n\to\infty} \bigg| \frac{u_{n + 1}(x)}{u_n(x)} \bigg| \quad\hbox{of}\quad L(x) = \lim\limits_{n\to\infty} \sqrt[n]{|u_n(x)|}$$
+    \item Indien $L(x) < 1$ dan behoort x tot het CG
+
+          Indien $L(x) > 1$ dan behoort x niet tot het CG
+
+          Indien $L(x) = 1$ dan ???
+
+\end{enumerate}
+
+\subsection{Machtreeksen rond x = a}
+$$\sum_{n = 0}^{\infty} c_n(x - a)^n$$
+\textbf{stelling:} Het CG van een machtreeks rond x=a is een symmetrisch interval rond x=a
+
+\textbf{bewijs:}
+\begin{equation*}
+    \begin{split}
+        \lim\limits_{n\to\infty} \bigg|\frac{ u_{n + 1}(x)}{u_n(x)} \bigg| & = \lim\limits_{n\to\infty} \bigg|\frac{ c_{n + 1}(x - a)^{n + 1}}{c_n(x - a)^n} \bigg| \\
+        & = \lim\limits_{n\to\infty} \bigg | \frac{c_{n + 1}}{c_n} \bigg | |x - a| < 1 \\
+        & x \in CG \Leftrightarrow |x - a| < \frac{1}{ \lim\limits_{n\to\infty} | \frac{c_{n + 1}}{c_n}|}  = \rho
+    \end{split}
+\end{equation*}
+Hieruit volgt $$\rho < x - a < \rho \rightarrow a - \rho < x < a + \rho$$
+Het CG wordt $$]a - \rho, a + \rho[$$
+
+\example{
+    Bepaal het CG van:
+    $$\sum_{n = 1}^{\infty} \bigg(\frac{2x + 1}{x}\bigg)^n$$
+}{
+    We passen de limiet van Cauchy toe.
+    $$\lim\limits_{n\to\infty} \sqrt[n]{\bigg|\bigg(\frac{2x + 1}{x}\bigg)^n\bigg|}$$
+    x behoort enkel tot een CG als deze limiet kleiner dan 1 is. We onderzoeken deze functie eerst.
+    \begin{equation*}
+        \begin{split}
+            \bigg| \frac{2x + 1}{x} \bigg| < 1  & = \frac{(2x + 1)^2}{x^2} < 1 \\
+                                                & = (2x + 1)^2 < x^2 \\
+                                                & = 4x^2 + 4x + 1 - x^2 < 0 \\
+                                                & = 3x^2 + 4x + 1 < 0 \\
+                                                & = 3(x + 1/3)(x + 1) < 0
+        \end{split}
+    \end{equation*}
+    Uit tekenonderzoek blijkt dat $x \in CG \rightarrow x \in ]-1, -1/3[$. Om na te gaan ofdat de grenzen inbegrepen zijn berekenen we de limiet voor x = -1 en x = -1/3.
+}

@@ -69,3 +69,44 @@
 		\end{split}
 	\end{equation*}
 }
+
+\exercise{
+	13. Stel dat $x : t(20 df)$ verdeeld is. Bepaal
+		\begin{enumerate}
+			\item $a$ zodat $P(x > a) = 0.3$
+			\item $b$ zodat $P(|x| > b) = 0.2$
+		\end{enumerate}
+}{
+	\begin{enumerate}
+		\item $1 - 0.3 = 0.7$
+			$$a = t_{0.7}(20 df) = 0.533$$
+		\item $|x| > b \rightarrow x < -b \quad \hbox{en} \quad x > b$
+			Dus $P(x < -b) + P(x > b) = 0.2$ maar wegens symmetrie beschouwen we $P(x > b) = 0.1$
+			Hieruit volgt: $b = t_{0.9}(20 df) = 1.32$
+	\end{enumerate}
+}
+
+\exercise{
+	14. Stel $x: N(0, 3)$ en $y: \chi^2(16 df)$ verdeeld met $x$ en $y$ onafhankelijk. Bepaal $a < 0$ zodat $P(ax \geq \sqrt{y}) = 0.3$. 
+}{
+	We weten dat de $t$-verdeling kan omschreven worden als $t(v df) = \frac{z}{\sqrt{y/v}}$ met $z: N(0, 1)$ en $y : \chi^2(v df)$. In ons geval herschrijven we de kans eerst als $P(ax \geq \sqrt{y}) = P\bigg(\frac{x}{\sqrt{y}} \leq \frac{1}{a}\bigg)$ zodat we de definitie van de $t$-verdeling kunnen toepassen. Eerst moeten we $x$ normeren $\rightarrow \frac{x - 0}{3}$ is $N(0, 1)$. Hieruit volgt dat 
+	$$\frac{x/3}{\sqrt{y/16}}$$
+	t(16 df) verdeeld is. De kans wordt:
+	$$P\bigg(\frac{4}{3}\frac{x}{\sqrt{y}} \leq \frac{4}{3}\frac{1}{a}\bigg)$$
+	Via het formularium kan afgleidt worden dat $-\frac{4}{3}\frac{1}{a} = t_{0.7}(16df) = 0.535 \Rightarrow a \approx -2.4922$
+}
+
+\exercise{
+	15. Stel dat $x : F(10, 15 df)$ verdeeld is. Bepaal $a$ en $b$ zodat $P(x < a) = 0.95$ en $P(x > b) = 0.95$
+}{
+	$a = F_{0.05}(10, 15 df) = 2.54$ en $b = F_{0.95}(10 ,15 df) = \frac{1}{F_{0.05}(15, 10 df)} = \frac{1}{2.85} \approx 0.3509$
+}
+
+\exercise{
+	18. Stel dat $x : \chi^2(350 df)$ verdeeld is, bepaald $P(x > 390)$
+}{
+	Een stelling dat NIET op het formularium staat zegt dat als $v \geq 30$, dan $z = \frac{x - v}{\sqrt{2v}}$ is $N(0, 1)$
+	Hieruit volgt direct dat $\frac{x - 350}{\sqrt{700}} N(0, 1)$ verdeeld is. 
+	De kans wordt:
+	$$P(x > 390) = P\bigg(z > \frac{390 - 350}{\sqrt{700}}\bigg) = P(z > 1.51) = 0.5 - 0.4345 = 0.0655$$
+}
