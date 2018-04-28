@@ -95,11 +95,11 @@ Tekening:
 \includegraphics[width=0.8\textwidth]{oef5_heaviside}
 \end{center}
 }
-\section{ExponentiÃ«le orde}
-Een functie is van exponentiÃ«le orde indien $\exists M, a \in R$ zodat $|f(t)| < Me^{at}, \forall t > N$ en met a het minimum van de waarden waarvoor dit geldt. Indien waar is $f(t)$ van exponentiÃ«le orde a.
+\section{Exponenti\"ele orde}
+Een functie is van exponenti\"ele orde indien $\exists M, a \in R$ zodat $|f(t)| < Me^{at}, \forall t > N$ en met a het minimum van de waarden waarvoor dit geldt. Indien waar is $f(t)$ van exponenti\"ele orde a.
 Soms is het gemakkelijker te bewijzen via:
 $$\lim_{t \to +\infty} \frac{|f(t)|}{e^{at}} \in R$$
-\example{Bepaal de exponentiÃ«le orde van $\sin t$}{
+\example{Bepaal de exponenti\"ele orde van $\sin t$}{
 \begin{equation*}
 \begin{split}
                 & |\sin t| \leq 1 \\
@@ -107,9 +107,9 @@ $$\lim_{t \to +\infty} \frac{|f(t)|}{e^{at}} \in R$$
 \Leftrightarrow & |\sin t| < 1.1e^{at}
 \end{split}
 \end{equation*}
-Hieruit kan afgeleid worden dat a = 0 en de exponentiÃ«le orde is dus ook 0.
+Hieruit kan afgeleid worden dat a = 0 en de exponenti\"ele orde is dus ook 0.
 }
-\example{Bepaal de exponentiÃ«le orde van $(1 + 2t)e^{-t}$}{
+\example{Bepaal de exponenti\"ele orde van $(1 + 2t)e^{-t}$}{
 Bij deze opgave maken we gebruik van de limietstelling.
 \begin{equation*}
 \begin{split}
@@ -131,9 +131,9 @@ We maken enkel gebruik van het tweede geval en passen dus L'hopital toe.
                                                 & = \frac{2}{+\infty} = 0 \in R
 \end{split}
 \end{equation*}
-Aangezien het een reÃ«ele uitkomst is kan a uit de uitdrukking $a + 1 > 0$ afgeleid worden.
+Aangezien het een re\"eele uitkomst is kan a uit de uitdrukking $a + 1 > 0$ afgeleid worden.
 $$\forall a, a > -1$$
-De exponentiÃ«le orde is dus -1.
+De exponenti\"ele orde is dus -1.
 }
 \section{De Laplacetransformatie}
 Definitie: Stel $f(t)$ causuaal dan is de laplacetransformatie van $f(t)$ een functie die een complex getal $s$ afbeeldt op 
@@ -172,14 +172,14 @@ Bewijs:
 \begin{split}
 \mathcal{L}\{e^{at}\}(s) & = \int_{0}^{+\infty}e^{at}e^{-st} \; dt \\
                             & = \int_{0}^{+\infty} e^{t(a - s)} \; dt \\
-                            & = \frac{e^t{a - s)}}{a - s}\bigg|_{0}^{+\infty} \\
+                            & = \frac{e^{t(a - s)}}{a - s}\bigg|_{0}^{+\infty} \\
                             & = \frac{1}{a - s}\bigg(\lim_{t \to +\infty}e^{t(a - s)} - 1\bigg)                         
 \end{split}
 \end{equation*}
 Uitwerking van de limiet:
 \begin{equation*}
 \begin{split}
-    \lim_{t \to +\infty}e^{t(a - s)} & = \lim_{t \to +\infty}|e^{at - st)} | \\
+    \lim_{t \to +\infty}e^{t(a - s)} & = \lim_{t \to +\infty}|e^{at - st} | \\
                                     & = \lim_{t \to +\infty}|e^{at - (x + yj)t}| \\
                                     & = \lim_{t \to +\infty}|e^{at - xt}\cdot e^{-yjt}| \\
                                     & = \lim_{t \to +\infty}|e^{at - xt}|\cdot |e^{-yjt}| \\

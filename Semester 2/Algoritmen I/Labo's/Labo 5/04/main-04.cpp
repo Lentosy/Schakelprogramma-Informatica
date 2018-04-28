@@ -1,12 +1,19 @@
 #include "../sudoku.cpp"
-#include "../backtrackflex.h"
+#include "../backtrackflex_sudoku.cpp"
 
 
 int main(void){
-	Sudoku sudoku("input-04.txt");
-	sudoku.schrijf(std::cout);
 	
+	try{
+		Sudoku sudoku("input-04.txt");
+		BacktrackflexSudoku btf;
+		btf.setSudoku(sudoku);
+		
+		// volgende lijn pas oproepen indien geefVerdere geïmplementeerd is
+		//btf.losOp(false);
+	}catch(GraafExceptie ge){
+		std::cout << ge.what();
+	}
 	
-	Backtrackflex btf;
 	return 0;
 }

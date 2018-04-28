@@ -15,11 +15,12 @@ using std::vector;
 //Hij is flexibeler dan klassieke backtrack, omdat het toevoegen/wegnemen van elementen
 //aan/van deeloplossing kan overschreven worden.
 
+
 template <class knoop>
 class Backtrackflex{
 public:
     Backtrackflex();
-
+	
     //als opgeroepen met zoekalle=true worden alle oplossingen gezocht
     void losOp(bool zoekalle);                                                                 
 protected:
@@ -37,15 +38,25 @@ De onderstaande functies moeten ingevuld worden voor specifieke problemen.
 ***************************************************************************/
 //controle geeft true terug als de vector deeloplossing een oplossing bevat.
     virtual bool controle()=0;
-//verwerk: afhandeling van een oplossing die opgeslagen is in deeloplossing.
+//verwerk: afhandeling van een oplossing die opgeslagen is in deeloplossing. bv tellen, uitschrijven van de oplossing, ...
     virtual void verwerk()=0;
 //geefVerdere: geef verzameling verderzettingen van de deeloplossing.
     virtual vector<knoop>& geefVerdere()=0;
 //Opgelet: deeloplossing is een vector van *pointers* naar knopen; de knopen zelf zitten
 // in de vector mogelijkheid die lokaal gedeclareerd wordt in losOp
+	// Een deeloplossing 
     vector<const knoop*> deeloplossing;
 };
 
+template <class knoop>
+void Backtrackflex<knoop>::voegToeAanDeeloplossing(const knoop& element){
+    deeloplossing.push_back(&element);
+}
+
+template <class knoop>
+void Backtrackflex<knoop>::verwijderUitDeeloplossing(){
+    deeloplossing.resize(deeloplossing.size()-1);
+}
 
 template <class knoop>
 Backtrackflex<knoop>::Backtrackflex(){
@@ -62,14 +73,16 @@ template <class knoop>
 void Backtrackflex<knoop>::losOp(bool& gedaan,bool zoekalle){
     if (controle()){//oplossing gevonden
         verwerk();
-        if (!zoekalle)
-            gedaan=true;
-    }
-//bij sommige problemen kan een oplossing nog verlengd worden tot een langere oplossing
-//daarom moet het volgend stuk code ook worden uitgevoerd als we een oplossing hebben.
-   if (!gedaan){
-//noot: het werken met referenties naar elementen van een vector is alleen veilig als de
-//vector onveranderlijk is.
+        if (!zoekalle){
+            gedaan=true;       	
+		}
+
+   	}
+	//bij sommige problemen kan een oplossing nog verlengd worden tot een langere oplossing
+	//daarom moet het volgend stuk code ook worden uitgevoerd als we een oplossing hebben.
+    if (!gedaan){
+	//noot: het werken met referenties naar elementen van een vector is alleen veilig als de
+	//vector onveranderlijk is.
         const vector<knoop> mogelijkheid(geefVerdere());
         int i=0;
         while (i<mogelijkheid.size() && !gedaan){
@@ -81,13 +94,4 @@ void Backtrackflex<knoop>::losOp(bool& gedaan,bool zoekalle){
     }
 }
 
-template <class knoop>
-void Backtrackflex<knoop>::voegToeAanDeeloplossing(const knoop& element){
-    deeloplossing.push_back(&element);
-}
-
-template <class knoop>
-void Backtrackflex<knoop>::verwijderUitDeeloplossing(){
-    deeloplossing.resize(deeloplossing.size()-1);
-}
 #endif

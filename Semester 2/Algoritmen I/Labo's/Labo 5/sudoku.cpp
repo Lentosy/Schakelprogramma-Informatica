@@ -4,16 +4,22 @@
 #include <vector>
 #include <fstream>
 
-/*
-* Default constructor. De bestandsnaam moet een sudoku voorstellen (9 x 9 matrix met getallen)
-*/
-Sudoku::Sudoku(const char * filename){
-	leesBestand(filename);
-	maakConnecties();
+Sudoku::Sudoku(){
+			
 }
 
 /*
-* Controleert of de sudoku een geldige oplossing bevat. Indien dit niet het geval is zal deze functie zeggen waar de fouten zitten.
+* Constructor die een bestandsnaam van een sudoku als parameter bevat.
+*/
+Sudoku::Sudoku(const char * filename){
+	leesBestand(filename);
+	//maakConnecties();
+}
+
+
+
+/*
+* Controleert of de sudoku een geldige oplossing bevat. Het toont ook de fouten
 */
 bool Sudoku::isGeldig() const{
 	bool isGeldig = true;
@@ -21,8 +27,8 @@ bool Sudoku::isGeldig() const{
 	for(int i = 0; i < aantalKnopen(); i++){
 		int huidigeWaarde = knoopdatavector[i]; // de waarde van het vakje dat we aan het bekijken zijn
 		// alle knopen vergelijken die met de huidige knoop verbonden zijn en controleren op duplicate waarden
-		std::map<int, int>::const_iterator it = knopen[i].begin();
-		while(it != knopen[i].end()){
+		std::map<int, int>::const_iterator it = this->knopen[i].begin();
+		while(it != this->knopen[i].end()){
 			if(huidigeWaarde == knoopdatavector[it->first]){
 				isGeldig = false;
 				std::cout << "Fout gevonden: index=" << i << "  gevonden waarde=" <<knoopdatavector[it->first] << std::endl;
@@ -33,20 +39,40 @@ bool Sudoku::isGeldig() const{
 	return isGeldig;
 }
 
+int Sudoku::geefAantalLegeVelden() const {
+	int aantal = 0;
+	for(int i = 0; i < aantalKnopen(); i++){
+		if(knoopdatavector[i] == 0){
+			aantal++;
+		}
+	}
+	return aantal;
+}
 /*
-* Leest het bestand en maakt voeg de knoop toe aan de graaf
+* Reads the file and adds the number as a node
 */
 void Sudoku::leesBestand(const char * filename){
-	std::ifstream input(filename);	
-	int x;	
-	while(input >> x){
-		voegKnoopToe(x);
+	/* want voor één of andere reden werkt ifstream niet */
+	std::vector<int> data = {0,5,0,3,0,0,0,0,1,
+							 0,0,3,0,2,4,9,0,0,
+							 0,7,0,0,0,0,4,0,0,
+							 4,0,0,0,1,9,0,0,0,
+							 0,0,0,0,0,0,0,8,0,
+							 0,0,1,0,7,3,0,0,6,
+							 0,0,2,0,9,0,0,0,0,
+							 0,0,0,0,0,0,0,0,0,
+							 5,0,0,0,8,0,0,2,0};
+							 
+	for(int i = 0; i < data.size(); i++){
+		voegKnoopToe(data[i]);
 	}
-	input.close();
+	
+
 }
 
 /*
-* Deze functie maakt verbindingen met elke knoop die niet dezelfde waarde als deze knoop
+* This function makes connections with each node that cannot have the same value. 
+* This function makes use of different functions to handle according to row, column and 3x3 matrices
 */
 void Sudoku::maakConnecties(){
 	for(int i = 0; i < 9; i++){
@@ -63,7 +89,7 @@ void Sudoku::maakConnecties(){
 	}
 }
 /*
-* Connecties maken op rij
+* Makes connections based on rows
 */
 void Sudoku::maakRijConnecties(int i){
 	for(int j = i; j < i + 9; j++){ // j = [i, i + 9]
@@ -74,7 +100,7 @@ void Sudoku::maakRijConnecties(int i){
 }
 
 /*
-* Connecties maken op kolom
+* Makes connections based on columns
 */
 void Sudoku::maakKolomConnecties(int i){
 	for(int j = i; j < 81; j += 9){
@@ -84,9 +110,6 @@ void Sudoku::maakKolomConnecties(int i){
 	}	
 }
 
-/*
-* Positieve modulo ( -1 % 3 = 2)
-*/
 int mod(int a, int b){
 	int r = a % b;
 	if(r < 0){
@@ -96,7 +119,7 @@ int mod(int a, int b){
 }
 
 /*
-* Connecties maken op de submatrices (3X3)
+* Makes connections based on the 3x3 matrices
 */
 void Sudoku::maakMatrixConnecties(int i){
 	
@@ -142,8 +165,6 @@ void Sudoku::maakMatrixConnecties(int i){
 		voegVerbindingToe(indices_to_connect[j], indices_to_connect[l + 6]);
 	}
 }
-
-
 
 
 

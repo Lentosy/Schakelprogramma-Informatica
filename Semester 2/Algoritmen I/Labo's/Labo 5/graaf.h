@@ -61,78 +61,78 @@ std::ostream &operator<<(std::ostream &os, const GraafExceptie& exc){
 
 template<RichtType RT>
 class Graaf{
-	public:
-		typedef std::map<int, int>  Knoop;      // beeldt knoopnummer (van buur) af op verbindingsnummer
-	
-	    // Construeert een graaf met gegeven RichtType en aantal knopen (default 0), zonder verbindingen.
-	    Graaf(int n=0);
-	    // Geeft true indien het richttype GERICHT is, false indien het ONGERICHT is.
-	    bool isGericht() const;
-	
-	    // Voegt een nieuwe 'lege' knoop toe, d.w.z. zonder verbindingen.
-	    // Geeft knoopnummer van toegevoegde knoop terug (begint bij 0).
-	    virtual int voegKnoopToe();   
-	    
-	    // Voegt verbinding toe tussen knoopnummers 'van' en 'naar'.
-	    // Gooit GraafExceptie indien verbinding al bestaat of knoopnummers ongeldig zijn.
-	    // Geeft verbindingsnummer van toegevoegde verbinding terug (begint bij 0).
-	    // Bij ongerichte graaf wordt terugverbinding ook toegevoegd (met zelfde verbindingnummer!)
-	    virtual int voegVerbindingToe(int van, int naar); 
-	        
-	    // Verwijdert de verbinding tussen knoopnummers 'van' en 'naar', incl. de terugverbinding indien ongericht.
-	    // Gooit GraafExceptie indien knoopnummers ongeldig zijn.
-	    // Geen exceptie indien de verbinding niet bestond.
-	    // Andere verbindingen worden niet 'hernummerd'. Er komen dus mogelijks "gaten" in de verbindingsnummers.
-	    virtual void verwijderVerbinding(int van, int naar);
-	
-	    // Geeft het aantal knopen van de graaf.
-	    int aantalKnopen() const;
-	
-	    // Geeft het aantal verbindingen van de graaf. 
-	    // Bij ongerichte graaf worden verbindingen NIET dubbel geteld!
-	    int aantalVerbindingen() const;
-	
-	    // Geeft het verbindingsnummer van de verbinding tussen 'van' en 'naar'.
-	    // Geeft -1 indien die verbinding niet bestaat.
-	    // Gooit een GraafExceptie indien knoopnummers ongeldig zijn.
-	    // Opgelet: performantie is O(log(v)) waarbij v aantal verbindingen vanuit 'van' is.
-	    int verbindingsnummer(int van, int naar) const; 
-	
-	    // Verwijdert alle knopen en verbindingen en herstart de verbindingsnummer
-	    virtual void wis();
-	
-	    // Toegang tot de knopen:
-	    const Knoop &operator[](int i) const { return knopen[i]; }
-	          Knoop &operator[](int i)       { return knopen[i]; }  // deze kan als lvalue gebruikt worden
-	
-	          
-	    // Schrijft de gegevens van de volledige graaf naar outputstream os.
-	    //Hulpfuncties schrijfKnoop en schrijfVerbinding.
-	    virtual void schrijf(std::ostream &os) const;
-	
-	    //teken maakt een .dot-bestand met de opgegeven naam en schrijft de graaf naar dit bestand.
-	    //knooplabel en taklabel zijn twee hulpfuncties hierbij
-	    virtual void teken(const char* bestandsnaam) const;
-	protected:
-	    //hulpfuncties voor schrijven/tekenen
-	    virtual std::string knooplabel(int i) const;
-	    virtual std::string taklabel(int i) const;
-	    // Schrijft de gegevens van de knoop met knoopnummer k naar outputstream os.
-	    virtual void schrijfKnoop(std::ostream &os, int k) const;
-	    // Schrijft de gegevens van de verbinding met verbindingsnummer v naar outputstream os.
-	    virtual void schrijfVerbinding(std::ostream &os, int v) const;
-	
-	    
-	    //algemene hulpfuncties
-	    void controleerKnoopnummer(int k) const;   // throw indien k ongeldig
-	    void voegVerbindingToeInDatastructuur(int van, int naar,int verbindingsnummer);
-	    void verwijderVerbindingUitDatastructuur(int van, int naar);
-	protected:
-	    //datavelden
-	    std::vector<Knoop>  knopen;
-	    int                 hoogsteVerbindingsnummer;
-	    RichtType           richttype;
-	    std::stack<int>     vrijgekomenVerbindingsnummers;
+public:
+typedef std::map<int, int>  Knoop;      // beeldt knoopnummer (van buur) af op verbindingsnummer
+
+    // Construeert een graaf met gegeven RichtType en aantal knopen (default 0), zonder verbindingen.
+    Graaf(int n=0);
+    // Geeft true indien het richttype GERICHT is, false indien het ONGERICHT is.
+    bool isGericht() const;
+
+    // Voegt een nieuwe 'lege' knoop toe, d.w.z. zonder verbindingen.
+    // Geeft knoopnummer van toegevoegde knoop terug (begint bij 0).
+    virtual int voegKnoopToe();   
+    
+    // Voegt verbinding toe tussen knoopnummers 'van' en 'naar'.
+    // Gooit GraafExceptie indien verbinding al bestaat of knoopnummers ongeldig zijn.
+    // Geeft verbindingsnummer van toegevoegde verbinding terug (begint bij 0).
+    // Bij ongerichte graaf wordt terugverbinding ook toegevoegd (met zelfde verbindingnummer!)
+    virtual int voegVerbindingToe(int van, int naar); 
+        
+    // Verwijdert de verbinding tussen knoopnummers 'van' en 'naar', incl. de terugverbinding indien ongericht.
+    // Gooit GraafExceptie indien knoopnummers ongeldig zijn.
+    // Geen exceptie indien de verbinding niet bestond.
+    // Andere verbindingen worden niet 'hernummerd'. Er komen dus mogelijks "gaten" in de verbindingsnummers.
+    virtual void verwijderVerbinding(int van, int naar);
+
+    // Geeft het aantal knopen van de graaf.
+    int aantalKnopen() const;
+
+    // Geeft het aantal verbindingen van de graaf. 
+    // Bij ongerichte graaf worden verbindingen NIET dubbel geteld!
+    int aantalVerbindingen() const;
+
+    // Geeft het verbindingsnummer van de verbinding tussen 'van' en 'naar'.
+    // Geeft -1 indien die verbinding niet bestaat.
+    // Gooit een GraafExceptie indien knoopnummers ongeldig zijn.
+    // Opgelet: performantie is O(log(v)) waarbij v aantal verbindingen vanuit 'van' is.
+    int verbindingsnummer(int van, int naar) const; 
+
+    // Verwijdert alle knopen en verbindingen en herstart de verbindingsnummer
+    virtual void wis();
+
+    // Toegang tot de knopen:
+    const Knoop &operator[](int i) const { return knopen[i]; }
+          Knoop &operator[](int i)       { return knopen[i]; }  // deze kan als lvalue gebruikt worden
+
+          
+    // Schrijft de gegevens van de volledige graaf naar outputstream os.
+    //Hulpfuncties schrijfKnoop en schrijfVerbinding.
+    virtual void schrijf(std::ostream &os) const;
+
+    //teken maakt een .dot-bestand met de opgegeven naam en schrijft de graaf naar dit bestand.
+    //knooplabel en taklabel zijn twee hulpfuncties hierbij
+    virtual void teken(const char* bestandsnaam) const;
+protected:
+    //hulpfuncties voor schrijven/tekenen
+    virtual std::string knooplabel(int i) const;
+    virtual std::string taklabel(int i) const;
+    // Schrijft de gegevens van de knoop met knoopnummer k naar outputstream os.
+    virtual void schrijfKnoop(std::ostream &os, int k) const;
+    // Schrijft de gegevens van de verbinding met verbindingsnummer v naar outputstream os.
+    virtual void schrijfVerbinding(std::ostream &os, int v) const;
+
+    
+    //algemene hulpfuncties
+    void controleerKnoopnummer(int k) const;   // throw indien k ongeldig
+    void voegVerbindingToeInDatastructuur(int van, int naar,int verbindingsnummer);
+    void verwijderVerbindingUitDatastructuur(int van, int naar);
+protected:
+    //datavelden
+    std::vector<Knoop>  knopen;
+    int                 hoogsteVerbindingsnummer;
+    RichtType           richttype;
+    std::stack<int>     vrijgekomenVerbindingsnummers;
 };
 
 

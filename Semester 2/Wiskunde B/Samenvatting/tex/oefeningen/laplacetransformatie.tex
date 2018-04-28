@@ -173,20 +173,6 @@ Bepaal het Laplacebeeld van volgende functies:
  }
  \item{
     \exercise{
-        $f(t) = t^2H(t-1)$
-    }{
-        \begin{equation*}
-         \begin{split}
-          \mathcal{L}\{t^2H(t-1)\}(s) & = \mathcal{L}\{[(t-1)+1]^2H(t-1)\}(s) \\
-                                      & = \mathcal{L}\{(t-1)^2 + 2(t-1)+1)H(t-1)\}(s) \\
-                                      & = e^{-s}\mathcal{L}\{u^2 + 2u + 1\} \\
-                                      & = e^{-s}\bigg(\frac{2}{s^3} + \frac{2}{s} + \frac{1}{s}\bigg)
-         \end{split}
-        \end{equation*}
-    }
- }
- \item{
-    \exercise{
         $f(t) = \sin(t)H(t-2)$
     }{
         \begin{equation*}
@@ -275,10 +261,10 @@ Bepaal het Laplacebeeld van volgende functies:
           \mathcal{L}\{e^{-3t}t^3H(t - 2)\}(s) & = \mathcal{L}\{t^3H(t - 2)\}(s + 3) \\
                                                & = \mathcal{L}\{[(t-2)+2]^3H(t-2)\}(s + 3) \\
                                                & = \mathcal{L}\{[(t-2)^3 + 6(t-2)^2+12(t-2) + 8]H(t-2)\}(s + 3) \\
-                                               & = e^{2s}\mathcal{L}\{u^3 + 6u^2 + 12u + 8\}(s + 3) \\
-                                               & = e^{2s}\bigg[\frac{3!}{(s+3)^4}+6\frac{2!}{(s+3)^3}+12\frac{1!}{(s+3)^2} + 8\frac{1}{s}\bigg] \\
-                                               & = e^{2s}\bigg[\frac{6}{(s+3)^4}+\frac{12}{(s+3)^3}+\frac{12}{(s+3)^2} + \frac{8}{s}\bigg] \\
-                                               & = 2e^{2s}\bigg[\frac{3}{(s+3)^4}+\frac{6}{(s+3)^3}+\frac{6}{(s+3)^2} + \frac{4}{s}\bigg]
+                                               & = e^{-2s}\mathcal{L}\{u^3 + 6u^2 + 12u + 8\}(s + 3) \\
+                                               & = e^{-2s}\bigg[\frac{3!}{(s+3)^4}+6\frac{2!}{(s+3)^3}+12\frac{1!}{(s+3)^2} + 8\frac{1}{s}\bigg] \\
+                                               & = e^{-2s}\bigg[\frac{6}{(s+3)^4}+\frac{12}{(s+3)^3}+\frac{12}{(s+3)^2} + \frac{8}{s}\bigg] \\
+                                               & = 2e^{-2s}\bigg[\frac{3}{(s+3)^4}+\frac{6}{(s+3)^3}+\frac{6}{(s+3)^2} + \frac{4}{s}\bigg]
          \end{split}
         \end{equation*}
     }
