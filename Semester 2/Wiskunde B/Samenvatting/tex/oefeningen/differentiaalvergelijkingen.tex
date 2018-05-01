@@ -217,24 +217,167 @@ is de differentiaalvergelijking.
     \begin{equation*}
      \begin{split}
       & u'v + uv' + \frac{uv}{x} = x^2 + 1 \\
-      \Rightarrow & u'v + u(v' + \frac{v}{x}) = x^2 + 1
+      \Rightarrow & u'v + u(v' + \frac{v}{x}) = x^2 + 1 \\
+      & \hbox{kies } v' + \frac{v}{x} = 0 \\
+      & dv = -\frac{v}{x}\;dx \\
+      & \frac{dv}{v} = -\frac{dx}{x} \\
+      & \int \frac{dv}{v} = -\int\frac{dx}{x} \\
+      & \ln|v| = -\ln|x| \\
+      & v = \frac{1}{x} \\
+      \Rightarrow & u' \frac{1}{x} = x^2 + 1 \\
+      \Rightarrow & \frac{du}{x} = (x^2 + 1)\;dx\\
+      \Rightarrow & \int du = \int x(x^2 + 1)\;dx \\
+      \Rightarrow & u = \frac{1}{2}\frac{(x^2 + 1)^2}{2} + C \\
+      \Rightarrow & y = uv = \frac{1}{x}\bigg(\frac{(x^2 + 1)^2}{4}\bigg) \\
+      \Rightarrow & y = \frac{(x^2 + 1)^2}{4x} + \frac{C}{x} \qquad \hbox{(AO)}
      \end{split}
     \end{equation*}
-
+    Bepaling van C voor de PO door (1, 2).
+    $$2 = \frac{(1^2 + 1)^2}{4\cdot1} + \frac{C}{1} \rightarrow C = 1$$
+    De PO wordt :
+    $$y = \frac{(x^2 + 1)^2}{4x} + \frac{1}{x}$$
 }
 
-\subsection{Lineaire DVG met constante coëfficiënten}
+\subsection{DVG van Bernouilli}
 \exercise{
-        Gegeven $$y'' + y = 0$$
-        \begin{enumerate}
-         \item Bepaal de AO
-         \item Bepaal de PO zodat $y\big(\frac{\pi}{2}\big) = 0 $ en $y(\pi) = 1$
-        \end{enumerate}
+    Bepaal de AO van 
+    $$(x^2y - y^4\sin x)\;dx - x^3\;dy = 0$$
 }{
+    Momenteel kan deze DVG niet opgelost worden. We herschrijven deze in de Bernouilli vorm.
     \begin{equation*}
      \begin{split}
-      \laplace{y'' + y}
+      & (x^2y - y^4\sin x)\; dx = x^3\;dy \\
+      \Rightarrow & (x^2y - y^4\sin x) = x^3y' \\
+      \Rightarrow & x^3y' - x^2y = -y^4\sin x \\
+      \Rightarrow & y' - \frac{1}{x}y = -y^4\frac{\sin x}{x^3}
      \end{split}
     \end{equation*}
-
+    Deze DVG is Bernouilli in $y$ en $y'$ met $y^n$ = $y^4$. We delen de DVG door $y^4$
+    $$\frac{y'}{y^4} - \frac{1}{xy^3} = - \frac{\sin x}{x^3}$$
+    We stellen $z = \frac{1}{y^3}$ en $z' = \frac{-3y'}{y^4}$ waaruit volgt dat $\frac{y'}{y^4} = -\frac{z'}{3}$
+    Dit wordt in de DVG gesubstitueerd 
+    \begin{equation*}
+     \begin{split}
+      & -\frac{z'}{3} - \frac{z}{x} = -\frac{\sin x}{x^3} \\
+       \Rightarrow & \frac{z'}{3} + \frac{z}{x} = \frac{\sin x}{x^3} 
+     \end{split}
+    \end{equation*}
+    Deze DVG is lineair in $z$ en $z'$. We stellen $z = uv$ en $z' = u'v + uv'$
+    \begin{equation*}
+     \begin{split}
+      & -\frac{z'}{3} - \frac{z}{x} = -\frac{\sin x}{x^3} \\
+      \Rightarrow & \frac{u'v + uv'}{3} + \frac{uv}{x} = \frac{\sin x}{x^3} \\
+      \Rightarrow & u'v + uv' + \frac{3uv}{x} = \frac{3\sin x}{x^3} \\
+      \Rightarrow & u'v + u(v' + \frac{3v}{x}) = \frac{3\sin x}{x^3} \\
+      \Rightarrow & \hbox{We kiezen } v' + \frac{3v}{x} = 0 \\ \\
+      \rightarrow & dv = -\frac{3v}{x} \; dx  \\
+      \rightarrow & \int dv = - \int \frac{3}{x}v \; dx \\
+      \rightarrow & \ln|v| = -3\ln|x| \\
+      \rightarrow & v = x^{-3} \\
+      \Rightarrow & \frac{u'}{x^3} = \frac{3\sin x}{x^3} \\
+      \Rightarrow & u' = 3\sin x \\
+      \Rightarrow & \int du = 3 \int\sin x \;dx \\
+      \Rightarrow & u = -3\cos x + C \\
+      \Rightarrow & \frac{1}{y^3} = z = uv = (-3\cos x + C)\frac{1}{x^3} \\
+      \Rightarrow & y^3 = \frac{x^3}{C - 3\cos x} \qquad \hbox{(AO)}
+     \end{split}
+    \end{equation*}   
 }
+
+\exercise{
+    Bepaal de AO van
+    $$1 = y(x + x^3)y'$$
+}{
+    Herschrijf de DVG
+    \begin{equation*}
+        \begin{split}
+            & dx = y(x + x^3)\;dy \\
+            \Rightarrow & \frac{dx}{dy} = y(x + x^3) \\
+            \Rightarrow & x' - yx = x^3y \\
+        \end{split}
+    \end{equation*}
+    Deze DVG is Bernouilli in $x$ en $x'$ met $x^n = x^3$. We delen de DVG door $x^2$.
+    $$\frac{x'}{x^3} - \frac{y}{x^2} = y$$
+    We stellen $z = \frac{1}{x^2}$ en $z' = -\frac{2x'}{x^3}$ waaruit volgt dat $\frac{x'}{x^3} = - \frac{z'}{2}$
+    \begin{equation*}
+     \begin{split}
+      & -\frac{z'}{2} - zy = y \\
+      & z' + 2zy = -2y
+     \end{split}
+    \end{equation*}  
+    Deze DVG is lineair in $z$ en $z'$. We stellen $z = uv$ en $z' = u'v + uv'$..
+    \begin{equation*}
+     \begin{split}
+      & u'v + uv' + 2uvy = -2y \\
+      \Rightarrow & u'v + u(v' + 2vy) = -2y \\
+      \rightarrow & \hbox{kies } v' + 2vy = 0 \\
+      \rightarrow & dv = -2vy\;dy \\
+      \rightarrow & \int \frac{dv}{v} = -2 \int y\;dy \\
+      \rightarrow & \ln|v| \frac{-2y^2}{2} \\
+      \rightarrow & v = e^{-y^{2}} \\
+      \Rightarrow & u'e^{-y^{2}} = -2y \\
+      \Rightarrow & u' = -2ye^{y^{2}} \\
+      \Rightarrow & \int du = - \int 2ye^{y^{2}} \; dy \\
+      \Rightarrow & u = -e^{y^{2}} + C \\
+      \Rightarrow & \frac{1}{x^2} = z = uv = (-e^{y^{2}} + C)e^{-y^{2}}
+     \end{split}
+    \end{equation*}
+    De AO wordt 
+    $$\frac{1}{x^2} = -1 + Ce^{-y^{2}}$$  
+}
+
+\section{Orthogonale krommenbundel}
+\exercise{
+    Bepaal de orthogonale krommenbundel van 
+        \begin{enumerate}
+            \item $x^2 + y^2 = C$
+            \item $y^2 = Cx$
+        \end{enumerate}
+}{
+    \begin{enumerate}
+        \item $x^2 + y^2 = C$ stellen cirkels voor met middelpunt (0, 0) en straal = $\sqrt{C}$
+        We leiden af: $2x + 2yy' = 0 \rightarrow x + yy' = 0$ en stellen $y' = -\frac{1}{y'}$.
+        \begin{equation*}
+            \begin{split}
+                & x - \frac{y}{y'} = 0 \\
+                \Rightarrow & xy' - y = 0 \\
+                \Rightarrow x\;dy = y\;dx \\
+                \Rightarrow \int \frac{dy}{y} = \int \frac{dx}{x} \\
+                \Rightarrow \ln|y| = \ln|Cx| \\
+                \Rightarrow y = Cx
+            \end{split}
+        \end{equation*}
+        \item $y^2 = Cx$ stellen parabolen voor met als top (0, 0) en de x-as als symmetrieas. We leiden af en bekomen $2yy' = C$. We steken deze C in de huidige vergelijking
+        \begin{equation*}
+         \begin{split}
+          & y^2 -2yy'x \\
+          \Rightarrow & y^2 - 2yy'x \\
+          \Rightarrow & y(y - 2y'x) \\
+          \rightarrow y = 0 \qquad \hbox{of} \qquad y= 2y'x \\
+            * & y = 0 \rightarrow y' = 0 \rightarrow -\frac{1}{y'} = \infty \rightarrow y-as \\
+            * & y = 2y'x \rightarrow y = -\frac{2x}{y'} \rightarrow yy' + 2x = 0 \\
+          \Rightarrow \int y \;dy = -2\int x\;dx \\
+          \Rightarrow \frac{y^2}{2} = -x^2 \\
+          \Rightarrow \frac{y^2}{2} + x^2 = 0
+         \end{split}
+        \end{equation*}
+        Dit zijn ellipsen.
+    \end{enumerate}
+}
+
+
+%\subsection{Lineaire DVG met constante coëfficiënten}
+%\exercise{
+%        Gegeven $$y'' + y = 0$$
+%        \begin{enumerate}
+%         \item Bepaal de AO
+%         \item Bepaal de PO zodat $y\big(\frac{\pi}{2}\big) = 0 $ en $y(\pi) = 1$
+%        \end{enumerate}
+%}{
+%    \begin{equation*}
+%     \begin{split}
+%      \laplace{y'' + y}
+%     \end{split}
+%    \end{equation*}
+
+%}
