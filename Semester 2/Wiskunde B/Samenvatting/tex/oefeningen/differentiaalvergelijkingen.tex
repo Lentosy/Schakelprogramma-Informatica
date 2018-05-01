@@ -1,4 +1,5 @@
 \chapter{Differentiaalvergelijkingen}
+\section{Bepalen van differentiaalvergelijkingen}
 \exercise{Bepaal de DVG van \begin{enumerate}
                         \item $y = C_1x + C_2$
                         \item de cirkels met hun middelpunt op de x-as 
@@ -52,23 +53,158 @@ Substitueer $C$ in de formule van de raaklijn:
 is de differentiaalvergelijking.
 \end{enumerate}
 }
-\section{Lineaire DVG met constante coëfficiënten}
-\exercise{
-        Gegeven $$y'' + y = 0$$
-        \begin{enumerate}
-         \item Bepaal de AO
-         \item Bepaal de PO zodat $y\big(\frac{\pi}{2}\big) = 0 $ en $y(\pi) = 1$
-        \end{enumerate}
-}{
-    \begin{equation*}
-     \begin{split}
-      \laplace{y'' + y}
-     \end{split}
-    \end{equation*}
 
+
+
+\section{Differentiaalvergelijkingen van de eerste orde en eerste graad}
+\subsection{Scheiden van de veranderlijken}
+\exercise{
+    Bepaal de AO van $$\frac{\sin x}{2 + y}y' = \cos x$$
+}{
+    Deze DVG kan eenvoudig gescheiden worden als. 
+    $$\frac{1}{2 + y}dy = \frac{\cos x}{\sin x} dx $$
+    Neem de integraal.
+    $$\int \frac{1}{2 + y}dy = \int \frac{\cos x}{\sin x} dx $$
+    De vergelijking wordt:
+    $$\ln |2 + y| = \ln | \sin x | + C $$
+    De constante C kan geschreven worden als $\ln C$ zodat die samengevoegd kan worden met $\ln \sin x$
+    $$\ln |2 + y| = \ln | C\sin x |$$
+    De AO wordt dus
+    $$y = C\sin x - 2$$
 }
 
-\section{Lineaire DVG in y en y'}
+\subsection{Homogene differentiaalvergelijkingen}
+\exercise{
+    Bepaal de AO van
+    $$y' = \frac{x^2 + y^2}{2xy}$$
+}{
+    Herschrijf eerst de DVG
+    $$2 xy  dy= (x^2 + y^2) \;dx$$
+    Controleer of deze DVG homogeen is. Vervang $x$ met $\lambda x$ en $y$ met $\lambda y$. De DVG wordt 
+    $$2\lambda x\lambda y  dy= (\lambda^2 x^2 + \lambda^2 y^2) \;dx \Rightarrow \lambda^2(2xy) dy = \lambda^2(x^2 + y^2) dx$$
+    Deze DVG is homogeen van de tweede graad. Pas de algemene oplossingsmethode toe, $y = ux, dy = udx + xdu$ en steek dit in de DVG.
+    \begin{equation*}
+        \begin{split}
+            & 2x(ux)(u\;dx + x\;du) = (x^2 + u^2x^2)\;dx \\
+            \Rightarrow & 2u(u\;dx + x\;du) = 1 +u^2\;dx \\
+            \Rightarrow & 2u^2\;dx + 2ux\;du = 1 +u^2\;dx  \\
+            \Rightarrow & 2ux\;du = 1 - u^2\; dx \\
+            \Rightarrow & \frac{2u}{1 - u^2}\;du = \frac{1}{x}\;dx \\
+            \Rightarrow & \int \frac{2u}{1 - u^2}\;du = \int \frac{1}{x}\;dx \\
+            \Rightarrow & -\ln |1 - u^2| = \ln|x| + C \\
+            \Rightarrow & \ln|x| + \ln |1 - u^2| =   C \\
+            \Rightarrow & \ln|x (1 - u^2)| =   C \\
+            \Rightarrow & x (1 - u^2) =   C \\
+            \Rightarrow & x (1 - \frac{y^2}{x^2}) =   C \\
+        \end{split}
+    \end{equation*}
+    De AO is $x (1 - \frac{y^2}{x^2}) =   C $
+}
+
+\exercise{
+    Bepaal de AO van 
+    $$3y\cos \frac{x}{y}\;dx - (2y\sin(\frac{x}{y}) + 3x\cos(\frac{x}{y}))\;dy$$
+}{
+    Controleer of deze DVG homogeen is.
+    $$3\lambda y\cos \frac{x}{y}\;dx - (2\lambda y\sin(\frac{x}{y}) + 3\lambda x\cos(\frac{x}{y}))\;dy$$
+    Dit is homogeen van de eerste graad. Er kan gekozen worden tussen $x = uy$ of $y = ux$. We kiezen $x = uy$ aangezien we dan $u = \frac{x}{y}$ hebben en dit gemakkelijk kan gesubstitueerd worden. We substitueren $x = uy$ in de DVG.
+    \begin{equation*}
+        \begin{split}
+            & 3y\cos u (u\;dy + y\;du) - (2y\sin u + 3uy\cos u)\;dy = 0 \\
+            \Rightarrow & 3\cos u (u\;dy + y\;du) - (2\sin u + 3u\cos u)\;dy = 0 \\
+            \Rightarrow & 3u\cos u \;dy + 3y\cos u \;dy - 2\sin u - 3u\cos u \;dy = 0 \\
+            \Rightarrow & 3y\cos u \;du = 2\sin u \;dy \\
+            \Rightarrow & 3\int \frac{\cos u}{\sin u}\;du = 2\int \frac{dy}{y} \\
+            \Rightarrow & 3\ln|\sin u| = 2\ln|y| + C \\
+            \Rightarrow & \ln|\sin^3 u| = \ln|Cy^2| \\
+            \Rightarrow & \sin^3 u = Cy^2 \\
+            \Rightarrow & \sin^3 \frac{x}{y} = Cy^2
+        \end{split}
+    \end{equation*}
+}
+
+\subsection{Totale differentiaalvergelijkingen}
+\exercise{
+    Bepaal de AO van
+    $$y(\cos (xy) + 1)\;dx + x(\cos (xy) + 1)\;dy = 0$$
+}{
+    We bekijken of deze DVG totaal is.
+    $$\frac{\partial}{\partial y}\big[y(\cos (xy) + 1)\big] = \cos (xy) + 1 - yx\sin(xy)$$
+    en
+    $$\frac{\partial}{\partial x}\big[x(\cos (xy) + 1)\big] = \cos (xy) + 1 - yx\sin(xy)$$
+    Deze DVG is exact. We zoeken nu $F(x,y)$ zodat $\frac{\partial F}{\partial x} = y(\cos (xy) + 1)$ en $\frac{\partial F}{\partial y} = x(\cos (xy) + 1)$. 
+    \begin{equation*}
+        \begin{split}
+            &  F(x, y) = \int (y\cos(xy) + y)\;dx + k(y) \\ 
+            \Rightarrow & y\sin(xy) + yx + k(y)
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            & \frac{\partial (y\sin(xy) + yx + k(y))}{\partial y} = x(\cos(xy) + 1) \\ 
+            \Rightarrow & x\cos(xy) + x + k'(y) = x\cos(xy) + x \\
+            \Rightarrow & k'(y) = 0 = C
+        \end{split}
+    \end{equation*}
+    Uiteindelijk:
+    $$F(x, y) = \sin(xy) + yx + C$$. De AO is $$\sin(xy) + xy = C$$
+}
+
+\exercise{
+    Bepaal de AO van 
+    $$(3x^2y - y^2)\;dx = -(x^3 - 2xy + \frac{\ln y}{y})\;dy$$
+}{
+    We controleren eerst weer of dat deze DVG exact is.
+    $$\frac{\partial}{\partial y} \big[3x^2 - y^2] = 3x^2 - 2y$$
+    en
+    $$\frac{\partial}{\partial x} \big[x^3 - 2xy + \frac{\ln y}{y}] = 3x^2 + 2y$$
+    Deze DVG is exact. We zoeken $F(x, y)$ zodat 
+    $$  \begin{cases}
+          (1)  \frac{\partial F}{\partial x} = 3x^2y - y^2 \\
+          (2)  \frac{\partial F}{\partial y} = x^3 - 2xy + \frac{\ln y}{y} 
+        \end{cases}$$
+    \begin{equation*}
+        \begin{split}
+            (1) F(x, y) & = \int (3x^2y - y^2)\;dx + k(y) \\
+                          & = x^3y - y^2x + k(y)
+        \end{split}
+    \end{equation*} 
+    \begin{equation*}
+        \begin{split}
+            (2) & \frac{\partial}{\partial y}\bigg(x^3y - y^2 + k(y)\bigg) = x^3 - 2xy + \frac{\ln y}{y} \\
+            \Rightarrow & x^3 + 2xy + k'(y) = x^3 - 2xy + \frac{\ln y}{y} \\
+            \Rightarrow & k(y) = \int \frac{\ln y}{y} \;dy = \frac{1}{2} \ln^2 y + C
+        \end{split}
+    \end{equation*} 
+    Uiteindelijk:
+    $$F(x, y) = x^3y - y^2x + \frac{1}{2}\ln^2 y + C$$ De AO is $$x^3y - y^2x + \frac{1}{2}\ln^2 y = C$$
+}
+
+\exercise{
+    Bepaal alle functies $f(x)$ zodat volgende DVG met vemenigvuldiging met $f(x)$ totaal wordt.
+    $$2\sin x\sin y\;dx - \cos x\cos y\;dy = 0$$
+}{
+    Vermenigvuldig de DVG met $f(x)$.
+    $$f(x)\cdot2\sin x\sin y\;dx - f(x)\cdot\cos x\cos y\;dy = 0$$
+    \begin{equation*}
+        \begin{split}
+            & \frac{\partial}{\partial y}\big(f(x)2\sin x \sin y \big) = \frac{\partial}{\partial x}\big(-f(x)\cos x \cos y) \\
+            \Rightarrow & 2f(x)\sin x\cos y = f(x)\sin x\cos y - f'(x)\cos x \cos y \\
+            \Rightarrow & f(x)\sin x \cos y = -f'(x)\cos x \cos y \\
+            \Rightarrow & f(x)\sin x = - f'(x)\cos x \\
+            \Rightarrow & \tan x = -\frac{f'(x)}{f(x)} \\
+            \Rightarrow & \tan x = \frac{df(x)/dx}{f(x)} \\
+            \Rightarrow & - \tan x\;dx = \frac{df(x)}{f(x)} \\
+            \Rightarrow & - \int \tan x\;dx = \int \frac{df(x)}{f(x)}  \\
+            \Rightarrow & \ln|\cos x| = \ln|f(x)| + C \\
+            \Rightarrow & \ln|C\cos x| = \ln|f(x)| \\
+            \Rightarrow & f(x) = C\cos x
+        \end{split}
+    \end{equation*} 
+}
+
+
+\subsection{Lineaire DVG in y en y'}
 \exercise{
     Bepaal de PO door (1, 2) voor $y' + \frac{y}{x} - (x^2 + 1) = 0$
 }{
@@ -82,6 +218,22 @@ is de differentiaalvergelijking.
      \begin{split}
       & u'v + uv' + \frac{uv}{x} = x^2 + 1 \\
       \Rightarrow & u'v + u(v' + \frac{v}{x}) = x^2 + 1
+     \end{split}
+    \end{equation*}
+
+}
+
+\subsection{Lineaire DVG met constante coëfficiënten}
+\exercise{
+        Gegeven $$y'' + y = 0$$
+        \begin{enumerate}
+         \item Bepaal de AO
+         \item Bepaal de PO zodat $y\big(\frac{\pi}{2}\big) = 0 $ en $y(\pi) = 1$
+        \end{enumerate}
+}{
+    \begin{equation*}
+     \begin{split}
+      \laplace{y'' + y}
      \end{split}
     \end{equation*}
 

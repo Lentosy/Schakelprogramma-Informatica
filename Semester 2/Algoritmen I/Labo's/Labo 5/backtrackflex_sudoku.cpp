@@ -12,7 +12,9 @@ BacktrackflexSudoku::BacktrackflexSudoku() {}
 * Geeft de volgende deeloplosing terug
 */
 vector<std::pair<int, int>>& BacktrackflexSudoku::geefVerdere(){
-
+	std::vector<std::pair<int, int>> vector;
+	
+	return &vector;
 }
 
 /*
