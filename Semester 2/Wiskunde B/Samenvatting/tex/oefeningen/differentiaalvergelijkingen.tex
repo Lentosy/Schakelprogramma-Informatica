@@ -364,6 +364,60 @@ is de differentiaalvergelijking.
         Dit zijn ellipsen.
     \end{enumerate}
 }
+\section{Differentiaalvergelijkingen van hogere orde}
+\exercise{
+    Bepaal de AO van 
+    $$y'' - y' = e^x$$
+}{
+    Stel $y' = p (= p(x))$ en $y'' = p'$.
+    $$p' - p = e^x$$
+    Dit is lineair in $p$ en $p'$. Stel $p = uv$ en $p' = u'v + uv'$.
+    \begin{equation*}
+    \begin{split}
+      & u'v + uv' -uv = e^x \\
+      \Rightarrow & u'v + u(v' - v) = e^x \\
+      \rightarrow & \hbox{kies } v' - v = 0 \\
+      \rightarrow & \frac{dv}{v} = dx \\
+      \rightarrow & \int \frac{dv}{v} = \int dx \\
+      \rightarrow & \ln|v| = x \\
+      \rightarrow & v = e^x \\
+      \Rightarrow & u'e^x = e^x \\
+      \Rightarrow & du = dx; \\
+      \Rightarrow & u = x + C_1 \\
+      \Rightarrow & y' = p = uv = (x + C_1)e^x \\
+      \Rightarrow & dy = (xe^x + C_1e^x)\;dx \\
+      \Rightarrow & \int dy = \int (xe^x + C_1e^x)\;dx \\
+      \Rightarrow & y = \int xe^x\;dx + C_1\int e^x\;dx \\
+      \Rightarrow & y = xe^x - \int e^x\;dx +C_1e^x \\
+      \Rightarrow & y = xe^x - e^x + C_1e^x + C_2 \\
+      \Rightarrow & y = xe^x + C_1e^x + C_2
+     \end{split}
+    \end{equation*}
+}
+
+\exercise{
+    Bepaal de PO met $y(0^+) = 1$ en $y'(0^+) = 5$ van 
+    $$2yy' = y''$$ 
+}{
+    Stel $y' = p (= p(y))$ en $y'' = pp'$
+    $$2yp = pp' \rightarrow 2yp - pp' = 0 \rightarrow p(2y - p')$$
+    Er zijn twee mogelijkheden, $p = 0$ of $2y - p' = 0$.Indien $p = 0$ dan is $y' = 0$ wat niet mogelijk is want $y'(0) =  5 \neq 0$. Dus $2y - p = 0$.
+    \begin{equation*}
+     \begin{split}
+      & 2y - p' = 0 \\
+      \Rightarrow & dp^= 2y\;dy \\
+      \Rightarrow & \int dp = 2 \int y \;dy \\
+      \Rightarrow & p = y^2 + C \\
+      \Rightarrow & y' = p = y^2 + C \\
+      \Rightarrow & \hbox{bereken C } \rightarrow 5 = 1 + C \Leftrightarrow C = 4 \\
+      \Rightarrow & dy = (y^2 + 4)\;dx \\
+      \Rightarrow & \int \frac{dy}{y^2 + 4} = \int dx \\
+      \Rightarrow & \frac{1}{2}\arctan(\frac{y}{2}) + C = x \\
+      \Rightarrow & \frac{1}{2}\arctan(\frac{1}{2}) + C = 0 \\
+      \Rightarrow & C = -\frac{1}{2}\arctan\frac{1}{2}
+     \end{split}
+    \end{equation*}
+}
 
 
 %\subsection{Lineaire DVG met constante coëfficiënten}
