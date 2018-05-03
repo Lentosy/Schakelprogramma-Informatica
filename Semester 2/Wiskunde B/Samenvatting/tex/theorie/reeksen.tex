@@ -476,9 +476,9 @@ Gebruik volgende methodiek:
 \begin{enumerate}
     \item Bereken
         $$L(x) = \lim\limits_{n\to\infty} \bigg| \frac{u_{n + 1}(x)}{u_n(x)} \bigg| \quad\hbox{of}\quad L(x) = \lim\limits_{n\to\infty} \sqrt[n]{|u_n(x)|}$$
-    \item Indien $L(x) < 1$ dan behoort x tot het CG
+    \item Indien $L(x) < 1$ dan behoort x tot het convergentiegebied
 
-          Indien $L(x) > 1$ dan behoort x niet tot het CG
+          Indien $L(x) > 1$ dan behoort x niet tot het convergentiegebied
 
           Indien $L(x) = 1$ dan ???
 
@@ -486,7 +486,7 @@ Gebruik volgende methodiek:
 
 \subsection{Machtreeksen rond x = a}
 $$\sum_{n = 0}^{\infty} c_n(x - a)^n$$
-\textbf{stelling:} Het CG van een machtreeks rond x=a is een symmetrisch interval rond x=a
+\textbf{stelling:} Het convergentiegebied van een machtreeks rond x=a is een symmetrisch interval rond x=a
 
 \textbf{bewijs:}
 \begin{equation*}
@@ -497,15 +497,15 @@ $$\sum_{n = 0}^{\infty} c_n(x - a)^n$$
     \end{split}
 \end{equation*}
 Hieruit volgt $$\rho < x - a < \rho \rightarrow a - \rho < x < a + \rho$$
-Het CG wordt $$]a - \rho, a + \rho[$$
+Het convergentiegebied wordt $$]a - \rho, a + \rho[$$
 
 \example{
-    Bepaal het CG van:
+    Bepaal het convergentiegebied van:
     $$\sum_{n = 1}^{\infty} \bigg(\frac{2x + 1}{x}\bigg)^n$$
 }{
     We passen de limiet van Cauchy toe.
     $$\lim\limits_{n\to\infty} \sqrt[n]{\bigg|\bigg(\frac{2x + 1}{x}\bigg)^n\bigg|}$$
-    x behoort enkel tot een CG als deze limiet kleiner dan 1 is. We onderzoeken deze functie eerst.
+    x behoort enkel tot een convergentiegebied als deze limiet kleiner dan 1 is. We onderzoeken deze functie eerst.
     \begin{equation*}
         \begin{split}
             \bigg| \frac{2x + 1}{x} \bigg| < 1  & = \frac{(2x + 1)^2}{x^2} < 1 \\
@@ -516,4 +516,161 @@ Het CG wordt $$]a - \rho, a + \rho[$$
         \end{split}
     \end{equation*}
     Uit tekenonderzoek blijkt dat $x \in CG \rightarrow x \in ]-1, -1/3[$. Om na te gaan ofdat de grenzen inbegrepen zijn berekenen we de limiet voor x = -1 en x = -1/3.
+}
+\example{
+    Bepaal het convergentiegebied van:
+    $$\sum_{n = 0}^{\infty} \frac{2^nn}{n^2 + 2}(x - 3)^n$$
+}{
+    Deze reeks is van de vorm $\sum c_n(x - 3)^n$. Dit is een machtreeks rond $x = 3$. Het convergentiegebied ligt dus in $]3 - \rho, 3 + \rho[$. We berekenen de limiet met behulp van D'Alembert. We weten dat de limiet kleiner moet zijn dan 1 voor convergentie, dus we maken gebruik van deze ongelijkheid.
+    \begin{equation*} 
+        \begin{split}
+            L(x) & = \lim\limits_{n\to\infty} \bigg| \frac{2^{n + 1}(n + 1)(x - 3)^{n + 1}}{(n + 1)^2 + 2} \cdot \frac{n^2 + 2}{2^n n(x - 3)^n} \bigg| < 1 \\
+            \rightarrow\; & 2 \lim\limits_{n\to\infty} \frac{(n + 1)(n^2 + 2)}{(n^2 + 2n + 3)(n)} |x - 3| < 1 \\
+            \rightarrow\; & 2 \lim\limits_{n\to\infty} \frac{n^3}{n^3}|x - 3| < 1 \\
+            \rightarrow\; & 2|x - 3| < 1 \\
+            \rightarrow\; & - \frac{1}{2} < x - 3 < \frac{1}{2} \\
+            \rightarrow\; & \frac{5}{2} < x < \frac{7}{2} \qquad \hbox{(Het convergentiegebied)}
+        \end{split}
+    \end{equation*}
+    Om na te gaan of dat $5/2$ en $7/2$ behoren tot het convergentiegebied moet de limiet genomen worden met deze waarden.
+
+    $$  \begin{cases}
+            x = 5/2 \Rightarrow \sum_{n = 0}^\infty \frac{2^n n}{n^2 + 2}(-\frac{1}{2})^n = \sum_{n = 0}^\infty (-1)^n \frac{n}{n^2 + 2}\\ 
+            x = 7/2 \Rightarrow \sum_{n = 0}^\infty \frac{2^n n}{n^2 + 2}(\frac{1}{2})^n = \sum_{n = 0}^\infty \frac{n}{n^2 + 2}
+        \end{cases}
+    $$
+    We zien dat de eerst reeks een alternerende reeks is en dat de tweede reeks dezelfde reeks is maar met absolute waarden. Als we de eerste reeks onderzoeken hebben we automatisch de tweede reeks. We onderzoeken $\sum_{n = 0}^\infty (-1)^n \frac{n}{n^2 + 2}$. We gaan na of deze reeks absoluut convergent is. We beschouwen nu de reeks van de absolute waarden $\sum_{n = 0}^\infty \frac{n}{n^2 + 2}$. We zoeken een benadering van de algemene term.
+    $$a_n = \frac{n}{n^2 + 2} = \frac{n}{n^2} = \frac{1}{n}$$
+    Dit is een harmonische reeks met $p = 1$. Dit is divergent naar $+\infty$. Gebruik <<vergelijkingscriteria II en berekenen de limiet.
+
+    $$\lim\limits_{n\to\infty} \frac{n}{n^2 + 2} n = 1 \neq 0 \neq \infty$$
+    De reeks vertoond hetzelfde gedrag en is dus ook divergent naar $+\infty$. De reeks is niet absoluut convergent. We gaan nu na of de reeks semiconvergent is met behulp van Leibniz. 
+    \begin{enumerate}
+        \item De reeks is alternerend
+        \item $\lim\limits_{n\to\infty} \big|\frac{n}{n^2 + 2}\big| = 0$
+        \item $|a_n|$ moet dalend zijn. Stel $f(x) = \frac{x}{x^2 + 2}$. De afgeleide $f'(x) = \frac{x^2 + 2 - x2x}{(x^2 + 2)^2}$. Uit tekenonderzoek blijkt dat $\forall n \geq 2, f(n) $ dalend. De reeks is semiconvergent.
+    \end{enumerate}
+    Dit heeft als resultaat dat 5/2 tot het convergentiegebied aangezien de reeks dan semiconvergent is. De waarde 7/2 behoort niet tot het convergentiegebied aangezien de reeks met absolute waarden divergent is. Het convergentiegebied wordt
+    $$\bigg[\frac{5}{2}, \frac{7}{2}\bigg[$$
+}
+\example{
+    Bepaal het convergentiegebied van
+    $$\sum_{n = 2}^{\infty} (-1)^n\frac{\ln^2 n}{n} \frac{x^n}{n!}$$
+}{
+    Gebruik dezelfde methodiek als vorige oefening. Bereken de limiet met D'Alembert.
+    \begin{equation*} 
+        \begin{split}
+            L(x) & = \lim\limits_{n\to\infty} \bigg| \frac{\ln^2(n + 1)x^{n + 1}}{(n + 1)(n + 1)!}\cdot\frac{(n)n!}{\ln^2(n)x^n} \bigg| < 1 \\
+                & = \lim\limits_{n\to\infty} \frac{\ln^2(n + 1)}{\ln^2 n}\cdot \frac{n}{n + 1}\cdot\frac{1}{n + 1} \cdot |x| < 1 \\
+                & = \lim\limits_{n\to\infty} \frac{\ln^2(n + 1)}{\ln^2 n} \cdot 0 \cdot |x| < 1 \\
+                & = \lim\limits_{n\to\infty} \frac{\infty}{\infty} \cdot 0 \cdot |x| < 1 \\
+                & =^H \lim\limits_{n\to\infty} \frac{2\ln(n + 1)\frac{1}{n + 1}}{2\ln (n)\frac{1}{n}} \cdot 0 \cdot |x| < 1 \\
+                & = \lim\limits_{n\to\infty} \frac{n}{n + 1}\frac{\ln(n + 1)}{\ln n} \cdot 0 \cdot |x| < 1 \\
+                & = \lim\limits_{n\to\infty} 1\cdot\frac{\infty}{\infty} \cdot 0 \cdot |x| < 1 \\
+                & =^H \lim\limits_{n\to\infty} 1\cdot\frac{\frac{1}{n + 1}}{\frac{1}{n}} \cdot 0 \cdot |x| < 1 \\
+                & =\lim\limits_{n\to\infty} 1\cdot 1 \cdot 0 \cdot |x| < 1 \\
+                & = 0 < 1
+        \end{split}
+    \end{equation*}
+    Het convergentiegebied is R
+}
+
+\section{Reeksen van Taylor}
+Speciale soort machtreeks rond x = a waarbij
+$$c_n = \frac{f^{(n)}(a)}{n!}$$
+en $f\;\infty$ afleidbaar in $x = a$.
+
+De fout bij het afkappen na de $n^{de}$ term is gelijk aan 
+
+$$\frac{f^{(n + 1)}(x - a)^{n + 1}}{(n + 1)!} (y)$$
+
+met $y = ]a, x[$
+\subsection{McLaurin reeks}
+Dit is een Taylorreeks rond $x = 0$. Meer specifiek
+$$f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n$$
+
+
+\example{
+    Bepaal m.b.v. de definitie de Taylorreeks van 
+    $$f(x) = \frac{1}{4}x^4 - x^2 + x + 3$$
+    rond $x = -1$ en bepaal het convergentiegebied.
+}{
+    $f(x)$ is zeker $\infty$ afleidbaar in $x = -1$. We willen een reeks in de vorm van $\sum c_n(x + 1)^n$.
+
+    \begin{tabular}{l | l | l | l | l}
+    n & $f^{(n)}(x)$ & $f^{(n)}(-1)$ & $\frac{(x + 1)^n}{n!}$ & $n^{de}$ term \\
+    \hline
+    0 & $\frac{1}{4}x^4 - x^2 + x +3$   & $\frac{1}{4}(-1)^4 - (-1)^2 - 1 + 3 = 5/4$    & 1                         & $5/4$  \\
+    1 & $x^3 - 2x + 1$                  & $-1 + 2 + 1 = 2$                              & $\frac{x + 1}{1}$         & $2x + 1$  \\
+    2 & $3x^2 - 2$                      & $3 - 2 = 1$                                   & $\frac{(x + 1)^2}{2!}$    & $\frac{(x + 1)^2}{2}$ \\
+    3 & $6x$ & $ -6$ & $\frac{(x + 1)^3}{3!}$ & $-(x + 1)^3$ \\
+    4 & 6 & 6 & $\frac{(x + 1)^4}{4!}$ & $\frac{(x + 1)^4}{4}$ \\
+    5 & 0 & 0 & 0 & 0  \\
+    6 & 0 & 0 & 0 & 0 \\
+    ... & ... &... &... &...
+    \end{tabular}
+
+    Besluit:
+    $$\frac{1}{4}x^4 - x^2 + x + 3 = \frac{5}{4} + 2x + 1 + \frac{(x + 1)^2}{2} -(x + 1)^3 + \frac{(x + 1)^4}{4}$$
+    Het convergentiegebied is R.
+}
+\example{
+    Bepaal de McLaurin reeks van 
+    $$f(x) = \frac{1}{1 - x} = (1 - x)^{-1}$$
+}{
+    \begin{tabular}{l | l | l | l | l}
+    n & $f^{(n)}(x)$ & $f^{(n)}(0)$ & $\frac{x^n}{n!}$ & $n^{de}$ term \\
+    \hline
+    0 & $(1 - x)^{-1}$ & 1 & 1 & 1 \\
+    1 & $-(1 - x)^2(-1)$ & 1 & $x$ & $x$ \\
+    2 & $(1)(2)(1-x)^{-3}$ & 2 & $\frac{x^2}{2!}$ & $x^2$ \\
+    3 & $(1)(2)(3)(1-x)^{-4}$ & (2)(3) & $\frac{x^3}{3!}$ & $x^3$ \\
+    4 & $(1)(2)(3)(4)(1-x)^{-5}$ & (2)(3)(4) & $\frac{x^4}{4!}$ & $x^4$ \\
+    ... & ... & ... & ... & ... \\
+    n & $(1)(2)(3)(...)(n)(1-x)^{-(n + 1)}$ & $(2)(3)(4)(...)(n)$ & $\frac{x^n}{n!}$ & $x^n$
+    \end{tabular}
+    Besluit:
+    $$\frac{1}{1 - x} = \sum_{n = 0}^{\infty} x^n$$
+    We berekenen nu het convergentiegebied met behulp van Cauchy.
+    $$L(x) = \lim\limits_{n\to\infty} \big| \sqrt[n]{x^n} \big| = \lim\limits_{n\to\infty} |x| = |x| < 1 $$
+    Het interval wordt $$-1 < x < 1$$
+
+    Om na te gaan of -1 en 1 tot het interval behoren berekenen we opnieuw de limiet maar met deze waarden.
+
+    $$
+        \begin{cases}
+            x = 1 \Rightarrow \sum_{n = 0}^\infty 1^n = \sum_{n = 0}^\infty 1 \\
+            x = -1 \Rightarrow \sum_{n = 0}^\infty (-1)^n
+        \end{cases}
+    $$
+    -1 en 1 behoren niet tot het convergentiegebied want $\lim\limits_{n\to\infty} a_n \neq 0$ voor zowel $\lim\limits_{n\to\infty} 1$ als $\lim\limits_{n\to\infty} (-1)^n \rightarrow$ divergentie. 
+}
+
+\subsection{Eigenschappen}
+\begin{enumerate}
+    \item Sommeren en vermenigvuldigen van machtreeksen rond $x = a$ geeft een nieuwe machtreeks rond $x = a$ met als convergentiestraal de kleinste van de oorspronkelijke convergentiestralen 
+    \item Bij afleiden of integreren van een machtreeks blijft de convergentiestraal behouden. De convergentie in de eindpunten dient wel opnieuw onderzocht te worden.
+    \item Om $f(g(x))$ te ontwikkelen in een machtreeks, ontwikkelen we $f(t)$ met $t = g(x)$ (substitutie). Zijn de eindpunten van het convergentie-interval $t = a$ en $t = b$, dan zijn de eindpunten voor de ontwikkeling van $f(g(x))$ gegeven door: $x = g^{-1}(a)$ en $x = g^{-1}(b)$.
+    
+    \example{
+        Toepassing eigenschap 3
+    }{
+        $$\sin x = \sum_{n = 0}^{\infty} (-1)^n \frac{x^{2n + 1}}{(2n + 1)!}$$
+        $$\sin x^2 = \sum_{n = 0}^{\infty} (-1)^n \frac{(x^2)^{2n + 1}}{(2n + 1)!} = \sum_{n = 0}^{\infty} (-1)^n \frac{x^{4n + 2}}{(2n + 1)!}$$
+    }
+    \item Met behulp van Mc-Laurinreeksen kan men Taylorreeksen gemakkelijk berekenen en hun convergentiegebied afleiden.
+\end{enumerate}
+
+\example{
+    Gegeven $$\frac{1}{1 + x} = 1 - x + x^2 - x^3 + x^4 - ... +(-1)^nx^n + ...$$ voor $-1 < x <1$
+    Gebruik enkel dit en eigenschappen voor:
+    \begin{enumerate}
+        \item Bepaal Mc-Laurin reeks van $f(x) = \ln(1 - x)$. Wat is het convergentiegebied?
+        \item Bepaal Mc-Laurin reeks van $f(x) = \frac{x + 8}{2x^2 - 3x - 2}$. Wat is het convergentiegebied?
+        \item Bepaal Taylorreeks rond $x = 2$ van $f(x) = \frac{2}{x + 3}$. Wat is het convergentiegebied?
+    \end{enumerate} 
+}{
+    \begin{enumerate}
+        \item \todo{LAATSE 3 PAGINAS}
+    \end{enumerate}
 }
