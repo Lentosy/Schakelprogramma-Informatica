@@ -1,0 +1,137 @@
+
+
+\documentclass{report}
+\usepackage[a4paper, margin=1.1in]{geometry}
+\usepackage{amsmath} % provides many mathematical environments & tools
+\begin{document}
+\chapter*{Differentiaalvergelijkingen}
+\section*{Differentiaalvergelijking opstellen van een familie krommen}
+Leidt de functie $n$ maal af met $n = $ aantal onafhankelijke constanten. Dit geeft een stelsel met $n$ vergelijkingen. Zoek vergelijkingen uit het stelsel zodat wanneer je bewerkingen uitvoert, je een differentiaalvergelijking uitkomt dat gelijk is aan 0.
+\section*{Differentiaalvergelijking van eerste orde en eerste graad}
+\subsection*{Scheiden van de veranderlijken}
+Vorm
+$$f(x)\;dx = g(y)\;dy$$
+Oplosmethode
+$$\int f(x)\;dx = \int g(y)\;dy$$
+\subsection*{Homogene differentiaalvergelijking}
+Vorm
+$$f(\lambda x,\lambda y) = \lambda^n f(x, y)$$
+Oplosmethode
+
+Stel $y = ux \quad \hbox{en} \quad dy = udx + xdy$ en steek in de differentiaalvergelijking die nu oplosbaar is met scheiden van de veranderlijken.
+\subsection*{Totale differentiaalvergelijking}
+Indien $M(x, y)dx + N(x, y)dy = 0$ en $$\frac{\partial M(x,y)}{\partial y} = \frac{\partial N(x,y)}{\partial x}$$
+Oplosmethode
+
+Zoek $F(x, y)$ zodat
+$$\frac{\partial F}{\partial x} = M(x,y) \quad \hbox{en} \quad \frac{\partial F}{\partial x} = N(x, y)$$
+De AO wordt $$F(x, y) = C$$
+\subsection*{Lineaire differentiaalvergelijking}
+Vorm
+$$y' + yP(x) = Q(x)$$
+Oplosmethode
+
+Stel $y = uv$ en $y' = u'v + uv'$ en steek in DVG 
+\begin{equation*}
+ \begin{split}
+                & u'v + uv' + uvP(x) = Q(x) \\
+  \rightarrow   & u'v + u(v' + vP(x)) = Q(x) \\
+  \rightarrow   & \hbox{kies } v' + vP(x) = 0 \; \hbox{ en los op naar \textbf{v} met gescheiden veranderlijken} \\
+  \rightarrow   & u'v = Q(x) \\
+  \rightarrow   & u' = \frac{Q(x)}{v} \\
+  \rightarrow   & \hbox{los op naar \textbf{u}} \\
+  \rightarrow   & \hbox{De AO wordt y = uv}
+ \end{split}
+\end{equation*}
+\subsection*{Differentiaalvergelijking van Bernouilli}
+Vorm
+$$y' + yP(x) = y^nQ(x)$$
+Oplosmethode
+
+Deel de differentiaalvergelijking door $y^n$
+$$\frac{y'}{y^n} + \frac{P(x)}{y^{n - 1}} = Q(x)$$
+Stel $z = \frac{1}{y^{n - 1}}$ en $z' = (1 - n)\frac{y'}{y^n} \rightarrow \frac{z'}{1 - n} = \frac{y'}{y^n}$
+Steek in dvg
+$$\frac{z'}{1 - n} + zP(x) = Q(x)$$
+Deze differentiaalvergelijking is lineair in z' en z.
+
+\subsection*{Orthogonale krommenbundel}
+Leidt de differentiaalvergelijking af en vervang $y'$ door $-\frac{1}{y'}$. Los de differentiaalvergelijking op.
+
+\subsection*{Differentiaalvergelijking van hogere orde}
+3 Soorten
+\begin{enumerate}
+
+ \item $y^{(n)} = f(x)$
+ 
+        Voer $n$ integraties uit
+ \item Differentiaalvergelijking bevat $y$ niet expliciet
+ 
+        Stel $p = y'$ en $y' = p'$ en steek in differentiaalvergelijking
+        
+ \item Differentiaalvergelijking bevat $x$ niet expliciet
+        
+        stel $p = y'$ en $y' = pp'$ en steek in differentiaalvergelijking
+\end{enumerate}
+
+
+\chapter*{Reeksen}
+\section*{Meetkundige reeks}
+$$\sum_{n = 0}^{\infty} q^n = 1 + q + q^2 + q^3 + ... + q^n + ...$$
+$$\begin{cases}
+   \hbox{convergeert naar } \frac{1}{1 - q} \hbox{ als } |q| < 1 \\
+   \hbox{divergeert naar +}\infty \hbox{ als } q \geq 1 \\
+   \hbox{divergeert als } q \leq -1
+  \end{cases}
+$$
+\section*{Hyperharmonische reeks}
+$$\sum_{n = 1}^{\infty} = \frac{1}{n^p} = 1 + \frac{1}{2^p} + \frac{1}{3^p} + ... + \frac{1}{n^p} + ...$$
+$$\begin{cases}
+   \hbox{convergeert als } p > 1 \\
+   \hbox{divergeert naar +}\infty \hbox{ als } 0 < p \leq 1 \\
+  \end{cases}
+$$
+
+\section*{Convergentieonderzoek}
+\subsection*{Integraalcriterium van Cauchy}
+Bij een reeks met positieve termen met $f(x) = a_x$(de algemene term met $n = x$) waarbij $f(x)$ dalend en continue over $[m , +\infty[$ dan geldt
+$$\int_0^m f(x)\;dx \in \mathcal{R} \rightarrow \hbox{reeks convergent}$$
+$$\int_0^m f(x)\;dx = \infty \rightarrow \hbox{reeks divergent} $$
+
+\subsection*{Vergelijkingscriterium I}
+Gebruik een gekende reeks $\sum b_n$ om een onbekende reeks $\sum a_n$ te onderzoeken. Indien
+$$a_n \leq b_n \qquad \hbox{en} \qquad \sum b_n \hbox{  convergent} \rightarrow \sum a_n \hbox {  convergent}$$
+
+$$b_n \leq a_n \qquad \hbox{en} \qquad \sum b_n \hbox{  divergent} \rightarrow \sum a_n \hbox {  divergent}$$
+\subsection*{Vergelijkingscriterium II}
+Gebruik een gekende reeks $\sum b_n$ om een onbekende reeks $\sum a_n$ te onderzoeken. Indien 
+$$\lim\limits_{n\to\infty} \frac{a_n}{b_n} \neq 0 \neq \infty$$
+dan vertoont $\sum a_n$ hetzelfde gedrag als $\sum b_n$.
+
+\subsection*{Convergentiecriterium van d'Alembert}
+Bereken de limiet
+$$L = \lim\limits_{n\to\infty} \frac{a_{n+1}}{a_n}$$
+
+Als L $<$ 1, dan is de reeks convergent
+
+Als L $>$ 1, dan is de reeks divergent
+
+Als L = 1, dan is er geen besluit
+\subsection*{Convergentiecriterium van Cauchy}
+Bereken de limiet
+$$L = \lim\limits_{n\to\infty} \sqrt[n]{a_n}$$
+
+Als L $<$ 1, dan is de reeks convergent
+
+Als L $>$ 1, dan is de reeks divergent
+
+Als L = 1, dan is er geen besluit
+
+\subsection*{Convergentieonderzoek willekeurige reeks}
+\begin{enumerate}
+ \item Controleer of de reeks absoluut convergent is. Beschouw enkel de reeks van de absolute termen en ga na of deze reeks convergeert
+ \item Indien de reeks niet absoluut convergent is, ga dan na of de reeks semiconvergent is. Een reeks is semiconvergent als hij niet absoluut convergeert maar wel convergeert indien ook de alternerende term beschouwd wordt.
+ \item Indien de reeks niet semiconvergent is, divergeert de reeks.
+\end{enumerate}
+
+\end{document}

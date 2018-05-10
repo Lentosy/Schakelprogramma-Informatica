@@ -135,8 +135,7 @@ void Sudoku::maakMatrixConnecties(int i){
 			6	7	8
 			
 		When j = 0, connect 0 to 4, 5, 7 and 8
-		when j = 2, connect 2 to 3, 4, 6 and 7
-	
+		when j = 2, connect 2 to 3, 4, 6 and 7	
 	*/
 	for(int j = 0; j < 3; j++){
 		int l = mod(j - 1, 3); // left row
