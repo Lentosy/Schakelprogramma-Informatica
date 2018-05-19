@@ -105,12 +105,12 @@ Volgende instructies zijn van toepassing voor zowel timer 0 als timer 1.
 	In principe zal \textit{\#03h} nooit gebruikt worden, dus blijven er drie mogelijkheden over.
 	\item \textbf{mov TH0 / mov TH1 \& mov TL0 / TH1}
 	\newline
-	Een timer heeft een bepaalde startwaarde nodig. Dit is een 16-bit getal waarvan de 8 meest beduidende bits in TH0 of TH1 komen en de 8 minst beduidende bits in TL0 of TH1. Om te weten wat er in deze registers moeten komen zijn er eerst een aantal gegevens nodig.
+	Een timer heeft een bepaalde startwaarde nodig. Dit is een 16-bit getal waarvan de 8 meest beduidende bits in TH0 of TH1 komen en de 8 minst beduidende bits in TL0 of TL1. Om te weten wat er in deze registers moeten komen zijn er eerst een aantal gegevens nodig.
 	\begin{enumerate}
 		\item De duur in seconden (t)
 		\item De klokfrequentie (klokfreq) $\rightarrow$ Bij de c8051f120 controller is dit altijd gelijk aan $ \frac{(24,5 * 10^6)}{8} = 3062500$
 	\end{enumerate}
-	Eens we deze gegevens hebben kunnen we het aantal klokpulsen achterhalen via de volgende formule: $ klokfreq * t$. Stel dat we om de seconde het lampje op P1.6 willen laten pinken. Initieël wordt de formule als volgt ingevuld: $3062500 * 1 = 3062500$. 3062500 is uiteraard te groot voor een 16 bit getal, daarom gaan we de systeemklok delen zoals aangegeven in CKCON. Als we delen door 4 of 12 is het getal nog altijd grooter dan $2^{16}$, daarom delen we door 48 wat uitkomt op ongeveer 63802. Aangezien een 16-bit timer overflowt op 65535 moeten we hiervaan 63802 aftrekken. Je komt uit op 1733 wat in hexadecimale notatie overeenkomt met F93A. Deze hexadecimale notatie hebben we zo meteen nodig. Aangezien een timer overloopt van FFFFh naar 0000h moet er van FFFFh de waarde F93Ah afgetrokken worden. $FFFFh - F93Ah = 06C5h$. De twee meest beduidende bits komen in TH0 of TH1 terecht en de twee minst beduidende bits komen in TL0 of TH1 terecht. In het geval dat timer 1 gebruikt wordt krijgen we:
+	Eens we deze gegevens hebben kunnen we het aantal klokpulsen achterhalen via de volgende formule: $ klokfreq * t$. Stel dat we om de seconde het lampje op P1.6 willen laten pinken. Initieël wordt de formule als volgt ingevuld: $3062500 * 1 = 3062500$. 3062500 is uiteraard te groot voor een 16 bit getal, daarom gaan we de systeemklok delen zoals aangegeven in CKCON. Als we delen door 4 of 12 is het getal nog altijd grooter dan $2^{16}$, daarom delen we door 48 wat uitkomt op ongeveer 63802. Aangezien een 16-bit timer overflowt op 65535 moeten we hiervaan 63802 aftrekken. Je komt uit op 1733 wat in hexadecimale notatie overeenkomt met 06C5h. De twee meest beduidende bits komen in TH0 of TH1 terecht en de twee minst beduidende bits komen in TL0 of TH1 terecht. In het geval dat timer 1 gebruikt wordt krijgen we:
 	\begin{lstlisting}
 		mov TH1, #06h
 		mov TL1, #0C5h
@@ -132,7 +132,7 @@ Timer 2 heeft nog veel gelijkenissen met timer 0 of timer 1. We overlopen ze.
 	Zoals timer 0 en timer 1 laat dit interrupts toe voor timer 2. Deze zitten trouwens allemaal in het register IE (pagina 149).
 	\item \textbf{mov TMR2CF}
 	\newline
-	Bij dit controle register zijn we enkel geïnteresserd in het instellen van bit 4 en bit 3. Deze bepalen  de deling van de systeemklok. Merk op dat deze timer niet kan delen door 48, het maximum is 12. Hier zijn er ook weer vier mogelijkheden:
+	Bij dit controle-register zijn we enkel geïnteresserd in het instellen van bit 4 en bit 3. Deze bepalen  de deling van de systeemklok. Merk op dat deze timer niet kan delen door 48, het maximum is 12. Hier zijn er ook weer vier mogelijkheden:
 	\begin{itemize}
 		\item mov TMR2CF, \#00h $\rightarrow$ Systeemklok delen door 12
 		\item mov TMR2CF, \#08h $\rightarrow$ De systeemklok als bron gebruiken
