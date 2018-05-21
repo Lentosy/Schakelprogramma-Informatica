@@ -727,7 +727,7 @@ $$\bigg[\frac{5}{2}, \frac{7}{2}\bigg[$$
 	\subsection{Belangrijke vereenvoudigingen}
 	\begin{itemize}
 		\item $f(x)$ even over een symmetrisch interval $[-a, a]:$
-		      Zoek zelf $a_k$ en $b_k$
+		      Bewijs zelf dat $b_k =0$ en de term $a_k$.
 		\item $f(x)$ oneven over een symmetrisch interval $[-a, a]:$
 
 		      $$a_k = \frac{1}{a}\int_{-a}^{a} f(x) \cos \frac{k\pi x}{a}\;dx = 0$$
@@ -848,7 +848,7 @@ $$\bigg[\frac{5}{2}, \frac{7}{2}\bigg[$$
 	\end{enumerate}
 }
 
-\iffalse
+
 \example{
 	\begin{enumerate}
 		\item Bepaal de eerste van nul verschillende term in de Fourier-cosinusreeks over $[-4\pi, 4\pi]$ horende bij:
@@ -857,32 +857,32 @@ $$\bigg[\frac{5}{2}, \frac{7}{2}\bigg[$$
 				      2, 2\pi < x < 4\pi
                   \end{cases}$$
         \item Wat is de waarde van de fourierreeks in $x = 4\pi$ horende bij $f(x)$ gedefinieerd over $[0, 4\pi]$
-        \item Wat is de waarde van de fourierreeks in $x = 4\pi$ horende bij de Fourier-cosinusreeks gedefinieerd over $[-4\ppi, 4\pi]$ in $x = 4$
+        \item Wat is de waarde van de fourierreeks in $x = 4\pi$ horende bij de Fourier-cosinusreeks gedefinieerd over $[-4\pi, 4\pi]$ in $x = 4$
 	\end{enumerate}
 }{
 	\begin{enumerate}
-        \item Bepaal de Fourier-cosinusreeks door een uitbreiding te maken van $f(x)$.
+    \item Bepaal de Fourier-cosinusreeks door een uitbreiding te maken van $f(x)$.
         $$f_E(x) = \begin{cases}
             f(x) & 0 < x 4\pi \\
             f(-x) & -4\pi x < 0
         \end{cases}$$
     
-    Bepaal $a_k$.
-    \begin{equation*}
-        \begin{split}
-            a_k & = \frac{1}{4\pi} \int_{-4\pi}^{4\pi} f_E(x) \cos \frac{k\pi x}{4\pi} \; dx \\
-                & = \frac{2}{4\pi} \int_0^{4\pi} f(x)\cos \frac{kx}{4} \; dx \\
-                & = \frac{1}{2\pi}\bigg[\int_{0}^{2\pi} -1 \cos \frac{kx}{4} \; dx + \int_{2\pi}^{4\pi} 2\cos \frac{kx}{4} \bigg] \\
-        \end{split} 
-    \end{equation*}
-    Bepaal $a_0$.
-    \begin{equation*}
-        \begin{split}
-            a_0 & = \frac{1}{2\pi}\bigg[\int_0^{2\pi} -1 \dx + \int_{2\pi}^{4\pi} 2\;dx  \bigg] \\
-                & =  \frac{1}{2\pi}\bigg[[-x]_0^{2\pi} + [2x]_{2\pi}^{4\pi} \bigg] \\
-                & = 1
-        \end{split}
-    \end{equation*}
+        Bepaal $a_k$.
+        \begin{equation*}
+            \begin{split}
+                a_k & = \frac{1}{4\pi} \int_{-4\pi}^{4\pi} f_E(x) \cos \frac{k\pi x}{4\pi} \; dx \\
+                    & = \frac{2}{4\pi} \int_0^{4\pi} f(x)\cos \frac{kx}{4} \; dx \\
+                    & = \frac{1}{2\pi}\bigg[\int_{0}^{2\pi} - 1 \cos \frac{kx}{4} \; dx + \int_{2\pi}^{4\pi} 2\cos \frac{kx}{4} \bigg] \\
+            \end{split} 
+        \end{equation*}
+        Bepaal $a_0$.
+        \begin{equation*}
+            \begin{split}
+                a_0 & = \frac{1}{2\pi}\bigg[\int_0^{2\pi} - 1 dx + \int_{2\pi}^{4\pi} 2\;dx  \bigg] \\
+                    & =  \frac{1}{2\pi}\bigg[[-x]_0^{2\pi} + [2x]_{2\pi}^{4\pi} \bigg] \\
+                    & = 1
+            \end{split}
+        \end{equation*}
     Bepaal de eerste van nul verschillende term.
     $$\sum (x) = \frac{1}{2} + ...$$
     \item   \begin{equation*}
@@ -901,4 +901,3 @@ $$\bigg[\frac{5}{2}, \frac{7}{2}\bigg[$$
             \end{equation*}
     \end{enumerate}     
 }
-\fi
