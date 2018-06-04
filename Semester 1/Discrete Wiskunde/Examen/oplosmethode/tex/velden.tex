@@ -42,9 +42,9 @@ Er is slechts één gegeven nodig en dat is het veld. We nemen het volgende voor
  \subsection{De baby-step, giant-step techniek}
  De baby-step, giant-step techniek wordt gebruikt om een index van een getal ten opzichte van een primitieve wortel in een bepaald veld te berekenen. Hier moet de Euclidische deling ook uitgevoerd worden dus zorg dat je dit al goed kunt. Bij dit soort vraagstukken zijn er 3 gegevens. 
  \begin{itemize}
-  \item {Het veld $\mathbb{Z}$} 
+  \item {Het veld $\mathbb{Z}$.} 
   \item {Een getal in dit veld waarvan de index moet berekend worden.}
-  \item {De primitieve wortel $w$}
+  \item {De primitieve wortel $w$.}
  \end{itemize}
  Op het examen zal er staan hoe groot één giant-step moet zijn. In dit voorbeeld nemen we giant-steps die 10 baby-steps groot zijn. We beschouwen het veld $\mathbb{Z}_{71}$ en de primitieve wortel $w = 7$. We willen de index van 5 berekenen. Begin met de eerste 10 baby-steps te genereren. Je begint met de primitieve wortel, en daarna gebruik je Formule 1. De letter b stelt de n-de baby-step voor. Bekijk ook Figuur \ref{fig:babystep_giantstep_1} waarop dit gevisualiseerd staat(p. \pageref{fig:babystep_giantstep_1}).
  $$b_n = b_{n-1} * w\; \% \;71 \eqno(1)$$
@@ -106,14 +106,6 @@ Bij een vraag over een elliptische kromme krijg je zeker drie gegevens:
 
 Op het examen worden er slides gegeven (meer specifiek, slide 6 en 10 van het bestand 1d.pptx). Dit zijn de slides waarop de berekening voor het verdubbelen van de punten opstaan, dus deze moet je niet  vanbuiten kennen. Je moet wel weten welke slide je nodig hebt, maar dit is gewoon naar de vergelijking kijken en zien welke er overeenkomt met die op de slide. Voor de verdere uitwerking van dit onderdeel worden de gegevens van het examen gebruikt.
 
-\fbox{
-  \parbox{\linewidth}{
-  Beschouw het veld $F_{16}$ en de elliptische kromme $E: y^2 + xy = x^3 + \circled{3}x^2 + \circled{5}$ over dit veld. De irreducibele veelterm is $\mu = x^4 + x + 1$ en de primitieve wortel $w = x$. Gebruik de onderstaande groepstabel:
-    \begin{center}
-    \includegraphics[width=\linewidth]{groepstabel}
-    \end{center}
-  }
-}
 
 
 \subsubsection{Berekening van de punten}

@@ -54,7 +54,7 @@ void Sortvector<T>::vul_random_zonder_dubbels(){
 		
 		r = rand() % (10 * this->size());
 		
-		while(alVoorgekomen[r]){
+		while(alVoorgekomen[r]){ // kans dat getal al voorgekomen is bedraagt 1 / (10 * n)
 			r = rand() % (10 * this->size());  // ander getal genereren als het al voorgekomen is
 		}
 		

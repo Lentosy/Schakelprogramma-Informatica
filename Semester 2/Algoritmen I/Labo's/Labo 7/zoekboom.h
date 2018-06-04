@@ -74,10 +74,7 @@ class Knoop{
     friend class Zoekboom<T>;
     
     public:
-        Knoop(const T & sl):sleutel(sl){
-        	std::cout << "ik kom hier";
-			std::cout << sl;
-		};
+        Knoop(const T & sl):sleutel(sl){};
     private:
         const T sleutel;
         Zoekboom<T> links,rechts;
@@ -157,26 +154,19 @@ string Zoekboom<T>::tekenrec(ostream& uit,int&nullteller){
 
 template<class T>
 Zoekboom<T> * Zoekboom<T>::zoek(const T & sl){
-		
-	Zoekboom<T> * current = this;
+	std::cout << __PRETTY_FUNCTION__ << " met T = " << sl << "\n";
 	
-	while(current != nullptr ){
-		if(current->get()->sleutel < sl){
-			current = &(current->get()->links);
-		}
-		
-		if(current->get()->sleutel > sl){
-			current = &(current->get()->rechts);
-		}
-	}	
+	if(sl < this->get()->sleutel){
+		std::cout << sl << " < " << this->get()->sleutel << "\n" ;
+	} else if (sl > this->get()->sleutel){
+		std::cout << sl << " > " << this->get()->sleutel << "\n" ;
+	}
 	
 }
 
 template <class T>
 bool Zoekboom<T>::voegToe(const T & sl){
-
+	std::cout << __PRETTY_FUNCTION__ << " met T = " << sl << "\n";
 	Zoekboom<T> * knoop = zoek(sl);
-	
-
 }
 #endif 

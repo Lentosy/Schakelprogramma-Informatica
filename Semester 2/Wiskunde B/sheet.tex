@@ -74,6 +74,25 @@ Leidt de differentiaalvergelijking af en vervang $y'$ door $-\frac{1}{y'}$. Los 
         stel $p = y'$ en $y' = pp'$ en steek in differentiaalvergelijking
 \end{enumerate}
 
+\subsection*{Lineaire Differentiaalvergelijking}
+Algemene vorm:
+
+\subsubsection*{Homogene differentiaalvergelijking}
+Bereken de discriminant:
+\begin{itemize}
+ \item $\Delta > 0$, de AO is $C_1e^{\alpha_1 x} +C_2e^{\alpha_2 x}$ met $\alpha_1$ en $\alpha_2$ de twee wortels van de kwadratische vergelijking.
+ \item $\Delta = 0$, de AO is $C_1e^{\alpha x} + C_2xe^{\alpha x}$ met $\alpha$ de enige wortel met multipliceit twee.
+ \item $\Delta < 0$, de AO is $e^{\alpha x}(C_1\cos(\beta x) + C_2\sin(\beta x))$ met $\alpha$ het reële deel en $\beta$ het imaginaire deen de complexe wortels $\alpha + \beta j$ en $\alpha - \beta j$
+\end{itemize}
+
+\subsubsection*{Algemene methodiek}
+Wanneer een DVG van hogere orde niet homogeen is zijn er 4 mogelijkheden.
+\begin{itemize}
+ \item $Q(x) = V_n(x)$, de AO is $x^pP_n(x)$ met $p$ de multipliceit van de wortel 0.
+ \item $Q(x) = V_n(x)e^{\alpha x}$, de AO is $x^pP_n(x)e^{\alpha x}$ met $p$ de multipliceit van de wortel $\alpha$
+ \item $\sin (\beta x)e^{\alpha x}$ of $\sin (\beta x)e^{\alpha x}$, de AO is $x^pe^{\alpha x}(a\cos(\beta x) + b\sin(\beta x)$ met $p$ de multipliceit van de wortel $\alpha + \beta j$
+ \item $\sin (\beta x)e^{\alpha x}V_n(x)$ of $\sin (\beta x)e^{\alpha x}V_n(x)$, de AO is $x^p(P_n(x)\cos(\beta x) + Q_n(x)\sin(\beta x)$ met $p$ de multipliceit van de wortel $\beta j$
+\end{itemize}
 
 \chapter*{Reeksen}
 \section*{Meetkundige reeks}
@@ -127,11 +146,17 @@ Als L $>$ 1, dan is de reeks divergent
 
 Als L = 1, dan is er geen besluit
 
+\subsection*{Convergentiecriterium van Leibniz}
+Is de reeks $\sum a_n$ alternerend en is 
+$$ |a_n| \geq |a_{n + 1}| \qquad \hbox{en} \qquad \lim_{n\to\infty} |a_n| = 0$$
+dan is de reeks convergent
+
 \subsection*{Convergentieonderzoek willekeurige reeks}
 \begin{enumerate}
  \item Controleer of de reeks absoluut convergent is. Beschouw enkel de reeks van de absolute termen en ga na of deze reeks convergeert
  \item Indien de reeks niet absoluut convergent is, ga dan na of de reeks semiconvergent is. Een reeks is semiconvergent als hij niet absoluut convergeert maar wel convergeert indien ook de alternerende term beschouwd wordt.
  \item Indien de reeks niet semiconvergent is, divergeert de reeks.
 \end{enumerate}
+
 
 \end{document}

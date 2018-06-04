@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{color}
+
+\def\warning#1{\color{red} #1 \color{black}}
+\def\note#1{\color{cyan} #1 \color{black}}
+
+\begin{document}
+
+\title{Examen Wiskunde B 4 juni 2018}
+
+\date{}
+\author{}
+\maketitle
+
+\begin{enumerate}
+
+%VRAAG 1
+ \item  {
+            Bepaal aan de hand van de \textbf{definitie, en niets anders} of dat de volgende reeks convergent of divergent al dan niet naar oneindig is. 
+            $$\sum_{n = 2}^{\infty} \bigg(\frac{3}{n - 1} - \frac{3}{n}\bigg)$$
+        }
+        
+%VRAAG 2
+ \item  {
+            \begin{enumerate}
+                \item Heeft de functie $f(x) = cos \frac{\pi}{x}$ een Fourrierreeks over $[-1, 1]$? Verklaar bondig waarom wel of niet.
+                \item Stel $f(x) = \begin{cases}
+                             2\cos \frac{x}{4}  & \pi \leq x < 2\pi \\
+                             -1                 & 0 \leq x \leq \pi
+                            \end{cases}$
+                    Noteer als $\sum(x)$ de Fourierreeks van $f(x)$. Bepaal $\sum(2\pi)$, $\sum(17\pi)$ en verklaar beide uitkomsten.
+            \end{enumerate}
+        }
+        
+%VRAAG 3
+ \item \begin{enumerate}
+        \item Bewijs voor $a > 0$ dat $\mathcal{L}\{f(t - a)H(t - a)\} = e^{-as}F(s)$
+        \item Bepaal het \textbf{laplacebeeld} voor $f(t) =  \begin{cases}
+                                                        1 & t < 2 \\
+                                                        (t^2 - 4t + 1)e^{-t} & t > 2
+                                                    \end{cases}$
+        \item Bepaal het \textbf{invers laplacebeeld} van $\displaystyle\frac{-s + 1}{s^2 + 4s + 29}$ 
+        \item Bepaal met behulp van de \textbf{convolutiestelling, en niets anders} het \textbf{invers laplacebeeld} van $\displaystyle \frac{6}{s^3 + 4s}$
+       \end{enumerate}
+
+%VRAAG 4
+ \item  {
+            Bepaal de AO van $4xy' + y +8x^{2}y^{5} = 0$
+        }
+        
+%VRAAG 5
+ \item  {
+            Bewijs dat indien $M(x, y) + N(x, y) = 0$ exact is waarbij $M$ en $N$ continue partie\"ele afgeleiden heeft, dat de voorwaarde van Euler voldaan is. 
+        }
+
+%VRAAG 6
+ \item  {
+            Bepaal door gebruik te maken van gekende \textbf{McLaurin} reeksen, een Taylorreeks rond $x = -1$ voor $f(x) = (x + 1)^{3}e^{-x}$. Schrijf de algemene term zo eenvoudig mogelijk.
+        }
+
+%VRAAG 7
+ \item  {
+            Bepaal het convergentiegebied voor de volgende functiereeks: $$\sum_{n = 0}^{\infty} \frac{2^n}{\ln n}(x + 4)^{n}$$
+        }
+
+\end{enumerate}
+
+
+\end{document}
+

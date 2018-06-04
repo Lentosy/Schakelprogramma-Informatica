@@ -1,437 +1,274 @@
-\documentclass[12pt]{report} 
 
-% PACKAGES 
+\documentclass{report}
 \usepackage[dutch]{babel}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage{color}
-\usepackage{amsmath} % Matrices
-\usepackage{booktabs}
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{sectsty}
-\usepackage{lipsum}
 \usepackage{listings}
-\usepackage[pageanchor=false]{hyperref} % hyperlinks in PDF
+\usepackage{amsmath}
 
-
-\partfont{\color{brown}}
-\chapterfont{\color{teal}}
-\sectionfont{\color{cyan}}
-
-\lstset{language=C++,
-                basicstyle=\ttfamily,
-                keywordstyle=\color{blue}\ttfamily,
-                stringstyle=\color{red}\ttfamily,
-                commentstyle=\color{green}\ttfamily,
-                morecomment=[l][\color{magenta}]{\#},
-                frame = single,
-                numbers=left,
-	        stepnumber=1
-}
-
-% DOCUMENT INFORMATION
-\title{Samenvatting Gegevensstructuren en Algoritmen}
-\author{Bert De Saffel}
-\date{2017-2018}
-
-
-% CUSTOM COMMANDS
 \setlength{\parindent}{0mm}
-\setlength{\parskip}{1em}
-\graphicspath{{./img/}}
-\newcommand{\note}[1]{
-  \color{violet}#1 \color{black}
-}
-\newcommand{\todo}[1] {
-  \color{red}\textunderscore{\textit{TODO: #1}}
-}
-
-\def\lc{\left\lceil}   
-\def\rc{\right\rceil}
-\def\lf{\left\lfloor}   
-\def\rf{\right\rfloor}
 
 
-% DOCUMENT
+\title{Samenvatting Algoritmen I}
+\author{}
+
 \begin{document}
 \maketitle
 \tableofcontents
 
-\part{Theorie}
+\part{Rangschikken}
 \chapter{Inleiding}
-Een algoritme is een verzameling van opeenvolgende instructies die uitgevoerd worden. Bij een het oplossen van een probleem zijn er twee zaken belangrijk:
+Rangschikken is het sorteren van gegevens van klein naar groot.
+    
+De performantie van een algoritme hangt af van
 \begin{itemize}
- \item De juiste aanpak gebruiken (Het algoritme).
- \item Een goede efficiëntie (De gegevensstructuren).
+    \item het aantal gegevens (= n)
+    \item de aard van die gegevens
+    \item de mate waarin de gegevens reeds geordend zijn
+    \item de plaats van de gegevens (\textit{inwendig} en \textit{uitwendig})
 \end{itemize}
-De focus van deze cursus ligt op de discrete wiskunde. Voor de continue wiskunde zijn er numerieke algoritmen nodig die niet behandeld worden in deze cursus.
-\chapter{Efficëntie van algoritmen}
-\section{Analyse van algoritmen}
-\textbf{Probleem:} Er bestaat een vector $\note{v}$ met $\note{n}$ getallen. Er moet gezocht worden of er dubbele waarden in deze vector bestaan. Een eerste oplossing zou zijn:
+Naast de performantie is ook belangrijk:
+\begin{itemize}
+    \item Het geheugengebruik.
+    \item De stabiliteit.
+\end{itemize}
+\chapter{Eenvoudige methodes}
+\section{Rangschikken door tussenvoegen}
+\subsection{Insertion Sort}
 \begin{lstlisting}
-bool doubles = false;
- for(int i = 0; i < n; i++){
-  for(int j = 0; j < n; j++){
-    if(i != j && v[i] = v[j]{
-      doubles = true;
+void insertion_sort(vector<T>& v){
+    for(int i = 1; i < v.size(); i++){
+        T h = move(v[i]);
+        int j = i - 1;
+        while(j >= 0 && h < v[j]){
+            v[j + 1] = move(v[j]);
+            j--;
+        }
+        v[j + 1] = move(h);
     }
-  }
 }
 \end{lstlisting}
-Deze oplossing heeft volgende nadelen:
+\subsubsection{Stappen}
+\begin{enumerate}
+ \item Overloop heel de tabel startend vanaf $i = 1$.
+ \item Sla de waarde van het element op index $i$ tijdelijk op in $h$.
+ \item Controleer of $h$ kleiner is dan de waarde op index $j = i - 1$.
+ \item Indien ja, verplaats de waarde van index $j$ naar de index $j + 1$.
+ \item Blijf dit doen totdat $j = 0$ of tot dat er een element gevonden is dat kleiner is als $h$.
+ \item De waarde $h$ moet geplaatst worden op index $j + 1$.
+\end{enumerate}
+\subsubsection{Analyse}
+Insertion Sort werkt door elementen één per één op te schuiven. Per schuifoperatie is er dus hoogsten één sleutelvergelijking. Helemaal op het einde als de tabel gesorteerd is, wordt er nog één keer gecontroleerd of alles op zijn plaats staat, dit is een extra term $n$. Een paar elementen dat niet in de juiste volgorde staan zijn een inversie.
+
+ Voorbeeld met n = 4.
+ 
+    $$|4|3|2|1|$$
+    \begin{itemize}
+        \item 4 vormt een inversie met 3, 2 en 1
+        \item 3 vormt een inversie met 2 en 1
+        \item 2 vormt een inversie met 1
+    \end{itemize}
+    Het aantal inversies is $\frac{4\cdot3}{2} = 6$. Er zullen 10 sleutelvergelijkingen en 6 schuifoperaties zijn. 
+
 \begin{itemize}
- \item Indien er een dubbele waarde is gevonden, wordt er nog altijd verder gezocht.
- \item Als gevolg heeft dit dat de vector tweemaal wordt doorlopen.
- \item Het if statement op lijn 4 wordt uitgevoerd als bijvoorbeeld $i = 5$ en $j = 27$, maar ook als $i = 27$ en $j = 5$. Er is dus sprake van redundantie.
+ \item \textit{slechtste} geval | $\Theta(n^2)$: Aangezien er $n(n - 1)/2$ inversies zijn , zijn er $n(n - 1)/2$ schuifoperaties en $n(n - 1)/2 + n$ sleutelvergelijkingen.
+ 
+
+ \item \textit{gemiddelde} geval | $\Theta(n^2)$: Elke permutatie van de tabelelementen zijn even waarschijnlijk. Gemiddeld is het aantal inversies gelijk aan $\frac{n(n - 1)}{4} (= \frac{n(n - 1)}{2}\cdot \frac{1}{2})$
+ \item \textit{beste} geval | $O(n)$: De tabel is al gesorteerd en de while lus zal dus nooit uitgevoerd worden. Er is ook een speciaal geval als de tabel \textit{bijna} in juiste volgorde staat zolang het aantal inversies $O(n)$ is.
 \end{itemize}
-Een betere oplossing zou kunnen zijn:
+\subsubsection{Eigenschappen}
+\begin{itemize}
+ \item Sorteert ter plaatse
+ \item Sorteert niet stabiel. Insertion Sort kan stabiel sorteren indien de lus achterstevoren uitgevoerd wordt.
+\end{itemize}
+
+\subsection{Shell Sort}
 \begin{lstlisting}
-int i = 0;
-int j = 1;
-while(i < n && v[i] != v[j]){
-  j++;
-  if(j == n){
-    i++;
-    j = i + 1;
-  }
-}
-\end{lstlisting}
-De eerste keer wordt de while $\note{n}$ keer uitgevoerd, de tweede keer $\note{n - 1}$ keer tot uiteindelijk de while nog maar 1 keer uitgevoerd wordt. 
-
-
-Het beste algoritme blijkt het volgende:
-\begin{lstlisting}
-vector<bool> zitErIn(n, false);
-int i = 0;
-while(i < n && !zitErIn[v[i]]){
-  zitErIn[v[i]] = true;
-  i++;
-}
-\end{lstlisting}
-Het voordeel van bovenstaand algoritme is dat de while lus hoogstens $\note{n}$ keer uitgevoerd wordt.
-
-\subsection{Tijdscomplexiteit}
-Het is nuttig om te bekijken welke operaties een impact hebben op een algoritme. Beschouw volgende implementatie van het \textit{insertion sort} algoritme:
-
-\begin{lstlisting}[escapechar=\%]
-void insertion_sort(vector<T> & v){
-  for(int %\fbox{\parbox{32pt}{i = 0}}%; %\fbox{\parbox{76pt}{i < v.size()}}% ; %\fbox{\parbox{26pt}{i ++}}%){
-    %\fbox{\parbox{114pt}{T el = move(v[i]);}}%
-    %\fbox{\parbox{90pt}{int j = i - 1;}}%
-    while(%\fbox{\parbox{36pt}{j $\geq$ 0}}% && %\fbox{\parbox{64pt}{el < v[i]}}%){
-      %\fbox{\parbox{140pt}{v[j + 1] = move(v[j]);}}%
-      %\fbox{\parbox{26pt}{j--;}}%
+void shell_sort(vector<T>& v){
+    int k = ... // initieel increment
+    while(k >= 1){
+        for(int i = k; i < v.size(); i++){
+            T h = move(v[i]);
+            int j = i - k;
+            while(j >=0 && h < v[j]){
+                v[j + k] = move(v[j]);
+                j -= k;
+            }
+            v[j + k] = move(h);
+        }
+        k = ... // volgend increment
     }
-    %\fbox{\parbox{140pt}{v[j + 1] = move(el);}}%
-  }
 }
 \end{lstlisting}
-Elke relevante operatie werd omkaderd en heeft een bepaalde uitvoeringstijd $t$. Voor elke operatie kan de uitvoeringstijd apart beschouwd worden in zijn slechtste en beste geval:
-
-\begin{tabular}{|l | l |l |l|}
-  \hline
-  Operatie          & Tijd  & Aantal(best) & Aantal(slechtst)  \\
-  \hline
-  h           & $t_1$ & 1            & 1                 \\
-  i $<$ v.size()      & $t_2$ & n            & n                 \\
-  i++               & $t_3$ & n - 1        & n - 1             \\
-  T el = move(v[i]) & $t_4$ & n - 1        & n - 1             \\
-  int j = i - 1     & $t_5$ & n - 1        & n - 1             \\
-  j $\geq$ 0        & $t_6$ & n - 1        & (n + 2)(n - 1)/2  \\
-  h < v[j]          & $t_7$ & n - 1        & n(n - 1)/2        \\
-  v[j + 1] = v[j]   & $t_8$ & 0            & n(n - 1)/2        \\
-  j--               & $t_9$ & 0            & n(n - 1)/2        \\
-  v[j + 1]          & $t_10$ & n - 1            & n - 1)        \\
-  \hline
-\end{tabular}
-\newline
+\subsubsection{Stappen}
+\begin{enumerate}
+ \item Stel $k$ gelijk aan de eerste waarde van een bepaalde reeks (zie analyse voor meer info over de reeks)
+ \item Overloop de tabel startend vanaf $i = k$.
+ \item Voer Insertion Sort uit met maar vervang de sprongen door $k$.
+ \item kies de volgende waarde van de reeks en ga terug naar stap 2 zolang $k >= 0$.
+\end{enumerate}
+\subsubsection{Analyse}
+Insertion Sort heeft in het slechtste geval een kwadratische uitvoeringstijd. Dit komt omdat elementen één per één opgeschoven worden, of het wegnemen van één inversie per schuifoperatie. Shell Sort lost dit op door grotere sprongen te nemen en dus meerdere inversies per sprong weg te nemen. Shell Sort gaat er voor zorgen dat elementen die $k$ posities van elkaar liggen gesorteerd worden. De reeksen die gebruikt worden bestaan meestal uit $\log n$ elementen. Belangrijke reeksen zijn:
 \begin{itemize}
- \item Beste geval: $$(t_1 + t_8 + t_9) * 1 + (t_2 + t_3 + t_4 + t_5 + t_6 + t_7 + t_{10}) * n$$
-Er kan ook gezegd worden dat de tijdscomplexiteit in het beste geval gelijk is aan $O(n)$
-\item Slechtste geval: $$(t_1) * 1 + (t_2 + t_3 + t_4 + t_5 + t_{10}) * n + (t_6 + t_7 + t_8 + t_9) * n^2$$
-Er kan ook gezegd worden dat de tijdscomplexiteit in het beste geval gelijk is aan $O(n^2)$
+ \item Reeks van Shell(1959): $${\frac{n}{2},\frac{n}{4},\frac{n}{8},..., 1}$$
+ \item Reeks van Sedgewick(1986): $$\sum_{k = 0}^{\log n} \begin{cases}
+                                    9(2^k - 2^{k/2}) + 1 & \hbox{voor} \quad k \quad \hbox{even}\\
+                                    8\cdot2^k - 6\cdot2^{(k+1)/2}) + 1 & \hbox{voor} \quad k \quad \hbox{oneven}
+                                   \end{cases} (= 1, 5, 19, 41, 109, ...)$$ 
+ \item Reeks van Tokuda(1992): $$\sum_{k = 0}^{\log n} \frac{1}{5}\bigg(9\cdot\bigg(\frac{9}{4}\bigg)^{k - 1} - 4\bigg) (= 1, 4, 9, 20, 46, 103, ...)$$
+ \item Reeks van Ciura(2001): Experimenteel gevonden $1, 4, 10, 23, 57, 132, 301, 701, ...$
 \end{itemize}
-Het bewijs dat enkel de hoogste term de complexiteit bepaalt staat op pagina 10 van de cursus.
-\section{Asymptotische benadering}
-Een asymptotische benadering wil zeggen dat de uitvoeringstijd van een algoritme, vanaf voldoende grote waarden voor n, benadert kunnen worden met functies (Een begrenzende functie). Om deze begrenzende functie voor te stellen bestaan er drie notaties, namelijk: O, $\Theta$ en $\Omega$.
-Onthou dat in de volgende voorbeelden de letter\note{n} het aantal elementen voorstelt.
-\subsection{O-notatie}
-De O-notatie stelt een afschatting naar boven voor. Dit wil zeggen dat een functie (het algoritme) niet sneller groeit dan een andere bepaalde functie, wat dus de bovengrens vormt. Zo wil de uitdrukking $O(n^2)$ zeggen dat het algoritme zeker niet sneller (maar wel gelijk) kan groeien dan de functie $n^2$. 
-\subsection{Omega-notatie}
-De $\Omega$-notatie stelt een afschatting naar onder voor. Dit wil zeggen dat een functie (ook weer het algoritme) niet trager groeit dan een andere bepaalde functie, wat de ondergrens vormt. Zo wil de uitdrukking $\Omega(n^2)$ zeggen dat het algoritme zeker niet traag (maar wel gelijk) kan groeien dan de functie $n^2$
-\subsection{Theta-notatie}
-Indien de ondergrens gelijk is aan de bovengrens wordt de $\Theta$-notatie gebruikt. 
-\subsection{Voorbeeld: sorteren}
-Indien een tabel met $n$ \textit{verschillende} elementen gegeven is, bestaan er $n!$ verschillende permutaties van $n$ elementen. Wat is het efficiëntste sorteeralgoritme? begin vanaf de ongelijkheid $n! < n^n$.
+Belangrijk is dat de reeks van groot naar klein moet gaan, anders sorteer je eerst de tabel met Insertion Sort ($k = 1$) en dan hebben de grotere sprongen geen zin meer want de tabel is dan helemaal gesorteerd. De reeksen van Sedgewick,Tokuda en Ciura zijn gedefinieerd van klein naar groot maar moeten dus omgedraaid worden.
 
-$$ n! < n^n$$ 
-$$\log(n!) = O(n\log n)$$
-$$\frac{n}{2}*(\frac{n}{2}+1) ... n$$
-$$n! > (\frac{n}{2})^{n/2}$$
-$$\log n! > \frac{n}{2}\log\frac{n}{2}$$
-$$\log n! = \Theta(n\log n)$$
-\section{Afschatten van recursiebetrekkingen}
-Soms is het mogelijk een functie f af te schatten door een recursieve betrekking.
-\subsection{Machten van n}
-$$f(n) \leq Cn^{\alpha} + f(n - 1)$$
-$$\leq Cn^\alpha + C(n - 1)^\alpha + f(n - 2)$$
-$$\leq C(n^\alpha + (n - 1)^\alpha) + ... 1^\alpha) + f(0)$$
-De term tussen haakjes kan geschreven worden als de integraal: 
-$$n^\alpha + (n - 1)^\alpha) + ... 1^\alpha = \int_{0}^{n} \lc x\rc^\alpha dx$$
-\subsection{Logaritmische afschattingen}
-$$f(n) = f\bigg(\frac{n}{2}\bigg) + C$$
-$$= f\bigg(\frac{n}{4}\bigg) + C + C$$
-$$= f\bigg(\frac{n}{2^k}\bigg) + kC$$
-indien k groot genoeg wordt
-$$f(1) + kC\; \hbox{met}\; k = \lc\log n \rc$$
-\subsection{Afschatting met sommen}
-$$(x - 1)(1 + x + x^2 + ... + x^p)$$
-$$= x + x^2 + x^3 + ... + x^{p + 1} - 1 - x - x^2 - ... - x^p$$
-$$= - 1 + x^{p + 1}$$
-Gevolg:
-$$1 + x + ... + x^p = \frac{x^{p + 1}}{x-1} = S(x, p)$$
-$$x^p < S(x, p) < x^{p + 1} \; \hbox{voor}\; x \geq 2$$
-$$x + 2x^2 + 3x^3 + ... + px^p < px^{p + 1}$$
-\subsection{Bernouilliverdeling}
-Iets heeft een kans p om te mislukken.
-$$p = \frac{1}{10e}$$
-Een bepaald algoritme moet een slaagkans hebben van 80\%. Zal dit lukken met de kans p?
-De kans dat er bij $m$ pogingen het $j$ keer misgaat is:
-$$\sum_{k=0}^{k=j}C^{k}_{m}(1 - p)^{m-k}p^k < \sum_{k=0}^{k=j}\bigg(\frac{emp}{k}\bigg)^k$$
-\section{Optimalisatie}
-Stel een algoritme $a$ met 2 afschattingen.
-$$
-  \begin{cases}
-    f_1(n) = \Omega(g_1(n)) \rightarrow \hbox{Actie}\; f_1(n)\; \hbox{keer}\\
-    f_2(n) = \Omega(g_2(n)) \rightarrow \hbox{efficiëntie van 1 actie}\\
-  \end{cases}
-$$
-De afschatting wordt $\Omega(g_1(n)g_2(n))$
-Een voorbeeld is een quizwedstrijd. Bij een quiz mag elke ploeg een prijs kiezen, en dit in volgorde van de uitslag. Stel dat deze uitslag gegeven is in een tabel \texttt{uitslag} zodang dat \texttt{uitslag[i]} aangeeft wat de rangschikking is van ploeg \textit{i}. Er bestaan twee manieren om ploegen in volgorde aan te spreken.
+De performantie hangt af van de reeks. Voor de reeks van Shell kan het slechtste geval nog altijd $\Theta(n^2)$ zijn. Voor de reeks van Sedgewick kan aangetoond worden (via complexe analyse) dat de gemiddelde uitvoeringstijd slechts $O(n^{7/6})$. 
+\subsubsection{Eigenschappen}
+\begin{itemize}
+ \item Sorteert ter plaatse
+ \item Sorteert niet stabiel aangezien verschillende deelreeksen de volgorde van gelijke elementen kan wijzigen.
+\end{itemize}
+
+\section{Rangschikken door eenvoudig selecteren}
+\subsection{Selection Sort}
 \begin{lstlisting}
- for(int i = 0; i < n ; i++){
-  int j = 0;
-  while ( uitslag[j] != i){
-    j++;
-  }
-  kies(j);
- }
-\end{lstlisting}
-De forlus ($g_1(n)$) wordt $n$ keer uitgevoerd. De whilelus ($g_2(n)$) wordt ook $n$ keer uitgevoerd. De afschatting wordt dus
-$$\Omega(g_1(n)g_2(n)) = \Omega(n^2)$$
-Een betere methode:
-\begin{lstlisting}
- vector<int> invers(n);
- for(int i = 0; i < n; i++){
-  invers[uitslag[i]] = i;
- }
- for(int j = 0; j < n; j++){
-  kies[invers[j]);
- }
-\end{lstlisting}
-Dit voorbeeld heeft geen geneste lus, wat ervoor zorgt dat de afschatting $\Omega(n)$ wordt.
-\chapter{Rangschikking}
-Belangrijk bij sorteeralgoritmes:
-\begin{itemize}
- \item Het aantal gegevens
- \item De aard van die gegevens
- \item De mate waarin de gegevens reeds geordend zijn
- \item De plaats waar de gegevens tijdens het rangschikken opgeslagen zijn (inwendig of uitwendig geheugen)
-\end{itemize}
-
-Er wordt aandacht besteedt aan drie zaken:
-\begin{itemize}
- \item Tijdsefficiëntie
- \item Geheugengebruik
- \item Stabiliteit
-\end{itemize}
-
-Veronderstellingen:
-\begin{itemize}
- \item Alle gegevens bevinden zich in het inwendig geheugen.
- \item De gegevens worden ondergebracht in een één dimensionale tabel.
- \item De gegevens zijn klein en bevatten geen bijhorende informatie.
- \item Er wordt gerangschikt in stijgende volgorde.
-\end{itemize}
-
-\section{Insertion Sort}
-\begin{lstlisting}
-void insertion_sort(vector<T> & v){
-  for(int i = 0; i < v.size(); i++){
-    T el = move(v[i]);
-    int j = i - 1;
-    while(j <= 0 && el < v[i]){
-      v[j + 1] = move(v[j]);
-      j--;
+void selection_sort(vector<T>& v){
+    for(int i = v.size() - 1; i > 0; i--){
+        int imax = i;
+        for(int j = 0; j < i; j++){
+            if(v[j] > v[imax]){
+                imax = j;
+            }
+        }
+        swap(v[i], v[imax]);
     }
-    v[j + 1] = move(el);
-  }
 }
 \end{lstlisting}
-\subsection{Werking}
-Insertion sort is een eenvoudig algoritme dat element per element werkt.
-Vergelijk een element met de opeenvolgende elementen in de tabel. Schuif de grotere elementen op en zet het element op zijn plaats. De gerangschikte en nog te rangschikken zones hebben geen overlap.
+\subsubsection{Stappen}
+\begin{itemize}
+ \item Overloop de tabel in dalende volgorde startend vanaf $i = n - 1$. De index $i$ is de index waar we $k$-de grootste getal willen zetten ($k = 1, 2, ..., n$).
+ \item De variabele $imax$ zal bijhouden waar het $k$-de grootste getal zit.
+ \item Overloop de tabel nu startend vanaf $j = 0$ en zoek het grootste element tot en met $j = i -1$.
+ \item Aangezien $imax$ de index bevat van het getal met de grootste waarde die op index $i$ moet komen, voeren we de swap uit.
+\end{itemize}
+\subsubsection{Analyse}
+Het principe hier is: zoek het grootste element en zet het op de laatste index, zoek het tweede grootste element en zet het op de voorlaatste index, enz. Het aantal sleutelvergelijkingen is hier onafhankelijk van de oorspronkelijke volgorde (elk element moet altijd met elk ander element vergeleken worden). Het aantal sleutelvergelijkingen is dus 
+$$\frac{n(n - 1)}{2}$$
+Het aantal verwisselingen is wel slechts $n - 1$. Dit algoritme wordt gedomineerd door de binnenste for lus en is dus $\Theta(n^2)$ voor zowel het slechtste, beste als gemiddelde geval (aangezien die altijd uitgevoerd wordt onafhankelijk van de oorspronkelijke staat van de tabel).
+\subsubsection{Eigenschappen}
+\begin{itemize}
+ \item Sorteert ter plaatse
+ \item Sorteert niet stabiel
+\end{itemize}
 
-\subsubsection{Slechtste geval}
-Wanneer de tabel in omgekeerde volgorde gesorteerd staat. 
-\subsubsection{Gemiddelde geval}
-
-\subsubsection{Beste geval}
-\subsection{Voordelen}
-\subsection{Nadelen}
-\textbf{straight from notities}
-
-O(n + aantal inversies)
-
-tabel v
-
-vomgekeerd[i] = v[n - 1 - i];
-
-vomgekeerd[n - 1 - i] > omgekeerd[n - 1 - j];
-
-\# inversies in v + \#inversies in vomgekeerd = $\frac{n(n - 1)}{2}$
-
-
-
-random tabel
-
-\section{Shell Sort}
-
-................
-
-
-\section{Selection Sort}
-.........
-
-\chapter{Efficiënte Methodes}
-\section{Heaps ( = Binaire boom)}
-Een heap lijkt sterk op een gelinkte lijst, maar elke knoop heeft slechts 1 ouder en potentieël 2 kinderen. Een heap loopt van boven naar beneden. Het topelement wordt de \textit{wortel} genoemd. Een knoop zonder kinderen wordt een \textit{blad} genoemd. Een heap moet voldoen aan de \textit{heapvoorwaarde}: Elke sleutel van een knoop heeft een hogere prioriteit dan de sleutels van zijn kinderen.
-
-Het verband tussen het aantal knopen $n$ en de hoogte $h$: $h = \lf \ln n \rf$
-
+    
+\chapter{Effici\"ente methodes}
+\section{Rangschikken door effici\"ent selecteren}
+\subsection{Heaps}
+Een heap is een complete binaire boom en heeft dus volgende eigenschappen:
+\begin{itemize}
+ \item Elk niveau is volledig opgevuld. Indien een niveau niet volledig opgevuld is liggen alle knopen zoveel mogelijk links. Er kan dus hoogstens één knoop zijn met één kind.
+ \item Elke knoop kan hoogstens 2 kinderen hebben. Een heap wordt vaak voorgesteld door een één dimensionale tabel. De wortel komt op index 0, zijn kinderen komen op index 1 en 2, de kinderen van 1 op plaatsen 3 en 4, enz. Dit kan vertaald worden naar eenvoudige formules met $i$ de index van een willekeurige knoop.
+ \begin{enumerate}
+  \item Het linkerkind van een knoop staat op positie $2i + 1$.
+  \item Het rechterkind van een knoop staat op positie $2i + 2$.
+  \item De ouder van een knoop staat op positie $(i - 1)/2$.
+ \end{enumerate}
+ \item De hoogte $h$ van de heap is gelijk aan $\left \lfloor \log_2 n \right \rfloor$.
+ \item De heap moet voldoen aan de \textit{heapvoorwaarde}. 
+ \begin{itemize}
+  \item Bij een stijgende heap (maxheap) moet de sleutel van de ouder groter zijn dan de sleutels van zijn kinderen.
+  \item Bij een dalende heap (minheap) moet de sleutel van de ouder kleiner zijn dan de sleutels van zijn kinderen.
+ \end{itemize}
+\end{itemize}
 \subsection{Bewerkingen op heaps}
-\includegraphics[width=\textwidth]{heap_1}
-Toevoegen van een knoop (14)
-
-\includegraphics[width=\textwidth]{heap_2}
-Het wortelelement vervangen(17 $\rightarrow$ 3)
-
-\includegraphics[width=\textwidth]{heap_3}
-Het wortelelement verwijderen
-
-\includegraphics[width=\textwidth]{heap_4}
+Een heap ondersteunt volgende bewerkingen:
+\begin{itemize}
+ \item \underline{Toevoegen van een element}. Voeg het element toe op index $n + 1$ en zorg ervoor dat de heapvoorwaarde terug voldaan is. Controleer dus of de ouder kleiner is dan het nieuwe element, en vervang desnoods. Doe dit zolang de volgende ouders ook kleiner zijn. De langste weg dat afgelegd moet worden is de hoogte $h$ van de heap. Toevoegen is $O(\log_2 n)$
+ \item \underline{Het wortelelement vervangen}. Vervang de waarde van de wortel met een nieuwe waarde $g$. Controleer of de heapvoorwaarde nog altijd geldig is. In dit geval moeten de waarden van beide kinderen gecontroleerd worden. Indien de wortel kleiner is dan beide kinderen, moet het grootste kind naar de wortel gebracht worden. Doe dit zolang er kinderen zijn die groter zijn dan de waarde $g$.
+ 
+ Ook hier is de langste weg dat afgelegd moet worden de hoogte $h$ van de heap. Deze operatie is $O(\log_2 n)$
+ \item \underline{Het wortelelement verwijderen}. In dit geval verwissel je de wortel met het element op index $n - 1$, laat je de tabel krimpen zodat het laatste element (nu de wortel) weg is, en voer je de procedure van het wortelelement vervangen uit. Deze operatie is dan ook $O(\log_2 n)$
+ \item \underline{Het element van een willekeurige knoop vervangen}. Hier zijn er twee mogelijkheden. Als het nieuwe element groter is dan het vorige, kan enkel de heapvoorwaarde naar de wortel verstoord worden. Dit komt neer op het toevoegen van een element startend bij de aangepaste knoop. Als de nieuwe knoop kleiner is dan het vorige, kan enkel de heapvoorwaarde van de deelheap waarvan die knoop wortel is, verstoord geraken. Dit komt neer op het uitvoeren van het vervangen van een wortelelement op die deelheap. Beide operaties zijn dus $O(\log_2 n)$
+\end{itemize}
 
 \subsection{Constructie van een heap}
-Element toevoegen
-Samenvoegen van deelheaps
+Een heap kan op twee manier geconstrueerd worden.
+\begin{enumerate}
+ \item \underline{Door toevoegen}. Elk element gaat één per één toegevoegd worden. Na elke toevoegoperatie moet de heapvoorwaarde voldaan zijn. Aangezien er slechts $n - 1$ toevoegingen zijn, en dat elk element hoogstens helemaal naar boven moet stijgen komt de uitvoeringstijd neer op:
+ $$T(n) = 2\cdot 1 + 4\cdot + 8\cdot 3 + ... + 2^{h - 1}(h - 1) + 2^h h$$
+ wat neerkomt op $O(n \log_2 n)$
+ \item \underline{Door samenvoegen van deelheaps}. TODO lol ik snap dit niet $O(n)$
+\end{enumerate}
 
-\section{Heapsort}
-\section{Mergesort}
-\section{Quicksort}
+\subsection{Heap sort}
 \begin{lstlisting}
-void quicksort (vector<T> & v, int l, int r){
-    // rangschikt de deelvector v[l..r]
-    if(l < r){
-        //partitie met v[l] als spilelement
-        T pivot = v[l]; // Geen T&, geen move!
-        int i = l;
-        int j = r;
-        while(v[j] > pivot){
-            j--;
-        }
-        while(i < j){
-            swap(v[i], v[j]);
+void heap_sort(vector<T>& v){
+    maak_heap(v);
+    int i = v.size() - 1;
+    while(i > 0){
+        swap(v[i], v[0]);
+        i -= 1;
+        herstel_heap(v, 0, i);
+    }
+}
+\end{lstlisting}
+\subsubsection{Stappen}
+\begin{enumerate}
+ \item Maak van de tabel een heap. 
+ \item Stel $i$ gelijk aan het laatse element van de heap.
+ \item Verwissel het laatste element met de wortel (index = 0, bevat de hoogste waarde van de tabel). Op dit moment staat de hoogste waarde helemaal achteraan
+ \item Verminder $i$ met 1 om zo de volgende index te bepalen.
+ \item Herstel de heap want aangezien het laatste element nu op de wortel staat kan de heapvoorwaarde onvoldaan zijn
+ \item Ga terug naar stap 3 zolang $i >= 0$.
+\end{enumerate}
+\subsubsection{Analyse}
+Aangezien er gebruik gemaakt wordt van een maxheap, zal de grootste waarde van de tabel altijd in de wortel zitten. We swappen de wortel met het laatste element zodat de laatste index nu het grootste element bevat. De functie \texttt{herstel\_heap(v, 0, i)} herstelt de heap $v$ vanaf index 0 tot en met index i. Dit zorgt ervoor dat het grootste element ( die nu helemaal vanachter staat ) niet meegerekend wordt in het herconstrueren.
+
+
+De efficiënte heapconstructie is $O(n)$. Het rangschikken vewijdert $n - 1$ keer de wortel en dit is in het slechtste geval $O(n \log_2 n)$ (zelfde redenering 1ste methode constructie heap). In het slechtste geval is heapsort dus $O(n \log_2 n)$. Voor het beste en gemiddelde geval is dit ook zo. Heapsort is dus $\Theta(n \log_2 n)$
+\subsubsection{Eigenschappen}
+\begin{itemize}
+ \item Sorteert ter plaatse
+ \item Sorteert niet stabiel omdat de verplaatsing van elementen tijdens het herstellen van de heap de volgorde kan wijzigen.
+\end{itemize}
+\section{Rangschikken door samenvoegen}
+\subsection{Merge Sort}
+\begin{lstlisting}
+void merge(vector<T>& v, int l, int m, int r, vector<T>& h){
+    int i = l, j = m;
+    for(k = l; k < r; k++){
+        if(i < m && (j >= r || v[i] <= v[j])) {
+            h[k] = v[i];
             i++;
-            while(v[i] < pivot){
-                i++;
-            }
-            j--;
-            while(v[j] > pivot){
-                j--;
-            }
+        } else{
+            h[k] = v[j];
+            j++;
         }
-        //Recursief rangschikken van beide delen
-        quicksort(v, l, j);
-        quicksort(v, j + 1, r);
     }
 }
 
-void quicksort (vector<T> & v){
-    quicksort(v, 0, v.size());
+void merge_sort(vector<T>& v, int l, int r, vector<T>& h){
+    if(l < r - 1){
+        int m = l + (r + l)/2;
+        merge_sort(v, l, m, h);
+        merge_sort(v, m, r, h);
+        merge(v, l, m, r, h);
+    }
+}
+
+void merge_sort(vector<T>& v){
+    vector<T> h(v.size() / 2);
+    merge_sort(v, 0, v.size(), h);
 }
 \end{lstlisting}
-\subsection{Werking}
-Quicksort is een typisch voorbeeld van een Las Vegas algoritme. De originele tabel wordt opgepslitst in twee delen zodat alle elementen in het linkerdeel kleiner zijn dan de elementen in het rechterdeel.
+\subsubsection{Stappen}
+kill me
+\subsubsection{Analyse}
 
-Er wordt een willekeurige element (de pivot) gekozen. Er worden twee lijsten gemaakt met de ene lijst allemaal elementen kleiner dan de pivot en de andere lijst allemaal groter dan de pivot. Op deze deellijsten wordt er recursief ook quicksort toegepast totdat de grootte van de deellijst gelijk is aan 1.
-
-Volgens de klassieke methode wordt het eerste element in de tabel gekozen als pivot.
-Beschouw de volgende lijst:
-
-
-\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
- \hline
- 10 & 10 & 3 & 9 & 17 & 2 & 9 & 8 & 10 & 16 & 15 & 4 \\
- \hline
-\end{tabular}
-
-Als pivot wordt het eerste element gekozen, dus 10. De variabele $i$ staat op index 0, de variabele $j$ staat op index 11 (laatste element). De waarde 4 is kleiner dan de waarde 10, dus deze worden omgewisseld.
-
-\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
- \hline
- 4 & 10 & 3 & 9 & 17 & 2 & 9 & 8 & 10 & 16 & 15 & 10 \\
- \hline
-\end{tabular}
-\subsubsection{Slechtste geval}
-\begin{equation*}
- \begin{split}
-  T(n)          & = cn + T(n - 1)\\
-                & = cn + c(n - 1) + T(n - 2) \\
-                & = c(n + (n - 1) + (n - 2) + ... + 1) + T(1) \\
-                & =c\frac{n(n - 1)}{2} \\
-                & = O(n^2)
- \end{split}
-\end{equation*}
-
-\subsubsection{Gemiddeld geval}
-Wanneer de pivot gemiddeld in het midden van de te partitioneren elementen valt. De grootte van elke deeltabel is dus even waarschijnlijk.
-\begin{equation*}
- \begin{split}
-  T(n) & = O(n \ln n)
- \end{split}
-\end{equation*}
-\subsubsection{Beste geval}
-De beide delen zijn even groot.
-$$T(n) = O(n \ln n)$$
-
+\subsubsection{Eigenschappen}
 
 
 \chapter{Speciale methodes}
-\section{Ondergrens voor de efficiëntie van rangschikken}
-Wat is de snelst mogelijke manier om te sorteren? De efficiënte methoden uit vorig hoofdstuk waren in het slechtste geval $O(n \log n)$ (behalve quicksort met $O(n^2)$). Er bestaan geen snellere methoden die een betere slechtste geval hebben. Dit wordt bewezen met een binaire boom.
-
-Stel een beslissingsboom die vergelijkingen voorstelt. De eerste vergelijking bevindt zich aan de wortel van de boom. De tweede vergelijking in één van de kindknopen van de wortel enz... totdat het juiste resultaat gevonden wordt.
-
-Voor elk sorteeralgoritme kan zo een boom opgesteld worden en zullen allemaal $n!$ bladeren hebben. Het aantal sleutelvergelijkingen dat een algoritme nodig heeft komt overeen met de lengte van de afgelegde weg. Zowel voor het slechtste geval als het gemiddelde geval is de ondergrens $\Omega(n \ln n)$.
-\subsubsection{Slechtste geval}
-\begin{itemize}
- \item Langst mogelijke weg van wortel naar blad = hoogte van de boom.
- \item Boom met hoogte h $\Rightarrow$ niet meer dan $2^h$.
- \item Boom met hoogte $h \Rightarrow$ twee deelbomen met hoogte $h - 1$
- \item $\Rightarrow 2^{h - 1} < n! \leq 2^h$ waaruit volgt $h = \lc \ln n! \rc$
- \item Met formule van Stirling blijkt $h > \ln (\frac{n}{e})^n$
- \item $\Rightarrow$ h = $\Omega(n \ln n)$
-\end{itemize}
-\subsubsection{Gemiddelde geval}
-\begin{itemize}
- \item Gemiddelde weglengte van wortel naar blad
- 
-\end{itemize}
-
-\section{Rangschikken door tellen}
-
-\section{Radix Sort}
-
-
-
+\chapter{De selectie-operatie}
+\chapter{Uitwendig rangschikken}
 \end{document}

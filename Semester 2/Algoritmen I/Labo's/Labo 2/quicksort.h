@@ -1,5 +1,6 @@
 #ifndef __QUICKSORT
 #define __QUICKSORT
+#include "quicksort.h"
 
 /** class QuickSort
     \brief implements Quick Sort

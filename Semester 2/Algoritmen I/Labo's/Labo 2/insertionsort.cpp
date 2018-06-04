@@ -5,14 +5,14 @@
 
 template<class T>
 void InsertionSort<T>::operator()(vector<T> & v)const {
-	for(int i = 0; i < v.size(); i++){
-		T h = move(v[i]);
+	for(int i = 1; i < v.size(); i++){
+		T el = move(v[i]);
 		int j = i - 1;
-		while(j >= 0 && h < v[j]){
+		while(j >= 0 && el < v[j]){
 			v[j + 1] = move(v[j]);
 			j--;
 		}
-		v[j + 1] = move(h);
+		v[j + 1] = move(el);
 	}
 }
 

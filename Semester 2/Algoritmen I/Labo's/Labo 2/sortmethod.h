@@ -45,12 +45,9 @@ class Sortmethod {
 
 			printSequenceOrder(sequenceOrder);
 			printHeaderRow(smallest, biggest, columnwidth); /* Naam algoritme    10    100    1000 ...... */
-
-
+			
 			for(int i = 0; i < sortmethods.size(); i ++) {
 				try {
-
-
 					Chrono klok;
 					Sortmethod<T> * sortmethod = sortmethods[i];
 					cout << "\t";
@@ -75,8 +72,14 @@ class Sortmethod {
 						klok.start();
 						sortmethod->operator()(sv);
 						klok.stop();
+						if(sv.is_gesorteerd()){
+							/* OUTPUT */ cout << setw(columnwidth / 2) << klok.tijd();
+							
+						} else {
+							/* OUTPUt */ cout << setw(columnwidth / 2) << "N.S.";
+						}
 
-						/* OUTPUT */ cout << setw(columnwidth / 2) << klok.tijd();
+						
 						arraysize *= 10;
 					} // end while
 					/* OUTPUT */ cout << endl;
@@ -122,13 +125,8 @@ class Sortmethod {
 				}
 				arraysize *= 10;
 			}
-
-
 			cout << endl;
 		};
-
-
-
 };
 
 
