@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <utility>
 #include <fstream>
 #include "backtrackflex_sudoku.h"
 
@@ -8,13 +9,38 @@
 BacktrackflexSudoku::BacktrackflexSudoku() {}
 
 
-/*
-* Geeft de volgende deeloplosing terug
-*/
-vector<std::pair<int, int>>& BacktrackflexSudoku::geefVerdere(){
-	std::vector<std::pair<int, int>> vector;
+
+// vult de sudoku op met het nieuwe element
+// overschrijft de methode voegToeAanDeeloplossing in de normale klasse Backtrackflex
+void BacktrackflexSudoku::voegToeAanDeeloplossing(const std::pair<int, int>& element) {
+	this->sudoku.setWaardeVoorVakje(element);
+	this->laatstOpgevuldeElement = element;
+	deeloplossing.push_back(&element);
+}
+
+// zet het laatste opgevulde element terug op 0
+// overschrijft de methode verwijderUitDeeloplossing in de normale klasse Backtrackflex
+void BacktrackflexSudoku::verwijderUitDeeloplossing() {
+	this->sudoku.setWaardeVoorVakje(laatstOpgevuldeElement);
+	deeloplossing.resize(deeloplossing.size() - 1);
+}
+
+
+// Geeft de volgende deeloplosing terug
+std::vector<std::pair<int, int>>& BacktrackflexSudoku::geefVerdere(){
 	
-	return &vector;
+	int volgendLeegVakje = this->sudoku.geefIndexVanVolgendLeegVakje();
+	std::vector<int>* mogelijkheden = this->sudoku.geefmogelijkhedenVoor(volgendLeegVakje);
+
+	//volgende lijnen zijn vrij inefficiënt, kan beter voor zorgen dat geefmogelijkhedenVoor() een vector<pair<int, int>> terruggeeft
+	// maar da ligt nie in de scope van de sudoku klasse imo
+	std::vector<std::pair<int, int>> * mogelijkhedenparen = new std::vector<std::pair<int, int>>(mogelijkheden->size());
+	for(int i = 0; i < mogelijkheden->size(); i++){
+		const std::pair<int, int> paar (volgendLeegVakje, mogelijkheden->operator[](i));
+		mogelijkhedenparen->push_back(paar);
+	}
+	
+	return *mogelijkhedenparen;
 }
 
 /*
@@ -40,7 +66,7 @@ bool BacktrackflexSudoku::controle(){
 
 void BacktrackflexSudoku::setSudoku(Sudoku& s){
 	this->sudoku = s;
-	lengteVanDeDeeloplossing = s.geefAantalLegeVelden();
+	lengteVanDeDeeloplossing = this->sudoku.geefAantalLegeVelden();
 }
 
 

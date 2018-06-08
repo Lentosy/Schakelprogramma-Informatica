@@ -13,10 +13,24 @@ Sudoku::Sudoku(){
 */
 Sudoku::Sudoku(const char * filename){
 	leesBestand(filename);
-	//maakConnecties();
+	maakConnecties();
 }
 
 
+/* 
+* Zet de waarde van paar->second op het vakje met als index paar->first
+*/
+void Sudoku::setWaardeVoorVakje(const std::pair<int, int>& paar){
+	knoopdatavector[paar.first] = paar.second;
+}
+
+int Sudoku::geefIndexVanVolgendLeegVakje() const {
+	int i = 0;
+	while(i < aantalKnopen() && knoopdatavector[i] != 0){
+		i++;
+	}	
+	return i;
+}
 
 /*
 * Controleert of de sudoku een geldige oplossing bevat. Het toont ook de fouten
@@ -31,7 +45,9 @@ bool Sudoku::isGeldig() const{
 		while(it != this->knopen[i].end()){
 			if(huidigeWaarde == knoopdatavector[it->first]){
 				isGeldig = false;
-				std::cout << "Fout gevonden: index=" << i << "  gevonden waarde=" <<knoopdatavector[it->first] << std::endl;
+				int rij = (i / 9) + 1;    // leesbare versie van de index maken
+				int kolom = (i + 1) % 9;  // leesbare versie van de index maken
+				std::cout << "Fout gevonden: rij=" << rij << " kolom=" << kolom << "  gevonden waarde=" <<knoopdatavector[it->first] << std::endl;
 			}
 			it++;
 		}   		
@@ -41,33 +57,41 @@ bool Sudoku::isGeldig() const{
 
 int Sudoku::geefAantalLegeVelden() const {
 	int aantal = 0;
-	for(int i = 0; i < aantalKnopen(); i++){
-		if(knoopdatavector[i] == 0){
+	for(int i = 0; i < aantalKnopen(); i++)
+		if(knoopdatavector[i] == 0)
 			aantal++;
-		}
-	}
+	
 	return aantal;
 }
+
+std::vector<int> * Sudoku::geefmogelijkhedenVoor(int i) const {
+	if(knoopdatavector[i] != 0) return nullptr;
+	
+	std::vector<int> getallen = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	std::map<int, int>::const_iterator it = this->knopen[i].begin();
+	while(it != this->knopen[i].end()){
+		//std::cout << knoopdatavector[it->first] << " ";
+		getallen[knoopdatavector[it->first]] = 0;
+		it++;
+	}
+	std::vector<int> * mogelijkheden = new std::vector<int>(0);		
+	for(int i = 1; i < getallen.size(); i++){
+		if(getallen[i] != 0){
+			mogelijkheden->push_back(getallen[i]);
+		}
+	}
+	return mogelijkheden;
+}
+
+
 /*
 * Reads the file and adds the number as a node
 */
 void Sudoku::leesBestand(const char * filename){
-	/* want voor één of andere reden werkt ifstream niet */
-	std::vector<int> data = {0,5,0,3,0,0,0,0,1,
-							 0,0,3,0,2,4,9,0,0,
-							 0,7,0,0,0,0,4,0,0,
-							 4,0,0,0,1,9,0,0,0,
-							 0,0,0,0,0,0,0,8,0,
-							 0,0,1,0,7,3,0,0,6,
-							 0,0,2,0,9,0,0,0,0,
-							 0,0,0,0,0,0,0,0,0,
-							 5,0,0,0,8,0,0,2,0};
-							 
-	for(int i = 0; i < data.size(); i++){
-		voegKnoopToe(data[i]);
-	}
-	
-
+	std::ifstream input(filename);
+	int x;
+	while(input >> x)
+		voegKnoopToe(x);
 }
 
 /*
@@ -75,46 +99,36 @@ void Sudoku::leesBestand(const char * filename){
 * This function makes use of different functions to handle according to row, column and 3x3 matrices
 */
 void Sudoku::maakConnecties(){
-	for(int i = 0; i < 9; i++){
-		maakRijConnecties(i * 9);
-	}
-	
-	for(int i = 0; i < 9; i++){
-		maakKolomConnecties(i);
-	}
-	
+	for(int i = 0; i < 9; i++) maakRijConnecties(i * 9);
+	for(int i = 0; i < 9; i++) maakKolomConnecties(i);
+
 	int indices[] = {0, 3, 6, 27, 30, 33, 54, 57, 60};
-	for(int i : indices){
-		maakMatrixConnecties(i);
-	}
+	for(int i : indices) maakMatrixConnecties(i);
 }
 /*
 * Makes connections based on rows
 */
 void Sudoku::maakRijConnecties(int i){
-	for(int j = i; j < i + 9; j++){ // j = [i, i + 9]
-		for(int k = j + 1; k < i + 9; k++){ // k = [j + 1, i + 9]
+	for(int j = i; j < i + 9; j++) // j = [i, i + 1, ..., i + 9]
+		for(int k = j + 1; k < i + 9; k++) // k = [j + 1, j + 2, ...,  i + 9]
 			voegVerbindingToe(j, k);
-		}
-	}
 }
 
 /*
 * Makes connections based on columns
 */
 void Sudoku::maakKolomConnecties(int i){
-	for(int j = i; j < 81; j += 9){
-		for(int k = j + 9; k < 81; k+= 9){
+	for(int j = i; j < 81; j += 9)
+		for(int k = j + 9; k < 81; k+= 9)
 			voegVerbindingToe(j, k);
-		}
-	}	
 }
 
-int mod(int a, int b){
-	int r = a % b;
-	if(r < 0){
-		r += b;
-	}
+/*
+* Returns positive modulo
+*/
+int pos_mod(int a, int b){ 
+	int r = a % b;    
+	if(r < 0) r += b; 
 	return r;
 }
 
@@ -138,8 +152,8 @@ void Sudoku::maakMatrixConnecties(int i){
 		when j = 2, connect 2 to 3, 4, 6 and 7	
 	*/
 	for(int j = 0; j < 3; j++){
-		int l = mod(j - 1, 3); // left row
-		int r = mod(j + 1, 3); // right row
+		int l = pos_mod(j - 1, 3); // left row
+		int r = pos_mod(j + 1, 3); // right row
 		for(int k = 1; k < 3; k++){
 			voegVerbindingToe(indices_to_connect[j], indices_to_connect[r + (k * 3)]);
 			voegVerbindingToe(indices_to_connect[j], indices_to_connect[l + (k * 3)]);
@@ -157,8 +171,8 @@ void Sudoku::maakMatrixConnecties(int i){
 		when j = 5, connect 5 with 6 and 7
 	*/
 	for(int j = 3; j < 6; j++){
-		int l = mod(j - 1, 3); // left row
-		int r = mod(j + 1, 3); // right row
+		int l = pos_mod(j - 1, 3); // left row
+		int r = pos_mod(j + 1, 3); // right row
 		
 		voegVerbindingToe(indices_to_connect[j], indices_to_connect[r + 6]);		
 		voegVerbindingToe(indices_to_connect[j], indices_to_connect[l + 6]);

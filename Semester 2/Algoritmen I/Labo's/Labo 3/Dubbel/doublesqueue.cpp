@@ -1,6 +1,5 @@
 #include "doublesqueue.h"
-#include <queue>
-using std::cout;
+
 
 void DoublesQueue::add(unsigned int x) {
 	push(x);

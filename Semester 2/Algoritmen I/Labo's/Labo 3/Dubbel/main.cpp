@@ -1,27 +1,21 @@
 #include <iostream>
+using std::cout;
+using std::cerr;
 #include <fstream>
+using std::ifstream;
+using std::ios;
 #include <string>
-#include <queue>
-#include "chrono.cpp"
+using std::string;
 
 // use doublesqueue instead of doublesmap as it is more efficient (thx Xandro)
 #include "doublesmap.cpp"
 #include "doublesqueue.cpp"
-
-using std::cout;
-using std::cerr;
-using std::endl;
-
-using std::ifstream;
-
-using std::string;
-using std::ios;
+#include "chrono.cpp"
 
 const string FILENAME = "dubbels.dat";
-const int MAX_LINES = 1000000;
 
 /*
-* This program looks for doubles in a given file (if 10 and 20 exist in the file, 10 has a double)
+* This program looks for doubles in a given file (if 10 and 20 exist in the file, 20 is the double of 10, and we print 20)
 */
 int main() {
 	/* Open file in read mode */
@@ -41,11 +35,11 @@ int main() {
 	while(data >> number){
 		container.add(number);
 		if(container.check_doubles()){
-			cout << number  << endl;
+			cout << number << "\n";
 		}
 	}
 	clock.stop();
-	cout << "Total time: " << clock.time() << " seconds" << endl;
+	cout << "Total time: " << clock.time() << " seconds\n";
 	data.close(); 	
 	
 

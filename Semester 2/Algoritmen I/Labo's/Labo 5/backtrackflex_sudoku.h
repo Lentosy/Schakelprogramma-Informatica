@@ -1,6 +1,5 @@
 #ifndef __BACKTRACKFLEX_SUDOKU_H
 #define __BACKTRACKFLEX_SUDOKU_H
-#include <stdio.h>
 #include "backtrackflex.h"
 #include "sudoku.h"
 
@@ -17,16 +16,21 @@
 *
 */
 
+
 class BacktrackflexSudoku : public Backtrackflex<std::pair<int, int>> {
 	public:
 	    BacktrackflexSudoku();
 		void setSudoku(Sudoku& s);
+		void voegToeAanDeeloplossing(const std::pair<int, int>& element);
+		void verwijderUitDeeloplossing();
+
 	protected:
 	    bool controle();
 	    void verwerk();
-	    vector<std::pair<int, int>>& geefVerdere();
+	    std::vector<std::pair<int, int>>& geefVerdere();
 	private:
 		Sudoku sudoku;
+		std::pair<int, int> laatstOpgevuldeElement;
 		int lengteVanDeDeeloplossing; // De deeloplossing moet uiteindelijk deze lengte hebben
 };
 #endif

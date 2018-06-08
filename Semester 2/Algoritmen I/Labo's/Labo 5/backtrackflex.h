@@ -60,7 +60,7 @@ void Backtrackflex<knoop>::verwijderUitDeeloplossing(){
 
 template <class knoop>
 Backtrackflex<knoop>::Backtrackflex(){
-        deeloplossing.clear();
+    deeloplossing.clear();
 }
 
 template <class knoop>
@@ -85,7 +85,8 @@ void Backtrackflex<knoop>::losOp(bool& gedaan,bool zoekalle){
 	//vector onveranderlijk is.
         const vector<knoop> mogelijkheid(geefVerdere());
         int i=0;
-        while (i<mogelijkheid.size() && !gedaan){
+        while (i < mogelijkheid.size() && !gedaan){
+        	verwerk();
             voegToeAanDeeloplossing(mogelijkheid[i]);
             losOp(gedaan,zoekalle);
             verwijderUitDeeloplossing();

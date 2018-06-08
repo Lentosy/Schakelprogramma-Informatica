@@ -6,6 +6,5 @@ int main(void){
 	if(s.isGeldig()){
 		std::cout << "Geldig\n";
 	}
-	
 	return 0;
 }
