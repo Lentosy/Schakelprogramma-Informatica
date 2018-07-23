@@ -22,25 +22,22 @@ Het veralgemeende algoritme van Euclides is een uitbreiding op het normaal algor
 
 \subsection{Berekenen van een primitieve wortel}
 Een primitieve wortel is het kleinste getal dat niet deelbaar is door een bepaald getal voor een bepaald veld. Het berekenen van een primitieve is heel eenvoudig. 
-Er is slechts één gegeven nodig en dat is het veld. We nemen het volgende voorbeeld: Bereken de primitieve wortel over $\mathbb{Z}_{4051}.$
+Er is slechts één gegeven nodig en dat is het veld. We nemen het volgende voorbeeld: Bereken de primitieve wortel over $\mathbb{Z}_{271}.$
 
 \begin{enumerate}
- \item Trek 1 af van het veldgetal en ontbindt dit in factoren. Gebruik het programma {\it factor} dat ook beschikbaar is op het examen. (Ingeven: {\sl factor 4050}) 
-  $$4051 - 1 = 4050 = 2 * 3^{4} * 5^{2}$$
-  Het getal 4050 wijst simpelweg op het aantal elementen in dit veld.
- \item We hebben het getal 4050 ontbonden in factoren. De bedoeling is om een excel-bestand op te maken zodat de primitieve wortel redelijk eenvoudig kan berekend worden. 
- Het excel-bestand heeft volgende opmaak:
- \begin{center}
-  \includegraphics[height=5cm]{priem_wortel_1}
-  \label{fig:priem_wortel_1}
- \end{center}
+ \item Trek 1 af van het veldgetal en ontbindt dit in factoren. Gebruik het programma {\it factor} dat ook beschikbaar is op het examen. (Ingeven: {\sl factor 270}) 
+  $$271- 1 = 270 = 2 * 3^3 * 5$$
+  Het getal 270 wijst simpelweg op het aantal elementen in dit veld.
+ \item We hebben het getal 270 ontbonden in factoren. De bedoeling is om een excel-bestand op te maken zodat de primitieve wortel redelijk eenvoudig kan berekend worden. Dit kan teruggevonden worden in \texttt{primitieve\_wortel.xlsx}
 
- Dit stellen allemaal delers voor van het getal 4050. Nu is het de bedoeling dat we {\sl x} vervangen door oplopende getallen startend vanaf 2. \warning{todo}
+ In vak \texttt{B2} bevindt zich het veldgetal. Stel het drie-dimensionaal rooster op (aangezien 270 ontbonden wordt in 3 priemfactoren). Begin altijd met $x$. Voeg daarna zoveel rijen toe als de macht die bij de kleinste priemfactor staat. In dit geval is het $2^1$, dus voeg één rij toe. Dit is rij \texttt{6} in het excelbestand. Voeg nu in rij 5 zoveel kolommen toe als de macht die bij de tweede kleinste priemfactor staat. Dit is $3^3$, dus 3 extra kolommen. Voeg aan alle andere rijen ook deze kolommen toe. Nu hebben we een 2-dimensionaal rooster met 2 rijen en 4 kolommen. Om daarna nog de derde dimensie toe te voegen kopieër je gewoon het origineel rooster, en je voegt daar de hoogste priemfactor aan toe. 
+ 
+ Wanneer het rooster klaar is begin je met x=2 (je moet wel nog eens apart in excel zelf de formules doen), en blijf je x incrementeren met 1 totdat enkel de hoogste macht (in dit geval $x^{2*27*5}$) het getal 1 bevat. De $x$ waarvoor dit geldt is de kleinste primitieve wortel. In dit voorbeeld is $x = 6$ de primitieve wortel.
  \end{enumerate}
 
  
  \subsection{De baby-step, giant-step techniek}
- De baby-step, giant-step techniek wordt gebruikt om een index van een getal ten opzichte van een primitieve wortel in een bepaald veld te berekenen. Hier moet de Euclidische deling ook uitgevoerd worden dus zorg dat je dit al goed kunt. Bij dit soort vraagstukken zijn er 3 gegevens. 
+ De baby-step, giant-step techniek wordt gebruikt om een index van een getal ten opzichte van een primitieve wortel in een bepaald veld te berekenen. Hier moet de Euclidische deling ook uitgevoerd worden dus zorg dat je dit al goed kunt. Bij dit soort vraagstukken zijn er 3 gegevens.
  \begin{itemize}
   \item {Het veld $\mathbb{Z}$.} 
   \item {Een getal in dit veld waarvan de index moet berekend worden.}
@@ -83,16 +80,22 @@ Merk op dat het getal 27 zowel bij de baby-steps als bij de giant-steps voorkomt
 De oplossing is formeel: De index van 5 over het veld $\mathbb{Z}_{71}$ met primitieve wortel $w = 7$ is 38. Er zijn 3 giant-steps en 8 baby-steps nodig.
 
 \subsection{Irreducibele veeltermen}
-Een irreducibele veelterm is een veelterm dat niet meer deelbaar is over een bepaald veld. Op het examen wordt een priemveld gegeven en een bepaalde veelterm. Beschouw het veld $F_{32}$ en de veelterm $x^5 + x^4 + 2x^3 + 2x + 1$. We weten dat $2^5 = 32$, dus $\acca{p = 2}$ en $\accc{n = 5}$. De test moet uitgevoerd worden met elke veelterm $x^{\acca{p}^{\accb{i}}} - x$ met $\accb{i} \leq \frac{\accc{n}}{2}$. Het komt erop neer dat je $n$ deelt door 2 en dit getal afrond naar beneden. Dus $floor(\frac{\accc{5}}{2}) = 2$. 
+Een irreducibele veelterm is een veelterm dat niet meer deelbaar is over een bepaald veld. Op het examen wordt een priemveld gegeven en een bepaalde veelterm. Om te bepalen hoeveel veeltermen hiervan irreducibel zijn kan volgende formule gebruikt worden: 
 
-De test moet dus uitgevoerd worden met $\accb{i = 1}$ en $\accb{i = 2}$. We moeten de veelterm  dus delen door $x^{\acca{2}^{\accb{1}}} - x$ en $x^{\acca{2}^{\accb{2}}} - x$. Indien geen gemeenschappelijke deler werd gevonden dan is de veelterm irreducibel. Je kan eenvoudig de euclidische deling uitvoeren. Je moet enkel elke graad als een 'getal' zien. Zo is $4x^3 + x + 7$ gelijk aan $4017$. Onze veelterm wordt dus $112021$. \warning{in excel pls}
-\begin{center}
-\begin{tabular}{c c c | c c c}
- 110 &  &        & 10010 &  &\\
-     &  & 112021 &       &  & 112021
-\end{tabular}
-\end{center}
+$$\frac{1}{n} \sum_{d|n} \mu(d) \cdot p^{n/d}$$ 
 
+met $\mu(d)$ de Mobius $\mu$ (Zie slide 3 van \texttt{1b.pptx})
+
+
+Voor $F_{32}$ ( p = 2, n = 5 ) komen we uit:
+
+$$\frac{1}{5} \bigg( \mu(1) \cdot p^{5/1} + \mu(5) \cdot p^{5/5} \bigg) = \frac{1}{5} ( p^5 - p ) = 6$$
+
+BOm nu na te gaan of een bepaalde veelterm irreducibel is moet een test uitgevoerd worden met elke veelterm $x^{\acca{p}^{\accb{i}}} - x$ met $\accb{i} \leq \frac{\accc{n}}{2}$. Het komt erop neer dat je $n$ deelt door 2 en dit getal afrond naar beneden. Dus $floor(\frac{\accc{5}}{2}) = 2$. 
+
+De test moet dus uitgevoerd worden met $\accb{i = 1}$ en $\accb{i = 2}$. We moeten de veelterm  dus delen door $x^{\acca{2}^{\accb{1}}} - x$ en $x^{\acca{2}^{\accb{2}}} - x$. Indien geen gemeenschappelijke deler werd gevonden dan is de veelterm irreducibel. Je kan eenvoudig de euclidische deling uitvoeren. Je moet enkel elke graad als een 'getal' zien. Zo is $4x^3 + x + 7$ gelijk aan $4017$. We gaan na of de veelterm $x^4 + x + 1$ irreducibel is in $F_{32}$. De uitwerking is terug te vinden in \texttt{irreducibele\_veelterm.xlsx}.
+
+Je moet bij de euclidische deling nu werken met graden in plaats van gewoon getallen. In vak \texttt{C5} vermenigvuldigen we met \'100'. Eigenlijk is dit gelijk aan $x^2$. Dus $x^2 + x$ vermenigvuldigen met $x^2$ geeft $x^5 + x^4$ wat overeenkomt met 11000. Als voor alle delingen een 1 als resultaat opleveren, dan is de opgegeven veelterm irreducibel.
 
 
 \subsection{Elliptische krommen}
