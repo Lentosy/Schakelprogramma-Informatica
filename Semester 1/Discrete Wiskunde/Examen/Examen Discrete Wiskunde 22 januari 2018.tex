@@ -22,7 +22,10 @@
 \note{Het percentageteken voor elke vraag wijst op de relatieve score van die vraag}
 
 \begin{enumerate}
-\item {\note{10\%} Gebruik de Baby-step, Giant-step techniek om de index van 12 ten opzichte van de primitieve wortel $\omega = 3$ in ($\mathbb{Z}_{46049}, \cdot$) te berekenen. Gebruik hierbij giant-steps van 200 baby-steps groot. Vermeld ook het aantal giant-steps en de extra baby-steps die nodig zijn. Een oplossing louter gebaseerd op het berekenen van de opeenvolgende machten van $\omega$, wordt als waardeloos beschouwd.}
+\item {\note{10\%} Gebruik de Baby-step, Giant-step techniek om de index van 12 ten opzichte van de primitieve wortel $\omega = 3$ in ($\mathbb{Z}_{46049}, \cdot$) te berekenen. Gebruik hierbij giant-steps van 200 baby-steps groot. Vermeld ook het aantal giant-steps en de extra baby-steps die nodig zijn. Een oplossing louter gebaseerd op het berekenen van de opeenvolgende machten van $\omega$, wordt als waardeloos beschouwd. 
+
+\note{Oplossing: i = 45761, \# babysteps = 161, \# giant-steps = 229}}
+
 \item {\note{5\%} Van welke graaf {\bf G} is de hieronder getekende graaf de lijngraaf. Maak een figuur van de graaf {\bf G} en geef de staandaardidentificatie (naam en symbool).
 
     \includegraphics[width=5cm]{lijngraaf}}
@@ -35,12 +38,18 @@
 
     \begin{itemize}
     \item {\note{8\%} Het punt $A(x + 1, x^3)$ is één van de punten van de elliptische kromme E. Bepaal alle andere punten en duid hierbij aan welke inversen zijn van elkaar. Hoeveel punten heeft deze elliptische kromme?}
+    \note{Het punt $A(x + 1, x^3)$ komt overeen met $A(4, 3)$. De overige punten zijn: $A'(4, 7), B(1, 8), B'(1, 10), C(6, 1), C'(6, 11), D(8, 8), D'(8, \infty), \\ E(9, 10), E'(9, 13), O(\infty, 13)$.
+    \#E is dus gelijk aan 11, en is conform met het Hasse interval $9 <= \#E <= 25$ }
     \item {\note{6\%} Bereken 2A, 4A en 8A en identificeer het resultaat met één van de hiervoor gevonden punten.}
-      \item {\note{6\%} Bereken de overige veelvouden van A, tot je hetzij het neutrale element, hetzij het punt dat zijn eigen inverse is bekomt. Bepaal hieruit de structuur van de overeenkomstige groep. Is de groep cyclisch en zo ja, met hoeveel primitieve elementen.}
+    \note{ 2A = E, 4A = C, 8A = E}
+      \item {\note{6\%} Bereken de overige veelvouden van A, tot je hetzij het neutrale element, hetzij het punt dat zijn eigen inverse is bekomt. Bepaal hieruit de structuur van de overeenkomstige groep. Is de groep cyclisch en zo ja, met hoeveel primitieve elementen. \note{3A = O, het neutrale element, dus kan men stoppen met de veelvouden van A. Aangezien dat $\mu$(11) $\neq$ 0, is de groep cyclish met $\phi$(11) = 10 primitieve elementen. }}
 
       \end{itemize}}
 
-  \item {\note{10\%} Welk criterium moet, of welke criteria moeten voldaan zijn opdat een veelterm irreducibel is. Ga na of $x^5 + x^4 + 2x^3 +2x + 1$ hieraan voldoet in het veld $F_{32}$.}
+  \item {\note{10\%} Welk criterium moet, of welke criteria moeten voldaan zijn opdat een veelterm irreducibel is. Ga na of $x^5 + x^4 + 2x^3 +2x + 1$ hieraan voldoet in het veld $F_{32}$.
+  
+  \note{Oplossing: Aangezien 32 = $2^5$ moet nagegaan worden of de veelterm geen factoren gemeenschappelijk heeft met $x^2 + x$ en $x^4 + x$. Verder moet de veelterm eerst \% 2 gedaan worden want $p = 2$. De veelterm wordt $x^5 + x^4 + 1$. Deze veelterm heeft geen gemeenschappelijke factoren met $x^2 + x$ en $x^4 + x$ en is dus irreducibel.}
+  }
   \item {\note{15\%} \warning{Stapelprobleem met Excel (Veralgemeende algoritme X toepassen. Ongeveer 50 kolommen en 2000 rijen, 21 soepele voorwaarden, 32 stricte voorwaarden)}}
   \item {\note {12\%} Teken het cykeldiagram van de groep, waarvan de groepstabel hieronder gegeven is. Bepaal vervolgens de partitionering van de groepselementen in conjugatieklassen. Stel tenslotte de conjugatievergelijking op. 
       \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
