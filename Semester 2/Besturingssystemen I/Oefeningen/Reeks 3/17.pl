@@ -1,5 +1,3 @@
-@ARGV[0] = "labyrinths/80.svg";
-
 # -- GLOBAL VARIABLES -- #
 my $filename = @ARGV[0]; # The name of the file
 
@@ -67,23 +65,22 @@ sub interpret_lines {
     my $x2 = $3 / 16;
     my $y2 = $4 / 16;
 
-     my $index; # The index that will be used as a key the maze
-     my $length; # The length of a line
+    my $index; # The index that will be used as a key the maze
+    my $length; # The length of a line
 
-     if($y1 == $y2){ # Horizontal lines
-       ($x2, $x1) = ($x1, $x2) if $x1 > $x2;
-       $length = $x2 - $x1;
-       for (0 .. ($length - 1)){
-	 $index = (($y2 - 1)  * $cols) + $x1 + $_;
-
-	  # The cell above index is unaccesible
-	  @{$maze{$index}->[0] = undef} if exists $maze{$index};
-	  # The cell below index - cols is unaccesible
-	  @{$maze{$index - $cols}->[2] = undef} if exists $maze{$index - $cols};
-	}
-      }elsif($x1 == $x2) { # Vertical lines
-	($y2, $y1) = ($y1, $y2) if $y1 > $y2;
-	$length = $y2 - $y1;
+    if($y1 == $y2){ # Horizontal lines
+      ($x2, $x1) = ($x1, $x2) if $x1 > $x2;
+      $length = $x2 - $x1;
+      for (0 .. ($length - 1)){
+        $index = (($y2 - 1)  * $cols) + $x1 + $_;
+        # The cell above index is unaccesible
+        @{$maze{$index}->[0] = undef} if exists $maze{$index};
+        # The cell below index - cols is unaccesible
+        @{$maze{$index - $cols}->[2] = undef} if exists $maze{$index - $cols};
+      }
+    }elsif($x1 == $x2) { # Vertical lines
+	   ($y2, $y1) = ($y1, $y2) if $y1 > $y2;
+	   $length = $y2 - $y1;
 
 	if($x1 == 1){ # Leftmost line
 	  for(0 .. ($length - 1)){

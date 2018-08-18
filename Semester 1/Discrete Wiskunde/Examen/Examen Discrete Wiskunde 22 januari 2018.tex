@@ -6,10 +6,16 @@
 \usepackage{amsfonts}
 
 
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+
+
+
 \def\warning#1{\color{red} #1 \color{black}}
 \def\note#1{\color{cyan} #1 \color{black}}
 \def\circled#1{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 
+\def\solution#1{\color{cyan}\textit{Oplossing: #1}\color{black}}
 \graphicspath{{./img/}}
 
 \begin{document}
@@ -24,12 +30,15 @@
 \begin{enumerate}
 \item {\note{10\%} Gebruik de Baby-step, Giant-step techniek om de index van 12 ten opzichte van de primitieve wortel $\omega = 3$ in ($\mathbb{Z}_{46049}, \cdot$) te berekenen. Gebruik hierbij giant-steps van 200 baby-steps groot. Vermeld ook het aantal giant-steps en de extra baby-steps die nodig zijn. Een oplossing louter gebaseerd op het berekenen van de opeenvolgende machten van $\omega$, wordt als waardeloos beschouwd. 
 
-\note{Oplossing: i = 45761, \# babysteps = 161, \# giant-steps = 229}}
+\solution{i = 45761, \# babysteps = 161, \# giant-steps = 229}
+}
 
 \item {\note{5\%} Van welke graaf {\bf G} is de hieronder getekende graaf de lijngraaf. Maak een figuur van de graaf {\bf G} en geef de staandaardidentificatie (naam en symbool).
-
-    \includegraphics[width=5cm]{lijngraaf}}
-
+\begin{center}
+    \includegraphics[width=5cm]{lijngraaf}
+\end{center}
+}
+\newpage
 \item {\note{20\%} Beschouw het veld $F_{16}$ en de elliptische kromme E: $y^2+xy = x^3 + \circled{3}x^2 + \circled{5} $ over dit veld. De irreducibele veelterm is $\mu = x^4 + x + 1$ en de primitieve wortel $\omega = x$. Gebruik de onderstaande groepstabel: 
 \begin{center}
  \includegraphics[width=\linewidth]{groepstabel}
@@ -37,48 +46,50 @@
 
 
     \begin{itemize}
-    \item {\note{8\%} Het punt $A(x + 1, x^3)$ is één van de punten van de elliptische kromme E. Bepaal alle andere punten en duid hierbij aan welke inversen zijn van elkaar. Hoeveel punten heeft deze elliptische kromme?}
-    \note{Het punt $A(x + 1, x^3)$ komt overeen met $A(4, 3)$. De overige punten zijn: $A'(4, 7), B(1, 8), B'(1, 10), C(6, 1), C'(6, 11), D(8, 8), D'(8, \infty), \\ E(9, 10), E'(9, 13), O(\infty, 13)$.
-    \#E is dus gelijk aan 11, en is conform met het Hasse interval $9 <= \#E <= 25$ }
-    \item {\note{6\%} Bereken 2A, 4A en 8A en identificeer het resultaat met één van de hiervoor gevonden punten.}
-    \note{ 2A = E, 4A = C, 8A = E}
-      \item {\note{6\%} Bereken de overige veelvouden van A, tot je hetzij het neutrale element, hetzij het punt dat zijn eigen inverse is bekomt. Bepaal hieruit de structuur van de overeenkomstige groep. Is de groep cyclisch en zo ja, met hoeveel primitieve elementen. \note{3A = O, het neutrale element, dus kan men stoppen met de veelvouden van A. Aangezien dat $\mu$(11) $\neq$ 0, is de groep cyclish met $\phi$(11) = 10 primitieve elementen. }}
+    \item {\note{8\%} Het punt $A(x + 1, x^3)$ is één van de punten van de elliptische kromme E. Bepaal alle andere punten en duid hierbij aan welke inversen zijn van elkaar. Hoeveel punten heeft deze elliptische kromme?
+    
+    \solution{Het punt $A(x + 1, x^3)$ komt overeen met $A(4, 3)$. De overige punten zijn: $A'(4, 7), B(1, 8), B'(1, 10), C(6, 1), C'(6, 11), D(8, 8), D'(8, \infty), \\ E(9, 10), E'(9, 13), O(\infty, 13)$.
+    \#E is dus gelijk aan 11, en is conform met het Hasse interval $9 <= \#E <= 25$ }}
+    \item {\note{6\%} Bereken 2A, 4A en 8A en identificeer het resultaat met één van de hiervoor gevonden punten.
+    
+    \solution{ 2A = E', 4A = C, 8A = E}}
+      \item {\note{6\%} Bereken de overige veelvouden van A, tot je hetzij het neutrale element, hetzij het punt dat zijn eigen inverse is bekomt. Bepaal hieruit de structuur van de overeenkomstige groep. Is de groep cyclisch en zo ja, met hoeveel primitieve elementen. 
+      
+      \solution{3A = O, het neutrale element, dus kan men stoppen met de veelvouden van A. Aangezien dat $\mu$(11) $\neq$ 0, is de groep cyclish met $\phi$(11) = 10 primitieve elementen. }}
 
       \end{itemize}}
 
   \item {\note{10\%} Welk criterium moet, of welke criteria moeten voldaan zijn opdat een veelterm irreducibel is. Ga na of $x^5 + x^4 + 2x^3 +2x + 1$ hieraan voldoet in het veld $F_{32}$.
   
-  \note{Oplossing: Aangezien 32 = $2^5$ moet nagegaan worden of de veelterm geen factoren gemeenschappelijk heeft met $x^2 + x$ en $x^4 + x$. Verder moet de veelterm eerst \% 2 gedaan worden want $p = 2$. De veelterm wordt $x^5 + x^4 + 1$. Deze veelterm heeft geen gemeenschappelijke factoren met $x^2 + x$ en $x^4 + x$ en is dus irreducibel.}
+  \solution{Aangezien 32 = $2^5$ moet nagegaan worden of de veelterm geen factoren gemeenschappelijk heeft met $x^2 + x$ en $x^4 + x$. Verder moet de veelterm eerst \% 2 gedaan worden want $p = 2$. De veelterm wordt $x^5 + x^4 + 1$. Deze veelterm heeft geen gemeenschappelijke factoren met $x^2 + x$ en $x^4 + x$ en is dus irreducibel.}
   }
   \item {\note{15\%} \warning{Stapelprobleem met Excel (Veralgemeende algoritme X toepassen. Ongeveer 50 kolommen en 2000 rijen, 21 soepele voorwaarden, 32 stricte voorwaarden)}}
-  \item {\note {12\%} Teken het cykeldiagram van de groep, waarvan de groepstabel hieronder gegeven is. Bepaal vervolgens de partitionering van de groepselementen in conjugatieklassen. Stel tenslotte de conjugatievergelijking op. 
-      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-
-        % ACEGIKMO
-        % BDFHJLNP
-        \hline
-        A&B&C&D&E&F&G&H&I&J&K&L&M&N&O&P \cr \hline
-        B&A&D&C&F&E&H&G&J&I&L&K&N&M&P&O \cr \hline
-        C&H&E&J&G&L&I&N&K&P&M&B&O&D&A&F \cr\hline
-        D&G&F&I&H&K&J&M&L&O&N&A&P&C&B&E \cr\hline
-        E&N&G&P&I&B&K&D&M&F&O&H&A&J&C&L \cr\hline
-        F&M&H&O&J&A&L&C&N&E&P&G&B&I&D&K \cr\hline
-        G&D&I&F&K&H&M&J&O&L&A&N&C&P&E&B \cr\hline
-        H&C&J&E&L&G&N&I&P&K&B&M&D&O&F&A \cr\hline
-        I&J&K&L&M&N&O&P&A&B&C&D&E&F&G&H \cr\hline
-        J&I&L&K&N&M&P&O&B&A&D&C&F&E&H&G \cr\hline
-        K&P&M&B&O&D&A&F&C&H&E&J&G&L&I&N \cr\hline
-        L&O&N&A&P&C&B&E&D&G&F&I&H&K&J&M \cr\hline
-        M&F&O&H&A&J&C&L&E&N&G&P&I&B&K&D \cr\hline
-        N&E&P&G&B&I&D&K&F&M&H&O&J&A&L&C \cr\hline
-        O&L&A&N&C&P&E&B&G&D&I&F&K&H&M&J \cr\hline
-        P&K&B&M&D&O&F&A&H&C&J&E&L&G&N&I \cr\hline
-      \end{tabular}
-
-    }
-
+  \item {\note {12\%} Teken het cykeldiagram van de groep, waarvan de groepstabel hieronder gegeven is. Bepaal vervolgens de partitionering van de groepselementen in conjugatieklassen. Stel tenslotte de conjugatievergelijking op.
+  \begin{center}
+    \includegraphics[width=0.8\linewidth]{quasihedral_16}
+  \end{center}
+    
+    \solution{Deze groep is een Quasidihedrale  groep van orde 16 (moet ge nie weten maar gewoon ter informatie). Via de group explorer het cykeldiagram (ge moet het wel met de hand kunnen tekenen, op het examen kunt ge geen group explorer gebruiken.):
+    \\
+    \begin{center}
+    \includegraphics[width=0.8\linewidth]{cyclediagram_quasihedral_16}
+    \end{center}
+    De conjugatieklassen zijn aangeduid met een verschillende kleur. De conjugatievergelijking wordt dus: $1 + 1 + 2 + 2 + 2 + 4 + 4 = 16$}}
+    
+\newpage
   \item {\begin{itemize}
-      \item {\note{12\%} Bepaal de cykelindex om de hoekpunten van een reguliere achthoekige ster (Stellated Octahedron), waarbij zowel rotaties als spiegelingen in beschouwing worden genomen. Je kan deze figuur manipuleren door het programma Antiview op te starten met het argument UC4. (.\\antiview.exe UC4)}
+      \item {\note{12\%} Bepaal de cykelindex om de hoekpunten van een reguliere achthoekige ster (Stellated Octahedron), waarbij zowel rotaties als spiegelingen in beschouwing worden genomen. Je kan deze figuur manipuleren door het programma Antiview op te starten met het argument UC4.
+      
+      \solution{Voor de hoekpunten heeft een reguliere achthoekige ster dezelfde rotaties als die van een kubus. Om de cykelindex te achterhalen kan dus een kubus gebruikt worden i.p.v. de reguliere achthoekige ster. Neem als symmetrieas het vlak evenwijdig met de facetten 0 en 5.\\
+      \begin{tabular}{l | l | r  | r}
+             Aantal & Bewerking  & Rotatiecykel & Spiegelcykel \\
+             1 & Nulrotatie & $(1)^8$ & $(2)^4$  \\
+             6 & 90 $^\circ$, rond een as door de middens van overstaande facetten & $(4)^2$ & $(2)^4$ \\
+             3 & 180 $^\circ$, rond een as door de middens van overstaande facetten & $(2)^4$ & $(2)^4$  \\
+             8 & 120 $^\circ$,rond een as door het centrum en een hoekpunt  & $(1)^2(3)^2$ & $(2)^4$ \\
+             6 & 180 $^\circ$,rond een as door de middens van overstaande ribben & ?? & $(2)^4$ 
+            \end{tabular}}
+      }
       \item {\note{10\%} Hoeveel configuraties zijn er mogelijk waarbij er 2 kleuren 4 maal gebruikt worden. Hoeveel van deze configuraties zijn een spiegelbeeld van elkaar?}
         \item {\note{6\%} Hoeveel configuraties zijn er mogelijk waarbij er 4 kleuren 2 maal gebruikt worden. Hoeveel van deze configuraties zijn een spiegelbeeld van elkaar?}
       \end{itemize}}
