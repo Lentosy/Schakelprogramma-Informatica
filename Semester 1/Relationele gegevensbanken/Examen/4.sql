@@ -1,0 +1,107 @@
+-- Naam student: 
+--
+-- Status implementatie stap 1: 
+-- Status implementatie stap 2: 
+-- Status implementatie stap 3: 
+--
+-- Te raadplegen tabellen: regios en grenzen
+-- URL van de figuur, te openen in Explorer: \temp\db\vlaanderen.jpg
+--
+-- Opmerking in verband met de quotering: de vraag heeft 150% GEWICHT
+--        ten opzichte van vragen 2 en 3.
+--
+-- Beperkingen:
+--      - de oplossing moet bestaan uit één enkele SQL opdracht, eventueel
+--        voorafgegaan door CTE's. het gebruik van PL/SQL is niet toegelaten
+--      - samengestelde opdrachten (UNION, ...) zijn niet toegelaten
+--      - gecorreleerde subqueries zijn niet toegelaten
+--      - recursieve (hiërarchische) queries zijn niet toegelaten
+--      - je mag enkel de standaard beschikbare vormen van analytische functies
+--        (de van aggregaatsfuncties afgeleide reportingfuncties, en de ranking-
+--        functies row_number, rank, dense_rank en ntile) gebruiken, niet de
+--        Oracle-specifieke vormen ervan (zoals windowing of top clausules, lag,
+--        lead, first, first_value, ...)
+--      - je mag geen gebruik maken van pseudokolommen zoals ROWNUM of ROWID.
+--
+-- De rijen, waarvan het overgrootouderelement geïdentificeerd wordt door
+-- hasc='BE.VL', stemmen overeen (cfr. vlaanderen.jpg) met de 308 gemeenten
+-- van Vlaanderen. Via de grenzen tabel kan nagegaan worden of twee specifieke
+-- gemeenten al dan niet buren zijn (een gemeenschappelijke grens hebben).
+-- In vlaanderen.jpg kan je zien dat er heel wat tripletten zijn van gemeenten
+-- die elkaar raken in een gemeenschappelijk punt. Er zijn echter slechts negen
+-- QUADRUPLETTEN van gemeenten met een gemeenschappelijk punt. Deze worden in
+-- vlaanderen.jpg aangeduid met een wit cirkeltje. Het is de bedoeling van deze
+-- SQL oefening om deze negen quadrupletten te produceren. Voer hiervoor volgende
+-- STAPSGEWIJZE berekening uit:
+-- 1) Genereer een lijst van alle mogelijke quadrupletten van naburige gemeenten:
+--    cyclische deelverzamelingen {A,B,C,D} waarbij A grenst aan B, B grenst
+--    aan C, C grenst aan D, D grenst aan A, A NIET grenst aan C en B NIET grenst
+--    aan D. Deze lijst moet (op een permutatie van de gemeenten na: elk
+--    quadruplet mag slechts éénmaal voorkomen !) volgend resultaat reproduceren,
+--    bestaand uit 32 rijen:
+--
+--            A                  B                     C            D
+--            ------------------ --------------------- ------------ ------------
+--            Aalst              Dendermonde           Buggenhout   Opwijk
+--            Aalter             Beernem               Maldegem     Zomergem
+--            Aalter             Beernem               Wingene      Tielt
+--            Aalter             Beernem               Wingene      Ruiselede
+--            . . .
+--            Malle              Vorselaar             Zandhoven    Zoersel
+--            Niel               Puurs                 Willebroek   Rumst
+--
+-- 2) Genereer een lijst van gemeenten X die aan exact vier gemeenten grenzen, en
+--    produceer ook telkens de namen van de corresponderende vier buurgemeenten:
+--
+-- X          A                  B                     C            D
+-- ---------- ------------------ --------------------- ------------ ------------
+-- Lebbeke    Aalst              Dendermonde           Buggenhout   Opwijk
+-- Knesselare Aalter             Beernem               Maldegem     Zomergem
+--            . . .
+-- Boom       Niel               Puurs                 Willebroek   Rumst
+--
+--    Een in stap 1) geproduceerd quadruplet, waarvan de elementen {A,B,C,D}
+--    precies (op een permutatie na) overeenkomen met de vier buren van een
+--    gemeente X met exact vier buren, vertoont geen gemeenschappelijk punt,
+--    maar sluit dit gemeenschappelijk gebied X in. Dergelijke quadrupletten
+--    mogen bijgevolg niet langer overwogen worden. Van de twintig configuraties,
+--    waarvoor dit van toepassing is, wordt de gemeente X in vlaanderen.jpg
+--    oranje gekleurd. De in stap 1) geproduceerde lijst wordt zo gereduceerd
+--    tot volgende tien quadrupletten:
+--
+--            A                  B                     C            D
+--            ------------------ --------------------- ------------ ------------
+--            Aalter             Beernem               Wingene      Tielt
+--            Aalter             Beernem               Wingene      Ruiselede
+--            Aarschot           Scherpenheuvel-Zichem Bekkevoort   Tielt-Winge
+--            Alken              Hasselt               Kortessem    Wellen
+--            As                 Genk                  Zutendaal    Maasmechelen
+--            Bilzen             Hoeselt               Tongeren     Riemst
+--            Brecht             Malle                 Zoersel      Schilde
+--            Geetbets           Nieuwerkerken         Sint-Truiden Zoutleeuw
+--            Kapelle-Op-Den-Bos Londerzeel            Puurs        Willebroek
+--            Malle              Vorselaar             Zandhoven    Zoersel
+--
+-- 3) Vat deze stap enkel aan indien de twee voorgaande stappen volledig correct
+--    geïmplementeerd werden. Genereer een lijst van gemeenten Y die aan exact
+--    drie gemeenten grenzen, en produceer ook telkens de namen van de
+--    corresponderende drie buurgemeenten:
+--
+--            A                  B                     C            Y
+--            ------------------ --------------------- ------------ ------------
+--            Aalter             Beernem               Wingene      Ruiselede
+--            . . .
+--
+--    Een in stap 2) geproduceerd quadruplet, waarvan drie van de elementen
+--    {A,B,C,D} precies (op een permutatie na) overeenkomen met de drie buren
+--    van een gemeente Y met exact drie buren, kan enkel een gemeenschappelijk
+--    punt vertonen indien het vierde, overblijvende, element van het quadruplet
+--    precies Y is. Hierdoor mag (cfr. het paars gekleurde Ruiselede in
+--    vlaanderen.jpg) het eerste quadruplet van de in stap 2) geproduceerde lijst
+--    NIET langer overwogen worden, terwijl het tweede quadruplet in de lijst
+--    juist WEL behouden moet blijven. Op de overige quadrupletten is dit
+--    criterium niet van toepassing. De lijst wordt zo uiteindelijk gereduceerd
+--    tot de negen in vlaanderen.jpg met een wit cirkeltje aangeduide
+--    quadrupletten.
+--
+

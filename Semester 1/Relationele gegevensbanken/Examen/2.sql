@@ -1,0 +1,55 @@
+-- Naam student: 
+--
+-- Status implementatie: 
+--
+-- Te raadplegen tabellen: results en races
+--
+-- Beperkingen:
+--      - de oplossing moet bestaan uit één enkele SQL opdracht, eventueel
+--        voorafgegaan door CTE's. het gebruik van PL/SQL is niet toegelaten
+--      - samengestelde opdrachten (UNION, ...) zijn niet toegelaten
+--      - gecorreleerde subqueries zijn niet toegelaten
+--      - recursieve (hiërarchische) queries zijn niet toegelaten
+--      - je mag enkel de standaard beschikbare vormen van analytische functies
+--        (de van aggregaatsfuncties afgeleide reportingfuncties, en de ranking-
+--        functies row_number, rank, dense_rank en ntile) gebruiken, niet de
+--        Oracle-specifieke vormen ervan (zoals windowing of top clausules, lag,
+--        lead, first, first_value, ...)
+--      - je mag geen gebruik maken van pseudokolommen zoals ROWNUM of ROWID.
+--
+-- Geef een overzicht van de periodes waarin minstens vijf opeenvolgende
+-- wedstrijden in een specifieke discipline door dezelfde skiër/skiester
+-- werden gewonnen. Sorteer deze lijst op het aantal opeenvolgende over-
+-- winningen (en bij een gelijk aantal opeenvolgende overwinningen, op de
+-- einddatum van de periode). Vermeld uiteraard ook de naam van de skiër.
+-- Een specifieke (skiër,discipline)-combinatie kan meermaals in deze lijst
+-- voorkomen. De corresponderende periodes mogen dan uiteraard niet overlappen.
+-- Het script moet bijgevolg volgend resultaat reproduceren:
+--
+--      NAME                    G  DI                           N
+--      ----------------------  -  --   ---------   ---------  --
+--      STENMARK Ingemar        M  GS   18-MAR-78   21-JAN-80  14
+--      MOSER-PROELL Annemarie  L  DH   07-DEC-72   05-JAN-74  11
+--      TOMBA Alberto           M  SL   30-JAN-94   22-JAN-95   9
+--      KLAMMER Franz           M  DH   10-JAN-76   22-JAN-77   9
+--      KOSTELIC Janica         L  SL   18-NOV-00   18-FEB-01   8
+--      COMPAGNONI Deborah      L  GS   17-JAN-97   06-JAN-98   8
+--      SCHNEIDER Vreni         L  SL   16-DEC-88   25-NOV-89   8
+--      MOSER-PROELL Annemarie  L  DH   11-MAR-78   26-JAN-79   7
+--      VONN Lindsey            L  DH   11-MAR-09   23-JAN-10   6
+--      STREET Picabo           L  DH   22-JAN-95   03-DEC-95   6
+--      SCHNEIDER Vreni         L  SL   23-JAN-94   18-DEC-94   6
+--      MAHRE Phil              M  KB   10-JAN-81   15-JAN-82   6
+--      HESS Erika              L  SL   13-JAN-81   24-MAR-81   6
+--      KLAMMER Franz           M  DH   08-DEC-74   26-JAN-75   6
+--      SCHILD Marlies          L  SL   27-NOV-11   03-JAN-12   5 
+--      ROCCA Giorgio           M  SL   04-DEC-05   15-JAN-06   5
+--      PAERSON Anja            L  GS   24-JAN-04   23-OCT-04   5
+--      . . .
+--      STENMARK Ingemar        M  SL   18-MAR-77   09-JAN-78   5
+--      STENMARK Ingemar        M  GS   21-MAR-77   08-JAN-78   5
+--      STENMARK Ingemar        M  SL   03-JAN-77   06-FEB-77   5
+--      MOSER-PROELL Annemarie  L  GS   07-DEC-74   23-FEB-75   5
+--      KILLY Jean-Claude       M  DH   14-JAN-67   10-MAR-67   5
+--
+
