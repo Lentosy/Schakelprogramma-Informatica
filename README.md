@@ -1,8 +1,3 @@
-# Woord vooraf
-
-Normaal zou ik deze repository voor mezelf houden, maar omdat ik ook gebruik maakte van andere repositories, deel ik graag mijn samenvattingen/testvragen/examenvragen. Natuurlijk hou je best rekening met de onvolledigheid, soms onopgeloste oefeningen, de vele typfouten die zullen voorkomen en de wanordige structuur. In het eerste semester maakte ik vooral gebruik van microsoft word om mijn samenvattingen te maken, maar sinds het tweede semester ben ik LaTeX beginnen gebruiken. De eenvoudigste methode is om deze repository te forken zodat je een eigen versie van deze repository onder versiebeheer hebt waarbij je zelf nog aanvullende documenten kunt plaatsen. Anderzijds kan je deze repository downloaden als een ZIP, zodat je lokaal kan werken. Pull requests zijn ook toegelaten.
-
-Voor de mastervakken informatica kan je terecht op https://github.com/Lentosy/Master-Informatica (nog in progress omdat ik nog studeer).
 # Schakelprogramma tot Master of Science in de industriële wetenschappen: informatica, academiejaar 2017 - 2018
 
 [Studieprogramma](https://studiegids.ugent.be/2017/NL/FACULTY/E/SCHA/EZ7INS/EZ7INS.html)
