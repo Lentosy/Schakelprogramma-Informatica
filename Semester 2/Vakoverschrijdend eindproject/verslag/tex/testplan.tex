@@ -1,0 +1,86 @@
+%% TESTPLAN
+\chapter{Testplan}
+\label{ch:testplan}
+De applicatie wordt op twee verschillende manieren getest om fouten of onduidelijkheden te voorkomen. De volgende onderdelen bespreken de verschillende soorten testen en wanneer deze uitgevoerd worden.
+
+\section{Unit testen}
+Unit testen dienen om specifieke functionaliteiten van modules te testen zonder afhankelijk te zijn van andere implementaties door gebruik te maken van mock-objecten. Zulke objecten kunnen bijvoorbeeld de database of langdurige operaties vervangen. 
+\newline
+
+Dit project heeft twee soorten unit testen. Er bestaan unit testen voor zowel de webapplicatie als het Java-stuk.
+
+De unit-testen zijn geschreven met Jasmine. Meer specifiek de node versie hiervan, \texttt{jasmine-node}. Voor volgende functionaliteiten zijn er testen geschreven:
+\begin{itemize}
+ \item Inloggen op de applicatie
+ \item Plaatsen van annotaties
+ \item Aanmaken van groepen op basis van een .csv bestand
+\end{itemize}
+
+
+Aangezien een videobestand meerdere formaten kan aannemen, zijn er ook unit testen die de conversie van zo een bestand test. In de applicatie zijn enkel .mp4 bestanden toegelaten.
+\newline
+
+\subsection{Testsuite Webapplicatie}
+De volgende scenario's worden getest op de webapplicatie.
+\subsubsection{Met betrekking tot het plaatsen van annotaties}
+\begin{itemize}
+ \item Er wordt een annotatie aan een video toegevoegd indien de annotatie geldig is.
+ \item Er wordt een fout gegeven wanneer een annotatie ongeldig is. Een annotatie is ongeldig wanneer: 
+    \begin{enumerate}
+      \item de begintijd een negatieve waarde bevat.
+      \item wanneer de eindtijd eerder dan de begintijd komt.
+    \end{enumerate}
+\end{itemize}
+\subsubsection{Met betrekking tot het inloggen in de applicatie}
+\begin{itemize}
+ \item De gebruiker kan inloggen indien een correct UGent email-adres en paswoord gebruikt wordt.
+ \item Er wordt een fout gegeven indien een paswoord of een gebruikersnaam incorrect is.
+\end{itemize}
+
+\subsubsection{Met betrekking tot het aanmaken van groepen}
+ \begin{itemize}
+  \item Er wordt een klasgroep aangemaakt indien een correct .csv bestand meegegeven wordt. Een correct .csv bestand heeft het volgende formaat:
+  
+  \texttt{Offici\"ele code;Voornaam;Familienaam;UGent-email;Rol;Subgroep}
+ \end{itemize}
+
+
+
+\subsection{Testsuite MP4 converter}
+De volgende scenario's worden getest op de MP4 converter.
+\begin{itemize}
+ \item Er wordt een correcte conversie van een toegelaten videobestand naar MP4 formaat uitgevoerd.
+ \item Er wordt een fout weergegeven indien een bestand geen extensie heeft.
+ \item Er wordt een fout gegeven indien een bestand een niet toegelaten extensie heeft.
+ \item Er wordt een fout gegeven indien het bestand niet bestaat
+\end{itemize}
+
+
+Omdat de broncode nodig is om de testen uit te voeren en aangezien dit pas besproken wordt in \ref{sec:download_repository} hoe dit moet gebeuren, wordt pas in sectie \ref{sec:test_exec} besproken hoe de testen kunnen uitgevoerd worden.
+
+
+
+\section{Usability testen}
+Uiteindelijk moet de applicatie bruikbaar zijn voor personen die het zullen gebruiken. Er wordt aan het einde van een sprint aan een onafhankelijke persoon gevraagd om de functionaliteiten die ge\"implementeerd zijn te testen. Wanneer er onduidelijkheden zijn wordt er samen met deze persoon naar een alternatief gezocht. Er wordt een kort verslag gemaakt  met commentaar van de gebruiker.
+
+\subsection{Reflectieverslag Usability test sprint 2}
+De webapplicatie die online staat na sprint 2 heeft volgende beperkte functionaliteiten:
+\begin{itemize}
+\item Overzicht van video's en assignments
+\item Video uploaden
+\item Video bekijken
+\item Annotatie plaatsen
+\item Groepen bekijken
+\item Assignments bekijken
+\end{itemize}
+
+Testpersonen, Yana De Brouwer, Herman Goossens \& Marijke Van Wayenberg, hebben deze functionaliteiten uitgetest zonder veel extra uitleg en op basis van de test-sessie enkele bevindingen aangebracht.
+\begin{itemize}
+\item Het is niet duidelijk bij het dashboard of de assignments en video's voor jou bedoelt zijn.
+\item Een video afspelen werkt zoals het zou moeten en is makkelijk te bereiken vanuit het dashboard.
+\item Er is geen melding of een video uploaden al dan niet gelukt of bezig is. Je wordt gewoon herleid naar de hoofdpagina.
+\item Het overzicht van de assignments is bombastisch en dus niet overzichtelijk, idem groups.
+\item De styling van de applicatie kan beter.
+\end{itemize}
+
+Deze bevindingen worden meegenomen naar de laatste sprint en worden gebruikt om verbeteringen aan te brengen in de applicatie.

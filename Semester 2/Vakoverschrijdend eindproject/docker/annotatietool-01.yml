@@ -1,0 +1,18 @@
+version: "2"  # "3" if beta release (swarm mode)
+services:
+  annotatietool-01-nodejs:
+    build: 
+      context: ../
+      dockerfile: docker/annotatietool-01-nodejs/Dockerfile
+    ports:
+      - "9016:3000"
+  annotatietool-01-mongodb:
+    build: 
+      context: annotatietool-01-mongodb/
+      dockerfile: Dockerfile
+  annotatietool-01-frontend:
+    build:
+      context: ../
+      dockerfile: docker/annotatietool-01-frontend/Dockerfile
+    ports:
+      - "9010:4200"

@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Assignment: {{assignment.name}}</h1>
+  <div class="row">
+    <input type="text" class="form-control" [(ngModel)]="searchText" name="search" id="search" placeholder="search">
+  </div>
+  <div class="row justify-content-center">
+    <app-assignment-student-view-detail
+      [assignment]="assignment"
+      (refreshEvent)="ngOnInit()">
+    </app-assignment-student-view-detail>
+  </div>
+</div>

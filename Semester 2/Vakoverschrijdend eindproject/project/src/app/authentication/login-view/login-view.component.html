@@ -1,0 +1,17 @@
+<div class="login">
+  <h1 class="text-center">Annotatietool</h1>
+    <form class="loginForm" (ngSubmit)="login()">
+    <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message !== ''">
+      {{message}}
+    </div>
+      <div class="form-group">
+        <label for="username">Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="loginData.username" name="username" id="txtLoginUser">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" [(ngModel)]="loginData.password" name="password" id="txtLoginPass">
+      </div>
+    <button class="btn btn-lg btn-outline-primary btn-block" id="btnLogin">LOGIN</button>
+  </form>
+</div>

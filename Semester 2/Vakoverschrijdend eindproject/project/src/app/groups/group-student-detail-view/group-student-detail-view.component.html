@@ -1,0 +1,50 @@
+<style>
+  .assignment-item{
+    margin: 10px;
+    display: block;
+  }
+</style>
+
+<div class="container">
+  <h1>{{group.name}}</h1>
+
+  <h3>Assignments: ({{group.assignments.length}})</h3>
+  <div class="assignmentsContainer">
+    <a *ngFor="let assignment of group.assignments" class="assignment-item" routerLink="/assignment/student/{{assignment._id}}">
+      <span>{{assignment.name}}</span><br>
+      <span>{{assignment.description}}</span><br>
+      <span>Upload deadline: {{assignment.uploadDeadline}}</span><br>
+      <span>Annotation deadline: {{assignment.annotationDeadline}}</span>
+    </a>
+  </div>
+
+
+  <h3>Studenten:</h3>
+
+  <div *ngIf="group.students.length == 0">
+    There are no students found in this group!
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student number</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let student of group.students; let i = index" [attr.data-index]="i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{student.studentNumber}}</td>
+      <td>{{student.firstName}} </td>
+      <td>{{student.lastName}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>

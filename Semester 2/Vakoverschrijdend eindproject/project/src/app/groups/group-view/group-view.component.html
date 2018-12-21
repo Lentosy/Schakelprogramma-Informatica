@@ -1,0 +1,118 @@
+<style>
+  li {
+    list-style: none;
+  }
+
+  .class-list-item {
+    width: 250px;
+    background: white;
+    border: 2px solid rgb(66, 133, 244);
+    padding: 50px 15px 15px 15px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+
+  .class-list-item .name {
+    font-size: 1.2em;
+    display: block;
+    text-align: center;
+  }
+
+  .class-list-item .info {
+    text-align: left;
+    font-size: 0.9em;
+    margin-top: 35px;
+    display: block;
+    color: #777777;
+  }
+  .class-list-item .info .delete{
+    float: right;
+    cursor: pointer;
+  }
+
+  .class-list-item.addButton {
+    padding-bottom: 60px;
+    padding-top: 60px;
+    color: rgb(56, 123, 234);
+    cursor: pointer;
+    background: #fafaff;
+    font-size: 1.2em;
+  }
+</style>
+
+<div class="container">
+  <h1>My Classes</h1>
+  <ng-template #addClass let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Add a new class</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="txtname">Name of the class:</label>
+        <input type="text" (input)="newClassName = $event.target.value" class="form-control" id="txtName" name="name"
+               required>
+      </div>
+
+      <div class="form-group has-error">
+        <label for="studentsFile">Csv file which lists the students:
+          <i data-html="true" placement="top" ngbTooltip="Exporteer uit minerva. Klik op de knop exporteer csv..."
+             title="Exporteer uit minerva <br> Klik op de knop exporteer csv..." class="fa fa-question-circle"></i>
+
+        </label>
+        <input type="file" class="form-control" id="studentsFile" name="studentsFile" accept=".csv" required
+               (change)="handleFileInput($event.target.files)">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="c('Close click')">Cancel</button>
+      <button type="submit" class="btn btn-success" (click)="postNewGroup()">Done</button>
+    </div>
+  </ng-template>
+  <ng-template #deleteClassModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Delete class</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <label for="txtname">Are you shure you want to delete the class '<b>{{deleteClassObj.name}}</b>'?</label>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="c('Close click')">No</button>
+      <button type="submit" class="btn btn-success" (click)="deleteClass()">Yes</button>
+    </div>
+  </ng-template>
+  <hr>
+
+
+  <ul class="groupList">
+
+    <li *ngFor="let group of groups" class="groupItem class-list-item">
+      <a routerLink="/class/{{group._id.toString()}}">
+        <span class="name">{{group.name}}</span>
+        <div class="info">
+          <span>{{group.studentNumbers.length}} students </span>
+          <span class="delete" (click)="deleteClassClick(group,deleteClassModal)"><i class="fa fa-trash"></i></span>
+        </div>
+      </a>
+
+    </li>
+
+    <li>
+      <button class="class-list-item addButton" (click)="open(addClass)">Add class</button>
+    </li>
+  </ul>
+
+</div>
+
+
+

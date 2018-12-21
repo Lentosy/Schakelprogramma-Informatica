@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div ng-app="editGroupApp" class="container">
+  <h1>Class 1</h1>
+
+  <div ng-controller="EditGroupController">
+    <div ng-show="isLoading">
+      <div class="sk-circle"><!--laad icoontje -->
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+      </div>
+    </div>
+    <div ng-hide="isLoading">
+      <h3>Students</h3>
+      <ul>
+        <li ng-repeat='student in students'>
+          <div>{{student._id}} => dit is het ideeetje</div>
+          <h4>{{student.name}}</h4>
+          <ul>
+            <li ng-repeat='kind in student.kinderen'>
+              {{kind.naam}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 style="display: inline-block;">Groups</h3>   <i data-html="true" data-toggle="tooltip" data-placement="top"
+                                                          title="Dit geeft de mogelijkheid om een klas op te delen in kleinere groepen. <br> Hierdoor hoeven studenten hun videos niet met iedereen van de klas te delen."
+                                                          class="fa fa-question-circle" ></i>
+      <ul>
+        <li ng-repeat='group in groups'>
+          <h4>{{group.name}}</h4>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

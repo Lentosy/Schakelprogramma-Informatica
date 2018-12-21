@@ -1,0 +1,192 @@
+{
+	"annotations": [{
+			"_id": "5af6cb81f4f61216d106934f",
+			"description": "mooie interactie met de klant",
+			"beginTime": 5,
+			"endTime": 10,
+			"__v": 0
+		},
+		{
+			"_id": "5af6cb81f4f61216d1069350",
+			"description": "verzorg de articulatie",
+			"beginTime": 25,
+			"endTime": 30,
+			"__v": 0
+		}
+	],
+	"assignments": [{
+			"_id": "5af70bec819647478342f279",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "Interviewtechnieken",
+			"description": "De studenten moeten aan de hand van een video aantonen dat ze goede interviewtechnieken hebben",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [{
+					"_id": "5af70bec819647478342f27d"
+				},
+				{
+					"_id": "5af70bec819647478342f27c"
+				},
+				{
+					"_id": "5af70bec819647478342f27b"
+				},
+				{
+					"_id": "5af70bec819647478342f27a"
+				}
+			],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f27e",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "La mama",
+			"description": "De studenten moeten aan de hand van een video aantonen dat ze bange personen kunnen geruststellen",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f27f",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "Praatjesmaker",
+			"description": "De studenten moeten aan de hand van een video aantonen dat ze zich uit een ongemakkelijke situatie kunnen praten",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f280",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "Gesprekstechnieken",
+			"description": "De studenten moeten aan de hand van de video de gesprekstechnieken identificeren",
+			"teacherUpload": true,
+			"videos": [],
+			"privateAnnotations": false,
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f281",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "Vriendenpraat",
+			"description": "De studenten moeten aan de hand van een video aantonen dat ze ethisch met vrienden kunnen praten",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f282",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "TO LATE FOR UPLOAD",
+			"description": "UPLOAD TO LATE",
+			"teacherUpload": true,
+			"privateAnnotations": false,
+			"annotationDeadline": "Fri May 11 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Fri May 11 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"videos": [],
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f283",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "deleted assignment",
+			"description": "DELETED",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": true,
+			"__v": 0
+		},
+		{
+			"_id": "5af70bec819647478342f284",
+			"annotationTypes": null,
+			"groups": [],
+			"name": "Omgaan met persoon tijdens spoedopname",
+			"description": "De studenten moeten aantonen dat ze in spoedsituaties de persoon in kwestie gerust kunnen stellen",
+			"teacherUpload": true,
+			"privateAnnotations": true,
+			"videos": [],
+			"annotationDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"uploadDeadline": "Sun May 13 2018 17:44:44 GMT+0200 (CEST)",
+			"deleted": false,
+			"__v": 0
+		}
+
+	],
+	"videos": [{
+			"_id": "5af6cb81f4f61216d1069358",
+			"annotations": [
+				"5af6cb81f4f61216d106934f",
+				"5af6cb81f4f61216d1069350"
+			],
+			"name": "Interview tijdens sollicitatie",
+			"url": "assets/video/Bku3Ighdf.mp4",
+			"description": "In deze video interviewen we een persoon die solliciteert voor een nieuwe job",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af6cb81f4f61216d1069359",
+			"annotations": [
+				"5af6cb81f4f61216d106934f",
+				"5af6cb81f4f61216d1069350"
+			],
+			"name": "Ongemakkelijke ontmoeting met een oude vriend",
+			"url": "assets/video/video1.mp4",
+			"description": "In deze video ontmoet ik een oude vriend, maar het gesprek loopt wel wat ongemakkelijk",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af6cb81f4f61216d106935a",
+			"annotations": [
+				"5af6cb81f4f61216d106934f",
+				"5af6cb81f4f61216d1069350"
+			],
+			"name": "Avondje café met de vrienden",
+			"url": "assets/video/video2.mp4",
+			"description": "In deze video spelen we een avondje café met vrienden na",
+			"deleted": false,
+			"__v": 0
+		},
+		{
+			"_id": "5af6cb81f4f61216d106935b",
+			"annotations": [
+				"5af6cb81f4f61216d106934f",
+				"5af6cb81f4f61216d1069350"
+			],
+			"name": "Omgaan met een nieuwe patiënt ",
+			"url": "assets/video/video3.mp4",
+			"description": "In deze video begeleiden we een nieuwe patiënt op zijn kamer",
+			"deleted": false,
+			"__v": 0
+		}
+	]
+}

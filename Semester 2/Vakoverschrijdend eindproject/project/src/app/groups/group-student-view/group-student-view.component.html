@@ -1,0 +1,29 @@
+<style>
+  .card.mt-3{
+    width: 450px;
+  }
+</style>
+
+<h1>You are member of these groups</h1>
+
+<ul class="groupList">
+
+  <li *ngFor="let group of groups" class="card mt-3">
+    <a routerLink='/class/student/{{group._id.toString()}}'>
+      <div class="car-header text-white bg-dark">
+      {{group.name}}
+      </div>
+      <div class="info">
+        <div>
+          <h4>{{group.assignments.length}} assignments</h4>
+          <div *ngFor="let assignment of group.assignments">
+            <a routerLink="/assignment/student/{{assignment._id}}">{{assignment.name}}</a>
+          </div>
+        </div>
+        <h4>{{group.studentNumbers.length}} students </h4>
+      </div>
+    </a>
+
+  </li>
+</ul>
+

@@ -1,0 +1,40 @@
+Datum,Start,Einde,Plaats,Omschrijving,Issue #,Opmerkingen
+13/02/18,08:30,12:30,Campus,Uitlegsessie VOP,,
+20/02/18,08:15,12:30,Campus,Verplichte sessie,, Om 10u komt de klant.
+26/02/18,17:45,20:35,Extern,High-level systeem model/requirements,#9 en #11,
+20/02/18,08:15,12:30,Campus,Verplichte sessie,, analyse van project
+05/03/18,08:15,12:30,Campus,lokaal project opzetten + mlab,#20,
+05/03/18,13:30,15:30,Campus,mongoDB cloud solution setup,#20, Omdat mlab te traag was cloud solution van mongodb zelf proberen
+06/03/18,11:00,12:30,Extern,mongoDB cloud solution setup + database node files afgewerkt,#20,
+06/03/18,14:00,15:10,Extern,node koppelen aan mongodb cloud,#20,
+13/03/18,08:15,12:30,Campus,start sprint 2 + opzetten van backlog enz,,
+14/03/18,18:30,20:00,Extern,verander angularJs 1.6 naar angular5 ,#58, nieuwere versie in schoolomgeving lijkt ons bij nader inzien beter
+15/03/18,19:00,23:00,Extern,verander angularJs 1.6 naar angular5 ,#58, 
+16/03/18,10:15,12:40,Extern,verander angularJs 1.6 naar angular5 ,#58, done
+17/03/18,13:00,16:00,Campus,taken bekijken,#55,
+21/03/18,21:00,23:00,Extern,navbar change,,
+22/03/18,20:00,21:00,Extern,taken bekijken,#55,API call lukt nie
+26/03/18,21:00,22:00,Extern,taken bekijken,#55,begin van frontend
+27/03/18,08:15,12:30,Campus,taken bekijken,#55,modal voor create assignment
+28/03/18,10:30,11:30,Extern,taken bekijken,#55,modal voor create assignment
+06/04/18,13:00,17:00,Extern,taken beheer,#55,front end modal create assignment
+09/04/18,21:00,23:00,Extern,taken beheer,#55,create en edit form
+16/04/18,18:00,20:00,Extern,taken beheer,#55,create en edit form
+24/04/18,08:15,09:15,Campus,Presentatie met de klant + features bespreken voor sprint 3,,
+24/04/18,09:30,10:30,Campus,retrospective + backlog sprint 3,,
+24/04/18,10:30,12:30,Campus,taken beheer,,
+03/05/18,18:00,20:00,Campus,taken beheer,,
+08/05/18,08:15,12:30,Campus,video upload bugfix,, ook samengezeten voor taakverdeling en feedback sprint 2
+10/05/18,13:00,17:30,Extern,settingspagina modal verwijderd,,
+10/05/18,18:00,20:20,Extern,edit assignment + delete assignment,, 
+11/05/18,10:30,11:30,Extern,soft delete,, soft delete verwijderd altijd dezelfde 
+11/05/18,15:00,17:30,Extern,soft delete en upload deadline,#33 en #106, in orde
+11/05/18,21:30,23:00,Extern,seed db annotation deadline,,
+12/05/18,16:00,17:00,Extern,annotation deadline + settings deadline date bug fix,#112 en #105,
+12/05/18,17:00,18:00,Extern,dropdown annotation implement,#76,
+13/05/18,14:00,17:30,Extern,dropdown implement en show video rework,#76 en #128,
+13/05/18,18:00,20:30,Extern,dropdown implement en show video rework,#76 en #128,
+13/05/18,21:30,01:20,Extern,merge fixes met identity,#142 en #118,
+14/05/18,11:00,16:00,Extern,rubic en quickcomments,,
+14/05/18,16:00,18:15,Extern,show video style,,
+14/05/18,19:00,20:45,Extern,navbar style,,

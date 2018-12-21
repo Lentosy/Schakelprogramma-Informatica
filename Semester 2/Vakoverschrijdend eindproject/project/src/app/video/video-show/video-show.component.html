@@ -1,0 +1,171 @@
+<div class="container">
+  <div class="row">
+    <h1> {{ video?.name }}</h1>
+  </div>
+  <div class="row">
+    <h3>Assignment: {{ assignment?.name }}</h3>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div align="center" class="embed-responsive-16by9">
+        <app-media-player *ngIf="video != null"
+                          (apiEmmiter)="getVideoApi($event)"
+                          [src]=streamsrc
+                          [type]="this.video.type">
+        </app-media-player>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2>Comments</h2>
+      <div *ngIf="!isCommentsLoading" id="comments">
+        <ul class="list-group" *ngFor="let annotation of video?.annotations">
+          <li class="list-group-item">
+            <span class="comments-time-interval">{{ annotation.beginTime }} - {{ annotation.endTime }}</span>
+            <span class="comments-user-name">{{ this._userService.getFullnameById(annotation.userId) }}</span>
+            <img class="video-play-button" id="timestamp" (click)=setVideoTimestamp(annotation.beginTime)
+                 src="../../../assets/video-play-icon.png"/>
+            <br>
+            {{annotation.description}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- todo, dynamisch genereren -->
+  <div *ngIf="!checkAnnotationDeadline()">
+    <h4>Annotation deadline is expired!</h4>
+  </div>
+  <div *ngIf="checkAnnotationDeadline()">
+
+    <div *ngIf="assignment.quickComments.length != 0">
+      <span *ngFor="let quickComm of assignment?.quickComments" id="quickComments">
+        <button class="btn btn-md btn-primary" (click)="addQuickComment(quickComm)">{{quickComm}}</button>
+      </span>
+      <hr>
+    </div>
+
+    <div *ngIf="assignment.rubric.length != 0">
+      <h2>Rubric Comments</h2>
+
+      <div class="form-group">
+        <label for="rubricCommentBegin" class="col-1 col-form-label">Begin:</label>
+        <div class="col-4">
+          <input id="rubricCommentBegin" name="rubricCommentBegin" placeholder="0" class="form-control here"
+                 type="hidden"
+                 [(ngModel)]="currentTime">
+          <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(-5)"> <<</button>
+          <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(-1)"> <</button>
+          {{currentTimeString}}
+          <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(1)"> ></button>
+          <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(5)"> >></button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rubricCommentEnd" class="col-1 col-form-label">End:</label>
+        <div class="col-4">
+          <input id="rubricCommentEnd" name="rubricCommentEnd" placeholder="0" class="form-control here"
+                 type="hidden"
+                 [(ngModel)]="endTime">
+          <button class="btn btn-primary btn-sm" (click)="changeEndTime(-5)"> <<</button>
+          <button class="btn btn-primary btn-sm" (click)="changeEndTime(-1)"> <</button>
+          {{endTimeString}}
+          <button class="btn btn-primary btn-sm" (click)="changeEndTime(1)"> ></button>
+          <button class="btn btn-primary btn-sm" (click)="changeEndTime(5)"> >></button>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <select [(ngModel)]="rubricThemeSelection">
+          <option [ngValue]="undefined" disabled selected>select a theme</option>
+          <option *ngFor="let element of assignment.rubric" [Value]="rubricThemeSelection">{{element.theme}}</option>
+        </select>
+
+        <select [(ngModel)]="rubricScoreSelection">
+          <option [ngValue]="undefined" disabled selected>select a score</option>
+          <option *ngFor="let element of rubricScores" [Value]="rubricScoreSelection">{{element}}</option>
+        </select>
+
+        <br>
+
+        <label for="rubricTextArea" class="col-4 col-form-label">Description:</label>
+        <div class="col-8">
+        <textarea id="rubricTextArea" name="commentTextArea" cols="40" rows="5" class="form-control"
+                  (focus)="pauzeFocus()" [(ngModel)]="rubricDesc"></textarea>
+        </div>
+
+        <a class="btn btn-primary" (click)="addRubricComment()">Add comment</a>
+      </div>
+
+      <hr>
+    </div>
+
+    <div *ngIf="assignment.dropdown.length != 0">
+      <h2>Dropdown Comments</h2>
+      <div class="form-group">
+        <select [(ngModel)]="dropdownSelection">
+          <option [ngValue]="undefined" disabled selected>select one option</option>
+          <option *ngFor="let element of assignment.dropdown" [Value]="dropdownSelection">{{element}}</option>
+        </select>
+        <a class="btn btn-primary" (click)="addDropdownComment()">Add comment</a>
+      </div>
+      <hr>
+    </div>
+
+    <h2>Descriptive Comments</h2>
+    <div class="form-group">
+      <label for="commentBeginTimeStamp" class="col-1 col-form-label">Begin:</label>
+      <div class="col-4">
+        <input id="commentBeginTimeStamp" name="commentBeginTimeStamp" placeholder="0" class="form-control here"
+               type="hidden"
+               [(ngModel)]="currentTime">
+        <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(-5)"> <<</button>
+        <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(-1)"> <</button>
+        {{currentTimeString}}
+        <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(1)"> ></button>
+        <button class="btn btn-primary btn-sm" (click)="changeCurrentTime(5)"> >></button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="commentEndTimeStamp" class="col-1 col-form-label">End:</label>
+      <div class="col-4">
+        <input id="commentEndTimeStamp" name="commentEndTimeStamp" placeholder="0" class="form-control here"
+               type="hidden"
+               [(ngModel)]="endTime">
+        <button class="btn btn-primary btn-sm" (click)="changeEndTime(-5)"> <<</button>
+        <button class="btn btn-primary btn-sm" (click)="changeEndTime(-1)"> <</button>
+        {{endTimeString}}
+        <button class="btn btn-primary btn-sm" (click)="changeEndTime(1)"> ></button>
+        <button class="btn btn-primary btn-sm" (click)="changeEndTime(5)"> >></button>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="commentTextArea" class="col-4 col-form-label">Comment:</label>
+      <div class="col-8">
+        <textarea id="commentTextArea" name="commentTextArea" cols="40" rows="5" class="form-control"
+                  (focus)="pauzeFocus()" [(ngModel)]="commentInput"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-8">
+        <button name="submit" type="submit" class="btn btn-primary" (click)="addAnnotation()">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="_userService.isUserTeacher()" id="export-if">
+    <h2>Export annotations</h2>
+    <div class="form-group row" id="export">
+      <button class="btn btn-primary"
+              title="Exports and saves the annotations of this video to a Comma Separated Value file (.csv) to import into Excel"
+              (click)="this._exportFileService?.exportAnnotationsAsCSV(this.video)">Export as CSV
+      </button>
+    </div>
+  </div>
+</div>

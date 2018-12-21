@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>{{group.name}}</h1>
+
+  <h3>Studenten:</h3>
+
+  <ng-template #deleteStudentModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Delete class</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <label for="txtname">Are you shure you want to delete the student '<b>{{deleteStudentObj.firstName + " " + deleteStudentObj.lastName}}</b>'?</label>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="c('Close click')">No</button>
+      <button type="submit" class="btn btn-success" (click)="deleteStudent()">Yes</button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="group.students.length == 0">
+    There are no students found in this group!
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student number</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let student of group.students; let i = index" [attr.data-index]="i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{student.studentNumber}}</td>
+      <td>{{student.firstName}} </td>
+      <td>{{student.lastName}}</td>
+      <th scope="row"><a (click)="deleteStudentClick(student, deleteStudentModal)"><i class="fa fa-trash"></i></a></th>
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>

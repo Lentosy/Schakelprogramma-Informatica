@@ -1,0 +1,43 @@
+
+<div class="col">
+  <div class="card mt-3" style="width: 30rem;">
+    <div class="card-header text-white bg-dark">
+      {{assignment.name}}
+      <a (click)="deleteAssignment()" class="pull-right"><i class="fa fa-trash fa-lg" style="color:#007bff; margin-left: 10px"></i></a>
+      <a (click)="editAssignment()" class="pull-right"><i class="far fa-edit fa-lg" style="color:#007bff"></i></a>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{assignment.description}}</p>
+      <p class="card-text"><b>Comments are private:</b> {{assignment.privateAnnotations? "yes": "no"}}</p>
+      <p class="card-text"><b>QuickComments:</b>
+        <span *ngFor="let comment of assignment.quickComments"> {{comment}} </span>
+        <span *ngIf="assignment.quickComments.length == 0">Geen quickComments</span>
+      </p>
+
+      <p class="card-text"><b>Groups:</b>
+        <span *ngFor="let group of assignment.groups"> {{group.name}} </span>
+        <span *ngIf="assignment.groups.length == 0">Geen groepen geselecteerd</span>
+      </p>
+
+
+
+      <p *ngIf="assignment.teacherUpload" class="card-text"><b>Uploads by:</b> Teacher</p>
+      <p *ngIf="!assignment.teacherUpload" class="card-text"><b>Uploads by:</b> Student</p>
+      <p class="card-text"><b>Upload deadline:</b> {{assignment.uploadDeadline | date:'dd/MM/yy, hh:mm'}}</p>
+      <p class="card-text"><b>Annotation deadline:</b> {{assignment.annotationDeadline | date:'dd/MM/yy, hh:mm'}}</p>
+
+      <div>
+        <a *ngIf="assignment.teacherUpload" routerLink="/video/upload">Upload a new video</a>
+
+        <p><b>Uploaded Videos ({{assignment.videos.length}})</b></p>
+
+        <div *ngFor="let video of assignment.videos">
+          <b>Uploaded by:</b> {{video.userId.firstName + " " + video.userId.lastName}}
+          <a routerLink="/video/{{video._id}}">Link to the video</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

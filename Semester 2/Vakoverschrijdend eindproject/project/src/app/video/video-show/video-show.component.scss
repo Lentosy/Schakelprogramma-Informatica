@@ -1,0 +1,26 @@
+#comments {
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.comments-time-interval {
+  color: #FF5722;
+}
+
+.comments-user-name {
+  size: 2px;
+  color: darkred;
+  font-size: small;
+}
+
+#timestamp {
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.video-play-button {
+  width: 50px;
+  height: 50px;
+  float: right;
+}

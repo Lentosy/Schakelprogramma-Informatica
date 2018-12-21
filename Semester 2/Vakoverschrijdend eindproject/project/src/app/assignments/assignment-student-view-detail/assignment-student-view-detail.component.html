@@ -1,0 +1,79 @@
+<div class="col">
+  <div class="card mt-3" style="width: 30rem;">
+    <div class="card-header text-white bg-dark">
+      {{_assignment.name}}
+    </div>
+
+    <div class="card-body">
+      <p class="card-text">{{_assignment.description}}</p>
+      <p><b>Teacher:</b> {{_assignment.owner.firstName + " " + _assignment.owner.lastName}}</p>
+      <div *ngIf="_assignment.teacherUpload">
+        <div *ngIf="_assignment.videos.length > 0">
+          <div *ngIf="annoDeadline <= now">
+            There can no annotations be placed on the teacher's video, deadline expired.
+          </div>
+          <div *ngIf="annoDeadline > now">
+            Annotations can be made on the teacher's video(s):
+          </div>
+          <div *ngFor="let video of _assignment.videos">
+            <a routerLink="/video/{{video._id}}">Link to the video ({{video.name}})</a>
+          </div>
+        </div>
+        <div *ngIf="_assignment.videos.length == 0">
+          The teacher hasn't uploaded a video yet.
+        </div>
+      </div>
+
+      <div *ngIf="!_assignment.teacherUpload">
+        <div *ngIf="_assignment.videos.length > 0">
+          <div *ngIf="annoDeadline <= now">
+            There can no annotations be placed on the videos, deadline expired.
+          </div>
+          <div *ngIf="annoDeadline > now">
+            Annotations can be placed on the videos until {{_assignment.annotationDeadline | date:'dd/MM/yy, hh:mm'}}
+          </div>
+          <div class="videoList">
+            <div *ngIf="myVideo != null">
+              <b>Your video:</b> <a routerLink="/video/{{myVideo._id}}">Link to the video</a>
+            </div>
+            <div *ngIf="myVideo == null">
+              <div *ngIf="uploadDeadline > now">
+                You haven't uploaded a video yet.
+                <a routerLink="/video/upload">Upload a video</a>
+              </div>
+              <div *ngIf="uploadDeadline <= now">
+                Can't upload a video anymore, deadline expired.
+              </div>
+            </div>
+
+
+            <div *ngFor="let video of _assignment.videos">
+              <b>Uploaded by:</b> {{video.userId.firstName + " " + video.userId.lastName}}
+              <a routerLink="/video/{{video._id}}">Link to the video</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="_assignment.videos.length == 0">
+          <div *ngIf="myVideo != null">
+            <b>Your video:</b> <a routerLink="/video/{{myVideo._id}}">Link to the video</a>
+          </div>
+          <div *ngIf="myVideo == null">
+            <div *ngIf="uploadDeadline > now">
+              You haven't uploaded a video yet.
+              <a routerLink="/video/upload">Upload a video</a>
+            </div>
+            <div *ngIf="uploadDeadline <= now">
+              Can't upload a video anymore, deadline expired.
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <p class="card-text"><b>Upload deadline:</b> {{_assignment.uploadDeadline | date:'dd/MM/yy, hh:mm'}}</p>
+      <p class="card-text"><b>Annotation deadline:</b> {{_assignment.annotationDeadline | date:'dd/MM/yy, hh:mm'}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.login{
+  margin-top:15%;
+}
+
+.loginForm {
+  width:378px;
+  margin:0 auto;
+  margin-top:10px;
+  padding:10px;
+  border:2px #303f9f solid;
+}

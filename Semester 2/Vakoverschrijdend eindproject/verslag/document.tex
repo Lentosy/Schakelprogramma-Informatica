@@ -1,0 +1,47 @@
+\documentclass[12pt]{report}
+\usepackage{enumitem}        % enumeratie opties
+\usepackage{color}           % extra kleuren
+\usepackage[dutch]{babel}    % nederlandse sectieheaders i.p.v. engels
+\usepackage[utf8]{inputenc}  % UTF-8 encoding
+\usepackage{graphicx}        % laat toe om figuren (jpg, png, ...) te tonen
+\usepackage[pdfpagelabels]{hyperref}        % hyperlinks in PDF
+\usepackage[a4paper, margin=1.1in]{geometry}
+\usepackage[toc,page]{appendix} %bijlage opties
+
+\usepackage{usecases} % Voor use cases
+\usepackage{float}
+
+\hypersetup{pageanchor=false}
+
+%VOORPAGINA
+\title{Vakoverschrijdend Eindproject \\ Annotatietool\\Team 1\\ Eindverslag}
+\author{ 
+    Arnout Lenaerts                                       \\
+    Bert De Saffel                                        \\
+    Emiel Vandenbussche                                   \\
+    Glenn Goossens                                        \\
+    Nick van Hurck                                        \\
+    Ruben Janssens                                        \\
+    Timothy Thiecke                                       \\
+    \vspace{0.2cm}                                        \\ 
+    \includegraphics[width=0.9\textwidth]{titlepage}      \\
+    Website: \url{http://annotatietool.tiwi.ugent.be/}
+}
+\date{\today}
+
+%EIGEN MODIFICATIES
+\setlength{\parindent}{0mm} % geen indendatie bij een nieuwe paragraaf
+\graphicspath{{./img/}}     % figuren zijn te vinden in de img/ folder
+\newcommand{\todo}[1]{
+    {\color{red}\textunderscore{\textit{ToDo: #1}}}
+}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \input{./tex/inleiding.tex}
+    \input{./tex/gebruikersaspecten.tex}
+    \input{./tex/systeemarchitectuur.tex}
+    \input{./tex/testplan.tex}
+    \input{./tex/installatiehandleiding.tex}    
+\end{document}

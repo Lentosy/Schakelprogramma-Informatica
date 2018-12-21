@@ -1,0 +1,139 @@
+<!--HEADER-->
+<div class="settings-header">
+
+  <h2 *ngIf="!isNewAssignment" class="settings-title">Update Assignment</h2>
+  <h2 *ngIf="isNewAssignment" class="settings-title">Create Assignment</h2>
+
+</div>
+<!--BODY-->
+<div class="settings-body">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col col-6">
+        <h4>Algemeen:</h4>
+        <p class="name">Assignment name</p>
+        <input type="text" [ngModel]="model?.name" (input)="model.name=$event.target.value" id="name" required>
+
+        <p class="description">Description</p>
+        <input type="text" [ngModel]="model?.description" (input)="model.description=$event.target.value" id="description">
+      </div>
+
+      <div class="col col-6">
+
+        <h4>Annotation options:</h4>
+
+        <!--Ik wil hier een toggle die dan zorgt dat dit tevoorschijn komt, voor quick en rubric
+        <p class="quick">Quick comments</p>
+        <input type="checkbox" class="toggle" id="quick" (click)="eventEnableQuickComment()">-->
+
+
+        <!--<div>
+          <div *ngFor="let item of QuickOptionsSHOW;let index = index;trackBy:trackByIndex;">
+            <input [(ngModel)]="QuickOptionsSHOW[index]" placeholder="x">
+          </div>
+          &lt;!&ndash;<div *ngFor="let item of QuickOptionsSHOW">
+            <label>{{item}}</label>
+          </div>&ndash;&gt;
+        </div>-->
+        <p class="private">Students can see eachothers annotations</p>
+        <input id="chkPrivCom" type="checkbox" [ngModel]="model?.privateAnnotations" (change)="model.privateAnnotations=!model.privateAnnotations"
+               class="toggle" id="private">
+
+        <br>
+
+        <h4>Quick comments</h4>
+        <input type="text" id="quickcomments" [(ngModel)]="quickCommentElement">
+        <ul>
+          <li class="quickCommentElement" *ngFor="let element of model.quickComments">
+            <p class="inline">{{element}}</p>
+            <a (click)="removeQuickCommentElement(element)" class="pull-right"><i class="fa fa-trash"
+                                                                                  style="color:#007bff; margin-left: 10px"></i></a>
+          </li>
+        </ul>
+        <a *ngIf="model.quickComments.length < 8" class="btn btn-primary" (click)="addQuickCommentElement()">Add element</a>
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-6">
+        <!--TODO: (Weet niet direct wat hier te doen?)-->
+        <!--<h4>Select Classes or Groups:</h4>-->
+        <!--<p class="classes">Classes</p>-->
+        <!--<input type="checkbox" class="toggle" id="classes">-->
+        <!--<br>-->
+
+        <!--<p class="groups">Groups</p>-->
+        <!--<input type="checkbox" class="toggle" id="groups">-->
+        <!--<br>-->
+        <h4>Select Class</h4>
+        <div id="classChoseContainer" style="overflow-y: scroll;max-height: 300px">
+          <ul>
+            <li *ngFor="let group of groups">
+              <input [checked]="group.currentActive" (change)="group.currentActive = !group.currentActive"
+                     type="checkbox"/> {{group.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col col-6">
+        <h4>Video upload</h4>
+        <p class="uploadBy">Uploads by:</p>
+        <input type="checkbox" class="toggle" [ngModel]="model?.teacherUpload" (change)="model.teacherUpload=!model.teacherUpload"
+               id="uploadBy"><label for="uploadBy">Teacher upload's videos</label><br>
+
+        <input type="checkbox" class="toggle" [ngModel]="!model?.teacherUpload" (change)="model.teacherUpload=!model.teacherUpload"
+               id="uploadByNot"><label for="uploadBy">Students upload videos</label>
+        <br>
+
+        <p class="deadline">Annotation Deadline</p>
+        <input type="datetime-local" [ngModel]="model?.annotationDeadline  | date :'yyyy-MM-ddThh:mm'"
+               (ngModelChange)="model.annotationDeadline=$event" id="annotationDeadline">
+
+        <p class="deadline">Upload Deadline</p>
+        <input type="datetime-local" [ngModel]="model?.uploadDeadline | date :'yyyy-MM-ddThh:mm'"
+               (ngModelChange)="model.uploadDeadline=$event" id="uploadDeadline">
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <!--DROPDOWN implmentatie-->
+      <div class="col col-6">
+        <h4>Dropdown</h4>
+        <input type="text" id="dropdown" [(ngModel)]="dropdownElement">
+        <ul>
+          <li class="dropdownElement" *ngFor="let element of model.dropdown">
+            <p class="inline">{{element}}</p>
+            <a (click)="removeDropdownElement(element)" class="pull-right"><i class="fa fa-trash"
+                                                                              style="color:#007bff; margin-left: 10px"></i></a>
+          </li>
+        </ul>
+        <a *ngIf="model.dropdown.length < 8" class="btn btn-primary" (click)="addDropdownElement()">Add element</a>
+      </div>
+
+      <div class="col col-6">
+        <h4>Rubric</h4>
+        <input type="text" id="rubric" [(ngModel)]="rubricThemeElement">
+        <ul>
+          <li class="rubricElement" *ngFor="let element of model.rubric">
+            <p class="inline">{{element.theme}}</p>
+            <a (click)="removeRubricElement(element)" class="pull-right"><i class="fa fa-trash"
+                                                                            style="color:#007bff; margin-left: 10px"></i></a>
+          </li>
+        </ul>
+        <a *ngIf="model.rubric.length < 6" class="btn btn-primary" (click)="addRubricElement()">Add element</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <button class="btn btn-primary" (click)="addOrChangeAssignment()">Submit</button>
+</div>
+
+

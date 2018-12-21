@@ -1,0 +1,38 @@
+[
+	{
+		"_id": "5af58a471250830e24b6cebe",
+		"annotationTypes": null,
+		"name": "Praatjesmaker",
+		"description": "De studenten moeten aan de hand van een video aantonen dat ze zich uit een ongemakkelijke situatie kunnen praten",
+		"privateAnnotations": true,
+		"deadline": "1526041153919",
+		"owner": "5af58a441250830e24b6ceb7",
+		"videos": [],
+		"assignmentPerGroups": [],
+		"__v": 0
+	},
+	{
+		"_id": "5af58a471250830e24b6cebf",
+		"annotationTypes": null,
+		"name": "Interviewtechnieken",
+		"description": "De studenten moeten aan de hand van een video aantonen dat ze goede interviewtechnieken hebben",
+		"privateAnnotations": true,
+		"deadline": "1526041153919",
+		"owner": "5af58a441250830e24b6ceb7",
+		"videos": [],
+		"assignmentPerGroups": [],
+		"__v": 0
+	},
+	{
+		"_id": "5af58a471250830e24b6cec0",
+		"annotationTypes": null,
+		"name": "Vriendenpraat",
+		"description": "De studenten moeten aan de hand van een video aantonen dat ze ethisch met vrienden kunnen praten",
+		"privateAnnotations": true,
+		"deadline": "1526041153919",
+		"owner": "5af58a441250830e24b6ceb7",
+		"videos": [],
+		"assignmentPerGroups": [],
+		"__v": 0
+	}
+]

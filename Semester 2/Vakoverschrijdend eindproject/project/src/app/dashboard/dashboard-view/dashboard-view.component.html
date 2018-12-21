@@ -1,0 +1,49 @@
+<p *ngIf="loading !=2" >Loading...</p>
+<div  *ngIf="loading==2" class="container">
+  <div class="row align-items-center">
+    <input type="text" class="form-control" [(ngModel)]="searchText" name="search" id="search" placeholder="search">
+  </div>
+  <h1>Assignments</h1>
+  <ngx-carousel [inputs]="carouselTileTwo" (carouselLoad)="carouselTileTwoLoad()">
+    <ngx-tile NgxCarouselItem *ngFor="let ass of assignments | filter : searchText">
+      <a *ngIf="role != 'student'" id="assLink" routerLink="/assignment">
+        <div class="wBg">
+          <h4>{{ass.name}}</h4>
+          <p>{{ass.description}}</p>
+        </div>
+      </a>
+      <a *ngIf="role == 'student'" id="assLink" routerLink="/assignment/student">
+        <div class="wBg">
+          <h4>{{ass.name}}</h4>
+          <p>{{ass.description}}</p>
+        </div>
+      </a>
+    </ngx-tile>
+    <button NgxCarouselPrev class="leftRs">&lt;</button>
+    <button NgxCarouselNext class="rightRs">&gt;</button>
+  </ngx-carousel>
+  <div id="noMatch" class="alert alert-danger" *ngIf="assignments.length === 0">No
+    matches
+  </div>
+
+
+  <h1>Your Video's</h1>
+  <div class="row">
+    <div *ngFor="let video of videos | filter: searchText">
+      <div class="col-xxxl-3 col-md-8">
+        <a href="/video/{{ video._id }}">
+          <div class="card" style="width: 21rem;">
+            <img class="card-img-top" src="../../../assets/thumbnail.png" alt="Video Thumbnail">
+            <div class="card-body bg-light">
+              <h5 class="card-title">{{video.name}}</h5>
+              <!--<p class="card-text">{{video.description}}</p>-->
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="noMatch" class="alert alert-danger" *ngIf="videos.length === 0">No
+      matches
+    </div>
+  </div>
