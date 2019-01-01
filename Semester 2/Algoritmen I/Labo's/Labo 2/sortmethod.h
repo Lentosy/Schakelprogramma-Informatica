@@ -40,7 +40,7 @@ class Sortmethod {
 		* \param[in] kleinste 			De kleinste arraysize
 		* \param[in] grootste           De limiet van de arraysize
 		*/
-		static void compare(vector<Sortmethod<T>*> &sortmethods, SequenceOrder sequenceOrder, const int smallest, const int biggest) {
+		static void compare(vector<Sortmethod<T>*> &sortmethods, SequenceOrder sequenceOrder, int smallest, int biggest) {
 			const int columnwidth=20;
 
 			printSequenceOrder(sequenceOrder);
@@ -104,7 +104,7 @@ class Sortmethod {
 			}
 		};
 
-		static void printHeaderRow(const int smallest, const int biggest, const int columnwidth) {
+		static void printHeaderRow(int smallest, int biggest, int columnwidth) {
 			cout << "\t";
 			cout << setw(columnwidth) << "Name of algorithm";
 			int arraysize = smallest;
