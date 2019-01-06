@@ -38,10 +38,10 @@ De permutatie(volgorde is van belang): $$P_n = n!$$ (Op hoeveel verschillende ma
 
 De combinatie(volgorde is niet van belang): $$C_n^p = (_p^n) = \frac{n!}{p!(n - p)!}$$ (Op hoeveel verschillende manieren kunnen we 2 studenten kiezen uit 5 \textbf{OF} het aantal verschillende manieren om \textit{p} elementen te kiezen uit \textit{n}.)
 
-\example{In een vaas zitten 8 rode, 4 witte en 3 blauwe knikkers. Wat is de kans om met trekken met teruglegging exact 2 rode knikkers te nemene bij het trekken van 5 knikkers?}{
+\example{In een vaas zitten 8 rode, 4 witte en 3 blauwe knikkers. Wat is de kans om bij trekken met teruglegging exact 2 rode knikkers te nemen bij het trekken van 5 knikkers?}{
 	$$P(2R) = \frac{8}{15} \cdot \frac{8}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot \frac{7}{15} \cdot C_5^2$$
 	
-	Het getal $\frac{8}{15}$ stelt de kans voor om een rode knikker te trekken. Het getal $\frac{7}{15}$ stelt de kans voor om geen rode knikker te trekken. Er wordt vermenigvuldigt met $C_5^2$ de 2 rode knikkers elk van de 5 plaatsen kunnen innemen.
+	Het getal $\frac{8}{15}$ stelt de kans voor om een rode knikker te trekken. Het getal $\frac{7}{15}$ stelt de kans voor om geen rode knikker te trekken. Er wordt vermenigvuldigt met $C_5^2$ aangezien de 2 rode knikkers elk van de 5 plaatsen kunnen innemen.
 	$$=C_5^2 \bigg(\frac{8}{15}\bigg)^2\bigg(\frac{7}{15}\bigg)^3$$
 	$$= 10 \cdot \frac{64}{225} \cdot \frac{343}{3375} = 0.29 = 29\%\; \hbox{kans}$$
 	
@@ -214,7 +214,7 @@ $$F(x) = P(x \leq t) = \int_{-\infty}^{t} f(x)\;dx$$
 			\int_{-\infty}^{+\infty} f(x)\; dx = 1 
 			& \Leftrightarrow \int_{0}^{2} a + b(x - 1)^3 \; dx = 1 \\
 			& \Leftrightarrow ax + b\frac{(x - 1)^4}{4}\bigg|_{0}^{2} = 1 \\
-			& \Leftrightarrow 2a + \frac{b}{4}(1 - 1) = 2 \\
+			& \Leftrightarrow 2a + \frac{b}{4}(1 - 1) = 1 \\
 			& \Leftrightarrow a = \frac{1}{2}
 		\end{split}
 	\end{equation*}
