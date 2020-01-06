@@ -35,3 +35,16 @@ class Dag {
 };
 
 #endif
+
+
+
+unique_ptr<T> var1(new T);
+var1->blabla;
+
+// p heeft een attribuut van type T*
+
+unique_ptr<T> var2(var1) // gaat niet
+unique_ptr<T> var3;
+var3 = var1; // gaat niet
+
+var3 = std::move(var1); //gaat wel, kunt ook swap gebruiken. Eindresultaat is dat var3 nu da attribuut van type T* heeft, en var1 heeft niets meer

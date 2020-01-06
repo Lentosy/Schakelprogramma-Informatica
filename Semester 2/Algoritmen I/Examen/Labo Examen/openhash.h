@@ -6,6 +6,7 @@ enum staat = {??????????}
 
 class Openhash : vector<pair<T, staat> {
     public:
+
         
 }
 
